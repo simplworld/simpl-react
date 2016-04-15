@@ -1,6 +1,6 @@
 ### Installation
 
-    $ npm install <> --save
+    $ npm install git+ssh://git@stash.wharton.upenn.edu:7999/ll/simpl-react.git --save
 
 ### Building
 
