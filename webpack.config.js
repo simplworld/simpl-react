@@ -1,34 +1,34 @@
+require('babel/register');
 var path = require("path");
-var glob = require("glob")
 var webpack = require('webpack');
 
 
-var entry_points = {
-  index: [
-  ]
-}
-
-glob.sync("src/**/*.js")
-.forEach(function(_path) {
-  var filename = _path.split('/').slice(-1)[0]
-  if (filename.endsWith('.js') || filename.endsWith('.jsx')) {
-    entry_points.index.push(path.resolve(_path.split('.').slice(0, -1).join('.')))
-  }})
-
-process.stdout.write("Entry points: " + JSON.stringify(entry_points) + '\n')
-
 var config = {
   context: __dirname,
-  entry: entry_points,
+  entry: './lib/index',
   output: {
-      filename: "index.min.js"
+    filename: "./index.js",
+    library: 'Simpl',
+    libraryTarget: 'umd'
   },
-  resolve: {
-    modulesDirectories: [
-      'node_modules',
-    ],
-    extensions: ['', '.js', '.jsx', '.json']
-  },
+  externals: [
+    {
+      'react': {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      }
+    },
+    {
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
+      }
+    }
+  ],
   node: {
     fs: "empty",
     tls: "empty"
@@ -41,7 +41,7 @@ var config = {
     loaders: [
       {
         test: /\.js[x]?$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname)],
         exclude: /(node_modules|bower_components)/,
         loader: "babel"
       }
