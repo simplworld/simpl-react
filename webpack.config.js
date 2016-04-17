@@ -47,14 +47,7 @@ var config = {
       }
     ],
     noParse: [/\.min\.js/, /\.md/]
-  },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-          warnings: false
-      }
-    })
-  ]
+  }
 }
 
 module.exports = config;
