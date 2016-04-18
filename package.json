@@ -9,9 +9,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --devtool cheap-eval-inline-source-map -d --watch",
-    "compile_dev": "webpack -d",
-    "compile_prod": "webpack -p"
+    "watch": "webpack -d --watch",
+    "compile": "if [ \"$NODE_ENV\" = \"production\" ]; then\n\twebpack -p\nelse\n\twebpack -d\nfi"
   },
   "repository": {
     "type": "git",

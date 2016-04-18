@@ -5,4 +5,4 @@
 ### Building
 
     $ npm install
-    $ npm run compile_prod
+    $ npm run compile --production
