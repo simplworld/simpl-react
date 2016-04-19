@@ -1,5 +1,3 @@
-jest.unmock('../lib/utils/collections');
-
 import collections from '../lib/utils/collections'
 
 describe('Collections', () => {
