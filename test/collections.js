@@ -46,7 +46,6 @@ describe('Collections', () => {
     expect(updated[1].name).toEqual('Bob')
 
     updated = collections.popAtIndex(collection, -1)
-    console.log(updated)
     expect(updated.length).toEqual(2)
     expect(updated[0].name).toEqual('Alice')
     expect(updated[1].name).toEqual('Bob')
