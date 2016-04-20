@@ -27,12 +27,7 @@ var config = {
         commonjs: 'react-dom',
         amd: 'react-dom'
       }
-    },
-    'react-dom/server': true,
-    'cheerio': 'window',
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true,
-    'react-addons-test-utils': true
+    }
   ],
   node: {
     fs: "empty",
