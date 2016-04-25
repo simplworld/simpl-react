@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      "autobahn-react@^0.3.1",
+      "/Users/flavio/working_copies/wharton/simpl-react"
+    ]
+  ],
+  "_from": "autobahn-react@>=0.3.1 <0.4.0",
+  "_id": "autobahn-react@0.3.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/autobahn-react",
+  "_nodeVersion": "0.12.5",
+  "_npmUser": {
+    "email": "masterancpp@gmail.com",
+    "name": "raitobezarius"
+  },
+  "_npmVersion": "2.12.1",
+  "_phantomChildren": {
+    "envify": "3.4.0"
+  },
+  "_requested": {
+    "name": "autobahn-react",
+    "raw": "autobahn-react@^0.3.1",
+    "rawSpec": "^0.3.1",
+    "scope": null,
+    "spec": ">=0.3.1 <0.4.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/autobahn-react/-/autobahn-react-0.3.1.tgz",
+  "_shasum": "d57ff7a6977b499d1f5b45b4ae3e79e8df118fea",
+  "_shrinkwrap": null,
+  "_spec": "autobahn-react@^0.3.1",
+  "_where": "/Users/flavio/working_copies/wharton/simpl-react",
+  "author": {
+    "email": "masterancpp@gmail.com",
+    "name": "Raito Bezarius"
+  },
+  "bugs": {
+    "url": "https://github.com/RaitoBezarius/AutobahnReact/issues"
+  },
+  "dependencies": {
+    "autobahn": "^0.9.6",
+    "babel-runtime": "^5.6.15",
+    "react": "^0.13.3"
+  },
+  "description": "Do realtime without headaches with Autobahn and React.",
+  "devDependencies": {
+    "babel": "^5.4.3",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.3",
+    "envify": "^3.4.0",
+    "jshint": "^2.7.0"
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "dist": {
+    "shasum": "d57ff7a6977b499d1f5b45b4ae3e79e8df118fea",
+    "tarball": "http://registry.npmjs.org/autobahn-react/-/autobahn-react-0.3.1.tgz"
+  },
+  "gitHead": "acc3b62194e18075fe2aa9574ddcc29c6e70d5e9",
+  "homepage": "https://github.com/RaitoBezarius/AutobahnReact#readme",
+  "keywords": [
+    "autobahn",
+    "react",
+    "realtime",
+    "wampws"
+  ],
+  "license": "GPL-2.0",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "raitobezarius",
+      "email": "masterancpp@gmail.com"
+    }
+  ],
+  "name": "autobahn-react",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaitoBezarius/AutobahnReact.git"
+  },
+  "scripts": {
+    "build": "npm run clean && npm run build-lib && npm run build-browser",
+    "build-browser": "mkdir -p dist && browserify modules/ -t [ envify --NODE_ENV production ] -t babelify --outfile dist/AutobahnReact.js --standalone AutobahnReact",
+    "build-lib": "babel --optional runtime modules/ --out-dir lib/",
+    "check": "jsxhint modules/",
+    "clean": "rm -rf dist && rm -rf lib",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.3.1"
+}
