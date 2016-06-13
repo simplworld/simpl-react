@@ -26,7 +26,15 @@ var config = {
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom'
-      }
+      },
+    },
+    {
+      'ws': {
+        root: 'ws',
+        commonjs2: 'ws',
+        commonjs: 'ws',
+        amd: 'ws'
+      },
     }
   ],
   node: {
