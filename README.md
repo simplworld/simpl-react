@@ -6,3 +6,8 @@
 
     $ npm install
     $ npm run compile --production
+
+### Building the documentation
+
+    $ npm run docs
+    $ open docs/index.html
