@@ -18708,18 +18708,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.recycleState = undefined;
+	exports.recyleStateAction = undefined;
 	
 	var _actions = __webpack_require__(/*! ../utils/actions */ 3);
 	
-	var recycleState = exports.recycleState = (0, _actions.createNamedAction)('RECYCLE_STATE');
+	var recyleStateAction = exports.recyleStateAction = (0, _actions.createNamedAction)('RECYCLE_STATE');
 	
 	/**
 	 * @namespace state
 	 * @memberof Simpl.actions
 	 */
 	exports.default = {
-	  recycleState: recycleState
+	  recyleStateAction: recyleStateAction
 	};
 
 /***/ },
