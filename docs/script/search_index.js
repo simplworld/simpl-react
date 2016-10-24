@@ -1,218 +1,218 @@
 window.esdocSearchIndex = [
   [
-    "simpl/lib/components/rpccaller.react.js~rpccaller",
+    "simpl/lib/components/rpccaller.react~rpccaller",
     "class/src/components/RPCCaller.react.js~RPCCaller.html",
-    "<span>RPCCaller</span> <span class=\"search-result-import-path\">simpl/lib/components/RPCCaller.react.js</span>",
+    "<span>RPCCaller</span> <span class=\"search-result-import-path\">simpl/lib/components/RPCCaller.react</span>",
     "class"
   ],
   [
-    "simpl/lib/components/topicpublisher.react.js~topicpublisher",
+    "simpl/lib/components/topicpublisher.react~topicpublisher",
     "class/src/components/TopicPublisher.react.js~TopicPublisher.html",
-    "<span>TopicPublisher</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicPublisher.react.js</span>",
+    "<span>TopicPublisher</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicPublisher.react</span>",
     "class"
   ],
   [
-    "simpl/lib/components/topicsubscriber.react.js~topicsubscriber",
+    "simpl/lib/components/topicsubscriber.react~topicsubscriber",
     "class/src/components/TopicSubscriber.react.js~TopicSubscriber.html",
-    "<span>TopicSubscriber</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicSubscriber.react.js</span>",
+    "<span>TopicSubscriber</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicSubscriber.react</span>",
     "class"
   ],
   [
-    "simpl/lib/actions/simpl.js~addchild",
+    "simpl/lib/actions/simpl~addchild",
     "variable/index.html#static-variable-addChild",
-    "<span>addChild</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>addChild</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/messages.js~appendmessage",
+    "simpl/lib/actions/messages~appendmessage",
     "variable/index.html#static-variable-appendMessage",
-    "<span>appendMessage</span> <span class=\"search-result-import-path\">simpl/lib/actions/messages.js</span>",
+    "<span>appendMessage</span> <span class=\"search-result-import-path\">simpl/lib/actions/messages</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/rpc/calls.js~calls",
+    "simpl/lib/decorators/rpc/calls~calls",
     "function/index.html#static-function-calls",
-    "<span>calls</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/calls.js</span>",
+    "<span>calls</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/calls</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl.js~connectedscope",
+    "simpl/lib/actions/simpl~connectedscope",
     "variable/index.html#static-variable-connectedScope",
-    "<span>connectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>connectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/utils/actions.js~createnamedaction",
+    "simpl/lib/utils/actions~createnamedaction",
     "function/index.html#static-function-createNamedAction",
-    "<span>createNamedAction</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions.js</span>",
+    "<span>createNamedAction</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl.js~disconnectedscope",
+    "simpl/lib/actions/simpl~disconnectedscope",
     "variable/index.html#static-variable-disconnectedScope",
-    "<span>disconnectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>disconnectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/stores.js~finalcreatestorefactory",
+    "simpl/lib/stores~finalcreatestorefactory",
     "function/index.html#static-function-finalCreateStoreFactory",
-    "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores.js</span>",
+    "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl.js~getcurrentrunphase",
+    "simpl/lib/actions/simpl~getcurrentrunphase",
     "variable/index.html#static-variable-getCurrentRunPhase",
-    "<span>getCurrentRunPhase</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>getCurrentRunPhase</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl.js~getdatatree",
+    "simpl/lib/actions/simpl~getdatatree",
     "variable/index.html#static-variable-getDataTree",
-    "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl.js~getphases",
+    "simpl/lib/actions/simpl~getphases",
     "variable/index.html#static-variable-getPhases",
-    "<span>getPhases</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>getPhases</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl.js~getroles",
+    "simpl/lib/actions/simpl~getroles",
     "variable/index.html#static-variable-getRoles",
-    "<span>getRoles</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>getRoles</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl.js~getrunusers",
+    "simpl/lib/actions/simpl~getrunusers",
     "variable/index.html#static-variable-getRunUsers",
-    "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl.js~getuserinfo",
+    "simpl/lib/actions/simpl~getuserinfo",
     "variable/index.html#static-variable-getUserInfo",
-    "<span>getUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>getUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/reducers/messages.js~messages",
+    "simpl/lib/reducers/messages~messages",
     "variable/index.html#static-variable-messages",
-    "<span>messages</span> <span class=\"search-result-import-path\">simpl/lib/reducers/messages.js</span>",
+    "<span>messages</span> <span class=\"search-result-import-path\">simpl/lib/reducers/messages</span>",
     "variable"
   ],
   [
-    "simpl/lib/utils/collections.js~popatindex",
+    "simpl/lib/utils/collections~popatindex",
     "function/index.html#static-function-popAtIndex",
-    "<span>popAtIndex</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections.js</span>",
+    "<span>popAtIndex</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections</span>",
     "function"
   ],
   [
-    "simpl/lib/decorators/pubsub/publishes.js~publishes",
+    "simpl/lib/decorators/pubsub/publishes~publishes",
     "function/index.html#static-function-publishes",
-    "<span>publishes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/publishes.js</span>",
+    "<span>publishes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/publishes</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/state.js~recyclestate",
+    "simpl/lib/actions/state~recyclestate",
     "variable/index.html#static-variable-recycleState",
-    "<span>recycleState</span> <span class=\"search-result-import-path\">simpl/lib/actions/state.js</span>",
+    "<span>recycleState</span> <span class=\"search-result-import-path\">simpl/lib/actions/state</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/rpc/registers.js~registers",
+    "simpl/lib/decorators/rpc/registers~registers",
     "function/index.html#static-function-registers",
-    "<span>registers</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/registers.js</span>",
+    "<span>registers</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/registers</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl.js~removechild",
+    "simpl/lib/actions/simpl~removechild",
     "variable/index.html#static-variable-removeChild",
-    "<span>removeChild</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>removeChild</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/reducers/combined.js~routerreducers",
+    "simpl/lib/reducers/combined~routerreducers",
     "function/index.html#static-function-routerReducers",
-    "<span>routerReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined.js</span>",
+    "<span>routerReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
     "function"
   ],
   [
-    "simpl/lib/decorators/simpl.js~simpl",
+    "simpl/lib/decorators/simpl~simpl",
     "function/index.html#static-function-simpl",
-    "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/decorators/simpl.js</span>",
+    "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/decorators/simpl</span>",
     "function"
   ],
   [
-    "simpl/lib/reducers/simpl.js~simpl",
+    "simpl/lib/reducers/simpl~simpl",
     "variable/index.html#static-variable-simpl",
-    "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/reducers/simpl.js</span>",
+    "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/reducers/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/reducers/combined.js~simplreducers",
+    "simpl/lib/reducers/combined~simplreducers",
     "function/index.html#static-function-simplReducers",
-    "<span>simplReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined.js</span>",
+    "<span>simplReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
     "function"
   ],
   [
-    "simpl/lib/utils/actions.js~stringify",
+    "simpl/lib/utils/actions~stringify",
     "function/index.html#static-function-stringify",
-    "<span>stringify</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions.js</span>",
+    "<span>stringify</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions</span>",
     "function"
   ],
   [
-    "simpl/lib/decorators/pubsub/subscribes.js~subscribes",
+    "simpl/lib/decorators/pubsub/subscribes~subscribes",
     "function/index.html#static-function-subscribes",
-    "<span>subscribes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/subscribes.js</span>",
+    "<span>subscribes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/subscribes</span>",
     "function"
   ],
   [
-    "simpl/lib/utils/collections.js~updatecollection",
+    "simpl/lib/utils/collections~updatecollection",
     "function/index.html#static-function-updateCollection",
-    "<span>updateCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections.js</span>",
+    "<span>updateCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections</span>",
     "function"
   ],
   [
-    "simpl/lib/utils/collections.js~updateincollection",
+    "simpl/lib/utils/collections~updateincollection",
     "function/index.html#static-function-updateInCollection",
-    "<span>updateInCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections.js</span>",
+    "<span>updateInCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/messages.js~updatemessage",
+    "simpl/lib/actions/messages~updatemessage",
     "variable/index.html#static-variable-updateMessage",
-    "<span>updateMessage</span> <span class=\"search-result-import-path\">simpl/lib/actions/messages.js</span>",
+    "<span>updateMessage</span> <span class=\"search-result-import-path\">simpl/lib/actions/messages</span>",
     "variable"
   ],
   [
-    "simpl/lib/utils/reducers.js~updateobjectorcollection",
+    "simpl/lib/utils/reducers~updateobjectorcollection",
     "function/index.html#static-function-updateObjectOrCollection",
-    "<span>updateObjectOrCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/reducers.js</span>",
+    "<span>updateObjectOrCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/reducers</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl.js~updatescope",
+    "simpl/lib/actions/simpl~updatescope",
     "variable/index.html#static-variable-updateScope",
-    "<span>updateScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl.js</span>",
+    "<span>updateScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/wamp.js~wamp",
+    "simpl/lib/decorators/wamp~wamp",
     "function/index.html#static-function-wamp",
-    "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/decorators/wamp.js</span>",
+    "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/decorators/wamp</span>",
     "function"
   ],
   [
-    "simpl/lib/reducers/wamp.js~wamp",
+    "simpl/lib/reducers/wamp~wamp",
     "variable/index.html#static-variable-wamp",
-    "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/reducers/wamp.js</span>",
+    "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/reducers/wamp</span>",
     "variable"
   ],
   [
-    "simpl/lib/reducers/combined.js~wampreducers",
+    "simpl/lib/reducers/combined~wampreducers",
     "function/index.html#static-function-wampReducers",
-    "<span>wampReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined.js</span>",
+    "<span>wampReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
     "function"
   ],
   [
