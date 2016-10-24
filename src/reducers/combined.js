@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { routerStateReducer } from 'redux-router';
+import { routeReducer as routing } from 'react-router-redux';
 
 import simpl from './simpl';
 import wamp from './wamp';
@@ -8,14 +8,14 @@ import wamp from './wamp';
 
 export function routerReducers(reducers) {
   const combined = Object.assign({}, reducers, {
-    router: routerStateReducer,
+    routing,
   });
   return combineReducers(combined);
 }
 
 export function wampReducers(reducers) {
   const combined = Object.assign({}, reducers, {
-    router: routerStateReducer,
+    routing,
     wamp,
   });
   return combineReducers(combined);
@@ -23,7 +23,7 @@ export function wampReducers(reducers) {
 
 export function simplReducers(reducers) {
   const combined = Object.assign({}, reducers, {
-    router: routerStateReducer,
+    routing,
     simpl,
     wamp,
   });
@@ -31,7 +31,7 @@ export function simplReducers(reducers) {
 }
 
 export default {
-  router: routerReducers,
+  routing: routerReducers,
   simpl: simplReducers,
   wamp: wampReducers,
 };
