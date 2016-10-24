@@ -1,5 +1,5 @@
 import { createNamedAction } from '../utils/actions';
-import AutobahnReact from '../vendor/autobahn-react';
+import { Autobahn as AutobahnReact } from 'autobahn-react';
 
 /*
  * action creators
