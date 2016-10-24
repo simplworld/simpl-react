@@ -11,8 +11,9 @@
   "scripts": {
     "test": "karma start",
     "watch": "webpack -d --watch",
-    "compile": "if [ \"$NODE_ENV\" = \"production\" ]; then\n\twebpack -p\nelse\n\twebpack -d\nfi"
     "docs": "esdoc -c esdoc.json",
+    "prepublish": "babel src --out-dir lib",
+    "compile": "npm run prepublish && if [ \"$NODE_ENV\" = \"production\" ]; then\n\twebpack -p\nelse\n\twebpack -d\nfi"
   },
   "repository": {
     "type": "git",
