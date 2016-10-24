@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 239,
+  "end": 391,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 17,
+      "line": 23,
       "column": 0
     }
   },
@@ -305,263 +305,85 @@
       ]
     },
     {
-      "type": "ExportDefaultDeclaration",
-      "start": 178,
-      "end": 238,
+      "type": "ExportNamedDeclaration",
+      "start": 179,
+      "end": 219,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 12,
           "column": 0
         },
         "end": {
-          "line": 16,
-          "column": 2
+          "line": 12,
+          "column": 40
         }
       },
       "declaration": {
-        "type": "ObjectExpression",
-        "start": 193,
-        "end": 237,
+        "type": "VariableDeclaration",
+        "start": 186,
+        "end": 219,
         "loc": {
           "start": {
-            "line": 11,
-            "column": 15
+            "line": 12,
+            "column": 7
           },
           "end": {
-            "line": 16,
-            "column": 1
+            "line": 12,
+            "column": 40
           }
         },
-        "properties": [
+        "declarations": [
           {
-            "type": "Property",
-            "start": 197,
-            "end": 205,
+            "type": "VariableDeclarator",
+            "start": 192,
+            "end": 218,
             "loc": {
               "start": {
                 "line": 12,
-                "column": 2
+                "column": 13
               },
               "end": {
                 "line": 12,
-                "column": 10
+                "column": 39
               }
             },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
+            "id": {
               "type": "Identifier",
-              "start": 197,
-              "end": 205,
+              "start": 192,
+              "end": 207,
               "loc": {
                 "start": {
                   "line": 12,
-                  "column": 2
+                  "column": 13
                 },
                 "end": {
                   "line": 12,
-                  "column": 10
+                  "column": 28
                 }
               },
-              "name": "combined",
+              "name": "combinedReducer",
               "leadingComments": null
             },
-            "kind": "init",
-            "value": {
+            "init": {
               "type": "Identifier",
-              "start": 197,
-              "end": 205,
+              "start": 210,
+              "end": 218,
               "loc": {
                 "start": {
                   "line": 12,
-                  "column": 2
+                  "column": 31
                 },
                 "end": {
                   "line": 12,
-                  "column": 10
+                  "column": 39
                 }
               },
-              "name": "combined",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace reducers\n * @memberof Simpl\n ",
-                  "start": 128,
-                  "end": 177,
-                  "loc": {
-                    "start": {
-                      "line": 7,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 10,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    128,
-                    177
-                  ]
-                }
-              ]
+              "name": "combined"
             },
             "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 209,
-            "end": 217,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 2
-              },
-              "end": {
-                "line": 13,
-                "column": 10
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 209,
-              "end": 217,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 2
-                },
-                "end": {
-                  "line": 13,
-                  "column": 10
-                }
-              },
-              "name": "messages"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 209,
-              "end": 217,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 2
-                },
-                "end": {
-                  "line": 13,
-                  "column": 10
-                }
-              },
-              "name": "messages"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 221,
-            "end": 226,
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 2
-              },
-              "end": {
-                "line": 14,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 221,
-              "end": 226,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 2
-                },
-                "end": {
-                  "line": 14,
-                  "column": 7
-                }
-              },
-              "name": "simpl"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 221,
-              "end": 226,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 2
-                },
-                "end": {
-                  "line": 14,
-                  "column": 7
-                }
-              },
-              "name": "simpl"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 230,
-            "end": 234,
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 2
-              },
-              "end": {
-                "line": 15,
-                "column": 6
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 230,
-              "end": 234,
-              "loc": {
-                "start": {
-                  "line": 15,
-                  "column": 2
-                },
-                "end": {
-                  "line": 15,
-                  "column": 6
-                }
-              },
-              "name": "wamp"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 230,
-              "end": 234,
-              "loc": {
-                "start": {
-                  "line": 15,
-                  "column": 2
-                },
-                "end": {
-                  "line": 15,
-                  "column": 6
-                }
-              },
-              "name": "wamp"
-            }
           }
         ],
+        "kind": "const",
         "leadingComments": [
           {
             "type": "Block",
@@ -586,6 +408,8 @@
         ],
         "trailingComments": []
       },
+      "specifiers": [],
+      "source": null,
       "leadingComments": [
         {
           "type": "Block",
@@ -608,6 +432,496 @@
           ]
         }
       ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 220,
+      "end": 260,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 40
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 227,
+        "end": 260,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 7
+          },
+          "end": {
+            "line": 13,
+            "column": 40
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 233,
+            "end": 259,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 13
+              },
+              "end": {
+                "line": 13,
+                "column": 39
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 233,
+              "end": 248,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 13
+                },
+                "end": {
+                  "line": 13,
+                  "column": 28
+                }
+              },
+              "name": "messagesReducer"
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 251,
+              "end": 259,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 31
+                },
+                "end": {
+                  "line": 13,
+                  "column": 39
+                }
+              },
+              "name": "messages"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 261,
+      "end": 295,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 34
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 268,
+        "end": 295,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 7
+          },
+          "end": {
+            "line": 14,
+            "column": 34
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 274,
+            "end": 294,
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 13
+              },
+              "end": {
+                "line": 14,
+                "column": 33
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 274,
+              "end": 286,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 13
+                },
+                "end": {
+                  "line": 14,
+                  "column": 25
+                }
+              },
+              "name": "simplReducer"
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 289,
+              "end": 294,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 28
+                },
+                "end": {
+                  "line": 14,
+                  "column": 33
+                }
+              },
+              "name": "simpl"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 296,
+      "end": 328,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 32
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 303,
+        "end": 328,
+        "loc": {
+          "start": {
+            "line": 15,
+            "column": 7
+          },
+          "end": {
+            "line": 15,
+            "column": 32
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 309,
+            "end": 327,
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 13
+              },
+              "end": {
+                "line": 15,
+                "column": 31
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 309,
+              "end": 320,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 13
+                },
+                "end": {
+                  "line": 15,
+                  "column": 24
+                }
+              },
+              "name": "wampReducer"
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 323,
+              "end": 327,
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 27
+                },
+                "end": {
+                  "line": 15,
+                  "column": 31
+                }
+              },
+              "name": "wamp"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 330,
+      "end": 390,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 2
+        }
+      },
+      "declaration": {
+        "type": "ObjectExpression",
+        "start": 345,
+        "end": 389,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 15
+          },
+          "end": {
+            "line": 22,
+            "column": 1
+          }
+        },
+        "properties": [
+          {
+            "type": "Property",
+            "start": 349,
+            "end": 357,
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 2
+              },
+              "end": {
+                "line": 18,
+                "column": 10
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 349,
+              "end": 357,
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 2
+                },
+                "end": {
+                  "line": 18,
+                  "column": 10
+                }
+              },
+              "name": "combined"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 349,
+              "end": 357,
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 2
+                },
+                "end": {
+                  "line": 18,
+                  "column": 10
+                }
+              },
+              "name": "combined"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 361,
+            "end": 369,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 2
+              },
+              "end": {
+                "line": 19,
+                "column": 10
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 361,
+              "end": 369,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 2
+                },
+                "end": {
+                  "line": 19,
+                  "column": 10
+                }
+              },
+              "name": "messages"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 361,
+              "end": 369,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 2
+                },
+                "end": {
+                  "line": 19,
+                  "column": 10
+                }
+              },
+              "name": "messages"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 373,
+            "end": 378,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 2
+              },
+              "end": {
+                "line": 20,
+                "column": 7
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 373,
+              "end": 378,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 7
+                }
+              },
+              "name": "simpl"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 373,
+              "end": 378,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 7
+                }
+              },
+              "name": "simpl"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 382,
+            "end": 386,
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 2
+              },
+              "end": {
+                "line": 21,
+                "column": 6
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 382,
+              "end": 386,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 6
+                }
+              },
+              "name": "wamp"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 382,
+              "end": 386,
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 6
+                }
+              },
+              "name": "wamp"
+            }
+          }
+        ],
+        "leadingComments": [],
+        "trailingComments": []
+      }
     }
   ]
 }

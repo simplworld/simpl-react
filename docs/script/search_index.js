@@ -6,28 +6,10 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "simpl/lib/components/topicpublisher.react~topicpublisher",
-    "class/src/components/TopicPublisher.react.js~TopicPublisher.html",
-    "<span>TopicPublisher</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicPublisher.react</span>",
-    "class"
-  ],
-  [
     "simpl/lib/components/topicsubscriber.react~topicsubscriber",
     "class/src/components/TopicSubscriber.react.js~TopicSubscriber.html",
     "<span>TopicSubscriber</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicSubscriber.react</span>",
     "class"
-  ],
-  [
-    "simpl/lib/actions/simpl~addchild",
-    "variable/index.html#static-variable-addChild",
-    "<span>addChild</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/actions/messages~appendmessage",
-    "variable/index.html#static-variable-appendMessage",
-    "<span>appendMessage</span> <span class=\"search-result-import-path\">simpl/lib/actions/messages</span>",
-    "variable"
   ],
   [
     "simpl/lib/decorators/rpc/calls~calls",
@@ -36,9 +18,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~connectedscope",
-    "variable/index.html#static-variable-connectedScope",
-    "<span>connectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "simpl/lib/reducers/index~combinedreducer",
+    "variable/index.html#static-variable-combinedReducer",
+    "<span>combinedReducer</span> <span class=\"search-result-import-path\">simpl/lib/reducers/index</span>",
     "variable"
   ],
   [
@@ -48,64 +30,10 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~disconnectedscope",
-    "variable/index.html#static-variable-disconnectedScope",
-    "<span>disconnectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/stores~finalcreatestorefactory",
-    "function/index.html#static-function-finalCreateStoreFactory",
-    "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/actions/simpl~getcurrentrunphase",
-    "variable/index.html#static-variable-getCurrentRunPhase",
-    "<span>getCurrentRunPhase</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
     "simpl/lib/actions/simpl~getdatatree",
     "variable/index.html#static-variable-getDataTree",
     "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
-  ],
-  [
-    "simpl/lib/actions/simpl~getphases",
-    "variable/index.html#static-variable-getPhases",
-    "<span>getPhases</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/actions/simpl~getroles",
-    "variable/index.html#static-variable-getRoles",
-    "<span>getRoles</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/actions/simpl~getrunusers",
-    "variable/index.html#static-variable-getRunUsers",
-    "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/actions/simpl~getuserinfo",
-    "variable/index.html#static-variable-getUserInfo",
-    "<span>getUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/reducers/messages~messages",
-    "variable/index.html#static-variable-messages",
-    "<span>messages</span> <span class=\"search-result-import-path\">simpl/lib/reducers/messages</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/utils/collections~popatindex",
-    "function/index.html#static-function-popAtIndex",
-    "<span>popAtIndex</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections</span>",
-    "function"
   ],
   [
     "simpl/lib/decorators/pubsub/publishes~publishes",
@@ -114,27 +42,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "simpl/lib/actions/state~recyclestate",
-    "variable/index.html#static-variable-recycleState",
-    "<span>recycleState</span> <span class=\"search-result-import-path\">simpl/lib/actions/state</span>",
-    "variable"
-  ],
-  [
     "simpl/lib/decorators/rpc/registers~registers",
     "function/index.html#static-function-registers",
     "<span>registers</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/registers</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/actions/simpl~removechild",
-    "variable/index.html#static-variable-removeChild",
-    "<span>removeChild</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/reducers/combined~routerreducers",
-    "function/index.html#static-function-routerReducers",
-    "<span>routerReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
     "function"
   ],
   [
@@ -144,75 +54,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "simpl/lib/reducers/simpl~simpl",
-    "variable/index.html#static-variable-simpl",
-    "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/reducers/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/reducers/combined~simplreducers",
-    "function/index.html#static-function-simplReducers",
-    "<span>simplReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/utils/actions~stringify",
-    "function/index.html#static-function-stringify",
-    "<span>stringify</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions</span>",
-    "function"
-  ],
-  [
     "simpl/lib/decorators/pubsub/subscribes~subscribes",
     "function/index.html#static-function-subscribes",
     "<span>subscribes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/subscribes</span>",
     "function"
   ],
   [
-    "simpl/lib/utils/collections~updatecollection",
-    "function/index.html#static-function-updateCollection",
-    "<span>updateCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/utils/collections~updateincollection",
-    "function/index.html#static-function-updateInCollection",
-    "<span>updateInCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/collections</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/actions/messages~updatemessage",
-    "variable/index.html#static-variable-updateMessage",
-    "<span>updateMessage</span> <span class=\"search-result-import-path\">simpl/lib/actions/messages</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/utils/reducers~updateobjectorcollection",
-    "function/index.html#static-function-updateObjectOrCollection",
-    "<span>updateObjectOrCollection</span> <span class=\"search-result-import-path\">simpl/lib/utils/reducers</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/actions/simpl~updatescope",
-    "variable/index.html#static-variable-updateScope",
-    "<span>updateScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
     "simpl/lib/decorators/wamp~wamp",
     "function/index.html#static-function-wamp",
     "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/decorators/wamp</span>",
-    "function"
-  ],
-  [
-    "simpl/lib/reducers/wamp~wamp",
-    "variable/index.html#static-variable-wamp",
-    "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/reducers/wamp</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/reducers/combined~wampreducers",
-    "function/index.html#static-function-wampReducers",
-    "<span>wampReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
     "function"
   ],
   [
@@ -558,12 +408,6 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
-    "src/actions/index.js~reduxaction",
-    "typedef/index.html#static-typedef-ReduxAction",
-    "src/actions/index.js~ReduxAction",
-    "typedef"
-  ],
-  [
     "src/actions/messages.js",
     "file/src/actions/messages.js.html",
     "src/actions/messages.js",
@@ -588,64 +432,16 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/rpccaller.react.js~rpccaller#rpccontainer",
-    "class/src/components/RPCCaller.react.js~RPCCaller.html#instance-member-RpcContainer",
-    "src/components/RPCCaller.react.js~RPCCaller#RpcContainer",
-    "member"
-  ],
-  [
-    "src/components/rpccaller.react.js~rpccaller#componentwillmount",
-    "class/src/components/RPCCaller.react.js~RPCCaller.html#instance-method-componentWillMount",
-    "src/components/RPCCaller.react.js~RPCCaller#componentWillMount",
-    "method"
-  ],
-  [
-    "src/components/rpccaller.react.js~rpccaller#render",
-    "class/src/components/RPCCaller.react.js~RPCCaller.html#instance-method-render",
-    "src/components/RPCCaller.react.js~RPCCaller#render",
-    "method"
-  ],
-  [
     "src/components/topicpublisher.react.js",
     "file/src/components/TopicPublisher.react.js.html",
     "src/components/TopicPublisher.react.js",
     "file"
   ],
   [
-    "src/components/topicpublisher.react.js~topicpublisher#publisher",
-    "class/src/components/TopicPublisher.react.js~TopicPublisher.html#instance-member-Publisher",
-    "src/components/TopicPublisher.react.js~TopicPublisher#Publisher",
-    "member"
-  ],
-  [
-    "src/components/topicpublisher.react.js~topicpublisher#componentwillmount",
-    "class/src/components/TopicPublisher.react.js~TopicPublisher.html#instance-method-componentWillMount",
-    "src/components/TopicPublisher.react.js~TopicPublisher#componentWillMount",
-    "method"
-  ],
-  [
-    "src/components/topicpublisher.react.js~topicpublisher#componentwillupdate",
-    "class/src/components/TopicPublisher.react.js~TopicPublisher.html#instance-method-componentWillUpdate",
-    "src/components/TopicPublisher.react.js~TopicPublisher#componentWillUpdate",
-    "method"
-  ],
-  [
-    "src/components/topicpublisher.react.js~topicpublisher#render",
-    "class/src/components/TopicPublisher.react.js~TopicPublisher.html#instance-method-render",
-    "src/components/TopicPublisher.react.js~TopicPublisher#render",
-    "method"
-  ],
-  [
     "src/components/topicsubscriber.react.js",
     "file/src/components/TopicSubscriber.react.js.html",
     "src/components/TopicSubscriber.react.js",
     "file"
-  ],
-  [
-    "src/components/topicsubscriber.react.js~topicsubscriber#render",
-    "class/src/components/TopicSubscriber.react.js~TopicSubscriber.html#instance-method-render",
-    "src/components/TopicSubscriber.react.js~TopicSubscriber#render",
-    "method"
   ],
   [
     "src/components/index.js",

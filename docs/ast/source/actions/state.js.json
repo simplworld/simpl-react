@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 212,
+  "end": 221,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 13,
+      "line": 12,
       "column": 0
     }
   },
@@ -100,7 +100,7 @@
     {
       "type": "ExportNamedDeclaration",
       "start": 55,
-      "end": 118,
+      "end": 123,
       "loc": {
         "start": {
           "line": 3,
@@ -108,13 +108,13 @@
         },
         "end": {
           "line": 3,
-          "column": 63
+          "column": 68
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
         "start": 62,
-        "end": 118,
+        "end": 123,
         "loc": {
           "start": {
             "line": 3,
@@ -122,14 +122,14 @@
           },
           "end": {
             "line": 3,
-            "column": 63
+            "column": 68
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
             "start": 68,
-            "end": 117,
+            "end": 122,
             "loc": {
               "start": {
                 "line": 3,
@@ -137,13 +137,13 @@
               },
               "end": {
                 "line": 3,
-                "column": 62
+                "column": 67
               }
             },
             "id": {
               "type": "Identifier",
               "start": 68,
-              "end": 80,
+              "end": 85,
               "loc": {
                 "start": {
                   "line": 3,
@@ -151,37 +151,37 @@
                 },
                 "end": {
                   "line": 3,
-                  "column": 25
+                  "column": 30
                 }
               },
-              "name": "recycleState"
+              "name": "recyleStateAction"
             },
             "init": {
               "type": "CallExpression",
-              "start": 83,
-              "end": 117,
+              "start": 88,
+              "end": 122,
               "loc": {
                 "start": {
                   "line": 3,
-                  "column": 28
+                  "column": 33
                 },
                 "end": {
                   "line": 3,
-                  "column": 62
+                  "column": 67
                 }
               },
               "callee": {
                 "type": "Identifier",
-                "start": 83,
-                "end": 100,
+                "start": 88,
+                "end": 105,
                 "loc": {
                   "start": {
                     "line": 3,
-                    "column": 28
+                    "column": 33
                   },
                   "end": {
                     "line": 3,
-                    "column": 45
+                    "column": 50
                   }
                 },
                 "name": "createNamedAction"
@@ -189,16 +189,16 @@
               "arguments": [
                 {
                   "type": "Literal",
-                  "start": 101,
-                  "end": 116,
+                  "start": 106,
+                  "end": 121,
                   "loc": {
                     "start": {
                       "line": 3,
-                      "column": 46
+                      "column": 51
                     },
                     "end": {
                       "line": 3,
-                      "column": 61
+                      "column": 66
                     }
                   },
                   "value": "RECYCLE_STATE",
@@ -214,21 +214,21 @@
           {
             "type": "Block",
             "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-            "start": 121,
-            "end": 175,
+            "start": 125,
+            "end": 179,
             "loc": {
               "start": {
-                "line": 6,
+                "line": 5,
                 "column": 0
               },
               "end": {
-                "line": 9,
+                "line": 8,
                 "column": 3
               }
             },
             "range": [
-              121,
-              175
+              125,
+              179
             ]
           }
         ],
@@ -240,66 +240,66 @@
         {
           "type": "Block",
           "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-          "start": 121,
-          "end": 175,
+          "start": 125,
+          "end": 179,
           "loc": {
             "start": {
-              "line": 6,
+              "line": 5,
               "column": 0
             },
             "end": {
-              "line": 9,
+              "line": 8,
               "column": 3
             }
           },
           "range": [
-            121,
-            175
+            125,
+            179
           ]
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 176,
-      "end": 211,
+      "start": 180,
+      "end": 220,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 12,
+          "line": 11,
           "column": 2
         }
       },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 191,
-        "end": 210,
+        "start": 195,
+        "end": 219,
         "loc": {
           "start": {
-            "line": 10,
+            "line": 9,
             "column": 15
           },
           "end": {
-            "line": 12,
+            "line": 11,
             "column": 1
           }
         },
         "properties": [
           {
             "type": "Property",
-            "start": 195,
-            "end": 207,
+            "start": 199,
+            "end": 216,
             "loc": {
               "start": {
-                "line": 11,
+                "line": 10,
                 "column": 2
               },
               "end": {
-                "line": 11,
-                "column": 14
+                "line": 10,
+                "column": 19
               }
             },
             "method": false,
@@ -307,56 +307,56 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 195,
-              "end": 207,
+              "start": 199,
+              "end": 216,
               "loc": {
                 "start": {
-                  "line": 11,
+                  "line": 10,
                   "column": 2
                 },
                 "end": {
-                  "line": 11,
-                  "column": 14
+                  "line": 10,
+                  "column": 19
                 }
               },
-              "name": "recycleState",
+              "name": "recyleStateAction",
               "leadingComments": null
             },
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 195,
-              "end": 207,
+              "start": 199,
+              "end": 216,
               "loc": {
                 "start": {
-                  "line": 11,
+                  "line": 10,
                   "column": 2
                 },
                 "end": {
-                  "line": 11,
-                  "column": 14
+                  "line": 10,
+                  "column": 19
                 }
               },
-              "name": "recycleState",
+              "name": "recyleStateAction",
               "leadingComments": [
                 {
                   "type": "Block",
                   "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-                  "start": 121,
-                  "end": 175,
+                  "start": 125,
+                  "end": 179,
                   "loc": {
                     "start": {
-                      "line": 6,
+                      "line": 5,
                       "column": 0
                     },
                     "end": {
-                      "line": 9,
+                      "line": 8,
                       "column": 3
                     }
                   },
                   "range": [
-                    121,
-                    175
+                    125,
+                    179
                   ]
                 }
               ]
@@ -368,21 +368,21 @@
           {
             "type": "Block",
             "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-            "start": 121,
-            "end": 175,
+            "start": 125,
+            "end": 179,
             "loc": {
               "start": {
-                "line": 6,
+                "line": 5,
                 "column": 0
               },
               "end": {
-                "line": 9,
+                "line": 8,
                 "column": 3
               }
             },
             "range": [
-              121,
-              175
+              125,
+              179
             ]
           }
         ],
@@ -392,21 +392,21 @@
         {
           "type": "Block",
           "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-          "start": 121,
-          "end": 175,
+          "start": 125,
+          "end": 179,
           "loc": {
             "start": {
-              "line": 6,
+              "line": 5,
               "column": 0
             },
             "end": {
-              "line": 9,
+              "line": 8,
               "column": 3
             }
           },
           "range": [
-            121,
-            175
+            125,
+            179
           ]
         }
       ]
