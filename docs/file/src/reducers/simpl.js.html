@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/reducers/simpl.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-appendMessage">appendMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateMessage">updateMessage</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-addChild">addChild</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getCurrentRunPhase">getCurrentRunPhase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getPhases">getPhases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRoles">getRoles</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUserInfo">getUserInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-removeChild">removeChild</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-recycleState">recycleState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicSubscriber.react.js~TopicSubscriber.html">TopicSubscriber</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simpl">simpl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wamp">wamp</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/pubsub</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publishes">publishes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-subscribes">subscribes</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-routerReducers">routerReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wampReducers">wampReducers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-messages">messages</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-simpl">simpl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-wamp">wamp</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-stringify">stringify</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-popAtIndex">popAtIndex</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateCollection">updateCollection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateInCollection">updateInCollection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-updateObjectOrCollection">updateObjectOrCollection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/reducers/simpl.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createReducer } from &apos;redux-create-reducer&apos;;
+import recycleState from &apos;redux-recycle&apos;;
+
+const SimplActions = require(&apos;../actions/simpl&apos;);
+const StateActions = require(&apos;../actions/state&apos;);
+
+import { popAtIndex, updateInCollection } from &apos;../utils/collections&apos;;
+
+
+const initial = {
+  treeLoaded: false,
+  phasesLoaded: false,
+  rolesLoaded: false,
+  loaded: false,
+  user: {},
+  current: {},
+  run: [],
+  runuser: [],
+  world: [],
+  round: [],
+  scenario: [],
+  period: [],
+  decision: [],
+  result: [],
+  phase: [],
+  role: [],
+};
+
+const simpl = recycleState(createReducer(initial, {
+  handleError(state, action) {
+    console.error(action.payload.error, action.payload.args, action.payload.kwargs);
+    return state;
+  },
+  addChild(state, action) {
+    const key = action.payload.resource_name;
+    const kwargs = Object.assign({}, action.payload.data, {
+      pk: action.payload.pk,
+      resource_name: action.payload.resource_name,
+    });
+
+    const index = state[key].findIndex((scope) =&gt; scope.pk === action.payload.pk);
+    let items;
+    if (index &gt; -1) {
+      items = updateInCollection(state[key], index, kwargs);
+    } else {
+      items = [...state[key] || {}, kwargs];
+    }
+    return Object.assign({}, state, { [key]: items });
+  },
+  getDataTree(state, action) {
+    const newState = this.addChild(state, action);
+    return action.payload.children.reduce(
+      (memo, child) =&gt; this.getDataTree(memo, { payload: child })
+    , newState);
+  },
+  [SimplActions.addChild](state, action) {
+    return this.addChild(state, action);
+  },
+  [SimplActions.removeChild](state, action) {
+    const key = action.payload.resource_name;
+    const index = state[key].findIndex((scope) =&gt; scope.pk === action.payload.pk);
+    const updated = popAtIndex(state[key], index);
+    return Object.assign({}, state, { [key]: updated });
+  },
+  [SimplActions.getRunUsers](state, action) {
+    if (action.payload.error) {
+      return this.handleError(state, action);
+    }
+    return action.payload.reduce((memo, child) =&gt; (
+      this.addChild(memo, { payload: child })
+    ), Object.assign({}, state));
+  },
+  [SimplActions.getDataTree](state, action) {
+    if (action.payload.error) {
+      return this.handleError(state, action);
+    }
+    let loaded = state.loaded;
+    if (state.phasesLoaded) {
+      loaded = true;
+    }
+    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
+      treeLoaded: true,
+      loaded,
+    });
+  },
+  [SimplActions.updateScope](state, action) {
+    const key = action.payload.resource_name;
+    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });
+    const index = state[key].findIndex((scope) =&gt; scope.pk === action.payload.pk);
+    if (index === -1) {
+      return state;
+    }
+    const newCollection = updateInCollection(state[key], index, data);
+
+    return Object.assign({}, state, { [key]: newCollection });
+  },
+  [SimplActions.getCurrentRunPhase](state, action) {
+    const runState = this.addChild(state, { payload: action.payload.run });
+
+    return Object.assign({}, runState, {
+      current: {
+        run: action.payload.run.pk,
+        phase: action.payload.phase.pk,
+      },
+    });
+  },
+  [SimplActions.getUserInfo](state, action) {
+    // Get the current user&apos;s info into the user namespace
+    const username = action.payload;
+    let role_types = new Set();
+    var found_runuser;
+
+    for(var runuser of state.runuser) {
+      if(runuser.role_name) {
+        role_types.add(runuser.role_name);
+      }
+
+      if (runuser.username == username) {
+        found_runuser = runuser;
+      }
+    }
+
+    // Remove this user&apos;s role and we&apos;re left with the &quot;other&quot; role names
+    role_types.delete(found_runuser.role_name);
+    found_runuser.other_roles = Array.from(role_types);
+    return Object.assign({}, state, {user: found_runuser});
+  },
+  [SimplActions.getPhases](state, action) {
+    let loaded = state.loaded;
+    if (state.treeLoaded &amp;&amp; state.rolesLoaded) {
+      loaded = true;
+    }
+    return Object.assign({}, state, {
+      phase: action.payload,
+      phasesLoaded: true,
+      loaded,
+    });
+  },
+  [SimplActions.getRoles](state, action) {
+    let loaded = state.loaded;
+    if (state.treeLoaded &amp;&amp; state.phasesLoaded) {
+      loaded = true;
+    }
+    return Object.assign({}, state, {
+      role: action.payload,
+      rolesLoaded: true,
+      loaded,
+    });
+  },
+}), `${StateActions.recycleState}`);
+
+export default simpl;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
