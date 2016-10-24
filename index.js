@@ -119,6 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.StateActions = exports.SimplActions = exports.MessagesActions = undefined;
 	
 	var _messages = __webpack_require__(/*! ./messages */ 2);
 	
@@ -138,6 +139,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @typedef {function} ReduxAction
 	*/
 	
+	var MessagesActions = exports.MessagesActions = _messages2.default;
+	var SimplActions = exports.SimplActions = _simpl2.default;
+	var StateActions = exports.StateActions = _state2.default;
 	/**
 	 * @namespace actions
 	 * @memberof Simpl

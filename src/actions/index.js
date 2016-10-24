@@ -7,7 +7,9 @@ import state from './state';
  * @typedef {function} ReduxAction
 */
 
-
+export const MessagesActions = messages;
+export const SimplActions = simpl;
+export const StateActions = state;
 /**
  * @namespace actions
  * @memberof Simpl
