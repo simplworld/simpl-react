@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/actions/simpl.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -75,15 +75,75 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h3 id="installation">Installation</h3>
-<pre><code><code class="source-code prettyprint">$ npm install git+ssh://git@stash.wharton.upenn.edu:7999/ll/simpl-react.git --save</code>
-</code></pre><h3 id="building">Building</h3>
-<pre><code><code class="source-code prettyprint">$ npm install
-$ npm run compile --production</code>
-</code></pre><h3 id="building-the-documentation">Building the documentation</h3>
-<pre><code><code class="source-code prettyprint">$ npm run docs
-$ open docs/index.html</code>
-</code></pre></div>
+<div class="content" data-ice="content"><h1 data-ice="title">src/actions/simpl.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createNamedAction } from &apos;../utils/actions&apos;;
+import Autobahn from &apos;autobahn-react&apos;;
+
+/*
+ * action creators
+ */
+
+export const addChild = createNamedAction(&apos;CHILD_ADD&apos;);
+export const removeChild = createNamedAction(&apos;CHILD_REMOVE&apos;);
+
+/**
+ * Given a scope&apos;s topic return a recursive representation of that scope and its
+ * children.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {string} scope - the scope&apos;s topic
+ * @returns {NamedReduxAction}
+ */
+export const getDataTree = createNamedAction(&apos;DATATREE_GET&apos;, (scope, ...args) =&gt; (
+  Autobahn.call(`${scope}.get_scope_tree`, args)
+));
+export const getRunUsers = createNamedAction(&apos;RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
+  Autobahn.call(`${scope}.get_active_runusers`, args)
+));
+export const updateScope = createNamedAction(&apos;SCOPE_UPDATE&apos;);
+export const connectedScope = createNamedAction(&apos;SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
+  Autobahn.publish(`${scope}.connected`, args)
+));
+export const disconnectedScope = createNamedAction(&apos;SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
+  Autobahn.publish(`${scope}.disconnected`, args)
+));
+
+export const getCurrentRunPhase = createNamedAction(&apos;CURRENT_RUN&apos;, (scope, ...args) =&gt; (
+  Autobahn.call(`${scope}.get_current_run_and_phase`, args)
+));
+
+export const getPhases = createNamedAction(&apos;GET_PHASES&apos;, (scope, ...args) =&gt; (
+  Autobahn.call(`${scope}.get_phases`, args)
+));
+
+export const getRoles = createNamedAction(&apos;GET_ROLES&apos;, (scope, ...args) =&gt; (
+  Autobahn.call(`${scope}.get_roles`, args)
+));
+
+// populate simpl.user space with current user&apos;s info
+export const getUserInfo = createNamedAction(&apos;GET_USER_INFO&apos;);
+
+
+/**
+ * @namespace simpl
+ * @memberof Simpl.actions
+ */
+export default {
+  addChild,
+  removeChild,
+
+  getDataTree,
+  getRunUsers,
+  updateScope,
+  connectedScope,
+  disconnectedScope,
+  getCurrentRunPhase,
+  getUserInfo,
+  getPhases,
+  getRoles,
+};
+</code></pre>
+
 </div>
 
 <footer class="footer">
