@@ -5,7 +5,7 @@ var webpack = require('webpack');
 
 var config = {
   context: __dirname,
-  entry: './lib/index',
+  entry: './src/index',
   output: {
     filename: "./index.js",
     library: 'Simpl',

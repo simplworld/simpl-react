@@ -4,15 +4,14 @@ import state from './state';
 
 
 /**
- * @namespace actions
- * @memberof Simpl
- */
-
-/**
  * @typedef {function} ReduxAction
 */
 
 
+/**
+ * @namespace actions
+ * @memberof Simpl
+ */
 export default {
   messages,
   simpl,

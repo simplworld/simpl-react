@@ -2,7 +2,6 @@
  * @namespace actions
  * @memberof Simpl.utils
  */
-
 import { createAction } from 'redux-actions';
 
 
@@ -28,8 +27,7 @@ export function stringify(name, arg) {
  * @function
  * @memberof Simpl.utils.actions
  * @param {string} type - A unique name for the action
- * @param {function|undefined} [action] - Logic to perform before this action
- * will make it to the reducer.
+ * @param {spread} args - Additional arguments to pass to redux-actions.createAction.
  * @returns {NamedReduxAction}
  */
 export function createNamedAction(type, ...args) {
