@@ -5,14 +5,14 @@ import reducers from './reducers';
 import stores from './stores';
 import utils from './utils';
 
-import { Autobahn as AutobahnReact } from 'autobahn-react';
+import Autobahn from 'autobahn-react';
 
 /**
  * @module Simpl
  * @namespace Simpl
  */
 export default {
-  AutobahnReact,
+  AutobahnReact: Autobahn,
   actions,
   components,
   decorators,

@@ -1,5 +1,5 @@
 import { createNamedAction } from '../utils/actions';
-import { Autobahn as AutobahnReact } from 'autobahn-react';
+import Autobahn from 'autobahn-react';
 
 /*
  * action creators
@@ -17,29 +17,29 @@ export const removeChild = createNamedAction('CHILD_REMOVE');
  * @returns {NamedReduxAction}
  */
 export const getDataTree = createNamedAction('DATATREE_GET', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_scope_tree`, args)
+  Autobahn.call(`${scope}.get_scope_tree`, args)
 ));
 export const getRunUsers = createNamedAction('RUNUSERS_GET', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_active_runusers`, args)
+  Autobahn.call(`${scope}.get_active_runusers`, args)
 ));
 export const updateScope = createNamedAction('SCOPE_UPDATE');
 export const connectedScope = createNamedAction('SCOPE_CONNECTED', (scope, ...args) => (
-  AutobahnReact.publish(`${scope}.connected`, args)
+  Autobahn.publish(`${scope}.connected`, args)
 ));
 export const disconnectedScope = createNamedAction('SCOPE_DISCONNECTED', (scope, ...args) => (
-  AutobahnReact.publish(`${scope}.disconnected`, args)
+  Autobahn.publish(`${scope}.disconnected`, args)
 ));
 
 export const getCurrentRunPhase = createNamedAction('CURRENT_RUN', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)
+  Autobahn.call(`${scope}.get_current_run_and_phase`, args)
 ));
 
 export const getPhases = createNamedAction('GET_PHASES', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_phases`, args)
+  Autobahn.call(`${scope}.get_phases`, args)
 ));
 
 export const getRoles = createNamedAction('GET_ROLES', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_roles`, args)
+  Autobahn.call(`${scope}.get_roles`, args)
 ));
 
 // populate simpl.user space with current user's info

@@ -1,13 +1,13 @@
 import { createReducer } from 'redux-create-reducer';
 import recycleState from 'redux-recycle';
 
-import { Autobahn as AutobahnReact } from 'autobahn-react';
+import Autobahn from 'autobahn-react';
 
 const StateActions = require('../actions/state');
 
 
 const initial = {
-  Autobahn: AutobahnReact,
+  Autobahn,
 };
 
 const wamp = recycleState(createReducer(initial, {

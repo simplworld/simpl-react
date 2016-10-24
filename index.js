@@ -89,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _autobahnReact = __webpack_require__(/*! autobahn-react */ 17);
 	
+	var _autobahnReact2 = _interopRequireDefault(_autobahnReact);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/**
@@ -96,7 +98,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @namespace Simpl
 	 */
 	exports.default = {
-	  AutobahnReact: _autobahnReact.Autobahn,
+	  AutobahnReact: _autobahnReact2.default,
 	  actions: _actions2.default,
 	  components: _components2.default,
 	  decorators: _decorators2.default,
@@ -1245,6 +1247,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _autobahnReact = __webpack_require__(/*! autobahn-react */ 17);
 	
+	var _autobahnReact2 = _interopRequireDefault(_autobahnReact);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	/*
 	 * action creators
 	 */
@@ -1265,14 +1271,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    args[_key - 1] = arguments[_key];
 	  }
 	
-	  return _autobahnReact.Autobahn.call(scope + '.get_scope_tree', args);
+	  return _autobahnReact2.default.call(scope + '.get_scope_tree', args);
 	});
 	var getRunUsers = exports.getRunUsers = (0, _actions.createNamedAction)('RUNUSERS_GET', function (scope) {
 	  for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
 	    args[_key2 - 1] = arguments[_key2];
 	  }
 	
-	  return _autobahnReact.Autobahn.call(scope + '.get_active_runusers', args);
+	  return _autobahnReact2.default.call(scope + '.get_active_runusers', args);
 	});
 	var updateScope = exports.updateScope = (0, _actions.createNamedAction)('SCOPE_UPDATE');
 	var connectedScope = exports.connectedScope = (0, _actions.createNamedAction)('SCOPE_CONNECTED', function (scope) {
@@ -1280,14 +1286,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    args[_key3 - 1] = arguments[_key3];
 	  }
 	
-	  return _autobahnReact.Autobahn.publish(scope + '.connected', args);
+	  return _autobahnReact2.default.publish(scope + '.connected', args);
 	});
 	var disconnectedScope = exports.disconnectedScope = (0, _actions.createNamedAction)('SCOPE_DISCONNECTED', function (scope) {
 	  for (var _len4 = arguments.length, args = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
 	    args[_key4 - 1] = arguments[_key4];
 	  }
 	
-	  return _autobahnReact.Autobahn.publish(scope + '.disconnected', args);
+	  return _autobahnReact2.default.publish(scope + '.disconnected', args);
 	});
 	
 	var getCurrentRunPhase = exports.getCurrentRunPhase = (0, _actions.createNamedAction)('CURRENT_RUN', function (scope) {
@@ -1295,7 +1301,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    args[_key5 - 1] = arguments[_key5];
 	  }
 	
-	  return _autobahnReact.Autobahn.call(scope + '.get_current_run_and_phase', args);
+	  return _autobahnReact2.default.call(scope + '.get_current_run_and_phase', args);
 	});
 	
 	var getPhases = exports.getPhases = (0, _actions.createNamedAction)('GET_PHASES', function (scope) {
@@ -1303,7 +1309,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    args[_key6 - 1] = arguments[_key6];
 	  }
 	
-	  return _autobahnReact.Autobahn.call(scope + '.get_phases', args);
+	  return _autobahnReact2.default.call(scope + '.get_phases', args);
 	});
 	
 	var getRoles = exports.getRoles = (0, _actions.createNamedAction)('GET_ROLES', function (scope) {
@@ -1311,7 +1317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    args[_key7 - 1] = arguments[_key7];
 	  }
 	
-	  return _autobahnReact.Autobahn.call(scope + '.get_roles', args);
+	  return _autobahnReact2.default.call(scope + '.get_roles', args);
 	});
 	
 	// populate simpl.user space with current user's info
@@ -43612,12 +43618,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _autobahnReact = __webpack_require__(/*! autobahn-react */ 17);
 	
+	var _autobahnReact2 = _interopRequireDefault(_autobahnReact);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var StateActions = __webpack_require__(/*! ../actions/state */ 185);
 	
 	var initial = {
-	  Autobahn: _autobahnReact.Autobahn
+	  Autobahn: _autobahnReact2.default
 	};
 	
 	var wamp = (0, _reduxRecycle2.default)((0, _reduxCreateReducer.createReducer)(initial, {}), '' + StateActions.recycleState);
