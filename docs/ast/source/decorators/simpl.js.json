@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 3585,
+  "end": 3643,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 126,
+      "line": 130,
       "column": 0
     }
   },
@@ -8639,7 +8639,8 @@
                 "name": "WampContainer"
               }
             }
-          ]
+          ],
+          "trailingComments": null
         },
         "leadingComments": [
           {
@@ -8663,7 +8664,28 @@
             ]
           }
         ],
-        "trailingComments": []
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * @namespace simpl\n * @memberof Simpl.decorators\n ",
+            "start": 3563,
+            "end": 3620,
+            "loc": {
+              "start": {
+                "line": 125,
+                "column": 0
+              },
+              "end": {
+                "line": 128,
+                "column": 3
+              }
+            },
+            "range": [
+              3563,
+              3620
+            ]
+          }
+        ]
       },
       "specifiers": [],
       "source": null,
@@ -8688,40 +8710,105 @@
             399
           ]
         }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @namespace simpl\n * @memberof Simpl.decorators\n ",
+          "start": 3563,
+          "end": 3620,
+          "loc": {
+            "start": {
+              "line": 125,
+              "column": 0
+            },
+            "end": {
+              "line": 128,
+              "column": 3
+            }
+          },
+          "range": [
+            3563,
+            3620
+          ]
+        }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 3563,
-      "end": 3584,
+      "start": 3621,
+      "end": 3642,
       "loc": {
         "start": {
-          "line": 125,
+          "line": 129,
           "column": 0
         },
         "end": {
-          "line": 125,
+          "line": 129,
           "column": 21
         }
       },
       "declaration": {
         "type": "Identifier",
-        "start": 3578,
-        "end": 3583,
+        "start": 3636,
+        "end": 3641,
         "loc": {
           "start": {
-            "line": 125,
+            "line": 129,
             "column": 15
           },
           "end": {
-            "line": 125,
+            "line": 129,
             "column": 20
           }
         },
         "name": "simpl",
-        "leadingComments": [],
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * @namespace simpl\n * @memberof Simpl.decorators\n ",
+            "start": 3563,
+            "end": 3620,
+            "loc": {
+              "start": {
+                "line": 125,
+                "column": 0
+              },
+              "end": {
+                "line": 128,
+                "column": 3
+              }
+            },
+            "range": [
+              3563,
+              3620
+            ]
+          }
+        ],
         "trailingComments": []
-      }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @namespace simpl\n * @memberof Simpl.decorators\n ",
+          "start": 3563,
+          "end": 3620,
+          "loc": {
+            "start": {
+              "line": 125,
+              "column": 0
+            },
+            "end": {
+              "line": 128,
+              "column": 3
+            }
+          },
+          "range": [
+            3563,
+            3620
+          ]
+        }
+      ]
     }
   ]
 }

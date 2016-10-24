@@ -122,4 +122,8 @@ export function simpl(Component, options = {}) {
   return WampContainer;
 }
 
+/**
+ * @namespace simpl
+ * @memberof Simpl.decorators
+ */
 export default simpl;
