@@ -6,6 +6,12 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "simpl/lib/components/topicpublisher.react~topicpublisher",
+    "class/src/components/TopicPublisher.react.js~TopicPublisher.html",
+    "<span>TopicPublisher</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicPublisher.react</span>",
+    "class"
+  ],
+  [
     "simpl/lib/components/topicsubscriber.react~topicsubscriber",
     "class/src/components/TopicSubscriber.react.js~TopicSubscriber.html",
     "<span>TopicSubscriber</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicSubscriber.react</span>",

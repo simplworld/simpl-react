@@ -3,7 +3,11 @@ import React from 'react';
 import { publishes } from '../decorators/pubsub/publishes';
 
 
-class TopicPublisher extends React.Component {
+/**
+ * @class TopicPublisher
+ * @memberof Simpl.components
+ */
+ class TopicPublisher extends React.Component {
   componentWillMount() {
     // eslint-disable-next-line react/prop-types
     const Child = React.Children.only(this.props.children).type;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/utils/collections.js | API Document</title>
+  <title data-ice="title">src/stores/finalCreateStoreFactory.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
@@ -50,38 +51,49 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/utils/collections.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export function updateInCollection(collection, index, updates) {
-  if (index === undefined || index === null || index &gt;= collection.length) {
-    return [...collection, Object.assign({}, updates)];
-  }
-  return [
-    ...collection.slice(0, index),
-    Object.assign({}, collection[index], updates),
-    ...collection.slice(index + 1),
-  ];
-}
+<div class="content" data-ice="content"><h1 data-ice="title">src/stores/finalCreateStoreFactory.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @namespace finalCreateStoreFactory
+ * @memberof Simpl.stores
+ */
 
-export function updateCollection(collection, updates) {
-  return collection.map((item) =&gt; Object.assign({}, item, updates));
-}
+import { createStore, applyMiddleware, compose } from &apos;redux&apos;;
+import { reduxReactRouter } from &apos;redux-router&apos;;
 
-export function popAtIndex(collection, index) {
-  if (index &lt; 0) {
-    return collection.slice(0, index);
-  }
-  return [
-    ...collection.slice(0, index),
-    ...collection.slice(index + 1, collection.length),
-  ];
-}
+import promiseMiddleware from &apos;redux-promise&apos;;
+import thunkMiddleware from &apos;redux-thunk&apos;;
+import createLogger from &apos;redux-logger&apos;;
 
+import createHistory from &apos;history/lib/createBrowserHistory&apos;;
 
-export default {
-  updateInCollection,
-  updateCollection,
-  popAtIndex,
+const loggerMiddleware = createLogger();
+
+const devTools = function devTools() {
+  // eslint-disable-next-line max-len
+  return typeof window === &apos;object&apos; &amp;&amp; typeof window.devToolsExtension !== &apos;undefined&apos; ? window.devToolsExtension() : applyMiddleware(loggerMiddleware);
 };
+
+const defaultMiddlewares = [
+  applyMiddleware(promiseMiddleware),
+  applyMiddleware(thunkMiddleware),
+  reduxReactRouter({ createHistory }),
+];
+
+export function finalCreateStoreFactory(NODE_ENV) {
+  const middlewares = [...defaultMiddlewares];
+  if (NODE_ENV !== &apos;production&apos;) {
+    middlewares.push(devTools());
+  }
+  return compose(
+    ...middlewares
+  )(createStore);
+}
+
+/**
+ * @namespace finalCreateStoreFactory
+ * @memberof Simpl.stores.finalCreateStoreFactory
+ */
+export default finalCreateStoreFactory;
 </code></pre>
 
 </div>

@@ -545,7 +545,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { publishes } from '../decorators/pubsub/publishes';\n\n\nclass TopicPublisher extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.Publisher = publishes(Child, this.props.topic, this.props.options);\n  }\n  componentWillUpdate(nextProps) {\n    const Child = React.Children.only(nextProps.children).type;\n    this.Publisher = publishes(Child, nextProps.topic, nextProps.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.Publisher {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicPublisher.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default TopicPublisher;\n"
+    "content": "import React from 'react';\n\nimport { publishes } from '../decorators/pubsub/publishes';\n\n\n/**\n * @class TopicPublisher\n * @memberof Simpl.components\n */\n class TopicPublisher extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.Publisher = publishes(Child, this.props.topic, this.props.options);\n  }\n  componentWillUpdate(nextProps) {\n    const Child = React.Children.only(nextProps.children).type;\n    this.Publisher = publishes(Child, nextProps.topic, nextProps.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.Publisher {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicPublisher.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default TopicPublisher;\n"
   },
   {
     "__docId__": 27,
@@ -559,9 +559,18 @@
     "export": true,
     "importPath": "simpl/lib/components/TopicPublisher.react",
     "importStyle": "TopicPublisher",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "description": "",
+    "lineNumber": 10,
+    "unknown": [
+      {
+        "tagName": "@class",
+        "tagValue": "TopicPublisher"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components"
+      }
+    ],
     "interface": false,
     "extends": [
       "react~React.Component"
@@ -577,7 +586,7 @@
     "longname": "src/components/TopicPublisher.react.js~TopicPublisher#componentWillMount",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 11,
     "undocument": true,
     "params": [],
     "generator": false
@@ -592,7 +601,7 @@
     "longname": "src/components/TopicPublisher.react.js~TopicPublisher#Publisher",
     "access": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 14,
     "undocument": true,
     "type": {
       "types": [
@@ -610,7 +619,7 @@
     "longname": "src/components/TopicPublisher.react.js~TopicPublisher#componentWillUpdate",
     "access": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 16,
     "undocument": true,
     "params": [
       {
@@ -632,7 +641,7 @@
     "longname": "src/components/TopicPublisher.react.js~TopicPublisher#Publisher",
     "access": null,
     "description": null,
-    "lineNumber": 14,
+    "lineNumber": 18,
     "undocument": true,
     "type": {
       "types": [
@@ -650,7 +659,7 @@
     "longname": "src/components/TopicPublisher.react.js~TopicPublisher#render",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 20,
     "undocument": true,
     "params": [],
     "return": {
