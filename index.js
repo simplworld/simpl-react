@@ -37985,6 +37985,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.wampReducer = exports.simplReducer = exports.messagesReducer = exports.combinedReducer = undefined;
 	
 	var _combined = __webpack_require__(/*! ./combined */ 224);
 	
@@ -38008,6 +38009,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @namespace reducers
 	 * @memberof Simpl
 	 */
+	
+	var combinedReducer = exports.combinedReducer = _combined2.default;
+	var messagesReducer = exports.messagesReducer = _messages2.default;
+	var simplReducer = exports.simplReducer = _simpl2.default;
+	var wampReducer = exports.wampReducer = _wamp2.default;
+	
 	exports.default = {
 	  combined: _combined2.default,
 	  messages: _messages2.default,
