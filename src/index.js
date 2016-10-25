@@ -7,12 +7,13 @@ import utils from './utils';
 
 import Autobahn from 'autobahn-react';
 
+export const AutobahnReact = Autobahn;
 /**
  * @module Simpl
  * @namespace Simpl
  */
 export default {
-  AutobahnReact: Autobahn,
+  AutobahnReact,
   actions,
   components,
   decorators,

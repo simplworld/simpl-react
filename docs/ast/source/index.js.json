@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 409,
+  "end": 438,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 23,
+      "line": 24,
       "column": 0
     }
   },
@@ -481,123 +481,250 @@
         "value": "autobahn-react",
         "rawValue": "autobahn-react",
         "raw": "'autobahn-react'"
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 247,
+      "end": 285,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 38
+        }
       },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 254,
+        "end": 285,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 7
+          },
+          "end": {
+            "line": 10,
+            "column": 38
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 260,
+            "end": 284,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 13
+              },
+              "end": {
+                "line": 10,
+                "column": 37
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 260,
+              "end": 273,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 13
+                },
+                "end": {
+                  "line": 10,
+                  "column": 26
+                }
+              },
+              "name": "AutobahnReact"
+            },
+            "init": {
+              "type": "Identifier",
+              "start": 276,
+              "end": 284,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 29
+                },
+                "end": {
+                  "line": 10,
+                  "column": 37
+                }
+              },
+              "name": "Autobahn"
+            }
+          }
+        ],
+        "kind": "const",
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
+            "start": 286,
+            "end": 330,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 0
+              },
+              "end": {
+                "line": 14,
+                "column": 3
+              }
+            },
+            "range": [
+              286,
+              330
+            ]
+          }
+        ],
+        "leadingComments": []
+      },
+      "specifiers": [],
+      "source": null,
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-          "start": 247,
-          "end": 291,
+          "start": 286,
+          "end": 330,
           "loc": {
             "start": {
-              "line": 10,
+              "line": 11,
               "column": 0
             },
             "end": {
-              "line": 13,
+              "line": 14,
               "column": 3
             }
           },
           "range": [
-            247,
-            291
+            286,
+            330
           ]
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 292,
-      "end": 408,
+      "start": 331,
+      "end": 437,
       "loc": {
         "start": {
-          "line": 14,
+          "line": 15,
           "column": 0
         },
         "end": {
-          "line": 22,
+          "line": 23,
           "column": 2
         }
       },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 307,
-        "end": 407,
+        "start": 346,
+        "end": 436,
         "loc": {
           "start": {
-            "line": 14,
+            "line": 15,
             "column": 15
           },
           "end": {
-            "line": 22,
+            "line": 23,
             "column": 1
           }
         },
         "properties": [
           {
             "type": "Property",
-            "start": 311,
-            "end": 334,
+            "start": 350,
+            "end": 363,
             "loc": {
               "start": {
-                "line": 15,
+                "line": 16,
                 "column": 2
               },
               "end": {
-                "line": 15,
-                "column": 25
+                "line": 16,
+                "column": 15
               }
             },
             "method": false,
-            "shorthand": false,
+            "shorthand": true,
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 311,
-              "end": 324,
+              "start": 350,
+              "end": 363,
               "loc": {
                 "start": {
-                  "line": 15,
+                  "line": 16,
                   "column": 2
                 },
                 "end": {
-                  "line": 15,
+                  "line": 16,
                   "column": 15
                 }
               },
               "name": "AutobahnReact",
               "leadingComments": null
             },
+            "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 326,
-              "end": 334,
+              "start": 350,
+              "end": 363,
               "loc": {
                 "start": {
-                  "line": 15,
-                  "column": 17
+                  "line": 16,
+                  "column": 2
                 },
                 "end": {
-                  "line": 15,
-                  "column": 25
+                  "line": 16,
+                  "column": 15
                 }
               },
-              "name": "Autobahn"
+              "name": "AutobahnReact",
+              "leadingComments": [
+                {
+                  "type": "Block",
+                  "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
+                  "start": 286,
+                  "end": 330,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 0
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 3
+                    }
+                  },
+                  "range": [
+                    286,
+                    330
+                  ]
+                }
+              ]
             },
-            "kind": "init",
             "leadingComments": null
           },
           {
             "type": "Property",
-            "start": 338,
-            "end": 345,
+            "start": 367,
+            "end": 374,
             "loc": {
               "start": {
-                "line": 16,
+                "line": 17,
                 "column": 2
               },
               "end": {
-                "line": 16,
+                "line": 17,
                 "column": 9
               }
             },
@@ -606,15 +733,15 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 338,
-              "end": 345,
+              "start": 367,
+              "end": 374,
               "loc": {
                 "start": {
-                  "line": 16,
+                  "line": 17,
                   "column": 2
                 },
                 "end": {
-                  "line": 16,
+                  "line": 17,
                   "column": 9
                 }
               },
@@ -623,15 +750,15 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 338,
-              "end": 345,
+              "start": 367,
+              "end": 374,
               "loc": {
                 "start": {
-                  "line": 16,
+                  "line": 17,
                   "column": 2
                 },
                 "end": {
-                  "line": 16,
+                  "line": 17,
                   "column": 9
                 }
               },
@@ -640,59 +767,8 @@
           },
           {
             "type": "Property",
-            "start": 349,
-            "end": 359,
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 2
-              },
-              "end": {
-                "line": 17,
-                "column": 12
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 349,
-              "end": 359,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 12
-                }
-              },
-              "name": "components"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 349,
-              "end": 359,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 12
-                }
-              },
-              "name": "components"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 363,
-            "end": 373,
+            "start": 378,
+            "end": 388,
             "loc": {
               "start": {
                 "line": 18,
@@ -708,8 +784,8 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 363,
-              "end": 373,
+              "start": 378,
+              "end": 388,
               "loc": {
                 "start": {
                   "line": 18,
@@ -717,6 +793,57 @@
                 },
                 "end": {
                   "line": 18,
+                  "column": 12
+                }
+              },
+              "name": "components"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 378,
+              "end": 388,
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 2
+                },
+                "end": {
+                  "line": 18,
+                  "column": 12
+                }
+              },
+              "name": "components"
+            }
+          },
+          {
+            "type": "Property",
+            "start": 392,
+            "end": 402,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 2
+              },
+              "end": {
+                "line": 19,
+                "column": 12
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 392,
+              "end": 402,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 2
+                },
+                "end": {
+                  "line": 19,
                   "column": 12
                 }
               },
@@ -725,15 +852,15 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 363,
-              "end": 373,
+              "start": 392,
+              "end": 402,
               "loc": {
                 "start": {
-                  "line": 18,
+                  "line": 19,
                   "column": 2
                 },
                 "end": {
-                  "line": 18,
+                  "line": 19,
                   "column": 12
                 }
               },
@@ -742,15 +869,15 @@
           },
           {
             "type": "Property",
-            "start": 377,
-            "end": 385,
+            "start": 406,
+            "end": 414,
             "loc": {
               "start": {
-                "line": 19,
+                "line": 20,
                 "column": 2
               },
               "end": {
-                "line": 19,
+                "line": 20,
                 "column": 10
               }
             },
@@ -759,15 +886,15 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 377,
-              "end": 385,
+              "start": 406,
+              "end": 414,
               "loc": {
                 "start": {
-                  "line": 19,
+                  "line": 20,
                   "column": 2
                 },
                 "end": {
-                  "line": 19,
+                  "line": 20,
                   "column": 10
                 }
               },
@@ -776,15 +903,15 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 377,
-              "end": 385,
+              "start": 406,
+              "end": 414,
               "loc": {
                 "start": {
-                  "line": 19,
+                  "line": 20,
                   "column": 2
                 },
                 "end": {
-                  "line": 19,
+                  "line": 20,
                   "column": 10
                 }
               },
@@ -793,15 +920,15 @@
           },
           {
             "type": "Property",
-            "start": 389,
-            "end": 395,
+            "start": 418,
+            "end": 424,
             "loc": {
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 2
               },
               "end": {
-                "line": 20,
+                "line": 21,
                 "column": 8
               }
             },
@@ -810,15 +937,15 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 389,
-              "end": 395,
+              "start": 418,
+              "end": 424,
               "loc": {
                 "start": {
-                  "line": 20,
+                  "line": 21,
                   "column": 2
                 },
                 "end": {
-                  "line": 20,
+                  "line": 21,
                   "column": 8
                 }
               },
@@ -827,15 +954,15 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 389,
-              "end": 395,
+              "start": 418,
+              "end": 424,
               "loc": {
                 "start": {
-                  "line": 20,
+                  "line": 21,
                   "column": 2
                 },
                 "end": {
-                  "line": 20,
+                  "line": 21,
                   "column": 8
                 }
               },
@@ -844,15 +971,15 @@
           },
           {
             "type": "Property",
-            "start": 399,
-            "end": 404,
+            "start": 428,
+            "end": 433,
             "loc": {
               "start": {
-                "line": 21,
+                "line": 22,
                 "column": 2
               },
               "end": {
-                "line": 21,
+                "line": 22,
                 "column": 7
               }
             },
@@ -861,15 +988,15 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 399,
-              "end": 404,
+              "start": 428,
+              "end": 433,
               "loc": {
                 "start": {
-                  "line": 21,
+                  "line": 22,
                   "column": 2
                 },
                 "end": {
-                  "line": 21,
+                  "line": 22,
                   "column": 7
                 }
               },
@@ -878,15 +1005,15 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 399,
-              "end": 404,
+              "start": 428,
+              "end": 433,
               "loc": {
                 "start": {
-                  "line": 21,
+                  "line": 22,
                   "column": 2
                 },
                 "end": {
-                  "line": 21,
+                  "line": 22,
                   "column": 7
                 }
               },
@@ -898,21 +1025,21 @@
           {
             "type": "Block",
             "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-            "start": 247,
-            "end": 291,
+            "start": 286,
+            "end": 330,
             "loc": {
               "start": {
-                "line": 10,
+                "line": 11,
                 "column": 0
               },
               "end": {
-                "line": 13,
+                "line": 14,
                 "column": 3
               }
             },
             "range": [
-              247,
-              291
+              286,
+              330
             ]
           }
         ],
@@ -922,21 +1049,21 @@
         {
           "type": "Block",
           "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-          "start": 247,
-          "end": 291,
+          "start": 286,
+          "end": 330,
           "loc": {
             "start": {
-              "line": 10,
+              "line": 11,
               "column": 0
             },
             "end": {
-              "line": 13,
+              "line": 14,
               "column": 3
             }
           },
           "range": [
-            247,
-            291
+            286,
+            330
           ]
         }
       ]
