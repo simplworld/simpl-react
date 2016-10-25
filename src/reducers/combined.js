@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { routeReducer as routing } from 'react-router-redux';
+import { routerReducer as routing } from 'react-router-redux';
 
 import simpl from './simpl';
 
@@ -29,5 +29,5 @@ export function simplReducers(reducers) {
 
 export default {
   routing: routerReducers,
-  simpl: simplReducers,
+  simplReducers,
 };

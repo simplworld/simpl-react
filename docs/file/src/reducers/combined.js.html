@@ -53,7 +53,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/reducers/combined.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { combineReducers } from &apos;redux&apos;;
 
-import { routeReducer as routing } from &apos;react-router-redux&apos;;
+import { routerReducer as routing } from &apos;react-router-redux&apos;;
 
 import simpl from &apos;./simpl&apos;;
 
@@ -82,7 +82,7 @@ export function simplReducers(reducers) {
 
 export default {
   routing: routerReducers,
-  simpl: simplReducers,
+  simplReducers,
 };
 </code></pre>
 

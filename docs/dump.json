@@ -1227,7 +1227,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { combineReducers } from 'redux';\n\nimport { routeReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simpl: simplReducers,\n};\n"
+    "content": "import { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
   },
   {
     "__docId__": 55,
