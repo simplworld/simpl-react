@@ -545,7 +545,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { publishes } from '../decorators/pubsub/publishes';\n\n\n/**\n * @class TopicPublisher\n * @memberof Simpl.components\n */\n class TopicPublisher extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.Publisher = publishes(Child, this.props.topic, this.props.options);\n  }\n  componentWillUpdate(nextProps) {\n    const Child = React.Children.only(nextProps.children).type;\n    this.Publisher = publishes(Child, nextProps.topic, nextProps.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.Publisher {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicPublisher.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default TopicPublisher;\n"
+    "content": "import React from 'react';\n\nimport { publishes } from '../decorators/pubsub/publishes';\n\n\n/**\n * @class TopicPublisher\n * @memberof Simpl.components\n */\nclass TopicPublisher extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.Publisher = publishes(Child, this.props.topic, this.props.options);\n  }\n  componentWillUpdate(nextProps) {\n    const Child = React.Children.only(nextProps.children).type;\n    this.Publisher = publishes(Child, nextProps.topic, nextProps.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.Publisher {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicPublisher.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default TopicPublisher;\n"
   },
   {
     "__docId__": 27,
@@ -1071,7 +1071,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n} from '../actions/simpl';\n\nimport { subscribes } from './pubsub/subscribes';\nimport wamp from './wamp';\nimport _ from 'lodash';\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function simpl(Component, options = {}) {\n  const optionsWithDefaults = Object.assign({}, options, {});\n  if (_.isFunction(options.topics)) {\n    optionsWithDefaults.topics = options.topics();\n  }\n\n  const mapStateToProps = (state) => ({\n    simplLoaded: state.simpl.loaded,\n  });\n\n  const mapDispatchToProps = (dispatch) => ({\n    onReady() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(connectedScope(topic));\n          dispatch(getRunUsers(topic));\n          dispatch(getCurrentRunPhase(topic));\n          dispatch(getDataTree(topic));\n        });\n      }\n      dispatch(getPhases('model:model.game'));\n      dispatch(getRoles('model:model.game'));\n      return Promise.resolve();\n    },\n    onLeave() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(disconnectedScope(topic));\n        });\n      }\n      return Promise.resolve();\n    },\n  });\n\n  const appMapDispatchToProps = (dispatch) => ({\n    // eslint-disable-next-line camelcase\n    onReceived([pk, resource_name, data], kwargs, event) {\n      const resolvedTopics = optionsWithDefaults.topics.map(\n        (topic) => Autobahn.Connection.currentConnection.session.resolve(topic)\n      );\n      resolvedTopics.forEach((topic) => {\n        const actions = {\n          [`${topic}.add_child`]: addChild,\n          [`${topic}.remove_child`]: removeChild,\n          [`${topic}.update_child`]: updateScope,\n        };\n        if (actions[event.topic]) {\n          dispatch(actions[event.topic]({ resource_name, data, pk }));\n        }\n      });\n    },\n  });\n\n  const AppContainer = React.createClass({\n    propTypes: {\n      simplLoaded: React.PropTypes.bool,\n    },\n    shouldComponentUpdate(nextProps, nextState) {\n      if (this.props.simplLoaded) {\n        return false;\n      }\n      return this.props !== nextProps || this.state !== nextState;\n    },\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    },\n\n  });\n\n  const appTopics = optionsWithDefaults.topics.reduce(\n    (memo, topic) => memo.concat([\n      `${topic}.add_child`,\n      `${topic}.update_child`,\n      `${topic}.remove_child`,\n    ])\n  , []);\n  const SubscribedAppContainer = connect(\n    null, appMapDispatchToProps\n  )(subscribes(AppContainer, appTopics));\n\n  const Simpl = React.createClass({\n    propTypes: {\n      simplLoaded: React.PropTypes.bool,\n      onLeave: React.PropTypes.func,\n      onReady: React.PropTypes.func.isRequired,\n    },\n    componentWillMount() {\n      this.props.onReady();\n      window.addEventListener('beforeunload', this.props.onLeave);\n    },\n    componentWillUnmount() {\n      window.removeEventListener('beforeunload', this.props.onLeave);\n    },\n    render() {\n      if (!this.props.simplLoaded) {\n        return (<div>Loading data...</div>);\n      }\n      return <SubscribedAppContainer {...this.props} {...this.state} />;\n    },\n  });\n\n  const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n  const WampContainer = wamp(SimplContainer, optionsWithDefaults);\n\n  return WampContainer;\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
+    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n} from '../actions/simpl';\n\nimport { subscribes } from './pubsub/subscribes';\nimport wamp from './wamp';\nimport _ from 'lodash';\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function simpl(Component, options = {}) {\n  const optionsWithDefaults = Object.assign({}, options, {});\n  if (_.isFunction(options.topics)) {\n    optionsWithDefaults.topics = options.topics();\n  }\n\n  const mapStateToProps = (state) => ({\n    simplLoaded: state.simpl.loaded,\n  });\n\n  const mapDispatchToProps = (dispatch) => ({\n    onReady() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(connectedScope(topic));\n          dispatch(getRunUsers(topic));\n          dispatch(getCurrentRunPhase(topic));\n          dispatch(getDataTree(topic));\n        });\n      }\n      dispatch(getPhases('model:model.game'));\n      dispatch(getRoles('model:model.game'));\n      return Promise.resolve();\n    },\n    onLeave() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(disconnectedScope(topic));\n        });\n      }\n      return Promise.resolve();\n    },\n  });\n\n  const appMapDispatchToProps = (dispatch) => ({\n    // eslint-disable-next-line camelcase\n    onReceived([pk, resource_name, data], kwargs, event) {\n      const resolvedTopics = optionsWithDefaults.topics.map(\n        (topic) => Autobahn.Connection.currentConnection.session.resolve(topic)\n      );\n      resolvedTopics.forEach((topic) => {\n        const actions = {\n          [`${topic}.add_child`]: addChild,\n          [`${topic}.remove_child`]: removeChild,\n          [`${topic}.update_child`]: updateScope,\n        };\n        if (actions[event.topic]) {\n          dispatch(actions[event.topic]({ resource_name, data, pk }));\n        }\n      });\n    },\n  });\n\n  class AppContainer extends React.Component {\n    shouldComponentUpdate(nextProps, nextState) {\n      if (this.props.simplLoaded) {\n        return false;\n      }\n      return this.props !== nextProps || this.state !== nextState;\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  AppContainer.propTypes = {\n    simplLoaded: React.PropTypes.bool,\n  };\n\n\n  const appTopics = optionsWithDefaults.topics.reduce(\n    (memo, topic) => memo.concat([\n      `${topic}.add_child`,\n      `${topic}.update_child`,\n      `${topic}.remove_child`,\n    ])\n  , []);\n  const SubscribedAppContainer = connect(\n    null, appMapDispatchToProps\n  )(subscribes(AppContainer, appTopics));\n\n  // eslint-disable-next-line react/no-multi-comp\n  class Simpl extends React.Component {\n    componentWillMount() {\n      this.props.onReady();\n      window.addEventListener('beforeunload', this.props.onLeave);\n    }\n    componentWillUnmount() {\n      window.removeEventListener('beforeunload', this.props.onLeave);\n    }\n    render() {\n      if (!this.props.simplLoaded) {\n        return (<div>Loading data...</div>);\n      }\n      return <SubscribedAppContainer {...this.props} {...this.state} />;\n    }\n  }\n\n  Simpl.propTypes = {\n    simplLoaded: React.PropTypes.bool,\n    onLeave: React.PropTypes.func,\n    onReady: React.PropTypes.func.isRequired,\n  };\n\n  const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n  const WampContainer = wamp(SimplContainer, optionsWithDefaults);\n\n  return WampContainer;\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
   },
   {
     "__docId__": 49,
@@ -1227,7 +1227,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
+    "content": "/**\n * @namespace combined\n * @memberof Simpl.reducers\n */\nimport { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\n/**\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n */\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
   },
   {
     "__docId__": 55,
@@ -1242,7 +1242,7 @@
     "importPath": "simpl/lib/reducers/combined",
     "importStyle": "{routerReducers}",
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 12,
     "undocument": true,
     "params": [
       {
@@ -1272,7 +1272,7 @@
     "importPath": "simpl/lib/reducers/combined",
     "importStyle": "{wampReducers}",
     "description": null,
-    "lineNumber": 15,
+    "lineNumber": 19,
     "undocument": true,
     "params": [
       {
@@ -1301,21 +1301,27 @@
     "export": true,
     "importPath": "simpl/lib/reducers/combined",
     "importStyle": "{simplReducers}",
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
+    "description": "Returns a reducer function for your reducers, qdding two additional reducers\nfor `routing` and `simpl` state.",
+    "lineNumber": 33,
     "params": [
       {
-        "name": "reducers",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "reducers",
+        "description": "Your custom reducers"
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "function"
+      ],
+      "spread": false,
+      "description": "A reducer function"
     },
     "generator": false
   },
@@ -1330,7 +1336,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import combined from './combined';\nimport messages from './messages';\nimport simpl from './simpl';\n\n\n/**\n * @namespace reducers\n * @memberof Simpl\n */\n\nexport const combinedReducer = combined;\nexport const messagesReducer = messages;\nexport const simplReducer = simpl;\n\nexport default {\n  combined,\n  messages,\n  simpl,\n};\n"
+    "content": "import combined from './combined';\nimport messages from './messages';\nimport simpl from './simpl';\n\nexport const combinedReducer = combined;\nexport const messagesReducer = messages;\nexport const simplReducer = simpl;\n\n/**\n * @namespace reducers\n * @memberof Simpl\n */\nexport default {\n  combined,\n  messages,\n  simpl,\n};\n"
   },
   {
     "__docId__": 59,
@@ -1344,18 +1350,9 @@
     "export": true,
     "importPath": "simpl/lib/reducers/index",
     "importStyle": "{combinedReducer}",
-    "description": "",
-    "lineNumber": 11,
-    "unknown": [
-      {
-        "tagName": "@namespace",
-        "tagValue": "reducers"
-      },
-      {
-        "tagName": "@memberof",
-        "tagValue": "Simpl"
-      }
-    ],
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
     "type": {
       "types": [
         "*"
@@ -1375,7 +1372,7 @@
     "importPath": "simpl/lib/reducers/index",
     "importStyle": "{messagesReducer}",
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 6,
     "undocument": true,
     "type": {
       "types": [
@@ -1396,7 +1393,7 @@
     "importPath": "simpl/lib/reducers/index",
     "importStyle": "{simplReducer}",
     "description": null,
-    "lineNumber": 13,
+    "lineNumber": 7,
     "undocument": true,
     "type": {
       "types": [
@@ -1542,7 +1539,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  loaded: false,\n  user: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  round: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    console.error(action.payload.error, action.payload.args, action.payload.kwargs);\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  getDataTree(state, action) {\n    const newState = this.addChild(state, action);\n    return action.payload.children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child })\n    , newState);\n  },\n  [SimplActions.addChild](state, action) {\n    return this.addChild(state, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    const key = action.payload.resource_name;\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    const updated = popAtIndex(state[key], index);\n    return Object.assign({}, state, { [key]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let loaded = state.loaded;\n    if (state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getUserInfo](state, action) {\n    // Get the current user's info into the user namespace\n    const username = action.payload;\n    let role_types = new Set();\n    var found_runuser;\n\n    for(var runuser of state.runuser) {\n      if(runuser.role_name) {\n        role_types.add(runuser.role_name);\n      }\n\n      if (runuser.username == username) {\n        found_runuser = runuser;\n      }\n    }\n\n    // Remove this user's role and we're left with the \"other\" role names\n    role_types.delete(found_runuser.role_name);\n    found_runuser.other_roles = Array.from(role_types);\n    return Object.assign({}, state, {user: found_runuser});\n  },\n  [SimplActions.getPhases](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.rolesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      loaded,\n    });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n"
+    "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  loaded: false,\n  user: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  round: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    console.error(action.payload.error, action.payload.args, action.payload.kwargs);\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  getDataTree(state, action) {\n    const newState = this.addChild(state, action);\n    return action.payload.children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child })\n    , newState);\n  },\n  [SimplActions.addChild](state, action) {\n    return this.addChild(state, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    const key = action.payload.resource_name;\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    const updated = popAtIndex(state[key], index);\n    return Object.assign({}, state, { [key]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let loaded = state.loaded;\n    if (state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getUserInfo](state, action) {\n    // Get the current user's info into the user namespace\n    const username = action.payload;\n    const roleTypes = new Set();\n    let foundRunuser;\n\n    state.runuser.forEach((runuser) => {\n      if (runuser.role_name) {\n        roleTypes.add(runuser.role_name);\n      }\n\n      if (runuser.username === username) {\n        foundRunuser = runuser;\n      }\n    });\n\n    // Remove this user's role and we're left with the \"other\" role names\n    roleTypes.delete(foundRunuser.role_name);\n    foundRunuser.other_roles = Array.from(roleTypes);\n    return Object.assign({}, state, { user: foundRunuser });\n  },\n  [SimplActions.getPhases](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.rolesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      loaded,\n    });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n"
   },
   {
     "__docId__": 69,
@@ -1639,7 +1636,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production' && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
+    "content": "/**\n * @namespace stores\n * @memberof Simpl\n */\nimport { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\n// eslint-disable-next-line no-underscore-dangle\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\n/**\n * Adds promise, thunk, router and dev tools middlewares to your store\n *\n * @param      {string}  NODE_ENV  The node env\n * @return     {function}  a `createStore` factory\n */\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production'\n    // eslint-disable-next-line no-underscore-dangle\n    && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
   },
   {
     "__docId__": 74,
@@ -1654,7 +1651,7 @@
     "importPath": "simpl/lib/stores",
     "importStyle": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 14,
     "undocument": true,
     "type": {
       "types": [
@@ -1675,7 +1672,7 @@
     "importPath": "simpl/lib/stores",
     "importStyle": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 17,
     "undocument": true,
     "type": {
       "types": [
@@ -1696,7 +1693,7 @@
     "importPath": "simpl/lib/stores",
     "importStyle": null,
     "description": null,
-    "lineNumber": 14,
+    "lineNumber": 19,
     "undocument": true,
     "type": {
       "types": [
@@ -1716,21 +1713,27 @@
     "export": true,
     "importPath": "simpl/lib/stores",
     "importStyle": "{finalCreateStoreFactory}",
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
+    "description": "Adds promise, thunk, router and dev tools middlewares to your store",
+    "lineNumber": 31,
     "params": [
       {
-        "name": "NODE_ENV",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "NODE_ENV",
+        "description": "The node env"
       }
     ],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "function"
+      ],
+      "spread": false,
+      "description": "a `createStore` factory"
     },
     "generator": false
   },

@@ -24,15 +24,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "simpl/lib/reducers/index~combinedreducer",
-    "variable/index.html#static-variable-combinedReducer",
-    "<span>combinedReducer</span> <span class=\"search-result-import-path\">simpl/lib/reducers/index</span>",
-    "variable"
-  ],
-  [
     "simpl/lib/utils/actions~createnamedaction",
     "function/index.html#static-function-createNamedAction",
     "<span>createNamedAction</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions</span>",
+    "function"
+  ],
+  [
+    "simpl/lib/stores~finalcreatestorefactory",
+    "function/index.html#static-function-finalCreateStoreFactory",
+    "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores</span>",
     "function"
   ],
   [
@@ -57,6 +57,12 @@ window.esdocSearchIndex = [
     "simpl/lib/decorators/simpl~simpl",
     "function/index.html#static-function-simpl",
     "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/decorators/simpl</span>",
+    "function"
+  ],
+  [
+    "simpl/lib/reducers/combined~simplreducers",
+    "function/index.html#static-function-simplReducers",
+    "<span>simplReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
     "function"
   ],
   [

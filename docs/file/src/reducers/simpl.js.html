@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
@@ -43,7 +44,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-subscribes">subscribes</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-combinedReducer">combinedReducer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
 </ul>
@@ -160,23 +161,23 @@ const simpl = recycleState(createReducer(initial, {
   [SimplActions.getUserInfo](state, action) {
     // Get the current user&apos;s info into the user namespace
     const username = action.payload;
-    let role_types = new Set();
-    var found_runuser;
+    const roleTypes = new Set();
+    let foundRunuser;
 
-    for(var runuser of state.runuser) {
-      if(runuser.role_name) {
-        role_types.add(runuser.role_name);
+    state.runuser.forEach((runuser) =&gt; {
+      if (runuser.role_name) {
+        roleTypes.add(runuser.role_name);
       }
 
-      if (runuser.username == username) {
-        found_runuser = runuser;
+      if (runuser.username === username) {
+        foundRunuser = runuser;
       }
-    }
+    });
 
     // Remove this user&apos;s role and we&apos;re left with the &quot;other&quot; role names
-    role_types.delete(found_runuser.role_name);
-    found_runuser.other_roles = Array.from(role_types);
-    return Object.assign({}, state, {user: found_runuser});
+    roleTypes.delete(foundRunuser.role_name);
+    foundRunuser.other_roles = Array.from(roleTypes);
+    return Object.assign({}, state, { user: foundRunuser });
   },
   [SimplActions.getPhases](state, action) {
     let loaded = state.loaded;

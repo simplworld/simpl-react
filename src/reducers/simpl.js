@@ -107,23 +107,23 @@ const simpl = recycleState(createReducer(initial, {
   [SimplActions.getUserInfo](state, action) {
     // Get the current user's info into the user namespace
     const username = action.payload;
-    let role_types = new Set();
-    var found_runuser;
+    const roleTypes = new Set();
+    let foundRunuser;
 
-    for(var runuser of state.runuser) {
-      if(runuser.role_name) {
-        role_types.add(runuser.role_name);
+    state.runuser.forEach((runuser) => {
+      if (runuser.role_name) {
+        roleTypes.add(runuser.role_name);
       }
 
-      if (runuser.username == username) {
-        found_runuser = runuser;
+      if (runuser.username === username) {
+        foundRunuser = runuser;
       }
-    }
+    });
 
     // Remove this user's role and we're left with the "other" role names
-    role_types.delete(found_runuser.role_name);
-    found_runuser.other_roles = Array.from(role_types);
-    return Object.assign({}, state, {user: found_runuser});
+    roleTypes.delete(foundRunuser.role_name);
+    foundRunuser.other_roles = Array.from(roleTypes);
+    return Object.assign({}, state, { user: foundRunuser });
   },
   [SimplActions.getPhases](state, action) {
     let loaded = state.loaded;

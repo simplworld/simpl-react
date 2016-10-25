@@ -69,21 +69,22 @@ export function simpl(Component, options = {}) {
     },
   });
 
-  const AppContainer = React.createClass({
-    propTypes: {
-      simplLoaded: React.PropTypes.bool,
-    },
+  class AppContainer extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
       if (this.props.simplLoaded) {
         return false;
       }
       return this.props !== nextProps || this.state !== nextState;
-    },
+    }
     render() {
       return <Component {...this.props} {...this.state} />;
-    },
+    }
+  }
 
-  });
+  AppContainer.propTypes = {
+    simplLoaded: React.PropTypes.bool,
+  };
+
 
   const appTopics = optionsWithDefaults.topics.reduce(
     (memo, topic) => memo.concat([
@@ -96,26 +97,28 @@ export function simpl(Component, options = {}) {
     null, appMapDispatchToProps
   )(subscribes(AppContainer, appTopics));
 
-  const Simpl = React.createClass({
-    propTypes: {
-      simplLoaded: React.PropTypes.bool,
-      onLeave: React.PropTypes.func,
-      onReady: React.PropTypes.func.isRequired,
-    },
+  // eslint-disable-next-line react/no-multi-comp
+  class Simpl extends React.Component {
     componentWillMount() {
       this.props.onReady();
       window.addEventListener('beforeunload', this.props.onLeave);
-    },
+    }
     componentWillUnmount() {
       window.removeEventListener('beforeunload', this.props.onLeave);
-    },
+    }
     render() {
       if (!this.props.simplLoaded) {
         return (<div>Loading data...</div>);
       }
       return <SubscribedAppContainer {...this.props} {...this.state} />;
-    },
-  });
+    }
+  }
+
+  Simpl.propTypes = {
+    simplLoaded: React.PropTypes.bool,
+    onLeave: React.PropTypes.func,
+    onReady: React.PropTypes.func.isRequired,
+  };
 
   const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
   const WampContainer = wamp(SimplContainer, optionsWithDefaults);

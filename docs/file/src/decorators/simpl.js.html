@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
@@ -43,7 +44,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-subscribes">subscribes</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-combinedReducer">combinedReducer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
 </ul>
@@ -122,21 +123,22 @@ export function simpl(Component, options = {}) {
     },
   });
 
-  const AppContainer = React.createClass({
-    propTypes: {
-      simplLoaded: React.PropTypes.bool,
-    },
+  class AppContainer extends React.Component {
     shouldComponentUpdate(nextProps, nextState) {
       if (this.props.simplLoaded) {
         return false;
       }
       return this.props !== nextProps || this.state !== nextState;
-    },
+    }
     render() {
       return &lt;Component {...this.props} {...this.state} /&gt;;
-    },
+    }
+  }
 
-  });
+  AppContainer.propTypes = {
+    simplLoaded: React.PropTypes.bool,
+  };
+
 
   const appTopics = optionsWithDefaults.topics.reduce(
     (memo, topic) =&gt; memo.concat([
@@ -149,26 +151,28 @@ export function simpl(Component, options = {}) {
     null, appMapDispatchToProps
   )(subscribes(AppContainer, appTopics));
 
-  const Simpl = React.createClass({
-    propTypes: {
-      simplLoaded: React.PropTypes.bool,
-      onLeave: React.PropTypes.func,
-      onReady: React.PropTypes.func.isRequired,
-    },
+  // eslint-disable-next-line react/no-multi-comp
+  class Simpl extends React.Component {
     componentWillMount() {
       this.props.onReady();
       window.addEventListener(&apos;beforeunload&apos;, this.props.onLeave);
-    },
+    }
     componentWillUnmount() {
       window.removeEventListener(&apos;beforeunload&apos;, this.props.onLeave);
-    },
+    }
     render() {
       if (!this.props.simplLoaded) {
         return (&lt;div&gt;Loading data...&lt;/div&gt;);
       }
       return &lt;SubscribedAppContainer {...this.props} {...this.state} /&gt;;
-    },
-  });
+    }
+  }
+
+  Simpl.propTypes = {
+    simplLoaded: React.PropTypes.bool,
+    onLeave: React.PropTypes.func,
+    onReady: React.PropTypes.func.isRequired,
+  };
 
   const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
   const WampContainer = wamp(SimplContainer, optionsWithDefaults);

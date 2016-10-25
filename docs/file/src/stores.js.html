@@ -32,7 +32,8 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
@@ -43,7 +44,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-subscribes">subscribes</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-combinedReducer">combinedReducer</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
 </ul>
@@ -51,7 +52,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/stores.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createStore, applyMiddleware, compose } from &apos;redux&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * @namespace stores
+ * @memberof Simpl
+ */
+import { createStore, applyMiddleware, compose } from &apos;redux&apos;;
 import { reduxReactRouter } from &apos;redux-router&apos;;
 
 import promiseMiddleware from &apos;redux-promise&apos;;
@@ -62,6 +67,7 @@ import createHistory from &apos;history/lib/createBrowserHistory&apos;;
 
 const loggerMiddleware = createLogger();
 
+// eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const defaultMiddlewares = [
@@ -70,9 +76,17 @@ const defaultMiddlewares = [
   reduxReactRouter({ createHistory }),
 ];
 
+/**
+ * Adds promise, thunk, router and dev tools middlewares to your store
+ *
+ * @param      {string}  NODE_ENV  The node env
+ * @return     {function}  a `createStore` factory
+ */
 export function finalCreateStoreFactory(NODE_ENV) {
   const middlewares = [...defaultMiddlewares];
-  if (NODE_ENV !== &apos;production&apos; &amp;&amp; typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === &apos;undefined&apos;) {
+  if (NODE_ENV !== &apos;production&apos;
+    // eslint-disable-next-line no-underscore-dangle
+    &amp;&amp; typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === &apos;undefined&apos;) {
     middlewares.push(applyMiddleware(loggerMiddleware));
   }
   return composeEnhancers(
