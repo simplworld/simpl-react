@@ -1715,7 +1715,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\nconst devTools = function devTools() {\n  // eslint-disable-next-line max-len\n  return typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : applyMiddleware(loggerMiddleware);\n};\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production') {\n    middlewares.push(devTools());\n  }\n  return compose(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
+    "content": "import { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production' && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
   },
   {
     "__docId__": 78,
@@ -1740,12 +1740,12 @@
   },
   {
     "__docId__": 79,
-    "kind": "function",
+    "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "devTools",
+    "name": "composeEnhancers",
     "memberof": "src/stores.js",
-    "longname": "src/stores.js~devTools",
+    "longname": "src/stores.js~composeEnhancers",
     "access": null,
     "export": false,
     "importPath": "simpl/lib/stores",
@@ -1753,13 +1753,11 @@
     "description": null,
     "lineNumber": 12,
     "undocument": true,
-    "params": [],
-    "return": {
+    "type": {
       "types": [
         "*"
       ]
-    },
-    "generator": false
+    }
   },
   {
     "__docId__": 80,
@@ -1774,7 +1772,7 @@
     "importPath": "simpl/lib/stores",
     "importStyle": null,
     "description": null,
-    "lineNumber": 17,
+    "lineNumber": 14,
     "undocument": true,
     "type": {
       "types": [
@@ -1795,7 +1793,7 @@
     "importPath": "simpl/lib/stores",
     "importStyle": "{finalCreateStoreFactory}",
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 20,
     "undocument": true,
     "params": [
       {

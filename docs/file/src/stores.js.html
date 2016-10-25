@@ -62,10 +62,7 @@ import createHistory from &apos;history/lib/createBrowserHistory&apos;;
 
 const loggerMiddleware = createLogger();
 
-const devTools = function devTools() {
-  // eslint-disable-next-line max-len
-  return typeof window === &apos;object&apos; &amp;&amp; typeof window.devToolsExtension !== &apos;undefined&apos; ? window.devToolsExtension() : applyMiddleware(loggerMiddleware);
-};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const defaultMiddlewares = [
   applyMiddleware(promiseMiddleware),
@@ -75,10 +72,10 @@ const defaultMiddlewares = [
 
 export function finalCreateStoreFactory(NODE_ENV) {
   const middlewares = [...defaultMiddlewares];
-  if (NODE_ENV !== &apos;production&apos;) {
-    middlewares.push(devTools());
+  if (NODE_ENV !== &apos;production&apos; &amp;&amp; typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === &apos;undefined&apos;) {
+    middlewares.push(applyMiddleware(loggerMiddleware));
   }
-  return compose(
+  return composeEnhancers(
     ...middlewares
   )(createStore);
 }

@@ -9,10 +9,7 @@ import createHistory from 'history/lib/createBrowserHistory';
 
 const loggerMiddleware = createLogger();
 
-const devTools = function devTools() {
-  // eslint-disable-next-line max-len
-  return typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : applyMiddleware(loggerMiddleware);
-};
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const defaultMiddlewares = [
   applyMiddleware(promiseMiddleware),
@@ -22,10 +19,10 @@ const defaultMiddlewares = [
 
 export function finalCreateStoreFactory(NODE_ENV) {
   const middlewares = [...defaultMiddlewares];
-  if (NODE_ENV !== 'production') {
-    middlewares.push(devTools());
+  if (NODE_ENV !== 'production' && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {
+    middlewares.push(applyMiddleware(loggerMiddleware));
   }
-  return compose(
+  return composeEnhancers(
     ...middlewares
   )(createStore);
 }
