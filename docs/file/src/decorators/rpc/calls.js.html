@@ -53,7 +53,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/rpc/calls.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import { connect } from &apos;react-redux&apos;;
+import Autobahn from &apos;autobahn-react&apos;;
 
 
 /**
@@ -64,13 +64,6 @@ export function calls(Component, procedure, options = {}) {
   const defaults = {};
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  const mapStateToProps = (state) =&gt; ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () =&gt; ({
-  });
-
   class Caller extends React.Component {
     constructor(props) {
       super(props);
@@ -79,7 +72,7 @@ export function calls(Component, procedure, options = {}) {
     call(payload) {
       const args = payload.args || [];
       const kwargs = payload.kwargs || {};
-      return this.props.Autobahn.call(procedure, args, kwargs, optionsWithDefaults);
+      return Autobahn.call(procedure, args, kwargs, optionsWithDefaults);
     }
     render() {
       return &lt;Component {...this.props} {...this.state} call={this.call} /&gt;;
@@ -90,7 +83,7 @@ export function calls(Component, procedure, options = {}) {
     Autobahn: React.PropTypes.object,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(Caller);
+  return Caller;
 }
 
 export default calls;

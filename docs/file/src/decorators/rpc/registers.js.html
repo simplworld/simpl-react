@@ -53,7 +53,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/rpc/registers.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import { connect } from &apos;react-redux&apos;;
+import Autobahn from &apos;autobahn-react&apos;;
 
 
 /**
@@ -64,24 +64,18 @@ export function registers(Component, procedure, options = {}) {
   const defaults = { match: &apos;prefix&apos; };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  const mapStateToProps = (state) =&gt; ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () =&gt; ({
-  });
 
   class Listener extends React.Component {
     componentDidMount() {
       this.registrations = [];
 
       // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onReady(([session, details]) =&gt; {
+      Autobahn.Connection.onReady(([session, details]) =&gt; {
         this.register(session);
       });
       // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onLost(([session, details]) =&gt; {
-        this.register(this.props.Autobahn);
+      Autobahn.Connection.onLost(([session, details]) =&gt; {
+        this.register(Autobahn);
       });
     }
     componentWillUnmount() {
@@ -96,7 +90,7 @@ export function registers(Component, procedure, options = {}) {
     }
     unregister() {
       this.registrations.forEach(registration =&gt; {
-        this.props.Autobahn.unregister(registration);
+        Autobahn.unregister(registration);
       });
     }
     render() {
@@ -111,7 +105,7 @@ export function registers(Component, procedure, options = {}) {
     Autobahn: React.PropTypes.object,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(Listener);
+  return Listener;
 }
 
 

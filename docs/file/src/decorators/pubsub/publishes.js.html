@@ -53,8 +53,8 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/pubsub/publishes.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import { connect } from &apos;react-redux&apos;;
 import _ from &apos;lodash&apos;;
+import Autobahn from &apos;autobahn-react&apos;;
 
 
 /**
@@ -65,13 +65,6 @@ export function publishes(Component, topic, options = {}) {
   const defaults = { acknowledge: true, disclose_me: true, exclude_me: false };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-
-  const mapStateToProps = (state) =&gt; ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () =&gt; ({
-  });
 
   class Publisher extends React.Component {
     constructor(props) {
@@ -86,7 +79,7 @@ export function publishes(Component, topic, options = {}) {
       if (_.isFunction(topic)) {
         resolvedTopic = topic.bind(this)(this.props);
       }
-      return this.props.Autobahn.publish(resolvedTopic, args, kwargs, optionsWithDefaults)
+      return Autobahn.publish(resolvedTopic, args, kwargs, optionsWithDefaults)
       .then(publication =&gt; {
         if (this.props.onPublished) {
           return this.props.onPublished(
@@ -115,7 +108,7 @@ export function publishes(Component, topic, options = {}) {
     onPublishedError: React.PropTypes.func,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(Publisher);
+  return Publisher;
 }
 
 export default publishes;

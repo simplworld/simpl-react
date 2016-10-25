@@ -53,7 +53,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/wamp.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import { connect } from &apos;react-redux&apos;;
+import Autobahn from &apos;autobahn-react&apos;;
 
 
 /**
@@ -68,13 +68,6 @@ export function wamp(Component, options = {}) {
   };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  const mapStateToProps = (state) =&gt; ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () =&gt; ({
-  });
-
   class WampContainer extends React.Component {
     constructor(props) {
       super(props);
@@ -84,13 +77,13 @@ export function wamp(Component, options = {}) {
     }
     componentWillMount() {
       // Callback called whenever the connection is lost
-      this.props.Autobahn.Connection.onLost(() =&gt; {
+      Autobahn.Connection.onLost(() =&gt; {
         console.log(&apos;Connection lost :/!&apos;);
         this.setState({ connected: false });
       });
       // Callback called whenever the connection is ready
     // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onReady(([session, details]) =&gt; {
+      Autobahn.Connection.onReady(([session, details]) =&gt; {
         console.log(&apos;Connection established!&apos;);
         Object.keys(optionsWithDefaults.prefixes).forEach((key) =&gt; {
           const value = optionsWithDefaults.prefixes[key];
@@ -99,9 +92,9 @@ export function wamp(Component, options = {}) {
           this.setState({ connected: true });
         });
       });
-      this.props.Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
+      Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
       if (optionsWithDefaults.username) {
-        this.props.Autobahn.Auth.logIn({
+        Autobahn.Auth.logIn({
           username: optionsWithDefaults.username,
           password: optionsWithDefaults.password,
         }).then(() =&gt; {
@@ -128,7 +121,7 @@ export function wamp(Component, options = {}) {
     Autobahn: React.PropTypes.object,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(WampContainer);
+  return WampContainer;
 }
 
 export default wamp;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
+import Autobahn from 'autobahn-react';
 
 
 /**
@@ -11,24 +11,18 @@ export function registers(Component, procedure, options = {}) {
   const defaults = { match: 'prefix' };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  const mapStateToProps = (state) => ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () => ({
-  });
 
   class Listener extends React.Component {
     componentDidMount() {
       this.registrations = [];
 
       // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onReady(([session, details]) => {
+      Autobahn.Connection.onReady(([session, details]) => {
         this.register(session);
       });
       // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onLost(([session, details]) => {
-        this.register(this.props.Autobahn);
+      Autobahn.Connection.onLost(([session, details]) => {
+        this.register(Autobahn);
       });
     }
     componentWillUnmount() {
@@ -43,7 +37,7 @@ export function registers(Component, procedure, options = {}) {
     }
     unregister() {
       this.registrations.forEach(registration => {
-        this.props.Autobahn.unregister(registration);
+        Autobahn.unregister(registration);
       });
     }
     render() {
@@ -58,7 +52,7 @@ export function registers(Component, procedure, options = {}) {
     Autobahn: React.PropTypes.object,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(Listener);
+  return Listener;
 }
 
 

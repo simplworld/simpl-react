@@ -62,6 +62,7 @@ import {
 import { subscribes } from &apos;./pubsub/subscribes&apos;;
 import wamp from &apos;./wamp&apos;;
 import _ from &apos;lodash&apos;;
+import Autobahn from &apos;autobahn-react&apos;;
 
 
 /**
@@ -102,11 +103,11 @@ export function simpl(Component, options = {}) {
     },
   });
 
-  const appMapDispatchToProps = (dispatch, ownProps) =&gt; ({
+  const appMapDispatchToProps = (dispatch) =&gt; ({
     // eslint-disable-next-line camelcase
     onReceived([pk, resource_name, data], kwargs, event) {
       const resolvedTopics = optionsWithDefaults.topics.map(
-        (topic) =&gt; ownProps.Autobahn.Connection.currentConnection.session.resolve(topic)
+        (topic) =&gt; Autobahn.Connection.currentConnection.session.resolve(topic)
       );
       resolvedTopics.forEach((topic) =&gt; {
         const actions = {

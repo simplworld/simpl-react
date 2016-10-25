@@ -56,7 +56,6 @@
 import { routeReducer as routing } from &apos;react-router-redux&apos;;
 
 import simpl from &apos;./simpl&apos;;
-import wamp from &apos;./wamp&apos;;
 
 
 export function routerReducers(reducers) {
@@ -69,7 +68,6 @@ export function routerReducers(reducers) {
 export function wampReducers(reducers) {
   const combined = Object.assign({}, reducers, {
     routing,
-    wamp,
   });
   return combineReducers(combined);
 }
@@ -78,7 +76,6 @@ export function simplReducers(reducers) {
   const combined = Object.assign({}, reducers, {
     routing,
     simpl,
-    wamp,
   });
   return combineReducers(combined);
 }
@@ -86,7 +83,6 @@ export function simplReducers(reducers) {
 export default {
   routing: routerReducers,
   simpl: simplReducers,
-  wamp: wampReducers,
 };
 </code></pre>
 

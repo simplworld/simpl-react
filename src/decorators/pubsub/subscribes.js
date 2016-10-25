@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import Autobahn from 'autobahn-react';
 
 
 /**
@@ -11,10 +12,6 @@ import _ from 'lodash';
 export function subscribes(Component, topics, options = {}, staticMethods = {}) {
   const defaults = { match: 'prefix' };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
-
-  const mapStateToProps = (state) => ({
-    Autobahn: state.wamp.Autobahn,
-  });
 
   const mapDispatchToProps = (dispatch, ownProps) => ({
     onMessage(args, kwargs, event) {
@@ -40,10 +37,10 @@ export function subscribes(Component, topics, options = {}, staticMethods = {}) 
     componentDidMount() {
       this.subscriptions = [];
       // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onReady(([session, details]) => {
+      Autobahn.Connection.onReady(([session, details]) => {
         this.subscribeTo(session);
       });
-      this.subscribeTo(this.props.Autobahn);
+      this.subscribeTo(Autobahn);
     }
     shouldComponentUpdate(nextProps, nextState) {
       return this.props !== nextProps || this.state !== nextState;
@@ -85,7 +82,7 @@ export function subscribes(Component, topics, options = {}, staticMethods = {}) 
     unsubscribe() {
       this.subscriptions.forEach(subscription => {
         console.log(`Unsubscribing from '${subscription.topic}'`);
-        this.props.Autobahn.unsubscribe(subscription);
+        Autobahn.unsubscribe(subscription);
       });
     }
     appendMessage(message) {
@@ -116,7 +113,7 @@ export function subscribes(Component, topics, options = {}, staticMethods = {}) 
     SubscriptionContainer[functionName] = staticMethods[functionName];
   }
 
-  return connect(mapStateToProps, mapDispatchToProps)(SubscriptionContainer);
-};
+  return connect(null, mapDispatchToProps)(SubscriptionContainer);
+}
 
 export default subscribes;

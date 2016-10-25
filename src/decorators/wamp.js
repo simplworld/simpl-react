@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
+import Autobahn from 'autobahn-react';
 
 
 /**
@@ -15,13 +15,6 @@ export function wamp(Component, options = {}) {
   };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  const mapStateToProps = (state) => ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () => ({
-  });
-
   class WampContainer extends React.Component {
     constructor(props) {
       super(props);
@@ -31,13 +24,13 @@ export function wamp(Component, options = {}) {
     }
     componentWillMount() {
       // Callback called whenever the connection is lost
-      this.props.Autobahn.Connection.onLost(() => {
+      Autobahn.Connection.onLost(() => {
         console.log('Connection lost :/!');
         this.setState({ connected: false });
       });
       // Callback called whenever the connection is ready
     // eslint-disable-next-line no-unused-vars
-      this.props.Autobahn.Connection.onReady(([session, details]) => {
+      Autobahn.Connection.onReady(([session, details]) => {
         console.log('Connection established!');
         Object.keys(optionsWithDefaults.prefixes).forEach((key) => {
           const value = optionsWithDefaults.prefixes[key];
@@ -46,9 +39,9 @@ export function wamp(Component, options = {}) {
           this.setState({ connected: true });
         });
       });
-      this.props.Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
+      Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
       if (optionsWithDefaults.username) {
-        this.props.Autobahn.Auth.logIn({
+        Autobahn.Auth.logIn({
           username: optionsWithDefaults.username,
           password: optionsWithDefaults.password,
         }).then(() => {
@@ -75,7 +68,7 @@ export function wamp(Component, options = {}) {
     Autobahn: React.PropTypes.object,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(WampContainer);
+  return WampContainer;
 }
 
 export default wamp;

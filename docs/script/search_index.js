@@ -540,12 +540,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/reducers/wamp.js",
-    "file/src/reducers/wamp.js.html",
-    "src/reducers/wamp.js",
-    "file"
-  ],
-  [
     "src/stores.js",
     "file/src/stores.js.html",
     "src/stores.js",

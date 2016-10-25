@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
 import _ from 'lodash';
+import Autobahn from 'autobahn-react';
 
 
 /**
@@ -12,13 +12,6 @@ export function publishes(Component, topic, options = {}) {
   const defaults = { acknowledge: true, disclose_me: true, exclude_me: false };
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-
-  const mapStateToProps = (state) => ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () => ({
-  });
 
   class Publisher extends React.Component {
     constructor(props) {
@@ -33,7 +26,7 @@ export function publishes(Component, topic, options = {}) {
       if (_.isFunction(topic)) {
         resolvedTopic = topic.bind(this)(this.props);
       }
-      return this.props.Autobahn.publish(resolvedTopic, args, kwargs, optionsWithDefaults)
+      return Autobahn.publish(resolvedTopic, args, kwargs, optionsWithDefaults)
       .then(publication => {
         if (this.props.onPublished) {
           return this.props.onPublished(
@@ -62,7 +55,7 @@ export function publishes(Component, topic, options = {}) {
     onPublishedError: React.PropTypes.func,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(Publisher);
+  return Publisher;
 }
 
 export default publishes;

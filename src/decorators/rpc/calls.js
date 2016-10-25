@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
+import Autobahn from 'autobahn-react';
 
 
 /**
@@ -11,13 +11,6 @@ export function calls(Component, procedure, options = {}) {
   const defaults = {};
   const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  const mapStateToProps = (state) => ({
-    Autobahn: state.wamp.Autobahn,
-  });
-
-  const mapDispatchToProps = () => ({
-  });
-
   class Caller extends React.Component {
     constructor(props) {
       super(props);
@@ -26,7 +19,7 @@ export function calls(Component, procedure, options = {}) {
     call(payload) {
       const args = payload.args || [];
       const kwargs = payload.kwargs || {};
-      return this.props.Autobahn.call(procedure, args, kwargs, optionsWithDefaults);
+      return Autobahn.call(procedure, args, kwargs, optionsWithDefaults);
     }
     render() {
       return <Component {...this.props} {...this.state} call={this.call} />;
@@ -37,7 +30,7 @@ export function calls(Component, procedure, options = {}) {
     Autobahn: React.PropTypes.object,
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(Caller);
+  return Caller;
 }
 
 export default calls;
