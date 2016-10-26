@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Autobahn from 'autobahn-react';
+import AutobahnReact from '../../autobahn';
 
 
 /**
@@ -37,10 +37,10 @@ export function subscribes(Component, topics, options = {}, staticMethods = {}) 
     componentDidMount() {
       this.subscriptions = [];
       // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onReady(([session, details]) => {
+      AutobahnReact.Connection.onReady(([session, details]) => {
         this.subscribeTo(session);
       });
-      this.subscribeTo(Autobahn);
+      this.subscribeTo(AutobahnReact);
     }
     shouldComponentUpdate(nextProps, nextState) {
       return this.props !== nextProps || this.state !== nextState;
@@ -82,7 +82,7 @@ export function subscribes(Component, topics, options = {}, staticMethods = {}) 
     unsubscribe() {
       this.subscriptions.forEach(subscription => {
         console.log(`Unsubscribing from '${subscription.topic}'`);
-        Autobahn.unsubscribe(subscription);
+        AutobahnReact.unsubscribe(subscription);
       });
     }
     appendMessage(message) {
@@ -106,7 +106,6 @@ export function subscribes(Component, topics, options = {}, staticMethods = {}) 
     append: React.PropTypes.bool,
     options: React.PropTypes.object,
     onMessage: React.PropTypes.func,
-    Autobahn: React.PropTypes.object,
   };
 
   for (var functionName in staticMethods) {

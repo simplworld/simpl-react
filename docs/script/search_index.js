@@ -438,6 +438,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/autobahn.js",
+    "file/src/autobahn.js.html",
+    "src/autobahn.js",
+    "file"
+  ],
+  [
     "src/components/rpccaller.react.js",
     "file/src/components/RPCCaller.react.js.html",
     "src/components/RPCCaller.react.js",

@@ -54,7 +54,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/rpc/registers.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import Autobahn from &apos;autobahn-react&apos;;
+import AutobahnReact from &apos;../../autobahn&apos;;
 
 
 /**
@@ -71,12 +71,12 @@ export function registers(Component, procedure, options = {}) {
       this.registrations = [];
 
       // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onReady(([session, details]) =&gt; {
+      AutobahnReact.Connection.onReady(([session, details]) =&gt; {
         this.register(session);
       });
       // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onLost(([session, details]) =&gt; {
-        this.register(Autobahn);
+      AutobahnReact.Connection.onLost(([session, details]) =&gt; {
+        this.register(AutobahnReact);
       });
     }
     componentWillUnmount() {
@@ -91,7 +91,7 @@ export function registers(Component, procedure, options = {}) {
     }
     unregister() {
       this.registrations.forEach(registration =&gt; {
-        Autobahn.unregister(registration);
+        AutobahnReact.unregister(registration);
       });
     }
     render() {
@@ -103,7 +103,6 @@ export function registers(Component, procedure, options = {}) {
     append: React.PropTypes.bool,
     options: React.PropTypes.object,
     onCalled: React.PropTypes.func,
-    Autobahn: React.PropTypes.object,
   };
 
   return Listener;

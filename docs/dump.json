@@ -139,7 +139,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createNamedAction } from '../utils/actions';\nimport Autobahn from 'autobahn-react';\n\n/*\n * action creators\n */\n\nexport const addChild = createNamedAction('CHILD_ADD');\nexport const removeChild = createNamedAction('CHILD_REMOVE');\n\n/**\n * Given a scope's topic return a recursive representation of that scope and its\n * children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createNamedAction('DATATREE_GET', (scope, ...args) => (\n  Autobahn.call(`${scope}.get_scope_tree`, args)\n));\nexport const getRunUsers = createNamedAction('RUNUSERS_GET', (scope, ...args) => (\n  Autobahn.call(`${scope}.get_active_runusers`, args)\n));\nexport const updateScope = createNamedAction('SCOPE_UPDATE');\nexport const connectedScope = createNamedAction('SCOPE_CONNECTED', (scope, ...args) => (\n  Autobahn.publish(`${scope}.connected`, args)\n));\nexport const disconnectedScope = createNamedAction('SCOPE_DISCONNECTED', (scope, ...args) => (\n  Autobahn.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createNamedAction('CURRENT_RUN', (scope, ...args) => (\n  Autobahn.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createNamedAction('GET_PHASES', (scope, ...args) => (\n  Autobahn.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createNamedAction('GET_ROLES', (scope, ...args) => (\n  Autobahn.call(`${scope}.get_roles`, args)\n));\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createNamedAction('GET_USER_INFO');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n};\n"
+    "content": "import { createNamedAction } from '../utils/actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createNamedAction('CHILD_ADD');\nexport const removeChild = createNamedAction('CHILD_REMOVE');\n\n/**\n * Given a scope's topic return a recursive representation of that scope and its\n * children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createNamedAction('DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\nexport const getRunUsers = createNamedAction('RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\nexport const updateScope = createNamedAction('SCOPE_UPDATE');\nexport const connectedScope = createNamedAction('SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\nexport const disconnectedScope = createNamedAction('SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createNamedAction('CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createNamedAction('GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createNamedAction('GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createNamedAction('GET_USER_INFO');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n};\n"
   },
   {
     "__docId__": 8,
@@ -444,6 +444,40 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/autobahn.js",
+    "memberof": null,
+    "longname": "src/autobahn.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Autobahn from 'autobahn-react';\n\nexport const AutobahnReact = Autobahn;\n\nexport default AutobahnReact;\n"
+  },
+  {
+    "__docId__": 22,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "AutobahnReact",
+    "memberof": "src/autobahn.js",
+    "longname": "src/autobahn.js~AutobahnReact",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/autobahn",
+    "importStyle": "{AutobahnReact}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 23,
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/components/RPCCaller.react.js",
     "memberof": null,
     "longname": "src/components/RPCCaller.react.js",
@@ -453,7 +487,7 @@
     "content": "import React from 'react';\nimport { calls } from '../decorators/rpc';\n\n\n/**\n * @class RPCCaller\n * @memberof Simpl.components\n */\nclass RPCCaller extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.RpcContainer = calls(Child, this.props.callee, this.props.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.RpcContainer {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nRPCCaller.propTypes = {\n  callee: React.PropTypes.string.isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default RPCCaller;\n"
   },
   {
-    "__docId__": 22,
+    "__docId__": 24,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -482,7 +516,7 @@
     ]
   },
   {
-    "__docId__": 23,
+    "__docId__": 25,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -497,7 +531,7 @@
     "generator": false
   },
   {
-    "__docId__": 24,
+    "__docId__": 26,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -515,7 +549,7 @@
     }
   },
   {
-    "__docId__": 25,
+    "__docId__": 27,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -535,7 +569,7 @@
     "generator": false
   },
   {
-    "__docId__": 26,
+    "__docId__": 28,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -548,7 +582,7 @@
     "content": "import React from 'react';\n\nimport { publishes } from '../decorators/pubsub/publishes';\n\n\n/**\n * @class TopicPublisher\n * @memberof Simpl.components\n */\nclass TopicPublisher extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.Publisher = publishes(Child, this.props.topic, this.props.options);\n  }\n  componentWillUpdate(nextProps) {\n    const Child = React.Children.only(nextProps.children).type;\n    this.Publisher = publishes(Child, nextProps.topic, nextProps.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.Publisher {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicPublisher.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default TopicPublisher;\n"
   },
   {
-    "__docId__": 27,
+    "__docId__": 29,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -577,7 +611,7 @@
     ]
   },
   {
-    "__docId__": 28,
+    "__docId__": 30,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -592,7 +626,7 @@
     "generator": false
   },
   {
-    "__docId__": 29,
+    "__docId__": 31,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -610,7 +644,7 @@
     }
   },
   {
-    "__docId__": 30,
+    "__docId__": 32,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -632,7 +666,7 @@
     "generator": false
   },
   {
-    "__docId__": 31,
+    "__docId__": 33,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -650,7 +684,7 @@
     }
   },
   {
-    "__docId__": 32,
+    "__docId__": 34,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -670,7 +704,7 @@
     "generator": false
   },
   {
-    "__docId__": 33,
+    "__docId__": 35,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -683,7 +717,7 @@
     "content": "import React from 'react';\n\nimport { subscribes } from '../decorators/pubsub/subscribes';\n\n\n/**\n * @class TopicSubscriber\n * @memberof Simpl.components\n */\nclass TopicSubscriber extends React.Component {\n  render() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    const SubscribedChild = subscribes(Child, this.props.topic, this.props.options);\n\n    return (\n      <div>\n        <SubscribedChild {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicSubscriber.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\n\nexport default TopicSubscriber;\n"
   },
   {
-    "__docId__": 34,
+    "__docId__": 36,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -712,7 +746,7 @@
     ]
   },
   {
-    "__docId__": 35,
+    "__docId__": 37,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -732,7 +766,7 @@
     "generator": false
   },
   {
-    "__docId__": 36,
+    "__docId__": 38,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -745,7 +779,7 @@
     "content": "import RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\n\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n};\n"
   },
   {
-    "__docId__": 37,
+    "__docId__": 39,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -758,7 +792,7 @@
     "content": "import pubsub from './pubsub';\nimport rpc from './rpc';\nimport simpl from './simpl';\nimport wamp from './wamp';\n\n\n/**\n * @namespace decorators\n * @memberof Simpl\n */\nexport default {\n  pubsub,\n  rpc,\n  simpl,\n  wamp,\n};\n"
   },
   {
-    "__docId__": 38,
+    "__docId__": 40,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -771,7 +805,7 @@
     "content": "import publishes from './publishes';\nimport subscribes from './subscribes';\n\n\n/**\n * @namespace pubsub\n * @memberof Simpl.decorators\n */\nexport default {\n  publishes,\n  subscribes,\n};\n"
   },
   {
-    "__docId__": 39,
+    "__docId__": 41,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -781,10 +815,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport _ from 'lodash';\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function publishes\n * @memberof Simpl.decorators.pubsub\n */\nexport function publishes(Component, topic, options = {}) {\n  const defaults = { acknowledge: true, disclose_me: true, exclude_me: false };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n  class Publisher extends React.Component {\n    constructor(props) {\n      super(props);\n      this.publish = this.publish.bind(this);\n    }\n    publish(payload) {\n      const args = payload.args || [];\n      const kwargs = payload.kwargs || {};\n      let resolvedTopic = topic;\n\n      if (_.isFunction(topic)) {\n        resolvedTopic = topic.bind(this)(this.props);\n      }\n      return Autobahn.publish(resolvedTopic, args, kwargs, optionsWithDefaults)\n      .then(publication => {\n        if (this.props.onPublished) {\n          return this.props.onPublished(\n            resolvedTopic, args, kwargs, optionsWithDefaults, publication\n          );\n        }\n        return publication;\n      })\n      .catch(error => {\n        if (this.props.onPublishedError) {\n          return this.props.onPublishedError(\n            resolvedTopic, args, kwargs, optionsWithDefaults, error\n          );\n        }\n        return error;\n      });\n    }\n    render() {\n      return <Component {...this.props} {...this.state} publish={this.publish} />;\n    }\n  }\n\n  Publisher.propTypes = {\n    Autobahn: React.PropTypes.object,\n    onPublished: React.PropTypes.func,\n    onPublishedError: React.PropTypes.func,\n  };\n\n  return Publisher;\n}\n\nexport default publishes;\n"
+    "content": "import React from 'react';\n\nimport _ from 'lodash';\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function publishes\n * @memberof Simpl.decorators.pubsub\n */\nexport function publishes(Component, topic, options = {}) {\n  const defaults = { acknowledge: true, disclose_me: true, exclude_me: false };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n  class Publisher extends React.Component {\n    constructor(props) {\n      super(props);\n      this.publish = this.publish.bind(this);\n    }\n    publish(payload) {\n      const args = payload.args || [];\n      const kwargs = payload.kwargs || {};\n      let resolvedTopic = topic;\n\n      if (_.isFunction(topic)) {\n        resolvedTopic = topic.bind(this)(this.props);\n      }\n      return AutobahnReact.publish(resolvedTopic, args, kwargs, optionsWithDefaults)\n      .then(publication => {\n        if (this.props.onPublished) {\n          return this.props.onPublished(\n            resolvedTopic, args, kwargs, optionsWithDefaults, publication\n          );\n        }\n        return publication;\n      })\n      .catch(error => {\n        if (this.props.onPublishedError) {\n          return this.props.onPublishedError(\n            resolvedTopic, args, kwargs, optionsWithDefaults, error\n          );\n        }\n        return error;\n      });\n    }\n    render() {\n      return <Component {...this.props} {...this.state} publish={this.publish} />;\n    }\n  }\n\n  Publisher.propTypes = {\n    onPublished: React.PropTypes.func,\n    onPublishedError: React.PropTypes.func,\n  };\n\n  return Publisher;\n}\n\nexport default publishes;\n"
   },
   {
-    "__docId__": 40,
+    "__docId__": 42,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -838,7 +872,7 @@
     "generator": false
   },
   {
-    "__docId__": 41,
+    "__docId__": 43,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -848,10 +882,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport _ from 'lodash';\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function subscribes\n * @memberof Simpl.decorators.pubsub\n */\nexport function subscribes(Component, topics, options = {}, staticMethods = {}) {\n  const defaults = { match: 'prefix' };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n  const mapDispatchToProps = (dispatch, ownProps) => ({\n    onMessage(args, kwargs, event) {\n      const store = ownProps.append === undefined ? true : ownProps.append;\n      const action = store ? this.appendMessage : this.updateMessage;\n\n      action({ args, kwargs, event });\n      if (ownProps.onReceived !== undefined) {\n        ownProps.onReceived(args, kwargs, event);\n      }\n    },\n  });\n\n  class SubscriptionContainer extends React.Component {\n    constructor(props) {\n      super(props);\n      this.state = {\n        data: [],\n      };\n      this.appendMessage = this.appendMessage.bind(this);\n      this.updateMessage = this.updateMessage.bind(this);\n    }\n    componentDidMount() {\n      this.subscriptions = [];\n      // eslint-disable-next-line no-unused-vars\n      Autobahn.Connection.onReady(([session, details]) => {\n        this.subscribeTo(session);\n      });\n      this.subscribeTo(Autobahn);\n    }\n    shouldComponentUpdate(nextProps, nextState) {\n      return this.props !== nextProps || this.state !== nextState;\n    }\n    componentWillUnmount() {\n      const resolvedTopics = this.getTopics();\n      console.log(`Unmounting ${resolvedTopics}`);\n      this.unsubscribe();\n    }\n    getTopics() {\n      let resolvedTopics;\n      if (!_.isArray(topics)) {\n        resolvedTopics = [topics];\n      } else {\n        resolvedTopics = [...topics];\n      }\n      return resolvedTopics.map((topic) => {\n        if (_.isFunction(topic)) {\n          return topic.bind(this)(this.props);\n        }\n        return topic;\n      });\n    }\n    subscribeTo(session) {\n      const handler = this.props.onMessage.bind(this);\n      const resolvedTopics = this.getTopics();\n\n      resolvedTopics.forEach((topic) => {\n        session.subscribe(topic, handler, optionsWithDefaults)\n        .then(subscription => {\n          this.subscriptions.push(subscription);\n          console.log(`Subscribed to ${topic}`);\n        })\n        .catch(error => {\n          console.error(`Failed to auto-subscribe to a topic: ${topic}!`, error);\n        });\n      });\n    }\n    unsubscribe() {\n      this.subscriptions.forEach(subscription => {\n        console.log(`Unsubscribing from '${subscription.topic}'`);\n        Autobahn.unsubscribe(subscription);\n      });\n    }\n    appendMessage(message) {\n      const newVar = [...this.state.data || [], message];\n\n      this.setState({\n        data: newVar,\n      });\n    }\n    updateMessage(message) {\n      this.setState({\n        data: message,\n      });\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  SubscriptionContainer.propTypes = {\n    append: React.PropTypes.bool,\n    options: React.PropTypes.object,\n    onMessage: React.PropTypes.func,\n    Autobahn: React.PropTypes.object,\n  };\n\n  for (var functionName in staticMethods) {\n    SubscriptionContainer[functionName] = staticMethods[functionName];\n  }\n\n  return connect(null, mapDispatchToProps)(SubscriptionContainer);\n}\n\nexport default subscribes;\n"
+    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport _ from 'lodash';\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function subscribes\n * @memberof Simpl.decorators.pubsub\n */\nexport function subscribes(Component, topics, options = {}, staticMethods = {}) {\n  const defaults = { match: 'prefix' };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n  const mapDispatchToProps = (dispatch, ownProps) => ({\n    onMessage(args, kwargs, event) {\n      const store = ownProps.append === undefined ? true : ownProps.append;\n      const action = store ? this.appendMessage : this.updateMessage;\n\n      action({ args, kwargs, event });\n      if (ownProps.onReceived !== undefined) {\n        ownProps.onReceived(args, kwargs, event);\n      }\n    },\n  });\n\n  class SubscriptionContainer extends React.Component {\n    constructor(props) {\n      super(props);\n      this.state = {\n        data: [],\n      };\n      this.appendMessage = this.appendMessage.bind(this);\n      this.updateMessage = this.updateMessage.bind(this);\n    }\n    componentDidMount() {\n      this.subscriptions = [];\n      // eslint-disable-next-line no-unused-vars\n      AutobahnReact.Connection.onReady(([session, details]) => {\n        this.subscribeTo(session);\n      });\n      this.subscribeTo(AutobahnReact);\n    }\n    shouldComponentUpdate(nextProps, nextState) {\n      return this.props !== nextProps || this.state !== nextState;\n    }\n    componentWillUnmount() {\n      const resolvedTopics = this.getTopics();\n      console.log(`Unmounting ${resolvedTopics}`);\n      this.unsubscribe();\n    }\n    getTopics() {\n      let resolvedTopics;\n      if (!_.isArray(topics)) {\n        resolvedTopics = [topics];\n      } else {\n        resolvedTopics = [...topics];\n      }\n      return resolvedTopics.map((topic) => {\n        if (_.isFunction(topic)) {\n          return topic.bind(this)(this.props);\n        }\n        return topic;\n      });\n    }\n    subscribeTo(session) {\n      const handler = this.props.onMessage.bind(this);\n      const resolvedTopics = this.getTopics();\n\n      resolvedTopics.forEach((topic) => {\n        session.subscribe(topic, handler, optionsWithDefaults)\n        .then(subscription => {\n          this.subscriptions.push(subscription);\n          console.log(`Subscribed to ${topic}`);\n        })\n        .catch(error => {\n          console.error(`Failed to auto-subscribe to a topic: ${topic}!`, error);\n        });\n      });\n    }\n    unsubscribe() {\n      this.subscriptions.forEach(subscription => {\n        console.log(`Unsubscribing from '${subscription.topic}'`);\n        AutobahnReact.unsubscribe(subscription);\n      });\n    }\n    appendMessage(message) {\n      const newVar = [...this.state.data || [], message];\n\n      this.setState({\n        data: newVar,\n      });\n    }\n    updateMessage(message) {\n      this.setState({\n        data: message,\n      });\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  SubscriptionContainer.propTypes = {\n    append: React.PropTypes.bool,\n    options: React.PropTypes.object,\n    onMessage: React.PropTypes.func,\n  };\n\n  for (var functionName in staticMethods) {\n    SubscriptionContainer[functionName] = staticMethods[functionName];\n  }\n\n  return connect(null, mapDispatchToProps)(SubscriptionContainer);\n}\n\nexport default subscribes;\n"
   },
   {
-    "__docId__": 42,
+    "__docId__": 44,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -914,7 +948,7 @@
     "generator": false
   },
   {
-    "__docId__": 43,
+    "__docId__": 45,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -924,10 +958,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function calls(Component, procedure, options = {}) {\n  const defaults = {};\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n  class Caller extends React.Component {\n    constructor(props) {\n      super(props);\n      this.call = this.call.bind(this);\n    }\n    call(payload) {\n      const args = payload.args || [];\n      const kwargs = payload.kwargs || {};\n      return Autobahn.call(procedure, args, kwargs, optionsWithDefaults);\n    }\n    render() {\n      return <Component {...this.props} {...this.state} call={this.call} />;\n    }\n  }\n\n  Caller.propTypes = {\n    Autobahn: React.PropTypes.object,\n  };\n\n  return Caller;\n}\n\nexport default calls;\n"
+    "content": "import React from 'react';\n\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function calls(Component, procedure, options = {}) {\n  const defaults = {};\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n  class Caller extends React.Component {\n    constructor(props) {\n      super(props);\n      this.call = this.call.bind(this);\n    }\n    call(payload) {\n      const args = payload.args || [];\n      const kwargs = payload.kwargs || {};\n      return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);\n    }\n    render() {\n      return <Component {...this.props} {...this.state} call={this.call} />;\n    }\n  }\n\n\n  return Caller;\n}\n\nexport default calls;\n"
   },
   {
-    "__docId__": 44,
+    "__docId__": 46,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -981,7 +1015,7 @@
     "generator": false
   },
   {
-    "__docId__": 45,
+    "__docId__": 47,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -994,7 +1028,7 @@
     "content": "import calls from './calls';\nimport registers from './registers';\n\n\n/**\n * @namespace rpc\n * @memberof Simpl.decorators\n */\nexport default {\n  calls,\n  registers,\n};\n"
   },
   {
-    "__docId__": 46,
+    "__docId__": 48,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1004,10 +1038,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function registers(Component, procedure, options = {}) {\n  const defaults = { match: 'prefix' };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n  class Listener extends React.Component {\n    componentDidMount() {\n      this.registrations = [];\n\n      // eslint-disable-next-line no-unused-vars\n      Autobahn.Connection.onReady(([session, details]) => {\n        this.register(session);\n      });\n      // eslint-disable-next-line no-unused-vars\n      Autobahn.Connection.onLost(([session, details]) => {\n        this.register(Autobahn);\n      });\n    }\n    componentWillUnmount() {\n      this.unregister();\n    }\n    register(session) {\n      const handler = this.props.onCalled.bind(this);\n      session.register(procedure, handler, optionsWithDefaults).then((registration) => {\n        this.registrations.push(registration);\n        console.log(\"registered procedure \" + procedure);\n      });\n    }\n    unregister() {\n      this.registrations.forEach(registration => {\n        Autobahn.unregister(registration);\n      });\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  Listener.propTypes = {\n    append: React.PropTypes.bool,\n    options: React.PropTypes.object,\n    onCalled: React.PropTypes.func,\n    Autobahn: React.PropTypes.object,\n  };\n\n  return Listener;\n}\n\n\nexport default registers;\n"
+    "content": "import React from 'react';\n\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function registers(Component, procedure, options = {}) {\n  const defaults = { match: 'prefix' };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n  class Listener extends React.Component {\n    componentDidMount() {\n      this.registrations = [];\n\n      // eslint-disable-next-line no-unused-vars\n      AutobahnReact.Connection.onReady(([session, details]) => {\n        this.register(session);\n      });\n      // eslint-disable-next-line no-unused-vars\n      AutobahnReact.Connection.onLost(([session, details]) => {\n        this.register(AutobahnReact);\n      });\n    }\n    componentWillUnmount() {\n      this.unregister();\n    }\n    register(session) {\n      const handler = this.props.onCalled.bind(this);\n      session.register(procedure, handler, optionsWithDefaults).then((registration) => {\n        this.registrations.push(registration);\n        console.log(\"registered procedure \" + procedure);\n      });\n    }\n    unregister() {\n      this.registrations.forEach(registration => {\n        AutobahnReact.unregister(registration);\n      });\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  Listener.propTypes = {\n    append: React.PropTypes.bool,\n    options: React.PropTypes.object,\n    onCalled: React.PropTypes.func,\n  };\n\n  return Listener;\n}\n\n\nexport default registers;\n"
   },
   {
-    "__docId__": 47,
+    "__docId__": 49,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1061,7 +1095,7 @@
     "generator": false
   },
   {
-    "__docId__": 48,
+    "__docId__": 50,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1071,10 +1105,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n} from '../actions/simpl';\n\nimport { subscribes } from './pubsub/subscribes';\nimport wamp from './wamp';\nimport _ from 'lodash';\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function simpl(Component, options = {}) {\n  const optionsWithDefaults = Object.assign({}, options, {});\n  if (_.isFunction(options.topics)) {\n    optionsWithDefaults.topics = options.topics();\n  }\n\n  const mapStateToProps = (state) => ({\n    simplLoaded: state.simpl.loaded,\n  });\n\n  const mapDispatchToProps = (dispatch) => ({\n    onReady() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(connectedScope(topic));\n          dispatch(getRunUsers(topic));\n          dispatch(getCurrentRunPhase(topic));\n          dispatch(getDataTree(topic));\n        });\n      }\n      dispatch(getPhases('model:model.game'));\n      dispatch(getRoles('model:model.game'));\n      return Promise.resolve();\n    },\n    onLeave() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(disconnectedScope(topic));\n        });\n      }\n      return Promise.resolve();\n    },\n  });\n\n  const appMapDispatchToProps = (dispatch) => ({\n    // eslint-disable-next-line camelcase\n    onReceived([pk, resource_name, data], kwargs, event) {\n      const resolvedTopics = optionsWithDefaults.topics.map(\n        (topic) => Autobahn.Connection.currentConnection.session.resolve(topic)\n      );\n      resolvedTopics.forEach((topic) => {\n        const actions = {\n          [`${topic}.add_child`]: addChild,\n          [`${topic}.remove_child`]: removeChild,\n          [`${topic}.update_child`]: updateScope,\n        };\n        if (actions[event.topic]) {\n          dispatch(actions[event.topic]({ resource_name, data, pk }));\n        }\n      });\n    },\n  });\n\n  class AppContainer extends React.Component {\n    shouldComponentUpdate(nextProps, nextState) {\n      if (this.props.simplLoaded) {\n        return false;\n      }\n      return this.props !== nextProps || this.state !== nextState;\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  AppContainer.propTypes = {\n    simplLoaded: React.PropTypes.bool,\n  };\n\n\n  const appTopics = optionsWithDefaults.topics.reduce(\n    (memo, topic) => memo.concat([\n      `${topic}.add_child`,\n      `${topic}.update_child`,\n      `${topic}.remove_child`,\n    ])\n  , []);\n  const SubscribedAppContainer = connect(\n    null, appMapDispatchToProps\n  )(subscribes(AppContainer, appTopics));\n\n  // eslint-disable-next-line react/no-multi-comp\n  class Simpl extends React.Component {\n    componentWillMount() {\n      this.props.onReady();\n      window.addEventListener('beforeunload', this.props.onLeave);\n    }\n    componentWillUnmount() {\n      window.removeEventListener('beforeunload', this.props.onLeave);\n    }\n    render() {\n      if (!this.props.simplLoaded) {\n        return (<div>Loading data...</div>);\n      }\n      return <SubscribedAppContainer {...this.props} {...this.state} />;\n    }\n  }\n\n  Simpl.propTypes = {\n    simplLoaded: React.PropTypes.bool,\n    onLeave: React.PropTypes.func,\n    onReady: React.PropTypes.func.isRequired,\n  };\n\n  const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n  const WampContainer = wamp(SimplContainer, optionsWithDefaults);\n\n  return WampContainer;\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
+    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n} from '../actions/simpl';\n\nimport { subscribes } from './pubsub/subscribes';\nimport wamp from './wamp';\nimport _ from 'lodash';\nimport AutobahnReact from '../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function simpl(Component, options = {}) {\n  const optionsWithDefaults = Object.assign({}, options, {});\n  if (_.isFunction(options.topics)) {\n    optionsWithDefaults.topics = options.topics();\n  }\n\n  const mapStateToProps = (state) => ({\n    simplLoaded: state.simpl.loaded,\n  });\n\n  const mapDispatchToProps = (dispatch) => ({\n    onReady() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(connectedScope(topic));\n          dispatch(getRunUsers(topic));\n          dispatch(getCurrentRunPhase(topic));\n          dispatch(getDataTree(topic));\n        });\n      }\n      dispatch(getPhases('model:model.game'));\n      dispatch(getRoles('model:model.game'));\n      return Promise.resolve();\n    },\n    onLeave() {\n      if (optionsWithDefaults.topics) {\n        optionsWithDefaults.topics.forEach((topic) => {\n          dispatch(disconnectedScope(topic));\n        });\n      }\n      return Promise.resolve();\n    },\n  });\n\n  const appMapDispatchToProps = (dispatch) => ({\n    // eslint-disable-next-line camelcase\n    onReceived([pk, resource_name, data], kwargs, event) {\n      const resolvedTopics = optionsWithDefaults.topics.map(\n        (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)\n      );\n      resolvedTopics.forEach((topic) => {\n        const actions = {\n          [`${topic}.add_child`]: addChild,\n          [`${topic}.remove_child`]: removeChild,\n          [`${topic}.update_child`]: updateScope,\n        };\n        if (actions[event.topic]) {\n          dispatch(actions[event.topic]({ resource_name, data, pk }));\n        }\n      });\n    },\n  });\n\n  class AppContainer extends React.Component {\n    shouldComponentUpdate(nextProps, nextState) {\n      if (this.props.simplLoaded) {\n        return false;\n      }\n      return this.props !== nextProps || this.state !== nextState;\n    }\n    render() {\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  AppContainer.propTypes = {\n    simplLoaded: React.PropTypes.bool,\n  };\n\n\n  const appTopics = optionsWithDefaults.topics.reduce(\n    (memo, topic) => memo.concat([\n      `${topic}.add_child`,\n      `${topic}.update_child`,\n      `${topic}.remove_child`,\n    ])\n  , []);\n  const SubscribedAppContainer = connect(\n    null, appMapDispatchToProps\n  )(subscribes(AppContainer, appTopics));\n\n  // eslint-disable-next-line react/no-multi-comp\n  class Simpl extends React.Component {\n    componentWillMount() {\n      this.props.onReady();\n      window.addEventListener('beforeunload', this.props.onLeave);\n    }\n    componentWillUnmount() {\n      window.removeEventListener('beforeunload', this.props.onLeave);\n    }\n    render() {\n      if (!this.props.simplLoaded) {\n        return (<div>Loading data...</div>);\n      }\n      return <SubscribedAppContainer {...this.props} {...this.state} />;\n    }\n  }\n\n  Simpl.propTypes = {\n    simplLoaded: React.PropTypes.bool,\n    onLeave: React.PropTypes.func,\n    onReady: React.PropTypes.func.isRequired,\n  };\n\n  const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n  const WampContainer = wamp(SimplContainer, optionsWithDefaults);\n\n  return WampContainer;\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
   },
   {
-    "__docId__": 49,
+    "__docId__": 51,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1122,7 +1156,7 @@
     "generator": false
   },
   {
-    "__docId__": 50,
+    "__docId__": 52,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1132,10 +1166,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport Autobahn from 'autobahn-react';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function wamp(Component, options = {}) {\n  const defaults = {\n    url: 'ws://localhost:8080/ws',\n    realm: 'realm1',\n    prefixes: {},\n  };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n  class WampContainer extends React.Component {\n    constructor(props) {\n      super(props);\n      this.state = {\n        connected: false,\n      };\n    }\n    componentWillMount() {\n      // Callback called whenever the connection is lost\n      Autobahn.Connection.onLost(() => {\n        console.log('Connection lost :/!');\n        this.setState({ connected: false });\n      });\n      // Callback called whenever the connection is ready\n    // eslint-disable-next-line no-unused-vars\n      Autobahn.Connection.onReady(([session, details]) => {\n        console.log('Connection established!');\n        Object.keys(optionsWithDefaults.prefixes).forEach((key) => {\n          const value = optionsWithDefaults.prefixes[key];\n          console.log('added prefix: ', key, value);\n          session.prefix(key, value);\n          this.setState({ connected: true });\n        });\n      });\n      Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);\n      if (optionsWithDefaults.username) {\n        Autobahn.Auth.logIn({\n          username: optionsWithDefaults.username,\n          password: optionsWithDefaults.password,\n        }).then(() => {\n          console.log('authd');\n          if (this.props.onReady) {\n            this.props.onReady();\n          }\n        }).catch((err) => {\n          console.log(err);\n          console.log('not authd');\n        });\n      }\n    }\n    render() {\n      if (!this.state.connected) {\n        return (<div>Connecting...</div>);\n      }\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  WampContainer.propTypes = {\n    onReady: React.PropTypes.func,\n    Autobahn: React.PropTypes.object,\n  };\n\n  return WampContainer;\n}\n\nexport default wamp;\n"
+    "content": "import React from 'react';\n\nimport AutobahnReact from '../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function wamp(Component, options = {}) {\n  const defaults = {\n    url: 'ws://localhost:8080/ws',\n    realm: 'realm1',\n    prefixes: {},\n  };\n  const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n  class WampContainer extends React.Component {\n    constructor(props) {\n      super(props);\n      this.state = {\n        connected: false,\n      };\n    }\n    componentWillMount() {\n      // Callback called whenever the connection is lost\n      AutobahnReact.Connection.onLost(() => {\n        console.log('Connection lost :/!');\n        this.setState({ connected: false });\n      });\n      // Callback called whenever the connection is ready\n    // eslint-disable-next-line no-unused-vars\n      AutobahnReact.Connection.onReady(([session, details]) => {\n        console.log('Connection established!');\n        Object.keys(optionsWithDefaults.prefixes).forEach((key) => {\n          const value = optionsWithDefaults.prefixes[key];\n          console.log('added prefix: ', key, value);\n          session.prefix(key, value);\n          this.setState({ connected: true });\n        });\n      });\n      AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);\n      if (optionsWithDefaults.username) {\n        AutobahnReact.Auth.logIn({\n          username: optionsWithDefaults.username,\n          password: optionsWithDefaults.password,\n        }).then(() => {\n          console.log('authd');\n          if (this.props.onReady) {\n            this.props.onReady();\n          }\n        }).catch((err) => {\n          console.log(err);\n          console.log('not authd');\n        });\n      }\n    }\n    render() {\n      if (!this.state.connected) {\n        return (<div>Connecting...</div>);\n      }\n      return <Component {...this.props} {...this.state} />;\n    }\n  }\n\n  WampContainer.propTypes = {\n    onReady: React.PropTypes.func,\n  };\n\n  return WampContainer;\n}\n\nexport default wamp;\n"
   },
   {
-    "__docId__": 51,
+    "__docId__": 53,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1183,7 +1217,7 @@
     "generator": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 54,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1193,31 +1227,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import actions from './actions';\nimport components from './components';\nimport decorators from './decorators';\nimport reducers from './reducers';\nimport stores from './stores';\nimport utils from './utils';\n\nimport Autobahn from 'autobahn-react';\n\nexport const AutobahnReact = Autobahn;\n/**\n * @module Simpl\n * @namespace Simpl\n */\nexport default {\n  AutobahnReact,\n  actions,\n  components,\n  decorators,\n  reducers,\n  stores,\n  utils,\n};\n"
+    "content": "import actions from './actions';\nimport autobahn from './autobahn';\nimport components from './components';\nimport decorators from './decorators';\nimport reducers from './reducers';\nimport stores from './stores';\nimport utils from './utils';\n\n/**\n * @module Simpl\n * @namespace Simpl\n */\nexport default {\n  actions,\n  autobahn,\n  components,\n  decorators,\n  reducers,\n  stores,\n  utils,\n};\n"
   },
   {
-    "__docId__": 53,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "AutobahnReact",
-    "memberof": "src/index.js",
-    "longname": "src/index.js~AutobahnReact",
-    "access": null,
-    "export": true,
-    "importPath": "simpl/lib/index",
-    "importStyle": "{AutobahnReact}",
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1230,7 +1243,7 @@
     "content": "/**\n * @namespace combined\n * @memberof Simpl.reducers\n */\nimport { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\n/**\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n */\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1260,7 +1273,7 @@
     "generator": false
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1290,7 +1303,7 @@
     "generator": false
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1326,7 +1339,7 @@
     "generator": false
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1339,7 +1352,7 @@
     "content": "import combined from './combined';\nimport messages from './messages';\nimport simpl from './simpl';\n\nexport const combinedReducer = combined;\nexport const messagesReducer = messages;\nexport const simplReducer = simpl;\n\n/**\n * @namespace reducers\n * @memberof Simpl\n */\nexport default {\n  combined,\n  messages,\n  simpl,\n};\n"
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1360,7 +1373,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1381,7 +1394,7 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1402,7 +1415,7 @@
     }
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1415,7 +1428,7 @@
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst MessageActions = require('../actions/messages');\nconst StateActions = require('../actions/state');\n\n\nconst initial = {\n};\n\nconst Message = function Message(payload) {\n  return { args: payload[0], kwargs: payload[1], details: payload[2] };\n};\n\nconst messages = recycleState(createReducer(initial, {\n  [MessageActions.appendMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    const newVar = [...state[variable] || [], message];\n\n    return Object.assign({}, state, { [variable]: newVar });\n  },\n  [MessageActions.updateMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    return Object.assign({}, state, { [variable]: message });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default messages;\n"
   },
   {
-    "__docId__": 63,
+    "__docId__": 64,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1436,7 +1449,7 @@
     }
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1457,7 +1470,7 @@
     }
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1478,7 +1491,7 @@
     }
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1508,7 +1521,7 @@
     "generator": false
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1529,7 +1542,7 @@
     }
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1542,7 +1555,7 @@
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  loaded: false,\n  user: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  round: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    console.error(action.payload.error, action.payload.args, action.payload.kwargs);\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  getDataTree(state, action) {\n    const newState = this.addChild(state, action);\n    return action.payload.children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child })\n    , newState);\n  },\n  [SimplActions.addChild](state, action) {\n    return this.addChild(state, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    const key = action.payload.resource_name;\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    const updated = popAtIndex(state[key], index);\n    return Object.assign({}, state, { [key]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let loaded = state.loaded;\n    if (state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getUserInfo](state, action) {\n    // Get the current user's info into the user namespace\n    const username = action.payload;\n    const roleTypes = new Set();\n    let foundRunuser;\n\n    state.runuser.forEach((runuser) => {\n      if (runuser.role_name) {\n        roleTypes.add(runuser.role_name);\n      }\n\n      if (runuser.username === username) {\n        foundRunuser = runuser;\n      }\n    });\n\n    // Remove this user's role and we're left with the \"other\" role names\n    roleTypes.delete(foundRunuser.role_name);\n    foundRunuser.other_roles = Array.from(roleTypes);\n    return Object.assign({}, state, { user: foundRunuser });\n  },\n  [SimplActions.getPhases](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.rolesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      loaded,\n    });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n"
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1563,7 +1576,7 @@
     }
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1584,7 +1597,7 @@
     }
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1605,7 +1618,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1626,7 +1639,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1639,7 +1652,7 @@
     "content": "/**\n * @namespace stores\n * @memberof Simpl\n */\nimport { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\n// eslint-disable-next-line no-underscore-dangle\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\n/**\n * Adds promise, thunk, router and dev tools middlewares to your store\n *\n * @param      {string}  NODE_ENV  The node env\n * @return     {function}  a `createStore` factory\n */\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production'\n    // eslint-disable-next-line no-underscore-dangle\n    && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1660,7 +1673,7 @@
     }
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1681,7 +1694,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 77,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1702,7 +1715,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 78,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1738,7 +1751,7 @@
     "generator": false
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1751,7 +1764,7 @@
     "content": "/**\n * @namespace actions\n * @memberof Simpl.utils\n */\nimport { createAction } from 'redux-actions';\n\n\nexport function stringify(name, arg) {\n  /* eslint no-param-reassign: \"off\" */\n  arg.toString = () => name;\n  return arg;\n}\n\n/**\n *  An action that's serializable to the provided action name.\n * @typedef {function} NamedReduxAction\n * @param {string} type - A unique name for the action\n * @param {function|undefined} [action] - Logic to perform before this action\n * will make it to the reducer.\n * @property {function} toString() - return the action's name.\n*/\n\n/**\n * Shortcut function to create an action that's serializable to a string and usable\n * as an object property.\n * Use this to create an option that's usable from within a reducer.\n * @function\n * @memberof Simpl.utils.actions\n * @param {string} type - A unique name for the action\n * @param {spread} args - Additional arguments to pass to redux-actions.createAction.\n * @returns {NamedReduxAction}\n */\nexport function createNamedAction(type, ...args) {\n  return stringify(type, createAction(type, ...args));\n}\n\nexport default {\n  stringify,\n  createNamedAction,\n};\n"
   },
   {
-    "__docId__": 79,
+    "__docId__": 80,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1787,7 +1800,7 @@
     "generator": false
   },
   {
-    "__docId__": 80,
+    "__docId__": 81,
     "kind": "typedef",
     "static": true,
     "variation": null,
@@ -1840,7 +1853,7 @@
     }
   },
   {
-    "__docId__": 81,
+    "__docId__": 82,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1900,7 +1913,7 @@
     "generator": false
   },
   {
-    "__docId__": 82,
+    "__docId__": 83,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1913,7 +1926,7 @@
     "content": "export function updateInCollection(collection, index, updates) {\n  if (index === undefined || index === null || index >= collection.length) {\n    return [...collection, Object.assign({}, updates)];\n  }\n  return [\n    ...collection.slice(0, index),\n    Object.assign({}, collection[index], updates),\n    ...collection.slice(index + 1),\n  ];\n}\n\nexport function updateCollection(collection, updates) {\n  return collection.map((item) => Object.assign({}, item, updates));\n}\n\nexport function popAtIndex(collection, index) {\n  if (index < 0) {\n    return collection.slice(0, index);\n  }\n  return [\n    ...collection.slice(0, index),\n    ...collection.slice(index + 1, collection.length),\n  ];\n}\n\n\nexport default {\n  updateInCollection,\n  updateCollection,\n  popAtIndex,\n};\n"
   },
   {
-    "__docId__": 83,
+    "__docId__": 84,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1955,7 +1968,7 @@
     "generator": false
   },
   {
-    "__docId__": 84,
+    "__docId__": 85,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1991,7 +2004,7 @@
     "generator": false
   },
   {
-    "__docId__": 85,
+    "__docId__": 86,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2027,7 +2040,7 @@
     "generator": false
   },
   {
-    "__docId__": 86,
+    "__docId__": 87,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2040,7 +2053,7 @@
     "content": "import actions from './actions';\nimport collections from './collections';\nimport reducers from './reducers';\n\n\n/**\n * @namespace utils\n * @memberof Simpl\n */\nexport default {\n  actions,\n  collections,\n  reducers,\n};\n"
   },
   {
-    "__docId__": 87,
+    "__docId__": 88,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2053,7 +2066,7 @@
     "content": "import { updateInCollection } from './collections';\n\n\nexport function updateObjectOrCollection(state, action, updates) {\n  let collection;\n\n  if (action.payload.key !== undefined) {\n    collection = updateInCollection(state, action.payload.key, updates);\n  } else {\n    collection = Object.assign({}, state, updates);\n  }\n  return collection;\n}\n\nexport default {\n  updateObjectOrCollection,\n};\n"
   },
   {
-    "__docId__": 88,
+    "__docId__": 89,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2095,7 +2108,7 @@
     "generator": false
   },
   {
-    "__docId__": 90,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2108,7 +2121,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2121,7 +2134,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2134,7 +2147,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2147,7 +2160,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2160,7 +2173,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 96,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2173,7 +2186,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2186,7 +2199,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2199,7 +2212,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2212,7 +2225,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2225,7 +2238,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2238,7 +2251,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2251,7 +2264,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2264,7 +2277,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2277,7 +2290,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 105,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2290,7 +2303,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 106,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2303,7 +2316,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 107,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2316,7 +2329,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2329,7 +2342,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 109,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2342,7 +2355,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2355,7 +2368,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2368,7 +2381,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2381,7 +2394,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2394,7 +2407,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2407,7 +2420,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2420,7 +2433,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 116,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2433,7 +2446,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 117,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2446,7 +2459,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 118,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2459,7 +2472,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 119,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2472,7 +2485,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 120,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2485,7 +2498,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 121,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2498,7 +2511,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 122,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2511,7 +2524,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 123,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2524,7 +2537,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 124,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2537,7 +2550,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 125,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2550,7 +2563,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 126,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2563,7 +2576,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 127,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2576,7 +2589,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 128,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2589,7 +2602,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 129,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2602,7 +2615,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 130,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2615,7 +2628,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 131,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2628,7 +2641,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 132,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2641,7 +2654,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 133,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2654,7 +2667,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 134,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2667,7 +2680,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 135,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2680,7 +2693,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 136,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2693,7 +2706,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 137,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2706,7 +2719,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 139,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2719,7 +2732,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 140,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2732,7 +2745,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 141,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2745,7 +2758,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 142,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2758,7 +2771,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 143,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2771,7 +2784,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 144,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2784,7 +2797,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 145,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2797,7 +2810,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 146,
     "kind": "external",
     "static": true,
     "variation": null,

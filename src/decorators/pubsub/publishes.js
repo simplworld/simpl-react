@@ -1,7 +1,7 @@
 import React from 'react';
 
 import _ from 'lodash';
-import Autobahn from 'autobahn-react';
+import AutobahnReact from '../../autobahn';
 
 
 /**
@@ -26,7 +26,7 @@ export function publishes(Component, topic, options = {}) {
       if (_.isFunction(topic)) {
         resolvedTopic = topic.bind(this)(this.props);
       }
-      return Autobahn.publish(resolvedTopic, args, kwargs, optionsWithDefaults)
+      return AutobahnReact.publish(resolvedTopic, args, kwargs, optionsWithDefaults)
       .then(publication => {
         if (this.props.onPublished) {
           return this.props.onPublished(
@@ -50,7 +50,6 @@ export function publishes(Component, topic, options = {}) {
   }
 
   Publisher.propTypes = {
-    Autobahn: React.PropTypes.object,
     onPublished: React.PropTypes.func,
     onPublishedError: React.PropTypes.func,
   };

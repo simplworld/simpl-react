@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Autobahn from 'autobahn-react';
+import AutobahnReact from '../../autobahn';
 
 
 /**
@@ -19,16 +19,13 @@ export function calls(Component, procedure, options = {}) {
     call(payload) {
       const args = payload.args || [];
       const kwargs = payload.kwargs || {};
-      return Autobahn.call(procedure, args, kwargs, optionsWithDefaults);
+      return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);
     }
     render() {
       return <Component {...this.props} {...this.state} call={this.call} />;
     }
   }
 
-  Caller.propTypes = {
-    Autobahn: React.PropTypes.object,
-  };
 
   return Caller;
 }

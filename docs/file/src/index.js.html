@@ -53,22 +53,20 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import actions from &apos;./actions&apos;;
+import autobahn from &apos;./autobahn&apos;;
 import components from &apos;./components&apos;;
 import decorators from &apos;./decorators&apos;;
 import reducers from &apos;./reducers&apos;;
 import stores from &apos;./stores&apos;;
 import utils from &apos;./utils&apos;;
 
-import Autobahn from &apos;autobahn-react&apos;;
-
-export const AutobahnReact = Autobahn;
 /**
  * @module Simpl
  * @namespace Simpl
  */
 export default {
-  AutobahnReact,
   actions,
+  autobahn,
   components,
   decorators,
   reducers,

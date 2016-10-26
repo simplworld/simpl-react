@@ -53,7 +53,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/actions/simpl.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createNamedAction } from &apos;../utils/actions&apos;;
-import Autobahn from &apos;autobahn-react&apos;;
+import AutobahnReact from &apos;../autobahn&apos;;
 
 /*
  * action creators
@@ -71,29 +71,29 @@ export const removeChild = createNamedAction(&apos;CHILD_REMOVE&apos;);
  * @returns {NamedReduxAction}
  */
 export const getDataTree = createNamedAction(&apos;DATATREE_GET&apos;, (scope, ...args) =&gt; (
-  Autobahn.call(`${scope}.get_scope_tree`, args)
+  AutobahnReact.call(`${scope}.get_scope_tree`, args)
 ));
 export const getRunUsers = createNamedAction(&apos;RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
-  Autobahn.call(`${scope}.get_active_runusers`, args)
+  AutobahnReact.call(`${scope}.get_active_runusers`, args)
 ));
 export const updateScope = createNamedAction(&apos;SCOPE_UPDATE&apos;);
 export const connectedScope = createNamedAction(&apos;SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
-  Autobahn.publish(`${scope}.connected`, args)
+  AutobahnReact.publish(`${scope}.connected`, args)
 ));
 export const disconnectedScope = createNamedAction(&apos;SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
-  Autobahn.publish(`${scope}.disconnected`, args)
+  AutobahnReact.publish(`${scope}.disconnected`, args)
 ));
 
 export const getCurrentRunPhase = createNamedAction(&apos;CURRENT_RUN&apos;, (scope, ...args) =&gt; (
-  Autobahn.call(`${scope}.get_current_run_and_phase`, args)
+  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)
 ));
 
 export const getPhases = createNamedAction(&apos;GET_PHASES&apos;, (scope, ...args) =&gt; (
-  Autobahn.call(`${scope}.get_phases`, args)
+  AutobahnReact.call(`${scope}.get_phases`, args)
 ));
 
 export const getRoles = createNamedAction(&apos;GET_ROLES&apos;, (scope, ...args) =&gt; (
-  Autobahn.call(`${scope}.get_roles`, args)
+  AutobahnReact.call(`${scope}.get_roles`, args)
 ));
 
 // populate simpl.user space with current user&apos;s info

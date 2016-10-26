@@ -9,7 +9,7 @@ import {
 import { subscribes } from './pubsub/subscribes';
 import wamp from './wamp';
 import _ from 'lodash';
-import Autobahn from 'autobahn-react';
+import AutobahnReact from '../autobahn';
 
 
 /**
@@ -54,7 +54,7 @@ export function simpl(Component, options = {}) {
     // eslint-disable-next-line camelcase
     onReceived([pk, resource_name, data], kwargs, event) {
       const resolvedTopics = optionsWithDefaults.topics.map(
-        (topic) => Autobahn.Connection.currentConnection.session.resolve(topic)
+        (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
       );
       resolvedTopics.forEach((topic) => {
         const actions = {

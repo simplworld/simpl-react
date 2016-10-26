@@ -54,7 +54,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/wamp.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import Autobahn from &apos;autobahn-react&apos;;
+import AutobahnReact from &apos;../autobahn&apos;;
 
 
 /**
@@ -78,13 +78,13 @@ export function wamp(Component, options = {}) {
     }
     componentWillMount() {
       // Callback called whenever the connection is lost
-      Autobahn.Connection.onLost(() =&gt; {
+      AutobahnReact.Connection.onLost(() =&gt; {
         console.log(&apos;Connection lost :/!&apos;);
         this.setState({ connected: false });
       });
       // Callback called whenever the connection is ready
     // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onReady(([session, details]) =&gt; {
+      AutobahnReact.Connection.onReady(([session, details]) =&gt; {
         console.log(&apos;Connection established!&apos;);
         Object.keys(optionsWithDefaults.prefixes).forEach((key) =&gt; {
           const value = optionsWithDefaults.prefixes[key];
@@ -93,9 +93,9 @@ export function wamp(Component, options = {}) {
           this.setState({ connected: true });
         });
       });
-      Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
+      AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
       if (optionsWithDefaults.username) {
-        Autobahn.Auth.logIn({
+        AutobahnReact.Auth.logIn({
           username: optionsWithDefaults.username,
           password: optionsWithDefaults.password,
         }).then(() =&gt; {
@@ -119,7 +119,6 @@ export function wamp(Component, options = {}) {
 
   WampContainer.propTypes = {
     onReady: React.PropTypes.func,
-    Autobahn: React.PropTypes.object,
   };
 
   return WampContainer;

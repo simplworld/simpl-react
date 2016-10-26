@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Autobahn from 'autobahn-react';
+import AutobahnReact from '../autobahn';
 
 
 /**
@@ -24,13 +24,13 @@ export function wamp(Component, options = {}) {
     }
     componentWillMount() {
       // Callback called whenever the connection is lost
-      Autobahn.Connection.onLost(() => {
+      AutobahnReact.Connection.onLost(() => {
         console.log('Connection lost :/!');
         this.setState({ connected: false });
       });
       // Callback called whenever the connection is ready
     // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onReady(([session, details]) => {
+      AutobahnReact.Connection.onReady(([session, details]) => {
         console.log('Connection established!');
         Object.keys(optionsWithDefaults.prefixes).forEach((key) => {
           const value = optionsWithDefaults.prefixes[key];
@@ -39,9 +39,9 @@ export function wamp(Component, options = {}) {
           this.setState({ connected: true });
         });
       });
-      Autobahn.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
+      AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
       if (optionsWithDefaults.username) {
-        Autobahn.Auth.logIn({
+        AutobahnReact.Auth.logIn({
           username: optionsWithDefaults.username,
           password: optionsWithDefaults.password,
         }).then(() => {
@@ -65,7 +65,6 @@ export function wamp(Component, options = {}) {
 
   WampContainer.propTypes = {
     onReady: React.PropTypes.func,
-    Autobahn: React.PropTypes.object,
   };
 
   return WampContainer;

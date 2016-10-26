@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Autobahn from 'autobahn-react';
+import AutobahnReact from '../../autobahn';
 
 
 /**
@@ -17,12 +17,12 @@ export function registers(Component, procedure, options = {}) {
       this.registrations = [];
 
       // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onReady(([session, details]) => {
+      AutobahnReact.Connection.onReady(([session, details]) => {
         this.register(session);
       });
       // eslint-disable-next-line no-unused-vars
-      Autobahn.Connection.onLost(([session, details]) => {
-        this.register(Autobahn);
+      AutobahnReact.Connection.onLost(([session, details]) => {
+        this.register(AutobahnReact);
       });
     }
     componentWillUnmount() {
@@ -37,7 +37,7 @@ export function registers(Component, procedure, options = {}) {
     }
     unregister() {
       this.registrations.forEach(registration => {
-        Autobahn.unregister(registration);
+        AutobahnReact.unregister(registration);
       });
     }
     render() {
@@ -49,7 +49,6 @@ export function registers(Component, procedure, options = {}) {
     append: React.PropTypes.bool,
     options: React.PropTypes.object,
     onCalled: React.PropTypes.func,
-    Autobahn: React.PropTypes.object,
   };
 
   return Listener;

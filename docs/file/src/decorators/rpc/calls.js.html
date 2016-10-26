@@ -54,7 +54,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/rpc/calls.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import Autobahn from &apos;autobahn-react&apos;;
+import AutobahnReact from &apos;../../autobahn&apos;;
 
 
 /**
@@ -73,16 +73,13 @@ export function calls(Component, procedure, options = {}) {
     call(payload) {
       const args = payload.args || [];
       const kwargs = payload.kwargs || {};
-      return Autobahn.call(procedure, args, kwargs, optionsWithDefaults);
+      return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);
     }
     render() {
       return &lt;Component {...this.props} {...this.state} call={this.call} /&gt;;
     }
   }
 
-  Caller.propTypes = {
-    Autobahn: React.PropTypes.object,
-  };
 
   return Caller;
 }
