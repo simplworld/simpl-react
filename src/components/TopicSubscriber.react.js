@@ -5,6 +5,7 @@ import { subscribes } from '../decorators/pubsub/subscribes';
 
 /**
  * @class TopicSubscriber
+ * @extends {React.Component}
  * @memberof Simpl.components
  */
 class TopicSubscriber extends React.Component {

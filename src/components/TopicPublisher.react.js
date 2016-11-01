@@ -5,6 +5,7 @@ import { publishes } from '../decorators/pubsub/publishes';
 
 /**
  * @class TopicPublisher
+ * @extends {React.Component}
  * @memberof Simpl.components
  */
 class TopicPublisher extends React.Component {

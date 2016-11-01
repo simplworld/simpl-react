@@ -4,6 +4,7 @@ import { calls } from '../decorators/rpc';
 
 /**
  * @class RPCCaller
+ * @extends {React.Component}
  * @memberof Simpl.components
  */
 class RPCCaller extends React.Component {
