@@ -192,7 +192,7 @@ export function validateField(options) {
 
         const errors = messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);
         return (
-          <div>
+          <span>
             <FormGroup
               validationState={validationState}
             >
@@ -203,7 +203,7 @@ export function validateField(options) {
               />
               {errors}
             </FormGroup>
-          </div>
+          </span>
         );
       }
     }
