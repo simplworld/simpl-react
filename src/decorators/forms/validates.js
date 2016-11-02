@@ -115,7 +115,7 @@ export function validateField(options) {
           [...this.props.warnings, ...warningValidators], originalValue, this.props
         );
 
-        let validationState = null;
+        let validationState = 'success';
         if (errors.length) {
           validationState = 'error';
         } else if (warnings.length) {
@@ -178,6 +178,8 @@ export function validateField(options) {
       render() {
         let validationState = this.state.validationState;
         const messages = [...this.state.messages];
+
+        // add errors/warnings coming from redux-form
         if (this.props.meta) {
           if (this.props.meta.error) {
             validationState = 'error';
