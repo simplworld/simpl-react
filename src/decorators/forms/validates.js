@@ -107,6 +107,19 @@ export function validateField(options) {
         this.onChange = this.onChange.bind(this);
       }
 
+      componentWillReceiveProps(props) {
+        if (props.value !== this.props.value) {
+          let formattedValue = '';
+          if (props.value !== undefined || props.value !== '') {
+            const sanitizedValue = this.sanitize(props.value, props);
+            formattedValue = this.format(sanitizedValue, this.mergedProps(props));
+          }
+          this.setState({
+            value: formattedValue,
+          });
+        }
+      }
+
       onChange(e) {
         const originalValue = e.target.value;
 
