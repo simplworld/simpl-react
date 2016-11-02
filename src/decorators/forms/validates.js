@@ -95,7 +95,7 @@ export function validateField(options) {
         super(props);
 
         let formattedValue = '';
-        if (props.value) {
+        if (props.value !== undefined || props.value !== '') {
           const sanitizedValue = this.sanitize(props.value, this.props);
           formattedValue = this.format(sanitizedValue, this.mergedProps(this.props));
         }
