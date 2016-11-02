@@ -148,7 +148,7 @@ export function validateField(options) {
           if (_.isFunction(validation)) {
             return validation(value, props);
           } else if (_.isString(validation)) {
-            return verboseValidator(validation, value);
+            return verboseValidator(validation, value.toString());
           }
           return undefined;
         }).filter((result) => result !== undefined);
@@ -166,7 +166,7 @@ export function validateField(options) {
           if (_.isFunction(sanitizer)) {
             return sanitizer(previousValue, props) || previousValue;
           } else if (_.isString(sanitizer)) {
-            return validator[sanitizer](previousValue) || previousValue;
+            return validator[sanitizer](previousValue.toString()) || previousValue;
           }
           return undefined;
         }, value);
