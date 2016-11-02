@@ -88,6 +88,8 @@ export function validateField(options) {
   const optionsFormatters = options.formatters || [];
 
   return (Component) => {
+    const parentProps = Component.defaultProps;
+
     class ValidatedComponent extends React.Component {
       constructor(props) {
         super(props);
@@ -95,7 +97,7 @@ export function validateField(options) {
         let formattedValue = '';
         if (props.value) {
           const sanitizedValue = this.sanitize(props.value, this.props);
-          formattedValue = this.format(sanitizedValue, props);
+          formattedValue = this.format(sanitizedValue, this.mergedProps(this.props));
         }
         this.state = {
           messages: this.props.messages || [],
@@ -125,7 +127,7 @@ export function validateField(options) {
         const messages = [...errors, ...warnings];
 
         const sanitizedValue = this.sanitize(originalValue, this.props);
-        const formattedValue = this.format(sanitizedValue, this.props);
+        const formattedValue = this.format(sanitizedValue, this.mergedProps(this.props));
 
         this.setState({
           value: formattedValue,
@@ -135,6 +137,10 @@ export function validateField(options) {
         if (this.props.onChange) {
           this.props.onChange(sanitizedValue);
         }
+      }
+
+      mergedProps(props) {
+        return Object.assign({}, parentProps, props);
       }
 
       mapValidators(validators, value, props) {
