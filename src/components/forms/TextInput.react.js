@@ -11,12 +11,15 @@ function Input(props) {
   return (
     <InputGroup>
       <FormControl
-        type="text"
         {...inputProps}
       />
     </InputGroup>
   );
 }
+
+Input.defaultProps = {
+  type: 'text',
+};
 
 Input.propTypes = inputPropTypes;
 

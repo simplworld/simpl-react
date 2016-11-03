@@ -10,8 +10,8 @@ function Input(props) {
   return (
     <InputGroup>
       <FormControl
-        type="password"
         {...inputProps}
+        type="password"
       />
     </InputGroup>
   );

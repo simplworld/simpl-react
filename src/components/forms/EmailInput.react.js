@@ -11,12 +11,15 @@ function Input(props) {
     <InputGroup>
       <InputGroup.Addon>@</InputGroup.Addon>
       <FormControl
-        type="email"
         {...inputProps}
       />
     </InputGroup>
   );
 }
+
+Input.defaultProps = {
+  type: 'email',
+};
 
 Input.propTypes = inputPropTypes;
 

@@ -2,6 +2,7 @@ import React from 'react';
 
 
 export const inputPropTypes = {
+  type: React.PropTypes.string,
   value: React.PropTypes.any,
   name: React.PropTypes.string,
   onChange: React.PropTypes.func,
@@ -34,10 +35,13 @@ export function getInputProps(props) {
         overrides[method] = patched;
       }
     });
-
+    if (props.type) {
+      overrides.type = props.type;
+    }
     return Object.assign({}, props.input, overrides);
   }
   return {
+    type: props.type,
     value: props.value,
     name: props.name,
     onChange: props.onChange,

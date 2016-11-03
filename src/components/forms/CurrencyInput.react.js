@@ -17,7 +17,6 @@ function Input(props) {
     <InputGroup>
       <InputGroup.Addon>{props.currency}</InputGroup.Addon>
       <FormControl
-        type="number"
         {...inputProps}
       />
     </InputGroup>
@@ -25,6 +24,7 @@ function Input(props) {
 }
 
 Input.defaultProps = {
+  type: 'number',
   decimalPlaces: 2,
   currency: '$',
 };

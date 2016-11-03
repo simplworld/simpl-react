@@ -11,7 +11,6 @@ function Input(props) {
   return (
     <InputGroup>
       <FormControl
-        type="number"
         {...inputProps}
       />
     </InputGroup>
@@ -19,6 +18,7 @@ function Input(props) {
 }
 
 Input.defaultProps = {
+  type: 'number',
   step: 0.1,
 };
 

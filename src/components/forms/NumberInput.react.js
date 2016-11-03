@@ -11,12 +11,15 @@ function Input(props) {
   return (
     <InputGroup>
       <FormControl
-        type="number"
         {...inputProps}
       />
     </InputGroup>
   );
 }
+
+Input.defaultProps = {
+  type: 'number',
+};
 
 Input.propTypes = Object.assign({}, inputPropTypes, {
   min: React.PropTypes.number,

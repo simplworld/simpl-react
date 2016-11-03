@@ -12,7 +12,6 @@ function Input(props) {
   return (
     <InputGroup>
       <FormControl
-        type="number"
         {...inputProps}
       />
     </InputGroup>
@@ -20,6 +19,7 @@ function Input(props) {
 }
 
 Input.defaultProps = {
+  type: 'number',
   decimalPlaces: 2,
 };
 
