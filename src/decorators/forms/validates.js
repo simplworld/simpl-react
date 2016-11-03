@@ -19,6 +19,18 @@ const verboseValidator = function verboseValidator(validation, value) {
 };
 
 /**
+ * Convert a value to a string, if possible. Otherwise returns the unchanged
+ * value. `null` and `undefined` are coerced to the empty string.
+ *
+ * @param      {any}   value   The value to coerced
+ * @return     {any}  Either the value converted to a string, or the vlaue itself.
+ */
+const stringValue = function stringValue(value) {
+  if (value === null || value === undefined) return '';
+  return value.toString !== undefined ? value.toString() : value;
+};
+
+/**
  * Add value validation to a single field.
  * @memberof Simpl.decorators.forms
  * @example
@@ -161,7 +173,10 @@ export function validateField(options) {
           if (_.isFunction(validation)) {
             return validation(value, props);
           } else if (_.isString(validation)) {
-            return verboseValidator(validation, value.toString());
+            return verboseValidator(
+              validation,
+              stringValue(value)
+            );
           }
           return undefined;
         }).filter((result) => result !== undefined);
@@ -179,7 +194,7 @@ export function validateField(options) {
           if (_.isFunction(sanitizer)) {
             return sanitizer(previousValue, props) || previousValue;
           } else if (_.isString(sanitizer)) {
-            return validator[sanitizer](previousValue.toString()) || previousValue;
+            return validator[sanitizer](stringValue(previousValue)) || previousValue;
           }
           return undefined;
         }, value);
