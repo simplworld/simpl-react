@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { FormGroup, HelpBlock } from 'react-bootstrap';
-
 import _ from 'lodash';
 import validator from 'validator';
 
@@ -16,6 +14,54 @@ const verboseValidator = function verboseValidator(validation, value) {
   };
 
   return validator[validation](value) ? undefined : messages[validation] || 'Invalid value';
+};
+
+
+/**
+ * Given an object of `props`, returns an object containing only the `props`
+ * supported by `input` elements.
+ *
+ * @param      {Object}  props   The original `props`
+ * @return     {Object}  The props for the `input`.
+ */
+const getInputProps = function getInputProps(props) {
+  if (props.input) {
+    // The component is called form a redux-form Field.
+    // Use the `Field` properties, but also remember to call original
+    // component's event handlers.
+    const overrides = {};
+
+    ['onChange', 'onBlur', 'onFocus'].forEach((method) => {
+      if (props[method]) {
+        const patched = (...args) => {
+          props[method](...args);
+          props.input[method](...args);
+        };
+        overrides[method] = patched;
+      }
+    });
+
+    if (props.type) {
+      overrides.type = props.type;
+    }
+    return Object.assign({}, props.input, overrides);
+  }
+  return {
+    type: props.type,
+    value: props.value,
+    name: props.name,
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    placeholder: props.placeholder,
+    required: props.required,
+    disabled: props.disabled,
+    readOnly: props.readonly,
+    maxLength: props.maxlength,
+    min: props.min,
+    max: props.max,
+    step: props.step,
+  };
 };
 
 /**
@@ -224,13 +270,18 @@ export function validateField(options) {
           }
         }
 
+        const props = Object.assign({}, this.props, {
+          onChange: this.onChange,
+          validationState,
+          messages,
+        });
+        const inputProps = getInputProps(props);
+
         return (
           <span>
             <Component
-              validationState={validationState}
-              onChange={this.onChange}
-              messages={messages}
-              {...this.props}
+              inputProps={inputProps}
+              {...props}
               {...this.state}
             />
           </span>
