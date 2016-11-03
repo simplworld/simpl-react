@@ -127,12 +127,12 @@ const stringValue = function stringValue(value) {
  * }
  *
  * @param      {Object}  options  An object of options:
- * * `errors`: An array of validators (names or functions) that may return an
- * error message. For available names, see the npm [validator](https://www.npmjs.com/package/validator) package
- * * `warnings`: An array of validators (names or functions) that may return a warning
- * message. For available names, see the npm [validator](https://www.npmjs.com/package/validator) package
- * * `sanitizers`: An array of saniters (names or functions) to modify the field's
- * returned value. For available names, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * * `errors`: An array of validators (strings or functions) that may return an
+ * error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * * `warnings`: An array of validators (strings or functions) that may return a warning
+ * message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * * `sanitizers`: An array of saniters (strings or functions) to modify the field's
+ * returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
  * * `formatters`: An array of saniters (functions) to modify the field's rendered
  * value.
  * @return     {Function}    A Component decorator with validation added. You can pass the
