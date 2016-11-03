@@ -18,6 +18,8 @@ export const inputPropTypes = {
   warning: React.PropTypes.array,
   sanitizers: React.PropTypes.array,
   formatters: React.PropTypes.array,
+  messages: React.PropTypes.array,
+  validationState: React.PropTypes.string,
 };
 
 export function getInputProps(props) {

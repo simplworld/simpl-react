@@ -224,19 +224,15 @@ export function validateField(options) {
           }
         }
 
-        const errors = messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);
         return (
           <span>
-            <FormGroup
+            <Component
               validationState={validationState}
-            >
-              <Component
-                onChange={this.onChange}
-                {...this.props}
-                {...this.state}
-              />
-              {errors}
-            </FormGroup>
+              onChange={this.onChange}
+              messages={messages}
+              {...this.props}
+              {...this.state}
+            />
           </span>
         );
       }

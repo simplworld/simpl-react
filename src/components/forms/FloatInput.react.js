@@ -1,19 +1,26 @@
 import React from 'react';
-import { FormControl, InputGroup } from 'react-bootstrap';
-import { validateField } from '../../decorators/forms/validates';
+import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
+import { validateField } from '../../decorators/forms/validates';
 import { getNumberProps, inputPropTypes } from './props';
 import { min, max } from './validators';
 
 
 function Input(props) {
   const inputProps = getNumberProps(props);
+  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);
+
   return (
-    <InputGroup>
-      <FormControl
-        {...inputProps}
-      />
-    </InputGroup>
+    <FormGroup
+      validationState={props.validationState}
+    >
+      <InputGroup>
+        <FormControl
+          {...inputProps}
+        />
+      </InputGroup>
+      {errors}
+    </FormGroup>
   );
 }
 
