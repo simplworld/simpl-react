@@ -166,16 +166,33 @@ export function validateField(options) {
       }
 
       componentWillReceiveProps(props) {
+        let formattedValue = '';
         if (props.value !== this.props.value) {
-          let formattedValue = '';
           if (props.value !== undefined || props.value !== '') {
             const sanitizedValue = this.sanitize(props.value, props);
             formattedValue = this.format(sanitizedValue, this.mergedProps(props));
           }
-          this.setState({
-            value: formattedValue,
-          });
         }
+
+        // add errors/warnings coming from redux-form
+        let validationState = this.state.validationState;
+        const messages = [...this.state.messages];
+
+        if (props.meta) {
+          if (props.meta.error) {
+            validationState = 'error';
+            messages.push(props.meta.error);
+          } else if (props.meta.warning) {
+            validationState = 'warning';
+            messages.push(props.meta.warning);
+          }
+        }
+
+        this.setState({
+          value: formattedValue,
+          validationState,
+          messages,
+        });
       }
 
       onChange(e) {
@@ -256,24 +273,8 @@ export function validateField(options) {
       }
 
       render() {
-        let validationState = this.state.validationState;
-        const messages = [...this.state.messages];
-
-        // add errors/warnings coming from redux-form
-        if (this.props.meta) {
-          if (this.props.meta.error) {
-            validationState = 'error';
-            messages.push(this.props.meta.error);
-          } else if (this.props.meta.warning) {
-            validationState = 'warning';
-            messages.push(this.props.meta.warning);
-          }
-        }
-
         const props = Object.assign({}, this.props, {
           onChange: this.onChange,
-          validationState,
-          messages,
         });
         const inputProps = getInputProps(props);
 
