@@ -1,4 +1,3 @@
-import forms from './forms';
 import messages from './messages';
 import simpl from './simpl';
 import state from './state';
@@ -16,7 +15,6 @@ export const StateActions = state;
  * @memberof Simpl
  */
 export default {
-  forms,
   messages,
   simpl,
   state,

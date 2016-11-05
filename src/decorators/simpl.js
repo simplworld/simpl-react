@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+import { stopSubmit } from 'redux-form';
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
@@ -52,21 +53,26 @@ export function simpl(options = {}) {
     });
 
     const appMapDispatchToProps = (dispatch) => ({
-      // eslint-disable-next-line camelcase
-      onReceived([pk, resource_name, data], kwargs, event) {
-        const resolvedTopics = optionsWithDefaults.topics.map(
-          (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
-        );
-        resolvedTopics.forEach((topic) => {
-          const actions = {
-            [`${topic}.add_child`]: addChild,
-            [`${topic}.remove_child`]: removeChild,
-            [`${topic}.update_child`]: updateScope,
-          };
-          if (actions[event.topic]) {
-            dispatch(actions[event.topic]({ resource_name, data, pk }));
-          }
-        });
+      onReceived(args, kwargs, event) {
+        if (event.topic.endsWith(`.error.form.${options.username}`)) {
+          const [form, errors] = args;
+          dispatch(stopSubmit(form, errors));
+        } else {
+          const [pk, resourceName, data] = args;
+          const resolvedTopics = optionsWithDefaults.topics.map(
+            (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
+          );
+          resolvedTopics.forEach((topic) => {
+            const actions = {
+              [`${topic}.add_child`]: addChild,
+              [`${topic}.remove_child`]: removeChild,
+              [`${topic}.update_child`]: updateScope,
+            };
+            if (actions[event.topic]) {
+              dispatch(actions[event.topic]({ resourceName, data, pk }));
+            }
+          });
+        }
       },
     });
 
@@ -93,10 +99,12 @@ export function simpl(options = {}) {
         `${topic}.update_child`,
         `${topic}.remove_child`,
       ])
-    , []);
+    , [
+      `model:error.form.${options.username}`,
+    ]);
     const SubscribedAppContainer = connect(
       null, appMapDispatchToProps
-    )(subscribes(appTopics)(AppContainer));
+    )(subscribes(AppContainer, appTopics));
 
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
