@@ -154,8 +154,7 @@ export function validateField(options) {
 
         let formattedValue = '';
         if (props.value !== undefined || props.value !== '') {
-          const sanitizedValue = this.sanitize(props.value, this.props);
-          formattedValue = this.format(sanitizedValue, this.mergedProps(this.props));
+          formattedValue = this.format(props.value, this.mergedProps(this.props));
         }
         this.state = {
           messages: this.props.messages || [],
@@ -169,8 +168,7 @@ export function validateField(options) {
         let formattedValue = '';
         if (props.value !== this.props.value) {
           if (props.value !== undefined || props.value !== '') {
-            const sanitizedValue = this.sanitize(props.value, props);
-            formattedValue = this.format(sanitizedValue, this.mergedProps(props));
+            formattedValue = this.format(props.value, this.mergedProps(props));
           }
         }
 
@@ -215,7 +213,7 @@ export function validateField(options) {
         const messages = [...errors, ...warnings];
 
         const sanitizedValue = this.sanitize(originalValue, this.props);
-        const formattedValue = this.format(sanitizedValue, this.mergedProps(this.props));
+        const formattedValue = this.format(originalValue, this.mergedProps(this.props));
 
         this.setState({
           value: formattedValue,
