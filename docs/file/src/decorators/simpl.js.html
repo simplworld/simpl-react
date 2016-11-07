@@ -38,8 +38,22 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicSubscriber.react.js~TopicSubscriber.html">TopicSubscriber</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReactElement">ReactElement</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components/forms</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decimalPlaces">decimalPlaces</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-max">max</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-min">min</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CurrencyInput">CurrencyInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DecimalInput">DecimalInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EmailInput">EmailInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FloatInput">FloatInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IntegerInput">IntegerInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NumberInput">NumberInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PasswordInput">PasswordInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TextInput">TextInput</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simpl">simpl</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wamp">wamp</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/forms</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateField">validateField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ValidationOptions">ValidationOptions</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/pubsub</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publishes">publishes</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-subscribes">subscribes</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
@@ -55,6 +69,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
 import { connect } from &apos;react-redux&apos;;
+import { stopSubmit } from &apos;redux-form&apos;;
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
@@ -106,21 +121,26 @@ export function simpl(options = {}) {
     });
 
     const appMapDispatchToProps = (dispatch) =&gt; ({
-      // eslint-disable-next-line camelcase
-      onReceived([pk, resource_name, data], kwargs, event) {
-        const resolvedTopics = optionsWithDefaults.topics.map(
-          (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
-        );
-        resolvedTopics.forEach((topic) =&gt; {
-          const actions = {
-            [`${topic}.add_child`]: addChild,
-            [`${topic}.remove_child`]: removeChild,
-            [`${topic}.update_child`]: updateScope,
-          };
-          if (actions[event.topic]) {
-            dispatch(actions[event.topic]({ resource_name, data, pk }));
-          }
-        });
+      onReceived(args, kwargs, event) {
+        if (event.topic.endsWith(`.error.form.${options.username}`)) {
+          const [form, errors] = args;
+          dispatch(stopSubmit(form, errors));
+        } else {
+          const [pk, resourceName, data] = args;
+          const resolvedTopics = optionsWithDefaults.topics.map(
+            (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
+          );
+          resolvedTopics.forEach((topic) =&gt; {
+            const actions = {
+              [`${topic}.add_child`]: addChild,
+              [`${topic}.remove_child`]: removeChild,
+              [`${topic}.update_child`]: updateScope,
+            };
+            if (actions[event.topic]) {
+              dispatch(actions[event.topic]({ resourceName, data, pk }));
+            }
+          });
+        }
       },
     });
 
@@ -147,10 +167,12 @@ export function simpl(options = {}) {
         `${topic}.update_child`,
         `${topic}.remove_child`,
       ])
-    , []);
+    , [
+      `model:error.form.${options.username}`,
+    ]);
     const SubscribedAppContainer = connect(
       null, appMapDispatchToProps
-    )(subscribes(appTopics)(AppContainer));
+    )(subscribes(AppContainer, appTopics));
 
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {

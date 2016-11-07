@@ -1,9 +1,57 @@
 window.esdocSearchIndex = [
   [
+    "simpl/lib/components/forms/currencyinput.react~currencyinput",
+    "variable/index.html#static-variable-CurrencyInput",
+    "<span>CurrencyInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/CurrencyInput.react</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/components/forms/decimalinput.react~decimalinput",
+    "variable/index.html#static-variable-DecimalInput",
+    "<span>DecimalInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/DecimalInput.react</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/components/forms/emailinput.react~emailinput",
+    "variable/index.html#static-variable-EmailInput",
+    "<span>EmailInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/EmailInput.react</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/components/forms/floatinput.react~floatinput",
+    "variable/index.html#static-variable-FloatInput",
+    "<span>FloatInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/FloatInput.react</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/components/forms/integerinput.react~integerinput",
+    "variable/index.html#static-variable-IntegerInput",
+    "<span>IntegerInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/IntegerInput.react</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/components/forms/numberinput.react~numberinput",
+    "variable/index.html#static-variable-NumberInput",
+    "<span>NumberInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/NumberInput.react</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/components/forms/passwordinput.react~passwordinput",
+    "variable/index.html#static-variable-PasswordInput",
+    "<span>PasswordInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/PasswordInput.react</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/components/rpccaller.react~rpccaller",
     "class/src/components/RPCCaller.react.js~RPCCaller.html",
     "<span>RPCCaller</span> <span class=\"search-result-import-path\">simpl/lib/components/RPCCaller.react</span>",
     "class"
+  ],
+  [
+    "simpl/lib/components/forms/textinput.react~textinput",
+    "variable/index.html#static-variable-TextInput",
+    "<span>TextInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/TextInput.react</span>",
+    "variable"
   ],
   [
     "simpl/lib/components/topicpublisher.react~topicpublisher",
@@ -30,6 +78,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "simpl/lib/components/forms/formatters~decimalplaces",
+    "function/index.html#static-function-decimalPlaces",
+    "<span>decimalPlaces</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/formatters</span>",
+    "function"
+  ],
+  [
     "simpl/lib/stores~finalcreatestorefactory",
     "function/index.html#static-function-finalCreateStoreFactory",
     "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores</span>",
@@ -40,6 +94,18 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-getDataTree",
     "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
+  ],
+  [
+    "simpl/lib/components/forms/validators~max",
+    "function/index.html#static-function-max",
+    "<span>max</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/validators</span>",
+    "function"
+  ],
+  [
+    "simpl/lib/components/forms/validators~min",
+    "function/index.html#static-function-min",
+    "<span>min</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/validators</span>",
+    "function"
   ],
   [
     "simpl/lib/decorators/pubsub/publishes~publishes",
@@ -69,6 +135,12 @@ window.esdocSearchIndex = [
     "simpl/lib/decorators/pubsub/subscribes~subscribes",
     "function/index.html#static-function-subscribes",
     "<span>subscribes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/subscribes</span>",
+    "function"
+  ],
+  [
+    "simpl/lib/decorators/forms/validates~validatefield",
+    "function/index.html#static-function-validateField",
+    "<span>validateField</span> <span class=\"search-result-import-path\">simpl/lib/decorators/forms/validates</span>",
     "function"
   ],
   [
@@ -462,10 +534,106 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/components/forms/currencyinput.react.js",
+    "file/src/components/forms/CurrencyInput.react.js.html",
+    "src/components/forms/CurrencyInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/decimalinput.react.js",
+    "file/src/components/forms/DecimalInput.react.js.html",
+    "src/components/forms/DecimalInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/emailinput.react.js",
+    "file/src/components/forms/EmailInput.react.js.html",
+    "src/components/forms/EmailInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/floatinput.react.js",
+    "file/src/components/forms/FloatInput.react.js.html",
+    "src/components/forms/FloatInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/integerinput.react.js",
+    "file/src/components/forms/IntegerInput.react.js.html",
+    "src/components/forms/IntegerInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/numberinput.react.js",
+    "file/src/components/forms/NumberInput.react.js.html",
+    "src/components/forms/NumberInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/passwordinput.react.js",
+    "file/src/components/forms/PasswordInput.react.js.html",
+    "src/components/forms/PasswordInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/textinput.react.js",
+    "file/src/components/forms/TextInput.react.js.html",
+    "src/components/forms/TextInput.react.js",
+    "file"
+  ],
+  [
+    "src/components/forms/formatters.js",
+    "file/src/components/forms/formatters.js.html",
+    "src/components/forms/formatters.js",
+    "file"
+  ],
+  [
+    "src/components/forms/index.js",
+    "file/src/components/forms/index.js.html",
+    "src/components/forms/index.js",
+    "file"
+  ],
+  [
+    "src/components/forms/props.js",
+    "file/src/components/forms/props.js.html",
+    "src/components/forms/props.js",
+    "file"
+  ],
+  [
+    "src/components/forms/validators.js",
+    "file/src/components/forms/validators.js.html",
+    "src/components/forms/validators.js",
+    "file"
+  ],
+  [
     "src/components/index.js",
     "file/src/components/index.js.html",
     "src/components/index.js",
     "file"
+  ],
+  [
+    "src/components/index.js~reactelement",
+    "typedef/index.html#static-typedef-ReactElement",
+    "src/components/index.js~ReactElement",
+    "typedef"
+  ],
+  [
+    "src/decorators/forms/index.js",
+    "file/src/decorators/forms/index.js.html",
+    "src/decorators/forms/index.js",
+    "file"
+  ],
+  [
+    "src/decorators/forms/validates.js",
+    "file/src/decorators/forms/validates.js.html",
+    "src/decorators/forms/validates.js",
+    "file"
+  ],
+  [
+    "src/decorators/forms/validates.js~validationoptions",
+    "typedef/index.html#static-typedef-ValidationOptions",
+    "src/decorators/forms/validates.js~ValidationOptions",
+    "typedef"
   ],
   [
     "src/decorators/index.js",

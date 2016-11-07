@@ -4,6 +4,8 @@ import state from './state';
 
 
 /**
+ * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux
+ * Action.
  * @typedef {function} ReduxAction
 */
 

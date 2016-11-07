@@ -10,7 +10,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import messages from './messages';\nimport simpl from './simpl';\nimport state from './state';\n\n\n/**\n * @typedef {function} ReduxAction\n*/\n\nexport const MessagesActions = messages;\nexport const SimplActions = simpl;\nexport const StateActions = state;\n/**\n * @namespace actions\n * @memberof Simpl\n */\nexport default {\n  messages,\n  simpl,\n  state,\n};\n"
+    "content": "import messages from './messages';\nimport simpl from './simpl';\nimport state from './state';\n\n\n/**\n * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\n * Action.\n * @typedef {function} ReduxAction\n*/\n\nexport const MessagesActions = messages;\nexport const SimplActions = simpl;\nexport const StateActions = state;\n/**\n * @namespace actions\n * @memberof Simpl\n */\nexport default {\n  messages,\n  simpl,\n  state,\n};\n"
   },
   {
     "__docId__": 1,
@@ -21,8 +21,8 @@
     "memberof": "src/actions/index.js",
     "longname": "src/actions/index.js~ReduxAction",
     "access": null,
-    "description": "",
-    "lineNumber": 10,
+    "description": "An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\nAction.",
+    "lineNumber": 12,
     "type": {
       "types": [
         "function"
@@ -44,7 +44,7 @@
     "importPath": "simpl/lib/actions/index",
     "importStyle": "{SimplActions}",
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 13,
     "undocument": true,
     "type": {
       "types": [
@@ -65,7 +65,7 @@
     "importPath": "simpl/lib/actions/index",
     "importStyle": "{StateActions}",
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 14,
     "undocument": true,
     "type": {
       "types": [
@@ -770,16 +770,1152 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/components/forms/CurrencyInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/CurrencyInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "/**\n * @namespace CurrencyInput\n * @memberof Simpl.components.forms\n */\nimport React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\nimport { min, max } from './validators';\nimport { decimalPlaces } from './formatters';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <InputGroup.Addon>{props.currency}</InputGroup.Addon>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n  decimalPlaces: 2,\n  currency: '$',\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n  decimalPlaces: React.PropTypes.number,\n  currency: React.PropTypes.string,\n});\n\n/**\n * A component that allows entering a decimal value and always shows it with fixed\n * precision, prefixed by a currency symbol.\n\n * Default validation options:\n *  * `errors`: ['isCurrency', {@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *  * `formatters`: [{@link decimalPlaces}]\n *\n * Default props: `{type: 'number', decimalPlaces: 2, currency: '$'}`\n * @namespace CurrencyInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const CurrencyInput = validateField({\n  errors: ['isCurrency', min, max],\n  sanitizers: ['toFloat'],\n  formatters: [decimalPlaces],\n})(Input);\n\nexport default CurrencyInput;\n"
+  },
+  {
+    "__docId__": 39,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/CurrencyInput.react.js",
+    "longname": "src/components/forms/CurrencyInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/CurrencyInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 40,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "CurrencyInput",
+    "memberof": "src/components/forms/CurrencyInput.react.js",
+    "longname": "src/components/forms/CurrencyInput.react.js~CurrencyInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/CurrencyInput.react",
+    "importStyle": "{CurrencyInput}",
+    "description": "A component that allows entering a decimal value and always shows it with fixed\nprecision, prefixed by a currency symbol.\n\nDefault validation options:\n * `errors`: ['isCurrency', {@link min}, {@link max}],\n * `sanitizers`: `['toFloat']`\n * `formatters`: [{@link decimalPlaces}]\n\nDefault props: `{type: 'number', decimalPlaces: 2, currency: '$'}`",
+    "lineNumber": 61,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "CurrencyInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 41,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/DecimalInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/DecimalInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\nimport { min, max } from './validators';\nimport { decimalPlaces } from './formatters';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n  decimalPlaces: 2,\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n  decimalPlaces: React.PropTypes.number,\n});\n\n\n/**\n * A component that allows entering a decimal value and always shows it with fixed\n * precision.\n\n * Default validation options:\n *  * `errors`: ['isDecimal', {@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *  * `formatters`: [{@link decimalPlaces}]\n *\n * Default props: `{type: 'number', decimalPlaces: 2}`\n * @namespace DecimalInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const DecimalInput = validateField({\n  errors: ['isDecimal', min, max],\n  sanitizers: ['toFloat'],\n  formatters: [decimalPlaces],\n})(Input);\n\nexport default DecimalInput;\n"
+  },
+  {
+    "__docId__": 42,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/DecimalInput.react.js",
+    "longname": "src/components/forms/DecimalInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/DecimalInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 43,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "DecimalInput",
+    "memberof": "src/components/forms/DecimalInput.react.js",
+    "longname": "src/components/forms/DecimalInput.react.js~DecimalInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/DecimalInput.react",
+    "importStyle": "{DecimalInput}",
+    "description": "A component that allows entering a decimal value and always shows it with fixed\nprecision.\n\nDefault validation options:\n * `errors`: ['isDecimal', {@link min}, {@link max}],\n * `sanitizers`: `['toFloat']`\n * `formatters`: [{@link decimalPlaces}]\n\nDefault props: `{type: 'number', decimalPlaces: 2}`",
+    "lineNumber": 55,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "DecimalInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/EmailInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/EmailInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <InputGroup.Addon>@</InputGroup.Addon>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'email',\n};\n\nInput.propTypes = inputPropTypes;\n\n\n/**\n * A component that allows entering and eamil address.\n\n * Default validation options:\n *  * `errors`: `['isEmail']`,\n *  * `sanitizers`: `['normalizeEmail']`\n *\n * Default props: `{type: 'email'}`\n * @namespace EmailInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const EmailInput = validateField({\n  errors: ['isEmail'],\n  sanitizers: ['normalizeEmail'],\n})(Input);\n\n\nexport default EmailInput;\n"
+  },
+  {
+    "__docId__": 45,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/EmailInput.react.js",
+    "longname": "src/components/forms/EmailInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/EmailInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 46,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "EmailInput",
+    "memberof": "src/components/forms/EmailInput.react.js",
+    "longname": "src/components/forms/EmailInput.react.js~EmailInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/EmailInput.react",
+    "importStyle": "{EmailInput}",
+    "description": "A component that allows entering and eamil address.\n\nDefault validation options:\n * `errors`: `['isEmail']`,\n * `sanitizers`: `['normalizeEmail']`\n\nDefault props: `{type: 'email'}`",
+    "lineNumber": 46,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "EmailInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/FloatInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/FloatInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\nimport { min, max } from './validators';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n  step: 0.1,\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n  decimalPlaces: React.PropTypes.number,\n});\n\n/**\n * A component that allows entering a float number.\n\n * Default validation options:\n *  * `errors`: ['isFloat', {@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *\n * Default props: `{type: 'number', step: 0.1}`\n * @namespace FloatInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const FloatInput = validateField({\n  errors: ['isFloat', min, max],\n  sanitizers: ['toFloat'],\n})(Input);\n\nexport default FloatInput;\n"
+  },
+  {
+    "__docId__": 48,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/FloatInput.react.js",
+    "longname": "src/components/forms/FloatInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/FloatInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "FloatInput",
+    "memberof": "src/components/forms/FloatInput.react.js",
+    "longname": "src/components/forms/FloatInput.react.js~FloatInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/FloatInput.react",
+    "importStyle": "{FloatInput}",
+    "description": "A component that allows entering a float number.\n\nDefault validation options:\n * `errors`: ['isFloat', {@link min}, {@link max}],\n * `sanitizers`: `['toFloat']`\n\nDefault props: `{type: 'number', step: 0.1}`",
+    "lineNumber": 51,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "FloatInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/IntegerInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/IntegerInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\nimport { min, max } from './validators';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n});\n\n/**\n * A component that allows entering an integer number.\n\n * Default validation options:\n *  * `errors`: ['isInt', {@link min}, {@link max}],\n *  * `sanitizers`: `['toInt']`\n *\n * Default props: `{type: 'number'}`\n * @namespace IntegerInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const IntegerInput = validateField({\n  errors: ['isInt', min, max],\n  sanitizers: ['toInt'],\n})(Input);\n\n\nexport default IntegerInput;\n"
+  },
+  {
+    "__docId__": 51,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/IntegerInput.react.js",
+    "longname": "src/components/forms/IntegerInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/IntegerInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 52,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "IntegerInput",
+    "memberof": "src/components/forms/IntegerInput.react.js",
+    "longname": "src/components/forms/IntegerInput.react.js~IntegerInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/IntegerInput.react",
+    "importStyle": "{IntegerInput}",
+    "description": "A component that allows entering an integer number.\n\nDefault validation options:\n * `errors`: ['isInt', {@link min}, {@link max}],\n * `sanitizers`: `['toInt']`\n\nDefault props: `{type: 'number'}`",
+    "lineNumber": 49,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "IntegerInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/NumberInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/NumberInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "\nimport React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\nimport { min, max } from './validators';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n});\n\n/**\n * A component to validate a number.\n\n * Default validation options:\n *  * `errors`: [{@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *\n * Default props: `{type: 'number'}`\n * @namespace NumberInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const NumberInput = validateField({\n  errors: [min, max],\n  sanitizers: ['toFloat'],\n})(Input);\n\nexport default NumberInput;\n"
+  },
+  {
+    "__docId__": 54,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/NumberInput.react.js",
+    "longname": "src/components/forms/NumberInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/NumberInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 55,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "NumberInput",
+    "memberof": "src/components/forms/NumberInput.react.js",
+    "longname": "src/components/forms/NumberInput.react.js~NumberInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/NumberInput.react",
+    "importStyle": "{NumberInput}",
+    "description": "A component to validate a number.\n\nDefault validation options:\n * `errors`: [{@link min}, {@link max}],\n * `sanitizers`: `['toFloat']`\n\nDefault props: `{type: 'number'}`",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "NumberInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 56,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/PasswordInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/PasswordInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...props.inputProps}\n          type=\"password\"\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.propTypes = inputPropTypes;\n\n/**\n * A component for entering a password. The `type` props is hardcoded to `'password'`.\n *\n * @namespace PasswordInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const PasswordInput = validateField({\n})(Input);\n\nexport default PasswordInput;\n"
+  },
+  {
+    "__docId__": 57,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/PasswordInput.react.js",
+    "longname": "src/components/forms/PasswordInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/PasswordInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 58,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "PasswordInput",
+    "memberof": "src/components/forms/PasswordInput.react.js",
+    "longname": "src/components/forms/PasswordInput.react.js~PasswordInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/PasswordInput.react",
+    "importStyle": "{PasswordInput}",
+    "description": "A component for entering a password. The `type` props is hardcoded to `'password'`.",
+    "lineNumber": 36,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "PasswordInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/TextInput.react.js",
+    "memberof": null,
+    "longname": "src/components/forms/TextInput.react.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes } from './props';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...props.inputProps}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'text',\n};\n\nInput.propTypes = inputPropTypes;\n\n/**\n * A component that allows entering text.\n\n * Default validation options: `{sanitizers: ['trim']}`\n\n * Default props: `{type: 'text'}`\n * @namespace TextInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const TextInput = validateField({\n  sanitizers: ['trim'],\n})(Input);\n\nexport default TextInput;\n"
+  },
+  {
+    "__docId__": 60,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "Input",
+    "memberof": "src/components/forms/TextInput.react.js",
+    "longname": "src/components/forms/TextInput.react.js~Input",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/components/forms/TextInput.react",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 61,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "TextInput",
+    "memberof": "src/components/forms/TextInput.react.js",
+    "longname": "src/components/forms/TextInput.react.js~TextInput",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/TextInput.react",
+    "importStyle": "{TextInput}",
+    "description": "A component that allows entering text.\n\nDefault validation options: `{sanitizers: ['trim']}`\n\nDefault props: `{type: 'text'}`",
+    "lineNumber": 42,
+    "unknown": [
+      {
+        "tagName": "@namespace",
+        "tagValue": "TextInput"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.components.forms"
+      },
+      {
+        "tagName": "@extends",
+        "tagValue": "React.Component"
+      }
+    ],
+    "type": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "__docId__": 62,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/formatters.js",
+    "memberof": null,
+    "longname": "src/components/forms/formatters.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "/**\n * Return a fixed-precision representation of the given value, according to\n * `props.decimalPlaces`\n *\n * @param      {string}  value     The input value\n * @param      {object}  ownProps  The component's own properties\n * @return     {string}  The formatted valued\n */\nexport const decimalPlaces = function decimalPlaces(value, ownProps) {\n  return parseFloat(value).toFixed(ownProps.decimalPlaces);\n};\n"
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "decimalPlaces",
+    "memberof": "src/components/forms/formatters.js",
+    "longname": "src/components/forms/formatters.js~decimalPlaces",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/formatters",
+    "importStyle": "{decimalPlaces}",
+    "description": "Return a fixed-precision representation of the given value, according to\n`props.decimalPlaces`",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The input value"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ownProps",
+        "description": "The component's own properties"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": "The formatted valued"
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 64,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/index.js",
+    "memberof": null,
+    "longname": "src/components/forms/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import CurrencyInput from './CurrencyInput.react';\nimport DecimalInput from './DecimalInput.react';\nimport EmailInput from './EmailInput.react';\nimport FloatInput from './FloatInput.react';\nimport IntegerInput from './IntegerInput.react';\nimport NumberInput from './NumberInput.react';\nimport PasswordInput from './PasswordInput.react';\nimport TextInput from './TextInput.react';\n\n/**\n * @namespace forms\n * @memberof Simpl.components\n */\nexport default {\n  CurrencyInput,\n  DecimalInput,\n  EmailInput,\n  FloatInput,\n  IntegerInput,\n  NumberInput,\n  PasswordInput,\n  TextInput,\n};\n"
+  },
+  {
+    "__docId__": 65,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/props.js",
+    "memberof": null,
+    "longname": "src/components/forms/props.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\n\n\nexport const inputPropTypes = {\n  inputProps: React.PropTypes.shape({\n    type: React.PropTypes.string,\n    value: React.PropTypes.any,\n    name: React.PropTypes.string,\n    onChange: React.PropTypes.func,\n    onBlur: React.PropTypes.func,\n    onFocus: React.PropTypes.func,\n    placeholder: React.PropTypes.string,\n    required: React.PropTypes.bool,\n    disabled: React.PropTypes.bool,\n    readOnly: React.PropTypes.bool,\n    maxLength: React.PropTypes.number,\n  }),\n  errors: React.PropTypes.array,\n  warning: React.PropTypes.array,\n  sanitizers: React.PropTypes.array,\n  formatters: React.PropTypes.array,\n  messages: React.PropTypes.array,\n  validationState: React.PropTypes.string,\n};\n\n\nexport const reduxFormPropTypes = {\n  input: React.PropTypes.object,\n  label: React.PropTypes.string,\n  type: React.PropTypes.string,\n  meta: React.PropTypes.object,\n  error: React.PropTypes.any,\n  pristine: React.PropTypes.bool,\n  reset: React.PropTypes.func,\n  submitting: React.PropTypes.bool,\n  handleSubmit: React.PropTypes.func,\n};\n"
+  },
+  {
+    "__docId__": 66,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "inputPropTypes",
+    "memberof": "src/components/forms/props.js",
+    "longname": "src/components/forms/props.js~inputPropTypes",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/props",
+    "importStyle": "{inputPropTypes}",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "reduxFormPropTypes",
+    "memberof": "src/components/forms/props.js",
+    "longname": "src/components/forms/props.js~reduxFormPropTypes",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/props",
+    "importStyle": "{reduxFormPropTypes}",
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/forms/validators.js",
+    "memberof": null,
+    "longname": "src/components/forms/validators.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "/**\n * Check if the provided values is smaller than the `min` prop.\n *\n * @param      {string}  value     The value to validate\n * @param      {object}  ownProps  The component's own properties\n * @return     {string|undefined}  Either an error message, or `undefined`\n */\nexport const min = function min(value, ownProps) {\n  if (parseFloat(value) < ownProps.min) {\n    return `Value can't be less than ${ownProps.min}.`;\n  }\n  return undefined;\n};\n\n/**\n * Check if the provided values is greater than the `max` prop.\n *\n * @param      {string}  value     The value to validate\n * @param      {object}  ownProps  The component's own properties\n * @return     {string|undefined}  Either an error message, or `undefined`\n */\nexport const max = function min(value, ownProps) {\n  if (parseFloat(value) > ownProps.max) {\n    return `Value can't be greater than ${ownProps.max}.`;\n  }\n  return undefined;\n};\n"
+  },
+  {
+    "__docId__": 69,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "min",
+    "memberof": "src/components/forms/validators.js",
+    "longname": "src/components/forms/validators.js~min",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/validators",
+    "importStyle": "{min}",
+    "description": "Check if the provided values is smaller than the `min` prop.",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to validate"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ownProps",
+        "description": "The component's own properties"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string",
+        "undefined"
+      ],
+      "spread": false,
+      "description": "Either an error message, or `undefined`"
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 70,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "max",
+    "memberof": "src/components/forms/validators.js",
+    "longname": "src/components/forms/validators.js~max",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/components/forms/validators",
+    "importStyle": "{max}",
+    "description": "Check if the provided values is greater than the `max` prop.",
+    "lineNumber": 22,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to validate"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "ownProps",
+        "description": "The component's own properties"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "string",
+        "undefined"
+      ],
+      "spread": false,
+      "description": "Either an error message, or `undefined`"
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 71,
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/components/index.js",
     "memberof": null,
     "longname": "src/components/index.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\n\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n};\n"
+    "content": "/**\n * A React Component.\n * @typedef {object} ReactElement\n */\nimport forms from './forms';\nimport RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\n\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  forms,\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n};\n"
   },
   {
-    "__docId__": 39,
+    "__docId__": 72,
+    "kind": "typedef",
+    "static": true,
+    "variation": null,
+    "name": "ReactElement",
+    "memberof": "src/components/index.js",
+    "longname": "src/components/index.js~ReactElement",
+    "access": null,
+    "description": "A React Component.",
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "object"
+      ],
+      "optional": false,
+      "name": "ReactElement"
+    }
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/decorators/forms/index.js",
+    "memberof": null,
+    "longname": "src/decorators/forms/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import validates from './validates';\n\n/**\n * @namespace forms\n * @memberof Simpl.decorators\n */\nexport default {\n  validates,\n};\n"
+  },
+  {
+    "__docId__": 74,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/decorators/forms/validates.js",
+    "memberof": null,
+    "longname": "src/decorators/forms/validates.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\n\nimport _ from 'lodash';\nimport validator from 'validator';\n\n\nconst verboseValidator = function verboseValidator(validation, value) {\n  const messages = {\n    isRequired: 'This field is required.',\n    isEmail: `The specified value \"${value}\" is not a valid email address.`,\n    isNumeric: 'The specified value is not an integer.',\n    isLowercase: 'The specified value must be lowercase',\n    isUppercase: 'The specified value must be uppercase',\n  };\n\n  return validator[validation](value) ? undefined : messages[validation] || 'Invalid value';\n};\n\n\n/**\n * Given an object of `props`, returns an object containing only the `props`\n * supported by `input` elements.\n *\n * @param      {Object}  props   The original `props`\n * @return     {Object}  The props for the `input`.\n */\nconst getInputProps = function getInputProps(props) {\n  if (props.input) {\n    // The component is called form a redux-form Field.\n    // Use the `Field` properties, but also remember to call original\n    // component's event handlers.\n    const overrides = {};\n\n    ['onChange', 'onBlur', 'onFocus'].forEach((method) => {\n      if (props[method]) {\n        const patched = (...args) => {\n          props[method](...args);\n          props.input[method](...args);\n        };\n        overrides[method] = patched;\n      }\n    });\n\n    if (props.type) {\n      overrides.type = props.type;\n    }\n    return Object.assign({}, props.input, overrides);\n  }\n  return {\n    type: props.type,\n    value: props.value,\n    name: props.name,\n    onChange: props.onChange,\n    onBlur: props.onBlur,\n    onFocus: props.onFocus,\n    placeholder: props.placeholder,\n    required: props.required,\n    disabled: props.disabled,\n    readOnly: props.readonly,\n    maxLength: props.maxlength,\n    min: props.min,\n    max: props.max,\n    step: props.step,\n  };\n};\n\n/**\n * Convert a value to a string, if possible. Otherwise returns the unchanged\n * value. `null` and `undefined` are coerced to the empty string.\n *\n * @param      {any}   value   The value to coerced\n * @return     {any}  Either the value converted to a string, or the vlaue itself.\n */\nconst stringValue = function stringValue(value) {\n  if (value === null || value === undefined) return '';\n  return value.toString !== undefined ? value.toString() : value;\n};\n\n/**\n * Options to validate a component\n * @typedef {Object} ValidationOptions\n * @property      {Array<string, function>}   errors  An array of validators\n * that may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   warnings   An array of validators\n * that may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   sanitizers  An array of saniters\n * to modify the field's returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<function>}           formatters  An array of saniters\n * to modify the field's rendered value.\n */\n\n/**\n * Add value validation to a single field.\n * @memberof Simpl.decorators.forms\n * @example\n * import React from 'react';\n *\n * import {validates} from 'simpl/lib/decorators/forms/validates';\n * import {FormControl} from 'react-bootstrap';\n *\n * const noSpam = (value, ownProps) => {\n *     // validation logic goes here\n *     if (value.endsWith('@spam.com')) {\n *         return \"that's spam\"\n *     }\n * };\n *\n * const itsNew = (value, ownProps) => {\n *     if (value === ownProps.previousEmail) {\n *         return \"email didn't change\"\n *     }\n * };\n *\n * function EmailField(props) {\n *     // all aestethics goes here\n *     return (\n *         <FormControl\n *             type=\"email\"\n *             {...props}\n *         />\n *     )\n * }\n *\n * const ValidatingEmailField = validateField({\n *     errors: ['isEmail', noSpam],\n *     warnings: [itsNew]\n * )(EmailField);\n *\n * class MyComponent extends React.Component {\n *     render() {\n *         return(\n *             <div>\n *                 <ValidatingEmailField\n *                     previousEmail=\"my@email.com\"\n *                     errors={['isRequired']}\n *                 />\n *             </div>\n *         );\n *     }\n * }\n *\n * @param      {ValidationOptions}  options  An object of options\n * @returns    {ReactElement} A React component.\n */\nexport function validateField({ errors, warnings, sanitizers, formatters }) {\n  const errorValidators = errors || [];\n  const warningValidators = warnings || [];\n  const optionsSanitizers = sanitizers || [];\n  const optionsFormatters = formatters || [];\n\n  return (Component) => {\n    const parentProps = Component.defaultProps;\n\n    class ValidatedComponent extends React.Component {\n      constructor(props) {\n        super(props);\n\n        let formattedValue = '';\n        if (props.value !== undefined || props.value !== '') {\n          formattedValue = this.format(props.value, this.mergedProps(this.props));\n        }\n        this.state = {\n          messages: this.props.messages || [],\n          validationState: null,\n          value: formattedValue,\n        };\n        this.onChange = this.onChange.bind(this);\n      }\n\n      componentWillReceiveProps(props) {\n        let formattedValue = '';\n        if (props.value !== this.props.value) {\n          if (props.value !== undefined || props.value !== '') {\n            formattedValue = this.format(props.value, this.mergedProps(props));\n          }\n        }\n\n        // add errors/warnings coming from redux-form\n        let validationState = this.state.validationState;\n        const messages = [...this.state.messages];\n\n        if (props.meta) {\n          if (props.meta.error) {\n            validationState = 'error';\n            messages.push(props.meta.error);\n          } else if (props.meta.warning) {\n            validationState = 'warning';\n            messages.push(props.meta.warning);\n          }\n        }\n\n        this.setState({\n          value: formattedValue,\n          validationState,\n          messages,\n        });\n      }\n\n      onChange(e) {\n        const originalValue = e.target.value;\n\n        const allErrors = this.mapValidators(\n          [...this.props.errors, ...errorValidators], originalValue, this.props\n        );\n        const allWarnings = this.mapValidators(\n          [...this.props.warnings, ...warningValidators], originalValue, this.props\n        );\n\n        let validationState = 'success';\n        if (allErrors.length) {\n          validationState = 'error';\n        } else if (warnings.length) {\n          validationState = 'warning';\n        }\n\n        const messages = [...allErrors, ...allWarnings];\n\n        const sanitizedValue = this.sanitize(originalValue, this.props);\n        const formattedValue = this.format(originalValue, this.mergedProps(this.props));\n\n        this.setState({\n          value: formattedValue,\n          validationState,\n          messages,\n        });\n        if (this.props.onChange) {\n          this.props.onChange(sanitizedValue);\n        }\n      }\n\n      mergedProps(props) {\n        return Object.assign({}, parentProps, props);\n      }\n\n      mapValidators(validators, value, props) {\n        return validators.map((validation) => {\n          if (_.isFunction(validation)) {\n            return validation(value, props);\n          } else if (_.isString(validation)) {\n            return verboseValidator(\n              validation,\n              stringValue(value)\n            );\n          }\n          return undefined;\n        }).filter((result) => result !== undefined);\n      }\n\n      sanitize(value, props) {\n        const allSanitizers = [...props.sanitizers, ...optionsSanitizers];\n\n        // `redux-form` commpatibility\n        if (props.normalize) {\n          allSanitizers.push(props.normalize);\n        }\n\n        const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {\n          if (_.isFunction(sanitizer)) {\n            return sanitizer(previousValue, props) || previousValue;\n          } else if (_.isString(sanitizer)) {\n            return validator[sanitizer](stringValue(previousValue)) || previousValue;\n          }\n          return undefined;\n        }, value);\n        return sanitizedValue;\n      }\n\n      format(value, props) {\n        const allFormatters = [...props.formatters, ...optionsFormatters];\n        const formattedValue = allFormatters.reduce(\n          (previousValue, formatter) => formatter(previousValue, props) || previousValue\n        , value);\n        return formattedValue;\n      }\n\n      render() {\n        const props = Object.assign({}, this.props, {\n          onChange: this.onChange,\n        });\n        const inputProps = getInputProps(props);\n\n        return (\n          <span>\n            <Component\n              inputProps={inputProps}\n              {...props}\n              {...this.state}\n            />\n          </span>\n        );\n      }\n    }\n\n    ValidatedComponent.defaultProps = {\n      errors: [],\n      warnings: [],\n      sanitizers: [],\n      formatters: [],\n    };\n\n    ValidatedComponent.propTypes = {\n      value: React.PropTypes.any,\n      meta: React.PropTypes.object,\n      onChange: React.PropTypes.func,\n      messages: React.PropTypes.array,\n      errors: React.PropTypes.array,\n      warnings: React.PropTypes.array,\n      sanitizers: React.PropTypes.array,\n      formatters: React.PropTypes.arrayOf(React.PropTypes.func),\n    };\n\n    return ValidatedComponent;\n  };\n}\n\nexport default validateField;\n"
+  },
+  {
+    "__docId__": 75,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "verboseValidator",
+    "memberof": "src/decorators/forms/validates.js",
+    "longname": "src/decorators/forms/validates.js~verboseValidator",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/decorators/forms/validates",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "validation",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 76,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "getInputProps",
+    "memberof": "src/decorators/forms/validates.js",
+    "longname": "src/decorators/forms/validates.js~getInputProps",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/decorators/forms/validates",
+    "importStyle": null,
+    "description": "Given an object of `props`, returns an object containing only the `props`\nsupported by `input` elements.",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": "The original `props`"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "The props for the `input`."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 77,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "stringValue",
+    "memberof": "src/decorators/forms/validates.js",
+    "longname": "src/decorators/forms/validates.js~stringValue",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/decorators/forms/validates",
+    "importStyle": null,
+    "description": "Convert a value to a string, if possible. Otherwise returns the unchanged\nvalue. `null` and `undefined` are coerced to the empty string.",
+    "lineNumber": 74,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value",
+        "description": "The value to coerced"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "any"
+      ],
+      "spread": false,
+      "description": "Either the value converted to a string, or the vlaue itself."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 78,
+    "kind": "typedef",
+    "static": true,
+    "variation": null,
+    "name": "ValidationOptions",
+    "memberof": "src/decorators/forms/validates.js",
+    "longname": "src/decorators/forms/validates.js~ValidationOptions",
+    "access": null,
+    "description": "Options to validate a component",
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "Array<string, function>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "errors",
+        "description": "An array of validators\nthat may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array<string, function>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "warnings",
+        "description": "An array of validators\nthat may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array<string, function>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "sanitizers",
+        "description": "An array of saniters\nto modify the field's returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array<function>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "formatters",
+        "description": "An array of saniters\nto modify the field's rendered value."
+      }
+    ],
+    "type": {
+      "types": [
+        "Object"
+      ],
+      "optional": false,
+      "name": "ValidationOptions"
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "validateField",
+    "memberof": "src/decorators/forms/validates.js",
+    "longname": "src/decorators/forms/validates.js~validateField",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/decorators/forms/validates",
+    "importStyle": "{validateField}",
+    "description": "Add value validation to a single field.",
+    "examples": [
+      "import React from 'react';\n\nimport {validates} from 'simpl/lib/decorators/forms/validates';\nimport {FormControl} from 'react-bootstrap';\n\nconst noSpam = (value, ownProps) => {\n    // validation logic goes here\n    if (value.endsWith('@spam.com')) {\n        return \"that's spam\"\n    }\n};\n\nconst itsNew = (value, ownProps) => {\n    if (value === ownProps.previousEmail) {\n        return \"email didn't change\"\n    }\n};\n\nfunction EmailField(props) {\n    // all aestethics goes here\n    return (\n        <FormControl\n            type=\"email\"\n            {...props}\n        />\n    )\n}\n\nconst ValidatingEmailField = validateField({\n    errors: ['isEmail', noSpam],\n    warnings: [itsNew]\n)(EmailField);\n\nclass MyComponent extends React.Component {\n    render() {\n        return(\n            <div>\n                <ValidatingEmailField\n                    previousEmail=\"my@email.com\"\n                    errors={['isRequired']}\n                />\n            </div>\n        );\n    }\n}"
+    ],
+    "lineNumber": 145,
+    "unknown": [
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.decorators.forms"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "   {ReactElement} A React component."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "ValidationOptions"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "An object of options"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "ReactElement"
+      ],
+      "spread": false,
+      "description": "A React component."
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 80,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -789,10 +1925,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import pubsub from './pubsub';\nimport rpc from './rpc';\nimport simpl from './simpl';\nimport wamp from './wamp';\n\n\n/**\n * @namespace decorators\n * @memberof Simpl\n */\nexport default {\n  pubsub,\n  rpc,\n  simpl,\n  wamp,\n};\n"
+    "content": "import forms from './forms';\nimport pubsub from './pubsub';\nimport rpc from './rpc';\nimport simpl from './simpl';\nimport wamp from './wamp';\n\n\n/**\n * @namespace decorators\n * @memberof Simpl\n */\nexport default {\n  forms,\n  pubsub,\n  rpc,\n  simpl,\n  wamp,\n};\n"
   },
   {
-    "__docId__": 40,
+    "__docId__": 81,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -805,7 +1941,7 @@
     "content": "import publishes from './publishes';\nimport subscribes from './subscribes';\n\n\n/**\n * @namespace pubsub\n * @memberof Simpl.decorators\n */\nexport default {\n  publishes,\n  subscribes,\n};\n"
   },
   {
-    "__docId__": 41,
+    "__docId__": 82,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -818,7 +1954,7 @@
     "content": "import React from 'react';\n\nimport _ from 'lodash';\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function publishes\n * @memberof Simpl.decorators.pubsub\n */\nexport function publishes(topic, options = {}) {\n  return (Component) => {\n    const defaults = { acknowledge: true, disclose_me: true, exclude_me: false };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n    class Publisher extends React.Component {\n      constructor(props) {\n        super(props);\n        this.publish = this.publish.bind(this);\n      }\n      publish(payload) {\n        const args = payload.args || [];\n        const kwargs = payload.kwargs || {};\n        let resolvedTopic = topic;\n\n        if (_.isFunction(topic)) {\n          resolvedTopic = topic.bind(this)(this.props);\n        }\n        return AutobahnReact.publish(resolvedTopic, args, kwargs, optionsWithDefaults)\n        .then(publication => {\n          if (this.props.onPublished) {\n            return this.props.onPublished(\n              resolvedTopic, args, kwargs, optionsWithDefaults, publication\n            );\n          }\n          return publication;\n        })\n        .catch(error => {\n          if (this.props.onPublishedError) {\n            return this.props.onPublishedError(\n              resolvedTopic, args, kwargs, optionsWithDefaults, error\n            );\n          }\n          return error;\n        });\n      }\n      render() {\n        return <Component {...this.props} {...this.state} publish={this.publish} />;\n      }\n    }\n\n    Publisher.propTypes = {\n      onPublished: React.PropTypes.func,\n      onPublishedError: React.PropTypes.func,\n    };\n\n    return Publisher;\n  };\n}\n\nexport default publishes;\n"
   },
   {
-    "__docId__": 42,
+    "__docId__": 83,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -866,7 +2002,7 @@
     "generator": false
   },
   {
-    "__docId__": 43,
+    "__docId__": 84,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -879,7 +2015,7 @@
     "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport _ from 'lodash';\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function subscribes\n * @memberof Simpl.decorators.pubsub\n */\nexport function subscribes(topics, options = {}, staticMethods = {}) {\n  return (Component) => {\n    const defaults = { match: 'prefix' };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n    const mapDispatchToProps = (dispatch, ownProps) => ({\n      onMessage(args, kwargs, event) {\n        const store = ownProps.append === undefined ? true : ownProps.append;\n        const action = store ? this.appendMessage : this.updateMessage;\n\n        action({ args, kwargs, event });\n        if (ownProps.onReceived !== undefined) {\n          ownProps.onReceived(args, kwargs, event);\n        }\n      },\n    });\n\n    class SubscriptionContainer extends React.Component {\n      constructor(props) {\n        super(props);\n        this.state = {\n          data: [],\n        };\n        this.appendMessage = this.appendMessage.bind(this);\n        this.updateMessage = this.updateMessage.bind(this);\n      }\n      componentDidMount() {\n        this.subscriptions = [];\n        // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onReady(([session, details]) => {\n          this.subscribeTo(session);\n        });\n        this.subscribeTo(AutobahnReact);\n      }\n      shouldComponentUpdate(nextProps, nextState) {\n        return this.props !== nextProps || this.state !== nextState;\n      }\n      componentWillUnmount() {\n        const resolvedTopics = this.getTopics();\n        console.log(`Unmounting ${resolvedTopics}`);\n        this.unsubscribe();\n      }\n      getTopics() {\n        let resolvedTopics;\n        if (!_.isArray(topics)) {\n          resolvedTopics = [topics];\n        } else {\n          resolvedTopics = [...topics];\n        }\n        return resolvedTopics.map((topic) => {\n          if (_.isFunction(topic)) {\n            return topic.bind(this)(this.props);\n          }\n          return topic;\n        });\n      }\n      subscribeTo(session) {\n        const handler = this.props.onMessage.bind(this);\n        const resolvedTopics = this.getTopics();\n\n        resolvedTopics.forEach((topic) => {\n          session.subscribe(topic, handler, optionsWithDefaults)\n          .then(subscription => {\n            this.subscriptions.push(subscription);\n            console.log(`Subscribed to ${topic}`);\n          })\n          .catch(error => {\n            console.error(`Failed to auto-subscribe to a topic: ${topic}!`, error);\n          });\n        });\n      }\n      unsubscribe() {\n        this.subscriptions.forEach(subscription => {\n          console.log(`Unsubscribing from '${subscription.topic}'`);\n          AutobahnReact.unsubscribe(subscription);\n        });\n      }\n      appendMessage(message) {\n        const newVar = [...this.state.data || [], message];\n\n        this.setState({\n          data: newVar,\n        });\n      }\n      updateMessage(message) {\n        this.setState({\n          data: message,\n        });\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    SubscriptionContainer.propTypes = {\n      append: React.PropTypes.bool,\n      options: React.PropTypes.object,\n      onMessage: React.PropTypes.func,\n    };\n\n    for (var functionName in staticMethods) {\n      SubscriptionContainer[functionName] = staticMethods[functionName];\n    }\n\n    return connect(null, mapDispatchToProps)(SubscriptionContainer);\n  };\n}\n\nexport default subscribes;\n"
   },
   {
-    "__docId__": 44,
+    "__docId__": 85,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -936,7 +2072,7 @@
     "generator": false
   },
   {
-    "__docId__": 45,
+    "__docId__": 86,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -949,7 +2085,7 @@
     "content": "import React from 'react';\n\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function calls(procedure, options = {}) {\n  return (Component) => {\n    const defaults = {};\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n    class Caller extends React.Component {\n      constructor(props) {\n        super(props);\n        this.call = this.call.bind(this);\n      }\n      call(payload) {\n        const args = payload.args || [];\n        const kwargs = payload.kwargs || {};\n        return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);\n      }\n      render() {\n        return <Component {...this.props} {...this.state} call={this.call} />;\n      }\n    }\n\n    return Caller;\n  };\n}\n\nexport default calls;\n"
   },
   {
-    "__docId__": 46,
+    "__docId__": 87,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -997,7 +2133,7 @@
     "generator": false
   },
   {
-    "__docId__": 47,
+    "__docId__": 88,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1010,7 +2146,7 @@
     "content": "import calls from './calls';\nimport registers from './registers';\n\n\n/**\n * @namespace rpc\n * @memberof Simpl.decorators\n */\nexport default {\n  calls,\n  registers,\n};\n"
   },
   {
-    "__docId__": 48,
+    "__docId__": 89,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1023,7 +2159,7 @@
     "content": "import React from 'react';\n\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function registers(Component, procedure, options = {}) {\n  return (Component) => {\n    const defaults = { match: 'prefix' };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n    class Listener extends React.Component {\n      componentDidMount() {\n        this.registrations = [];\n\n        // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onReady(([session, details]) => {\n          this.register(session);\n        });\n        // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onLost(([session, details]) => {\n          this.register(AutobahnReact);\n        });\n      }\n      componentWillUnmount() {\n        this.unregister();\n      }\n      register(session) {\n        const handler = this.props.onCalled.bind(this);\n        session.register(procedure, handler, optionsWithDefaults).then((registration) => {\n          this.registrations.push(registration);\n          console.log(\"registered procedure \" + procedure);\n        });\n      }\n      unregister() {\n        this.registrations.forEach(registration => {\n          AutobahnReact.unregister(registration);\n        });\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    Listener.propTypes = {\n      append: React.PropTypes.bool,\n      options: React.PropTypes.object,\n      onCalled: React.PropTypes.func,\n    };\n\n    return Listener;\n  };\n}\n\n\nexport default registers;\n"
   },
   {
-    "__docId__": 49,
+    "__docId__": 90,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1077,7 +2213,7 @@
     "generator": false
   },
   {
-    "__docId__": 50,
+    "__docId__": 91,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1087,10 +2223,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n} from '../actions/simpl';\n\nimport { subscribes } from './pubsub/subscribes';\nimport { wamp } from './wamp';\nimport _ from 'lodash';\nimport AutobahnReact from '../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function simpl(options = {}) {\n  return (Component) => {\n    const optionsWithDefaults = Object.assign({}, options, {});\n    if (_.isFunction(options.topics)) {\n      optionsWithDefaults.topics = options.topics();\n    }\n\n    const mapStateToProps = (state) => ({\n      simplLoaded: state.simpl.loaded,\n    });\n\n    const mapDispatchToProps = (dispatch) => ({\n      onReady() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(connectedScope(topic));\n            dispatch(getRunUsers(topic));\n            dispatch(getCurrentRunPhase(topic));\n            dispatch(getDataTree(topic));\n          });\n        }\n        dispatch(getPhases('model:model.game'));\n        dispatch(getRoles('model:model.game'));\n        return Promise.resolve();\n      },\n      onLeave() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(disconnectedScope(topic));\n          });\n        }\n        return Promise.resolve();\n      },\n    });\n\n    const appMapDispatchToProps = (dispatch) => ({\n      // eslint-disable-next-line camelcase\n      onReceived([pk, resource_name, data], kwargs, event) {\n        const resolvedTopics = optionsWithDefaults.topics.map(\n          (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)\n        );\n        resolvedTopics.forEach((topic) => {\n          const actions = {\n            [`${topic}.add_child`]: addChild,\n            [`${topic}.remove_child`]: removeChild,\n            [`${topic}.update_child`]: updateScope,\n          };\n          if (actions[event.topic]) {\n            dispatch(actions[event.topic]({ resource_name, data, pk }));\n          }\n        });\n      },\n    });\n\n    class AppContainer extends React.Component {\n      shouldComponentUpdate(nextProps, nextState) {\n        if (this.props.simplLoaded) {\n          return false;\n        }\n        return this.props !== nextProps || this.state !== nextState;\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    AppContainer.propTypes = {\n      simplLoaded: React.PropTypes.bool,\n    };\n\n\n    const appTopics = optionsWithDefaults.topics.reduce(\n      (memo, topic) => memo.concat([\n        `${topic}.add_child`,\n        `${topic}.update_child`,\n        `${topic}.remove_child`,\n      ])\n    , []);\n    const SubscribedAppContainer = connect(\n      null, appMapDispatchToProps\n    )(subscribes(appTopics)(AppContainer));\n\n    // eslint-disable-next-line react/no-multi-comp\n    class Simpl extends React.Component {\n      componentWillMount() {\n        this.props.onReady();\n        window.addEventListener('beforeunload', this.props.onLeave);\n      }\n      componentWillUnmount() {\n        window.removeEventListener('beforeunload', this.props.onLeave);\n      }\n      render() {\n        if (!this.props.simplLoaded) {\n          return (<div>Loading data...</div>);\n        }\n        return <SubscribedAppContainer {...this.props} {...this.state} />;\n      }\n    }\n\n    Simpl.propTypes = {\n      simplLoaded: React.PropTypes.bool,\n      onLeave: React.PropTypes.func,\n      onReady: React.PropTypes.func.isRequired,\n    };\n\n    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);\n\n    return WampContainer;\n  };\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
+    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport { stopSubmit } from 'redux-form';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n} from '../actions/simpl';\n\nimport { subscribes } from './pubsub/subscribes';\nimport { wamp } from './wamp';\nimport _ from 'lodash';\nimport AutobahnReact from '../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function simpl(options = {}) {\n  return (Component) => {\n    const optionsWithDefaults = Object.assign({}, options, {});\n    if (_.isFunction(options.topics)) {\n      optionsWithDefaults.topics = options.topics();\n    }\n\n    const mapStateToProps = (state) => ({\n      simplLoaded: state.simpl.loaded,\n    });\n\n    const mapDispatchToProps = (dispatch) => ({\n      onReady() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(connectedScope(topic));\n            dispatch(getRunUsers(topic));\n            dispatch(getCurrentRunPhase(topic));\n            dispatch(getDataTree(topic));\n          });\n        }\n        dispatch(getPhases('model:model.game'));\n        dispatch(getRoles('model:model.game'));\n        return Promise.resolve();\n      },\n      onLeave() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(disconnectedScope(topic));\n          });\n        }\n        return Promise.resolve();\n      },\n    });\n\n    const appMapDispatchToProps = (dispatch) => ({\n      onReceived(args, kwargs, event) {\n        if (event.topic.endsWith(`.error.form.${options.username}`)) {\n          const [form, errors] = args;\n          dispatch(stopSubmit(form, errors));\n        } else {\n          const [pk, resourceName, data] = args;\n          const resolvedTopics = optionsWithDefaults.topics.map(\n            (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)\n          );\n          resolvedTopics.forEach((topic) => {\n            const actions = {\n              [`${topic}.add_child`]: addChild,\n              [`${topic}.remove_child`]: removeChild,\n              [`${topic}.update_child`]: updateScope,\n            };\n            if (actions[event.topic]) {\n              dispatch(actions[event.topic]({ resourceName, data, pk }));\n            }\n          });\n        }\n      },\n    });\n\n    class AppContainer extends React.Component {\n      shouldComponentUpdate(nextProps, nextState) {\n        if (this.props.simplLoaded) {\n          return false;\n        }\n        return this.props !== nextProps || this.state !== nextState;\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    AppContainer.propTypes = {\n      simplLoaded: React.PropTypes.bool,\n    };\n\n\n    const appTopics = optionsWithDefaults.topics.reduce(\n      (memo, topic) => memo.concat([\n        `${topic}.add_child`,\n        `${topic}.update_child`,\n        `${topic}.remove_child`,\n      ])\n    , [\n      `model:error.form.${options.username}`,\n    ]);\n    const SubscribedAppContainer = connect(\n      null, appMapDispatchToProps\n    )(subscribes(AppContainer, appTopics));\n\n    // eslint-disable-next-line react/no-multi-comp\n    class Simpl extends React.Component {\n      componentWillMount() {\n        this.props.onReady();\n        window.addEventListener('beforeunload', this.props.onLeave);\n      }\n      componentWillUnmount() {\n        window.removeEventListener('beforeunload', this.props.onLeave);\n      }\n      render() {\n        if (!this.props.simplLoaded) {\n          return (<div>Loading data...</div>);\n        }\n        return <SubscribedAppContainer {...this.props} {...this.state} />;\n      }\n    }\n\n    Simpl.propTypes = {\n      simplLoaded: React.PropTypes.bool,\n      onLeave: React.PropTypes.func,\n      onReady: React.PropTypes.func.isRequired,\n    };\n\n    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);\n\n    return WampContainer;\n  };\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
   },
   {
-    "__docId__": 51,
+    "__docId__": 92,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1102,7 +2238,7 @@
     "importPath": "simpl/lib/decorators/simpl",
     "importStyle": "{simpl}",
     "description": "",
-    "lineNumber": 19,
+    "lineNumber": 20,
     "unknown": [
       {
         "tagName": "@function",
@@ -1132,7 +2268,7 @@
     "generator": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 93,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1145,7 +2281,7 @@
     "content": "import React from 'react';\n\nimport AutobahnReact from '../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function wamp(options = {}) {\n  return (Component) => {\n    const defaults = {\n      url: 'ws://localhost:8080/ws',\n      realm: 'realm1',\n      prefixes: {},\n    };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n    class WampContainer extends React.Component {\n      constructor(props) {\n        super(props);\n        this.state = {\n          connected: false,\n        };\n      }\n      componentWillMount() {\n        // Callback called whenever the connection is lost\n        AutobahnReact.Connection.onLost(() => {\n          console.log('Connection lost :/!');\n          this.setState({ connected: false });\n        });\n        // Callback called whenever the connection is ready\n      // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onReady(([session, details]) => {\n          console.log('Connection established!');\n          Object.keys(optionsWithDefaults.prefixes).forEach((key) => {\n            const value = optionsWithDefaults.prefixes[key];\n            console.log('added prefix: ', key, value);\n            session.prefix(key, value);\n            this.setState({ connected: true });\n          });\n        });\n        AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);\n        if (optionsWithDefaults.username) {\n          AutobahnReact.Auth.logIn({\n            username: optionsWithDefaults.username,\n            password: optionsWithDefaults.password,\n          }).then(() => {\n            console.log('authd');\n            if (this.props.onReady) {\n              this.props.onReady();\n            }\n          }).catch((err) => {\n            console.log(err);\n            console.log('not authd');\n          });\n        }\n      }\n      render() {\n        if (!this.state.connected) {\n          return (<div>Connecting...</div>);\n        }\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    WampContainer.propTypes = {\n      onReady: React.PropTypes.func,\n    };\n\n    return WampContainer;\n  };\n}\n\nexport default wamp;\n"
   },
   {
-    "__docId__": 53,
+    "__docId__": 94,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1187,7 +2323,7 @@
     "generator": false
   },
   {
-    "__docId__": 54,
+    "__docId__": 95,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1197,10 +2333,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import actions from './actions';\nimport autobahn from './autobahn';\nimport components from './components';\nimport decorators from './decorators';\nimport reducers from './reducers';\nimport stores from './stores';\nimport utils from './utils';\n\n/**\n * @module Simpl\n * @namespace Simpl\n */\nexport default {\n  actions,\n  autobahn,\n  components,\n  decorators,\n  reducers,\n  stores,\n  utils,\n};\n"
+    "content": "import actions from './actions';\nimport autobahn from './autobahn';\nimport components from './components';\nimport decorators from './decorators';\nimport reducers from './reducers';\nimport stores from './stores';\nimport utils from './utils';\n\n\n/**\n * @module Simpl\n * @namespace Simpl\n */\nexport default {\n  actions,\n  autobahn,\n  components,\n  decorators,\n  reducers,\n  stores,\n  utils,\n};\n"
   },
   {
-    "__docId__": 55,
+    "__docId__": 96,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1210,10 +2346,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "/**\n * @namespace combined\n * @memberof Simpl.reducers\n */\nimport { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\n/**\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n */\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
+    "content": "/**\n * @namespace combined\n * @memberof Simpl.reducers\n */\nimport { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\nimport { reducer as form } from 'redux-form';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\n/**\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n */\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n    form,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
   },
   {
-    "__docId__": 56,
+    "__docId__": 97,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1225,7 +2361,7 @@
     "importPath": "simpl/lib/reducers/combined",
     "importStyle": "{routerReducers}",
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 13,
     "undocument": true,
     "params": [
       {
@@ -1243,7 +2379,7 @@
     "generator": false
   },
   {
-    "__docId__": 57,
+    "__docId__": 98,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1255,7 +2391,7 @@
     "importPath": "simpl/lib/reducers/combined",
     "importStyle": "{wampReducers}",
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 20,
     "undocument": true,
     "params": [
       {
@@ -1273,7 +2409,7 @@
     "generator": false
   },
   {
-    "__docId__": 58,
+    "__docId__": 99,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1285,7 +2421,7 @@
     "importPath": "simpl/lib/reducers/combined",
     "importStyle": "{simplReducers}",
     "description": "Returns a reducer function for your reducers, qdding two additional reducers\nfor `routing` and `simpl` state.",
-    "lineNumber": 33,
+    "lineNumber": 34,
     "params": [
       {
         "nullable": null,
@@ -1309,7 +2445,7 @@
     "generator": false
   },
   {
-    "__docId__": 59,
+    "__docId__": 100,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1322,7 +2458,7 @@
     "content": "import combined from './combined';\nimport messages from './messages';\nimport simpl from './simpl';\n\nexport const combinedReducer = combined;\nexport const messagesReducer = messages;\nexport const simplReducer = simpl;\n\n/**\n * @namespace reducers\n * @memberof Simpl\n */\nexport default {\n  combined,\n  messages,\n  simpl,\n};\n"
   },
   {
-    "__docId__": 60,
+    "__docId__": 101,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1343,7 +2479,7 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 102,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1364,7 +2500,7 @@
     }
   },
   {
-    "__docId__": 62,
+    "__docId__": 103,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1385,7 +2521,7 @@
     }
   },
   {
-    "__docId__": 63,
+    "__docId__": 104,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1398,7 +2534,7 @@
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst MessageActions = require('../actions/messages');\nconst StateActions = require('../actions/state');\n\n\nconst initial = {\n};\n\nconst Message = function Message(payload) {\n  return { args: payload[0], kwargs: payload[1], details: payload[2] };\n};\n\nconst messages = recycleState(createReducer(initial, {\n  [MessageActions.appendMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    const newVar = [...state[variable] || [], message];\n\n    return Object.assign({}, state, { [variable]: newVar });\n  },\n  [MessageActions.updateMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    return Object.assign({}, state, { [variable]: message });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default messages;\n"
   },
   {
-    "__docId__": 64,
+    "__docId__": 105,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1419,7 +2555,7 @@
     }
   },
   {
-    "__docId__": 65,
+    "__docId__": 106,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1440,7 +2576,7 @@
     }
   },
   {
-    "__docId__": 66,
+    "__docId__": 107,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1461,7 +2597,7 @@
     }
   },
   {
-    "__docId__": 67,
+    "__docId__": 108,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1491,7 +2627,7 @@
     "generator": false
   },
   {
-    "__docId__": 68,
+    "__docId__": 109,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1512,7 +2648,7 @@
     }
   },
   {
-    "__docId__": 69,
+    "__docId__": 110,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1525,7 +2661,7 @@
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  loaded: false,\n  user: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  round: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    console.error(action.payload.error, action.payload.args, action.payload.kwargs);\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  getDataTree(state, action) {\n    const newState = this.addChild(state, action);\n    return action.payload.children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child })\n    , newState);\n  },\n  [SimplActions.addChild](state, action) {\n    return this.addChild(state, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    const key = action.payload.resource_name;\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    const updated = popAtIndex(state[key], index);\n    return Object.assign({}, state, { [key]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let loaded = state.loaded;\n    if (state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getUserInfo](state, action) {\n    // Get the current user's info into the user namespace\n    const username = action.payload;\n    const roleTypes = new Set();\n    let foundRunuser;\n\n    state.runuser.forEach((runuser) => {\n      if (runuser.role_name) {\n        roleTypes.add(runuser.role_name);\n      }\n\n      if (runuser.username === username) {\n        foundRunuser = runuser;\n      }\n    });\n\n    // Remove this user's role and we're left with the \"other\" role names\n    roleTypes.delete(foundRunuser.role_name);\n    foundRunuser.other_roles = Array.from(roleTypes);\n    return Object.assign({}, state, { user: foundRunuser });\n  },\n  [SimplActions.getPhases](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.rolesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      loaded,\n    });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n"
   },
   {
-    "__docId__": 70,
+    "__docId__": 111,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1546,7 +2682,7 @@
     }
   },
   {
-    "__docId__": 71,
+    "__docId__": 112,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1567,7 +2703,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 113,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1588,7 +2724,7 @@
     }
   },
   {
-    "__docId__": 73,
+    "__docId__": 114,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1609,7 +2745,7 @@
     }
   },
   {
-    "__docId__": 74,
+    "__docId__": 115,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1622,7 +2758,7 @@
     "content": "/**\n * @namespace stores\n * @memberof Simpl\n */\nimport { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\n// eslint-disable-next-line no-underscore-dangle\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\n/**\n * Adds promise, thunk, router and dev tools middlewares to your store\n *\n * @param      {string}  NODE_ENV  The node env\n * @return     {function}  a `createStore` factory\n */\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production'\n    // eslint-disable-next-line no-underscore-dangle\n    && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
   },
   {
-    "__docId__": 75,
+    "__docId__": 116,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1643,7 +2779,7 @@
     }
   },
   {
-    "__docId__": 76,
+    "__docId__": 117,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1664,7 +2800,7 @@
     }
   },
   {
-    "__docId__": 77,
+    "__docId__": 118,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1685,7 +2821,7 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 119,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1721,7 +2857,7 @@
     "generator": false
   },
   {
-    "__docId__": 79,
+    "__docId__": 120,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1734,7 +2870,7 @@
     "content": "/**\n * @namespace actions\n * @memberof Simpl.utils\n */\nimport { createAction } from 'redux-actions';\n\n\nexport function stringify(name, arg) {\n  /* eslint no-param-reassign: \"off\" */\n  arg.toString = () => name;\n  return arg;\n}\n\n/**\n *  An action that's serializable to the provided action name.\n * @typedef {function} NamedReduxAction\n * @param {string} type - A unique name for the action\n * @param {function|undefined} [action] - Logic to perform before this action\n * will make it to the reducer.\n * @property {function} toString() - return the action's name.\n*/\n\n/**\n * Shortcut function to create an action that's serializable to a string and usable\n * as an object property.\n * Use this to create an option that's usable from within a reducer.\n * @function\n * @memberof Simpl.utils.actions\n * @param {string} type - A unique name for the action\n * @param {spread} args - Additional arguments to pass to redux-actions.createAction.\n * @returns {NamedReduxAction}\n */\nexport function createNamedAction(type, ...args) {\n  return stringify(type, createAction(type, ...args));\n}\n\nexport default {\n  stringify,\n  createNamedAction,\n};\n"
   },
   {
-    "__docId__": 80,
+    "__docId__": 121,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1770,7 +2906,7 @@
     "generator": false
   },
   {
-    "__docId__": 81,
+    "__docId__": 122,
     "kind": "typedef",
     "static": true,
     "variation": null,
@@ -1823,7 +2959,7 @@
     }
   },
   {
-    "__docId__": 82,
+    "__docId__": 123,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1883,7 +3019,7 @@
     "generator": false
   },
   {
-    "__docId__": 83,
+    "__docId__": 124,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1896,7 +3032,7 @@
     "content": "export function updateInCollection(collection, index, updates) {\n  if (index === undefined || index === null || index >= collection.length) {\n    return [...collection, Object.assign({}, updates)];\n  }\n  return [\n    ...collection.slice(0, index),\n    Object.assign({}, collection[index], updates),\n    ...collection.slice(index + 1),\n  ];\n}\n\nexport function updateCollection(collection, updates) {\n  return collection.map((item) => Object.assign({}, item, updates));\n}\n\nexport function popAtIndex(collection, index) {\n  if (index < 0) {\n    return collection.slice(0, index);\n  }\n  return [\n    ...collection.slice(0, index),\n    ...collection.slice(index + 1, collection.length),\n  ];\n}\n\n\nexport default {\n  updateInCollection,\n  updateCollection,\n  popAtIndex,\n};\n"
   },
   {
-    "__docId__": 84,
+    "__docId__": 125,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1938,7 +3074,7 @@
     "generator": false
   },
   {
-    "__docId__": 85,
+    "__docId__": 126,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1974,7 +3110,7 @@
     "generator": false
   },
   {
-    "__docId__": 86,
+    "__docId__": 127,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2010,7 +3146,7 @@
     "generator": false
   },
   {
-    "__docId__": 87,
+    "__docId__": 128,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2023,7 +3159,7 @@
     "content": "import actions from './actions';\nimport collections from './collections';\nimport reducers from './reducers';\n\n\n/**\n * @namespace utils\n * @memberof Simpl\n */\nexport default {\n  actions,\n  collections,\n  reducers,\n};\n"
   },
   {
-    "__docId__": 88,
+    "__docId__": 129,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2036,7 +3172,7 @@
     "content": "import { updateInCollection } from './collections';\n\n\nexport function updateObjectOrCollection(state, action, updates) {\n  let collection;\n\n  if (action.payload.key !== undefined) {\n    collection = updateInCollection(state, action.payload.key, updates);\n  } else {\n    collection = Object.assign({}, state, updates);\n  }\n  return collection;\n}\n\nexport default {\n  updateObjectOrCollection,\n};\n"
   },
   {
-    "__docId__": 89,
+    "__docId__": 130,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2078,7 +3214,7 @@
     "generator": false
   },
   {
-    "__docId__": 91,
+    "__docId__": 132,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2091,7 +3227,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 133,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2104,7 +3240,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 134,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2117,7 +3253,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 135,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2130,7 +3266,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 136,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2143,7 +3279,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 137,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2156,7 +3292,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 138,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2169,7 +3305,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 139,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2182,7 +3318,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 140,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2195,7 +3331,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 141,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2208,7 +3344,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 142,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2221,7 +3357,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 143,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2234,7 +3370,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 144,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2247,7 +3383,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 145,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2260,7 +3396,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 146,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2273,7 +3409,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 147,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2286,7 +3422,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 148,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2299,7 +3435,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 149,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2312,7 +3448,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 150,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2325,7 +3461,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 151,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2338,7 +3474,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 152,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2351,7 +3487,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 153,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2364,7 +3500,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 154,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2377,7 +3513,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 155,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2390,7 +3526,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 156,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2403,7 +3539,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 157,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2416,7 +3552,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 158,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2429,7 +3565,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 159,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2442,7 +3578,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 160,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2455,7 +3591,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 161,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2468,7 +3604,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 121,
+    "__docId__": 162,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2481,7 +3617,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 122,
+    "__docId__": 163,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2494,7 +3630,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 123,
+    "__docId__": 164,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2507,7 +3643,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 124,
+    "__docId__": 165,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2520,7 +3656,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 125,
+    "__docId__": 166,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2533,7 +3669,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 126,
+    "__docId__": 167,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2546,7 +3682,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 127,
+    "__docId__": 168,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2559,7 +3695,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 128,
+    "__docId__": 169,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2572,7 +3708,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 129,
+    "__docId__": 170,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2585,7 +3721,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 130,
+    "__docId__": 171,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2598,7 +3734,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 131,
+    "__docId__": 172,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2611,7 +3747,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 132,
+    "__docId__": 173,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2624,7 +3760,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 133,
+    "__docId__": 174,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2637,7 +3773,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 134,
+    "__docId__": 175,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2650,7 +3786,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 135,
+    "__docId__": 176,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2663,7 +3799,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 177,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2676,7 +3812,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 178,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2689,7 +3825,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 180,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2702,7 +3838,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 181,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2715,7 +3851,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 182,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2728,7 +3864,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 183,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2741,7 +3877,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 184,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2754,7 +3890,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 185,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2767,7 +3903,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 186,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -2780,7 +3916,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 187,
     "kind": "external",
     "static": true,
     "variation": null,
