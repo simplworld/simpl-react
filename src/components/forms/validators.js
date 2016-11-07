@@ -5,7 +5,7 @@
  * @param      {object}  ownProps  The component's own properties
  * @return     {string|undefined}  Either an error message, or `undefined`
  */
-export const min = (value, ownProps) => {
+export const min = function min(value, ownProps) {
   if (parseFloat(value) < ownProps.min) {
     return `Value can't be less than ${ownProps.min}.`;
   }
@@ -19,7 +19,7 @@ export const min = (value, ownProps) => {
  * @param      {object}  ownProps  The component's own properties
  * @return     {string|undefined}  Either an error message, or `undefined`
  */
-export const max = (value, ownProps) => {
+export const max = function min(value, ownProps) {
   if (parseFloat(value) > ownProps.max) {
     return `Value can't be greater than ${ownProps.max}.`;
   }
