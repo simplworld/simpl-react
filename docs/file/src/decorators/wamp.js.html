@@ -61,67 +61,69 @@ import AutobahnReact from &apos;../autobahn&apos;;
  * @function
  * @memberof Simpl.decorators
  */
-export function wamp(Component, options = {}) {
-  const defaults = {
-    url: &apos;ws://localhost:8080/ws&apos;,
-    realm: &apos;realm1&apos;,
-    prefixes: {},
-  };
-  const optionsWithDefaults = Object.assign(defaults, {}, options);
+export function wamp(options = {}) {
+  return (Component) =&gt; {
+    const defaults = {
+      url: &apos;ws://localhost:8080/ws&apos;,
+      realm: &apos;realm1&apos;,
+      prefixes: {},
+    };
+    const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  class WampContainer extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        connected: false,
-      };
-    }
-    componentWillMount() {
-      // Callback called whenever the connection is lost
-      AutobahnReact.Connection.onLost(() =&gt; {
-        console.log(&apos;Connection lost :/!&apos;);
-        this.setState({ connected: false });
-      });
-      // Callback called whenever the connection is ready
-    // eslint-disable-next-line no-unused-vars
-      AutobahnReact.Connection.onReady(([session, details]) =&gt; {
-        console.log(&apos;Connection established!&apos;);
-        Object.keys(optionsWithDefaults.prefixes).forEach((key) =&gt; {
-          const value = optionsWithDefaults.prefixes[key];
-          console.log(&apos;added prefix: &apos;, key, value);
-          session.prefix(key, value);
-          this.setState({ connected: true });
+    class WampContainer extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          connected: false,
+        };
+      }
+      componentWillMount() {
+        // Callback called whenever the connection is lost
+        AutobahnReact.Connection.onLost(() =&gt; {
+          console.log(&apos;Connection lost :/!&apos;);
+          this.setState({ connected: false });
         });
-      });
-      AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
-      if (optionsWithDefaults.username) {
-        AutobahnReact.Auth.logIn({
-          username: optionsWithDefaults.username,
-          password: optionsWithDefaults.password,
-        }).then(() =&gt; {
-          console.log(&apos;authd&apos;);
-          if (this.props.onReady) {
-            this.props.onReady();
-          }
-        }).catch((err) =&gt; {
-          console.log(err);
-          console.log(&apos;not authd&apos;);
+        // Callback called whenever the connection is ready
+      // eslint-disable-next-line no-unused-vars
+        AutobahnReact.Connection.onReady(([session, details]) =&gt; {
+          console.log(&apos;Connection established!&apos;);
+          Object.keys(optionsWithDefaults.prefixes).forEach((key) =&gt; {
+            const value = optionsWithDefaults.prefixes[key];
+            console.log(&apos;added prefix: &apos;, key, value);
+            session.prefix(key, value);
+            this.setState({ connected: true });
+          });
         });
+        AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
+        if (optionsWithDefaults.username) {
+          AutobahnReact.Auth.logIn({
+            username: optionsWithDefaults.username,
+            password: optionsWithDefaults.password,
+          }).then(() =&gt; {
+            console.log(&apos;authd&apos;);
+            if (this.props.onReady) {
+              this.props.onReady();
+            }
+          }).catch((err) =&gt; {
+            console.log(err);
+            console.log(&apos;not authd&apos;);
+          });
+        }
+      }
+      render() {
+        if (!this.state.connected) {
+          return (&lt;div&gt;Connecting...&lt;/div&gt;);
+        }
+        return &lt;Component {...this.props} {...this.state} /&gt;;
       }
     }
-    render() {
-      if (!this.state.connected) {
-        return (&lt;div&gt;Connecting...&lt;/div&gt;);
-      }
-      return &lt;Component {...this.props} {...this.state} /&gt;;
-    }
-  }
 
-  WampContainer.propTypes = {
-    onReady: React.PropTypes.func,
+    WampContainer.propTypes = {
+      onReady: React.PropTypes.func,
+    };
+
+    return WampContainer;
   };
-
-  return WampContainer;
 }
 
 export default wamp;

@@ -61,7 +61,7 @@ import {
 } from &apos;../actions/simpl&apos;;
 
 import { subscribes } from &apos;./pubsub/subscribes&apos;;
-import wamp from &apos;./wamp&apos;;
+import { wamp } from &apos;./wamp&apos;;
 import _ from &apos;lodash&apos;;
 import AutobahnReact from &apos;../autobahn&apos;;
 
@@ -70,114 +70,116 @@ import AutobahnReact from &apos;../autobahn&apos;;
  * @function
  * @memberof Simpl.decorators
  */
-export function simpl(Component, options = {}) {
-  const optionsWithDefaults = Object.assign({}, options, {});
-  if (_.isFunction(options.topics)) {
-    optionsWithDefaults.topics = options.topics();
-  }
+export function simpl(options = {}) {
+  return (Component) =&gt; {
+    const optionsWithDefaults = Object.assign({}, options, {});
+    if (_.isFunction(options.topics)) {
+      optionsWithDefaults.topics = options.topics();
+    }
 
-  const mapStateToProps = (state) =&gt; ({
-    simplLoaded: state.simpl.loaded,
-  });
+    const mapStateToProps = (state) =&gt; ({
+      simplLoaded: state.simpl.loaded,
+    });
 
-  const mapDispatchToProps = (dispatch) =&gt; ({
-    onReady() {
-      if (optionsWithDefaults.topics) {
-        optionsWithDefaults.topics.forEach((topic) =&gt; {
-          dispatch(connectedScope(topic));
-          dispatch(getRunUsers(topic));
-          dispatch(getCurrentRunPhase(topic));
-          dispatch(getDataTree(topic));
-        });
-      }
-      dispatch(getPhases(&apos;model:model.game&apos;));
-      dispatch(getRoles(&apos;model:model.game&apos;));
-      return Promise.resolve();
-    },
-    onLeave() {
-      if (optionsWithDefaults.topics) {
-        optionsWithDefaults.topics.forEach((topic) =&gt; {
-          dispatch(disconnectedScope(topic));
-        });
-      }
-      return Promise.resolve();
-    },
-  });
-
-  const appMapDispatchToProps = (dispatch) =&gt; ({
-    // eslint-disable-next-line camelcase
-    onReceived([pk, resource_name, data], kwargs, event) {
-      const resolvedTopics = optionsWithDefaults.topics.map(
-        (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
-      );
-      resolvedTopics.forEach((topic) =&gt; {
-        const actions = {
-          [`${topic}.add_child`]: addChild,
-          [`${topic}.remove_child`]: removeChild,
-          [`${topic}.update_child`]: updateScope,
-        };
-        if (actions[event.topic]) {
-          dispatch(actions[event.topic]({ resource_name, data, pk }));
+    const mapDispatchToProps = (dispatch) =&gt; ({
+      onReady() {
+        if (optionsWithDefaults.topics) {
+          optionsWithDefaults.topics.forEach((topic) =&gt; {
+            dispatch(connectedScope(topic));
+            dispatch(getRunUsers(topic));
+            dispatch(getCurrentRunPhase(topic));
+            dispatch(getDataTree(topic));
+          });
         }
-      });
-    },
-  });
+        dispatch(getPhases(&apos;model:model.game&apos;));
+        dispatch(getRoles(&apos;model:model.game&apos;));
+        return Promise.resolve();
+      },
+      onLeave() {
+        if (optionsWithDefaults.topics) {
+          optionsWithDefaults.topics.forEach((topic) =&gt; {
+            dispatch(disconnectedScope(topic));
+          });
+        }
+        return Promise.resolve();
+      },
+    });
 
-  class AppContainer extends React.Component {
-    shouldComponentUpdate(nextProps, nextState) {
-      if (this.props.simplLoaded) {
-        return false;
+    const appMapDispatchToProps = (dispatch) =&gt; ({
+      // eslint-disable-next-line camelcase
+      onReceived([pk, resource_name, data], kwargs, event) {
+        const resolvedTopics = optionsWithDefaults.topics.map(
+          (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
+        );
+        resolvedTopics.forEach((topic) =&gt; {
+          const actions = {
+            [`${topic}.add_child`]: addChild,
+            [`${topic}.remove_child`]: removeChild,
+            [`${topic}.update_child`]: updateScope,
+          };
+          if (actions[event.topic]) {
+            dispatch(actions[event.topic]({ resource_name, data, pk }));
+          }
+        });
+      },
+    });
+
+    class AppContainer extends React.Component {
+      shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.simplLoaded) {
+          return false;
+        }
+        return this.props !== nextProps || this.state !== nextState;
       }
-      return this.props !== nextProps || this.state !== nextState;
-    }
-    render() {
-      return &lt;Component {...this.props} {...this.state} /&gt;;
-    }
-  }
-
-  AppContainer.propTypes = {
-    simplLoaded: React.PropTypes.bool,
-  };
-
-
-  const appTopics = optionsWithDefaults.topics.reduce(
-    (memo, topic) =&gt; memo.concat([
-      `${topic}.add_child`,
-      `${topic}.update_child`,
-      `${topic}.remove_child`,
-    ])
-  , []);
-  const SubscribedAppContainer = connect(
-    null, appMapDispatchToProps
-  )(subscribes(AppContainer, appTopics));
-
-  // eslint-disable-next-line react/no-multi-comp
-  class Simpl extends React.Component {
-    componentWillMount() {
-      this.props.onReady();
-      window.addEventListener(&apos;beforeunload&apos;, this.props.onLeave);
-    }
-    componentWillUnmount() {
-      window.removeEventListener(&apos;beforeunload&apos;, this.props.onLeave);
-    }
-    render() {
-      if (!this.props.simplLoaded) {
-        return (&lt;div&gt;Loading data...&lt;/div&gt;);
+      render() {
+        return &lt;Component {...this.props} {...this.state} /&gt;;
       }
-      return &lt;SubscribedAppContainer {...this.props} {...this.state} /&gt;;
     }
-  }
 
-  Simpl.propTypes = {
-    simplLoaded: React.PropTypes.bool,
-    onLeave: React.PropTypes.func,
-    onReady: React.PropTypes.func.isRequired,
+    AppContainer.propTypes = {
+      simplLoaded: React.PropTypes.bool,
+    };
+
+
+    const appTopics = optionsWithDefaults.topics.reduce(
+      (memo, topic) =&gt; memo.concat([
+        `${topic}.add_child`,
+        `${topic}.update_child`,
+        `${topic}.remove_child`,
+      ])
+    , []);
+    const SubscribedAppContainer = connect(
+      null, appMapDispatchToProps
+    )(subscribes(appTopics)(AppContainer));
+
+    // eslint-disable-next-line react/no-multi-comp
+    class Simpl extends React.Component {
+      componentWillMount() {
+        this.props.onReady();
+        window.addEventListener(&apos;beforeunload&apos;, this.props.onLeave);
+      }
+      componentWillUnmount() {
+        window.removeEventListener(&apos;beforeunload&apos;, this.props.onLeave);
+      }
+      render() {
+        if (!this.props.simplLoaded) {
+          return (&lt;div&gt;Loading data...&lt;/div&gt;);
+        }
+        return &lt;SubscribedAppContainer {...this.props} {...this.state} /&gt;;
+      }
+    }
+
+    Simpl.propTypes = {
+      simplLoaded: React.PropTypes.bool,
+      onLeave: React.PropTypes.func,
+      onReady: React.PropTypes.func.isRequired,
+    };
+
+    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
+    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);
+
+    return WampContainer;
   };
-
-  const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
-  const WampContainer = wamp(SimplContainer, optionsWithDefaults);
-
-  return WampContainer;
 }
 
 /**
