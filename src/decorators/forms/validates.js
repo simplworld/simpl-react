@@ -77,6 +77,19 @@ const stringValue = function stringValue(value) {
 };
 
 /**
+ * Options to validate a component
+ * @typedef {Object} ValidationOptions
+ * @property      {Array<string, function>}   errors  An array of validators
+ * that may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * @property      {Array<string, function>}   warnings   An array of validators
+ * that may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * @property      {Array<string, function>}   sanitizers  An array of saniters
+ * to modify the field's returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * @property      {Array<function>}           formatters  An array of saniters
+ * to modify the field's rendered value.
+ */
+
+/**
  * Add value validation to a single field.
  * @memberof Simpl.decorators.forms
  * @example
@@ -126,24 +139,14 @@ const stringValue = function stringValue(value) {
  *     }
  * }
  *
- * @param      {Object}  options  An object of options:
- * * `errors`: An array of validators (strings or functions) that may return an
- * error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
- * * `warnings`: An array of validators (strings or functions) that may return a warning
- * message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
- * * `sanitizers`: An array of saniters (strings or functions) to modify the field's
- * returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
- * * `formatters`: An array of saniters (functions) to modify the field's rendered
- * value.
- * @return     {Function}    A Component decorator with validation added. You can pass the
- * the `errors` and `warnings` props when instantiating this component to add
- * more validators.
+ * @param      {ValidationOptions}  options  An object of options
+ * @returns    {ReactElement} A React component.
  */
-export function validateField(options) {
-  const errorValidators = options.errors || [];
-  const warningValidators = options.warnings || [];
-  const optionsSanitizers = options.sanitizers || [];
-  const optionsFormatters = options.formatters || [];
+export function validateField({ errors, warnings, sanitizers, formatters }) {
+  const errorValidators = errors || [];
+  const warningValidators = warnings || [];
+  const optionsSanitizers = sanitizers || [];
+  const optionsFormatters = formatters || [];
 
   return (Component) => {
     const parentProps = Component.defaultProps;
@@ -196,21 +199,21 @@ export function validateField(options) {
       onChange(e) {
         const originalValue = e.target.value;
 
-        const errors = this.mapValidators(
+        const allErrors = this.mapValidators(
           [...this.props.errors, ...errorValidators], originalValue, this.props
         );
-        const warnings = this.mapValidators(
+        const allWarnings = this.mapValidators(
           [...this.props.warnings, ...warningValidators], originalValue, this.props
         );
 
         let validationState = 'success';
-        if (errors.length) {
+        if (allErrors.length) {
           validationState = 'error';
         } else if (warnings.length) {
           validationState = 'warning';
         }
 
-        const messages = [...errors, ...warnings];
+        const messages = [...allErrors, ...allWarnings];
 
         const sanitizedValue = this.sanitize(originalValue, this.props);
         const formattedValue = this.format(originalValue, this.mergedProps(this.props));
@@ -244,14 +247,14 @@ export function validateField(options) {
       }
 
       sanitize(value, props) {
-        const sanitizers = [...props.sanitizers, ...optionsSanitizers];
+        const allSanitizers = [...props.sanitizers, ...optionsSanitizers];
 
         // `redux-form` commpatibility
         if (props.normalize) {
-          sanitizers.push(props.normalize);
+          allSanitizers.push(props.normalize);
         }
 
-        const sanitizedValue = sanitizers.reduce((previousValue, sanitizer) => {
+        const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {
           if (_.isFunction(sanitizer)) {
             return sanitizer(previousValue, props) || previousValue;
           } else if (_.isString(sanitizer)) {
@@ -263,8 +266,8 @@ export function validateField(options) {
       }
 
       format(value, props) {
-        const formatters = [...props.formatters, ...optionsFormatters];
-        const formattedValue = formatters.reduce(
+        const allFormatters = [...props.formatters, ...optionsFormatters];
+        const formattedValue = allFormatters.reduce(
           (previousValue, formatter) => formatter(previousValue, props) || previousValue
         , value);
         return formattedValue;

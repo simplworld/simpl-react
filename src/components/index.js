@@ -1,3 +1,7 @@
+/**
+ * A React Component.
+ * @typedef {object} ReactElement
+ */
 import forms from './forms';
 import RPCCaller from './RPCCaller.react';
 import TopicPublisher from './TopicPublisher.react';

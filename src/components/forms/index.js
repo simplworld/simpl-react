@@ -7,7 +7,6 @@ import NumberInput from './NumberInput.react';
 import PasswordInput from './PasswordInput.react';
 import TextInput from './TextInput.react';
 
-
 /**
  * @namespace forms
  * @memberof Simpl.components

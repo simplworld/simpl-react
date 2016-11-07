@@ -25,6 +25,14 @@ function Input(props) {
 
 Input.propTypes = inputPropTypes;
 
+/**
+ * A component for entering a password. The `type` props is hardcoded to `'password'`.
+ *
+ * @namespace PasswordInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const PasswordInput = validateField({
 })(Input);
 

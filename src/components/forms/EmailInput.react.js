@@ -29,6 +29,20 @@ Input.defaultProps = {
 
 Input.propTypes = inputPropTypes;
 
+
+/**
+ * A component that allows entering and eamil address.
+
+ * Default validation options:
+ *  * `errors`: `['isEmail']`,
+ *  * `sanitizers`: `['normalizeEmail']`
+ *
+ * Default props: `{type: 'email'}`
+ * @namespace EmailInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const EmailInput = validateField({
   errors: ['isEmail'],
   sanitizers: ['normalizeEmail'],

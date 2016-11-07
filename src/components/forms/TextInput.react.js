@@ -28,6 +28,17 @@ Input.defaultProps = {
 
 Input.propTypes = inputPropTypes;
 
+/**
+ * A component that allows entering text.
+
+ * Default validation options: `{sanitizers: ['trim']}`
+
+ * Default props: `{type: 'text'}`
+ * @namespace TextInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const TextInput = validateField({
   sanitizers: ['trim'],
 })(Input);

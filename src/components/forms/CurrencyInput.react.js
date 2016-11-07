@@ -43,6 +43,21 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
   currency: React.PropTypes.string,
 });
 
+/**
+ * A component that allows entering a decimal value and always shows it with fixed
+ * precision, prefixed by a currency symbol.
+
+ * Default validation options:
+ *  * `errors`: ['isCurrency', {@link min}, {@link max}],
+ *  * `sanitizers`: `['toFloat']`
+ *  * `formatters`: [{@link decimalPlaces}]
+ *
+ * Default props: `{type: 'number', decimalPlaces: 2, currency: '$'}`
+ * @namespace CurrencyInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const CurrencyInput = validateField({
   errors: ['isCurrency', min, max],
   sanitizers: ['toFloat'],

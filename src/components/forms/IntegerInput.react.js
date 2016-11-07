@@ -33,6 +33,19 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
   step: React.PropTypes.number,
 });
 
+/**
+ * A component that allows entering an integer number.
+
+ * Default validation options:
+ *  * `errors`: ['isInt', {@link min}, {@link max}],
+ *  * `sanitizers`: `['toInt']`
+ *
+ * Default props: `{type: 'number'}`
+ * @namespace IntegerInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const IntegerInput = validateField({
   errors: ['isInt', min, max],
   sanitizers: ['toInt'],

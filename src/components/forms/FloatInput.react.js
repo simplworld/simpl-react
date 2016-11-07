@@ -35,6 +35,19 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
   decimalPlaces: React.PropTypes.number,
 });
 
+/**
+ * A component that allows entering a float number.
+
+ * Default validation options:
+ *  * `errors`: ['isFloat', {@link min}, {@link max}],
+ *  * `sanitizers`: `['toFloat']`
+ *
+ * Default props: `{type: 'number', step: 0.1}`
+ * @namespace FloatInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const FloatInput = validateField({
   errors: ['isFloat', min, max],
   sanitizers: ['toFloat'],

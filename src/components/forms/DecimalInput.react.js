@@ -36,8 +36,24 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
   decimalPlaces: React.PropTypes.number,
 });
 
+
+/**
+ * A component that allows entering a decimal value and always shows it with fixed
+ * precision.
+
+ * Default validation options:
+ *  * `errors`: ['isDecimal', {@link min}, {@link max}],
+ *  * `sanitizers`: `['toFloat']`
+ *  * `formatters`: [{@link decimalPlaces}]
+ *
+ * Default props: `{type: 'number', decimalPlaces: 2}`
+ * @namespace DecimalInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const DecimalInput = validateField({
-  errors: [min, max, 'isDecimal'],
+  errors: ['isDecimal', min, max],
   sanitizers: ['toFloat'],
   formatters: [decimalPlaces],
 })(Input);

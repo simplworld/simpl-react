@@ -1,7 +1,4 @@
-/**
- * @namespace NumberInput
- * @memberof Simpl.components.forms
- */
+
 import React from 'react';
 import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
@@ -37,6 +34,19 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
   step: React.PropTypes.number,
 });
 
+/**
+ * A component to validate a number.
+
+ * Default validation options:
+ *  * `errors`: [{@link min}, {@link max}],
+ *  * `sanitizers`: `['toFloat']`
+ *
+ * Default props: `{type: 'number'}`
+ * @namespace NumberInput
+ * @memberof Simpl.components.forms
+ * @type {ReactElement}
+ * @extends React.Component
+ */
 export const NumberInput = validateField({
   errors: [min, max],
   sanitizers: ['toFloat'],
