@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/decorators/forms/validates.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicSubscriber.react.js~TopicSubscriber.html">TopicSubscriber</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReactElement">ReactElement</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components/forms</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-decimalPlaces">decimalPlaces</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-max">max</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-min">min</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CurrencyInput">CurrencyInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DecimalInput">DecimalInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EmailInput">EmailInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-FloatInput">FloatInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IntegerInput">IntegerInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NumberInput">NumberInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PasswordInput">PasswordInput</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TextInput">TextInput</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simpl">simpl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-wamp">wamp</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/forms</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateField">validateField</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ValidationOptions">ValidationOptions</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/pubsub</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publishes">publishes</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-subscribes">subscribes</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/decorators/forms/validates.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+
+import _ from &apos;lodash&apos;;
+import validator from &apos;validator&apos;;
+
+
+const verboseValidator = function verboseValidator(validation, value) {
+  const messages = {
+    isRequired: &apos;This field is required.&apos;,
+    isEmail: `The specified value &quot;${value}&quot; is not a valid email address.`,
+    isNumeric: &apos;The specified value is not an integer.&apos;,
+    isLowercase: &apos;The specified value must be lowercase&apos;,
+    isUppercase: &apos;The specified value must be uppercase&apos;,
+  };
+
+  return validator[validation](value) ? undefined : messages[validation] || &apos;Invalid value&apos;;
+};
+
+
+/**
+ * Given an object of `props`, returns an object containing only the `props`
+ * supported by `input` elements.
+ *
+ * @param      {Object}  props   The original `props`
+ * @return     {Object}  The props for the `input`.
+ */
+const getInputProps = function getInputProps(props) {
+  if (props.input) {
+    // The component is called form a redux-form Field.
+    // Use the `Field` properties, but also remember to call original
+    // component&apos;s event handlers.
+    const overrides = {};
+
+    [&apos;onChange&apos;, &apos;onBlur&apos;, &apos;onFocus&apos;].forEach((method) =&gt; {
+      if (props[method]) {
+        const patched = (...args) =&gt; {
+          props[method](...args);
+          props.input[method](...args);
+        };
+        overrides[method] = patched;
+      }
+    });
+
+    if (props.type) {
+      overrides.type = props.type;
+    }
+    return Object.assign({}, props.input, overrides);
+  }
+  return {
+    type: props.type,
+    value: props.value,
+    name: props.name,
+    onChange: props.onChange,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
+    placeholder: props.placeholder,
+    required: props.required,
+    disabled: props.disabled,
+    readOnly: props.readonly,
+    maxLength: props.maxlength,
+    min: props.min,
+    max: props.max,
+    step: props.step,
+  };
+};
+
+/**
+ * Convert a value to a string, if possible. Otherwise returns the unchanged
+ * value. `null` and `undefined` are coerced to the empty string.
+ *
+ * @param      {any}   value   The value to coerced
+ * @return     {any}  Either the value converted to a string, or the vlaue itself.
+ */
+const stringValue = function stringValue(value) {
+  if (value === null || value === undefined) return &apos;&apos;;
+  return value.toString !== undefined ? value.toString() : value;
+};
+
+/**
+ * Options to validate a component
+ * @typedef {Object} ValidationOptions
+ * @property      {Array&lt;string, function&gt;}   errors  An array of validators
+ * that may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * @property      {Array&lt;string, function&gt;}   warnings   An array of validators
+ * that may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * @property      {Array&lt;string, function&gt;}   sanitizers  An array of saniters
+ * to modify the field&apos;s returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package
+ * @property      {Array&lt;function&gt;}           formatters  An array of saniters
+ * to modify the field&apos;s rendered value.
+ */
+
+/**
+ * Add value validation to a single field.
+ * @memberof Simpl.decorators.forms
+ * @example
+ * import React from &apos;react&apos;;
+ *
+ * import {validates} from &apos;simpl/lib/decorators/forms/validates&apos;;
+ * import {FormControl} from &apos;react-bootstrap&apos;;
+ *
+ * const noSpam = (value, ownProps) =&gt; {
+ *     // validation logic goes here
+ *     if (value.endsWith(&apos;@spam.com&apos;)) {
+ *         return &quot;that&apos;s spam&quot;
+ *     }
+ * };
+ *
+ * const itsNew = (value, ownProps) =&gt; {
+ *     if (value === ownProps.previousEmail) {
+ *         return &quot;email didn&apos;t change&quot;
+ *     }
+ * };
+ *
+ * function EmailField(props) {
+ *     // all aestethics goes here
+ *     return (
+ *         &lt;FormControl
+ *             type=&quot;email&quot;
+ *             {...props}
+ *         /&gt;
+ *     )
+ * }
+ *
+ * const ValidatingEmailField = validateField({
+ *     errors: [&apos;isEmail&apos;, noSpam],
+ *     warnings: [itsNew]
+ * )(EmailField);
+ *
+ * class MyComponent extends React.Component {
+ *     render() {
+ *         return(
+ *             &lt;div&gt;
+ *                 &lt;ValidatingEmailField
+ *                     previousEmail=&quot;my@email.com&quot;
+ *                     errors={[&apos;isRequired&apos;]}
+ *                 /&gt;
+ *             &lt;/div&gt;
+ *         );
+ *     }
+ * }
+ *
+ * @param      {ValidationOptions}  options  An object of options
+ * @returns    {ReactElement} A React component.
+ */
+export function validateField({ errors, warnings, sanitizers, formatters }) {
+  const errorValidators = errors || [];
+  const warningValidators = warnings || [];
+  const optionsSanitizers = sanitizers || [];
+  const optionsFormatters = formatters || [];
+
+  return (Component) =&gt; {
+    const parentProps = Component.defaultProps;
+
+    class ValidatedComponent extends React.Component {
+      constructor(props) {
+        super(props);
+
+        let formattedValue = &apos;&apos;;
+        if (props.value !== undefined || props.value !== &apos;&apos;) {
+          formattedValue = this.format(props.value, this.mergedProps(this.props));
+        }
+        this.state = {
+          messages: this.props.messages || [],
+          validationState: null,
+          value: formattedValue,
+        };
+        this.onChange = this.onChange.bind(this);
+      }
+
+      componentWillReceiveProps(props) {
+        let formattedValue = &apos;&apos;;
+        if (props.value !== this.props.value) {
+          if (props.value !== undefined || props.value !== &apos;&apos;) {
+            formattedValue = this.format(props.value, this.mergedProps(props));
+          }
+        }
+
+        // add errors/warnings coming from redux-form
+        let validationState = this.state.validationState;
+        const messages = [...this.state.messages];
+
+        if (props.meta) {
+          if (props.meta.error) {
+            validationState = &apos;error&apos;;
+            messages.push(props.meta.error);
+          } else if (props.meta.warning) {
+            validationState = &apos;warning&apos;;
+            messages.push(props.meta.warning);
+          }
+        }
+
+        this.setState({
+          value: formattedValue,
+          validationState,
+          messages,
+        });
+      }
+
+      onChange(e) {
+        const originalValue = e.target.value;
+
+        const allErrors = this.mapValidators(
+          [...this.props.errors, ...errorValidators], originalValue, this.props
+        );
+        const allWarnings = this.mapValidators(
+          [...this.props.warnings, ...warningValidators], originalValue, this.props
+        );
+
+        let validationState = &apos;success&apos;;
+        if (allErrors.length) {
+          validationState = &apos;error&apos;;
+        } else if (warnings.length) {
+          validationState = &apos;warning&apos;;
+        }
+
+        const messages = [...allErrors, ...allWarnings];
+
+        const sanitizedValue = this.sanitize(originalValue, this.props);
+        const formattedValue = this.format(originalValue, this.mergedProps(this.props));
+
+        this.setState({
+          value: formattedValue,
+          validationState,
+          messages,
+        });
+        if (this.props.onChange) {
+          this.props.onChange(sanitizedValue);
+        }
+      }
+
+      mergedProps(props) {
+        return Object.assign({}, parentProps, props);
+      }
+
+      mapValidators(validators, value, props) {
+        return validators.map((validation) =&gt; {
+          if (_.isFunction(validation)) {
+            return validation(value, props);
+          } else if (_.isString(validation)) {
+            return verboseValidator(
+              validation,
+              stringValue(value)
+            );
+          }
+          return undefined;
+        }).filter((result) =&gt; result !== undefined);
+      }
+
+      sanitize(value, props) {
+        const allSanitizers = [...props.sanitizers, ...optionsSanitizers];
+
+        // `redux-form` commpatibility
+        if (props.normalize) {
+          allSanitizers.push(props.normalize);
+        }
+
+        const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) =&gt; {
+          if (_.isFunction(sanitizer)) {
+            return sanitizer(previousValue, props) || previousValue;
+          } else if (_.isString(sanitizer)) {
+            return validator[sanitizer](stringValue(previousValue)) || previousValue;
+          }
+          return undefined;
+        }, value);
+        return sanitizedValue;
+      }
+
+      format(value, props) {
+        const allFormatters = [...props.formatters, ...optionsFormatters];
+        const formattedValue = allFormatters.reduce(
+          (previousValue, formatter) =&gt; formatter(previousValue, props) || previousValue
+        , value);
+        return formattedValue;
+      }
+
+      render() {
+        const props = Object.assign({}, this.props, {
+          onChange: this.onChange,
+        });
+        const inputProps = getInputProps(props);
+
+        return (
+          &lt;span&gt;
+            &lt;Component
+              inputProps={inputProps}
+              {...props}
+              {...this.state}
+            /&gt;
+          &lt;/span&gt;
+        );
+      }
+    }
+
+    ValidatedComponent.defaultProps = {
+      errors: [],
+      warnings: [],
+      sanitizers: [],
+      formatters: [],
+    };
+
+    ValidatedComponent.propTypes = {
+      value: React.PropTypes.any,
+      meta: React.PropTypes.object,
+      onChange: React.PropTypes.func,
+      messages: React.PropTypes.array,
+      errors: React.PropTypes.array,
+      warnings: React.PropTypes.array,
+      sanitizers: React.PropTypes.array,
+      formatters: React.PropTypes.arrayOf(React.PropTypes.func),
+    };
+
+    return ValidatedComponent;
+  };
+}
+
+export default validateField;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
