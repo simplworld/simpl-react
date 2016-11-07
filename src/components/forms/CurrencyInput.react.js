@@ -44,7 +44,7 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
 });
 
 export const CurrencyInput = validateField({
-  errors: [min, max, 'isCurrency'],
+  errors: ['isCurrency', min, max],
   sanitizers: ['toFloat'],
   formatters: [decimalPlaces],
 })(Input);

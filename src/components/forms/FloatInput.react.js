@@ -36,7 +36,7 @@ Input.propTypes = Object.assign({}, inputPropTypes, {
 });
 
 export const FloatInput = validateField({
-  errors: [min, max, 'isFloat'],
+  errors: ['isFloat', min, max],
   sanitizers: ['toFloat'],
 })(Input);
 
