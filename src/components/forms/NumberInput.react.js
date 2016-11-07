@@ -1,3 +1,7 @@
+/**
+ * @namespace NumberInput
+ * @memberof Simpl.components.forms
+ */
 import React from 'react';
 import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
