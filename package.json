@@ -1,6 +1,6 @@
 {
   "name": "simpl",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "description": "React components and utilities for the SIMPL Framework",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
     "test": "karma start",
     "watch": "webpack -d --watch",
     "docs": "rm -rf docs && esdoc -c esdoc.json",
-    "compile": "npm run docs && babel src --out-dir lib"
+    "compile": "npm run docs && rm -rf lib && babel src --out-dir lib"
   },
   "repository": {
     "type": "git",

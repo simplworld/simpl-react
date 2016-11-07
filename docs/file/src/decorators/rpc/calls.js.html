@@ -61,27 +61,28 @@ import AutobahnReact from &apos;../../autobahn&apos;;
  * @function
  * @memberof Simpl.decorators.rpc
  */
-export function calls(Component, procedure, options = {}) {
-  const defaults = {};
-  const optionsWithDefaults = Object.assign(defaults, {}, options);
+export function calls(procedure, options = {}) {
+  return (Component) =&gt; {
+    const defaults = {};
+    const optionsWithDefaults = Object.assign(defaults, {}, options);
 
-  class Caller extends React.Component {
-    constructor(props) {
-      super(props);
-      this.call = this.call.bind(this);
+    class Caller extends React.Component {
+      constructor(props) {
+        super(props);
+        this.call = this.call.bind(this);
+      }
+      call(payload) {
+        const args = payload.args || [];
+        const kwargs = payload.kwargs || {};
+        return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);
+      }
+      render() {
+        return &lt;Component {...this.props} {...this.state} call={this.call} /&gt;;
+      }
     }
-    call(payload) {
-      const args = payload.args || [];
-      const kwargs = payload.kwargs || {};
-      return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);
-    }
-    render() {
-      return &lt;Component {...this.props} {...this.state} call={this.call} /&gt;;
-    }
-  }
 
-
-  return Caller;
+    return Caller;
+  };
 }
 
 export default calls;
