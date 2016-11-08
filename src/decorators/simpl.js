@@ -104,7 +104,7 @@ export function simpl(options = {}) {
     ]);
     const SubscribedAppContainer = connect(
       null, appMapDispatchToProps
-    )(subscribes(AppContainer, appTopics));
+    )(subscribes(appTopics)(AppContainer));
 
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {

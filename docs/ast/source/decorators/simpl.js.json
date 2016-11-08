@@ -7405,9 +7405,9 @@
                                   }
                                 },
                                 "callee": {
-                                  "type": "Identifier",
+                                  "type": "CallExpression",
                                   "start": 3221,
-                                  "end": 3231,
+                                  "end": 3242,
                                   "loc": {
                                     "start": {
                                       "line": 107,
@@ -7415,43 +7415,60 @@
                                     },
                                     "end": {
                                       "line": 107,
-                                      "column": 16
+                                      "column": 27
                                     }
                                   },
-                                  "name": "subscribes"
+                                  "callee": {
+                                    "type": "Identifier",
+                                    "start": 3221,
+                                    "end": 3231,
+                                    "loc": {
+                                      "start": {
+                                        "line": 107,
+                                        "column": 6
+                                      },
+                                      "end": {
+                                        "line": 107,
+                                        "column": 16
+                                      }
+                                    },
+                                    "name": "subscribes"
+                                  },
+                                  "arguments": [
+                                    {
+                                      "type": "Identifier",
+                                      "start": 3232,
+                                      "end": 3241,
+                                      "loc": {
+                                        "start": {
+                                          "line": 107,
+                                          "column": 17
+                                        },
+                                        "end": {
+                                          "line": 107,
+                                          "column": 26
+                                        }
+                                      },
+                                      "name": "appTopics"
+                                    }
+                                  ]
                                 },
                                 "arguments": [
                                   {
                                     "type": "Identifier",
-                                    "start": 3232,
-                                    "end": 3244,
-                                    "loc": {
-                                      "start": {
-                                        "line": 107,
-                                        "column": 17
-                                      },
-                                      "end": {
-                                        "line": 107,
-                                        "column": 29
-                                      }
-                                    },
-                                    "name": "AppContainer"
-                                  },
-                                  {
-                                    "type": "Identifier",
-                                    "start": 3246,
+                                    "start": 3243,
                                     "end": 3255,
                                     "loc": {
                                       "start": {
                                         "line": 107,
-                                        "column": 31
+                                        "column": 28
                                       },
                                       "end": {
                                         "line": 107,
                                         "column": 40
                                       }
                                     },
-                                    "name": "appTopics"
+                                    "name": "AppContainer"
                                   }
                                 ]
                               }
