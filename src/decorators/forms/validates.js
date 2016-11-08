@@ -209,7 +209,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         let validationState = 'success';
         if (allErrors.length) {
           validationState = 'error';
-        } else if (warnings.length) {
+        } else if (allWarnings.length) {
           validationState = 'warning';
         }
 
