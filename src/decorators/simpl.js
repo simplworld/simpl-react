@@ -50,9 +50,6 @@ export function simpl(options = {}) {
         }
         return Promise.resolve();
       },
-    });
-
-    const appMapDispatchToProps = (dispatch) => ({
       onReceived(args, kwargs, event) {
         if (event.topic.endsWith(`.error.form.${options.username}`)) {
           const [form, errors] = args;
@@ -75,6 +72,7 @@ export function simpl(options = {}) {
         }
       },
     });
+
 
     class AppContainer extends React.Component {
       shouldComponentUpdate(nextProps, nextState) {
@@ -102,9 +100,7 @@ export function simpl(options = {}) {
     , [
       `model:error.form.${options.username}`,
     ]);
-    const SubscribedAppContainer = connect(
-      null, appMapDispatchToProps
-    )(subscribes(appTopics)(AppContainer));
+    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
