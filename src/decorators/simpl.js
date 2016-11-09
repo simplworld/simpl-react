@@ -5,6 +5,7 @@ import { stopSubmit } from 'redux-form';
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
+  showGenericError,
 } from '../actions/simpl';
 
 import { subscribes } from './pubsub/subscribes';
@@ -26,6 +27,7 @@ export function simpl(options = {}) {
 
     const mapStateToProps = (state) => ({
       simplLoaded: state.simpl.loaded,
+      errors: state.errors,
     });
 
     const mapDispatchToProps = (dispatch) => ({
@@ -51,9 +53,14 @@ export function simpl(options = {}) {
         return Promise.resolve();
       },
       onReceived(args, kwargs, event) {
-        if (event.topic.endsWith(`.error.form.${options.username}`)) {
-          const [form, errors] = args;
-          dispatch(stopSubmit(form, errors));
+        console.log(kwargs);
+        if (kwargs.error) {
+          if (kwargs.error === 'application.error.validation_error') {
+            const [form, errors] = args;
+            dispatch(stopSubmit(form, errors));
+          } else {
+            dispatch(showGenericError(args, kwargs));
+          }
         } else {
           const [pk, resourceName, data] = args;
           const resolvedTopics = optionsWithDefaults.topics.map(
@@ -98,7 +105,7 @@ export function simpl(options = {}) {
         `${topic}.remove_child`,
       ])
     , [
-      `model:error.form.${options.username}`,
+      `model:error.${options.username}`,
     ]);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
