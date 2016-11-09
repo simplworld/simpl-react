@@ -118,9 +118,6 @@ export function simpl(options = {}) {
         }
         return Promise.resolve();
       },
-    });
-
-    const appMapDispatchToProps = (dispatch) =&gt; ({
       onReceived(args, kwargs, event) {
         if (event.topic.endsWith(`.error.form.${options.username}`)) {
           const [form, errors] = args;
@@ -137,12 +134,13 @@ export function simpl(options = {}) {
               [`${topic}.update_child`]: updateScope,
             };
             if (actions[event.topic]) {
-              dispatch(actions[event.topic]({ resourceName, data, pk }));
+              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
             }
           });
         }
       },
     });
+
 
     class AppContainer extends React.Component {
       shouldComponentUpdate(nextProps, nextState) {
@@ -170,9 +168,7 @@ export function simpl(options = {}) {
     , [
       `model:error.form.${options.username}`,
     ]);
-    const SubscribedAppContainer = connect(
-      null, appMapDispatchToProps
-    )(subscribes(appTopics)(AppContainer));
+    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
