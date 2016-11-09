@@ -28,7 +28,7 @@ const getInputProps = function getInputProps(props) {
   if (props.input) {
     // The component is called form a redux-form Field.
     // Use the `Field` properties, but also remember to call original
-    // component's event handlers.
+    // component's event handlers and value.
     const overrides = {};
 
     ['onChange', 'onBlur', 'onFocus'].forEach((method) => {
@@ -43,6 +43,9 @@ const getInputProps = function getInputProps(props) {
 
     if (props.type) {
       overrides.type = props.type;
+    }
+    if (props.value) {
+      overrides.value = props.value;
     }
     return Object.assign({}, props.input, overrides);
   }
@@ -156,7 +159,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         super(props);
 
         let formattedValue = '';
-        if (props.value !== undefined || props.value !== '') {
+        if (props.value !== undefined && props.value !== null && props.value !== '') {
           formattedValue = this.format(props.value, this.mergedProps(this.props));
         }
         this.state = {
@@ -165,14 +168,15 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           value: formattedValue,
         };
         this.onChange = this.onChange.bind(this);
+        this.onBlur = this.onBlur.bind(this);
       }
 
       componentWillReceiveProps(props) {
-        let formattedValue = '';
-        if (props.value !== this.props.value) {
-          if (props.value !== undefined || props.value !== '') {
-            formattedValue = this.format(props.value, this.mergedProps(props));
-          }
+        let formattedValue;
+        if (props.value !== undefined && props.value !== null && props.value !== '') {
+          formattedValue = this.format(props.value, this.mergedProps(props));
+        } else {
+          formattedValue = props.value;
         }
 
         // add errors/warnings coming from redux-form
@@ -197,8 +201,13 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       }
 
       onChange(e) {
-        const originalValue = e.target.value;
+        this.setState({
+          value: e.target.value,
+        });
+      }
 
+      onBlur(e) {
+        const originalValue = e.target.value;
         const allErrors = this.mapValidators(
           [...this.props.errors, ...errorValidators], originalValue, this.props
         );
@@ -218,13 +227,17 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         const sanitizedValue = this.sanitize(originalValue, this.props);
         const formattedValue = this.format(originalValue, this.mergedProps(this.props));
 
-        this.setState({
-          value: formattedValue,
-          validationState,
-          messages,
-        });
-        if (this.props.onChange) {
-          this.props.onChange(sanitizedValue);
+        if (formattedValue) {
+          this.setState({
+            value: formattedValue,
+            validationState,
+            messages,
+          });
+        }
+        if (sanitizedValue !== null && this.props.onBlur) {
+          const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });
+          const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });
+          this.props.onBlur(sanitizedEvent);
         }
       }
 
@@ -255,12 +268,15 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         }
 
         const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {
-          if (_.isFunction(sanitizer)) {
-            return sanitizer(previousValue, props) || previousValue;
-          } else if (_.isString(sanitizer)) {
-            return validator[sanitizer](stringValue(previousValue)) || previousValue;
+          let sanitizerFunc = sanitizer;
+          if (_.isString(sanitizer)) {
+            sanitizerFunc = validator[sanitizer];
           }
-          return undefined;
+          const sanitized = sanitizerFunc(stringValue(previousValue));
+          if (isNaN(sanitized)) {
+            return null;
+          }
+          return sanitized || previousValue;
         }, value);
         return sanitizedValue;
       }
@@ -275,7 +291,9 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
 
       render() {
         const props = Object.assign({}, this.props, {
+          onBlur: this.onBlur,
           onChange: this.onChange,
+          value: this.state.value,
         });
         const inputProps = getInputProps(props);
 
@@ -302,6 +320,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       value: React.PropTypes.any,
       meta: React.PropTypes.object,
       onChange: React.PropTypes.func,
+      onBlur: React.PropTypes.func,
       messages: React.PropTypes.array,
       errors: React.PropTypes.array,
       warnings: React.PropTypes.array,

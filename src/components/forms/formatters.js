@@ -7,5 +7,8 @@
  * @return     {string}  The formatted valued
  */
 export const decimalPlaces = function decimalPlaces(value, ownProps) {
+  if (isNaN(value)) {
+    return null;
+  }
   return parseFloat(value).toFixed(ownProps.decimalPlaces);
 };
