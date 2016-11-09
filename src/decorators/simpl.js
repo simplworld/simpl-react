@@ -69,7 +69,7 @@ export function simpl(options = {}) {
               [`${topic}.update_child`]: updateScope,
             };
             if (actions[event.topic]) {
-              dispatch(actions[event.topic]({ resourceName, data, pk }));
+              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
             }
           });
         }
