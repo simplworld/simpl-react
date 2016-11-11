@@ -37,9 +37,9 @@ const getInputProps = function getInputProps(props) {
 
     ['onChange', 'onBlur', 'onFocus'].forEach((method) => {
       if (props[method]) {
-        const patched = (...args) => {
-          props[method](...args);
-          props.input[method](...args);
+        const patched = (e, formattedValue) => {
+          props[method](e);
+          props.input[method](formattedValue);
         };
         overrides[method] = patched;
       }
@@ -244,7 +244,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         if (sanitizedValue !== null && this.props.onBlur) {
           const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });
           const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });
-          this.props.onBlur(sanitizedEvent);
+          this.props.onBlur(sanitizedEvent, formattedValue);
         }
       }
 
