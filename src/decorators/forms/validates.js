@@ -208,19 +208,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
 
       onBlur(e) {
         const originalValue = e.target.value;
-        const allErrors = this.mapValidators(
-          [...this.props.errors, ...errorValidators], originalValue, this.props
-        );
-        const allWarnings = this.mapValidators(
-          [...this.props.warnings, ...warningValidators], originalValue, this.props
-        );
 
-        let validationState = 'success';
-        if (allErrors.length) {
-          validationState = 'error';
-        } else if (allWarnings.length) {
-          validationState = 'warning';
-        }
+        const { validationState, allErrors, allWarnings } = this.validate(originalValue);
 
         const messages = [...allErrors, ...allWarnings];
 
@@ -239,6 +228,32 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });
           this.props.onBlur(sanitizedEvent);
         }
+      }
+
+      validate(originalValue) {
+        const allErrors = this.mapValidators(
+          [...this.props.errors, ...errorValidators], originalValue, this.props
+        );
+        const allWarnings = this.mapValidators(
+          [...this.props.warnings, ...warningValidators], originalValue, this.props
+        );
+
+        if (!originalValue && this.props.required === true) {
+          allErrors.push('This field is required.');
+        }
+
+        let validationState = 'success';
+        if (allErrors.length) {
+          validationState = 'error';
+        } else if (allWarnings.length) {
+          validationState = 'warning';
+        }
+
+        return {
+          validationState,
+          allErrors,
+          allWarnings,
+        };
       }
 
       mergedProps(props) {
@@ -314,9 +329,12 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       warnings: [],
       sanitizers: [],
       formatters: [],
+      required: false,
+    };
     };
 
     ValidatedComponent.propTypes = {
+      required: React.PropTypes.boolean,
       value: React.PropTypes.any,
       meta: React.PropTypes.object,
       onChange: React.PropTypes.func,
