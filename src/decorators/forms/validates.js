@@ -204,6 +204,13 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         this.setState({
           value: e.target.value,
         });
+
+        if (this.state.hasReduxForm) {
+        // Update the redux-form state is the field is decorated with `reduxForm'=
+          this.context._reduxForm.dispatch(
+            this.context._reduxForm.change(this.props.name, e.target.value)
+          );
+        }
       }
 
       onBlur(e) {
