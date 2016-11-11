@@ -31,7 +31,7 @@ const verboseValidator = function verboseValidator(validation, value) {
 const getInputProps = function getInputProps(props) {
   if (props.input) {
     // The component is called form a redux-form Field.
-    // Use the `Field` properties, but also remember to call original
+    // Use the `Field` properties, but also remember the original
     // component's event handlers and value.
     const overrides = {};
 
