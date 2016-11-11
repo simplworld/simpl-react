@@ -327,7 +327,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           onBlur: this.onBlur,
           onFocus: this.onFocus,
           onChange: this.onChange,
-          value: this.state.value,
+          value: this.state.value || '',
         });
         const inputProps = getInputProps(props);
 
