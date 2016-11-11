@@ -13,7 +13,7 @@ const verboseValidator = function verboseValidator(validation, value) {
     isUppercase: 'The specified value must be uppercase',
   };
 
-  return validator[validation](value) ? undefined : messages[validation] || 'Invalid value';
+  return validator[validation](value) ? null : messages[validation] || 'Invalid value';
 };
 
 
@@ -255,8 +255,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
               stringValue(value)
             );
           }
-          return undefined;
-        }).filter((result) => result !== undefined);
+          return null;
+        }).filter((result) => result !== null);
       }
 
       sanitize(value, props) {
