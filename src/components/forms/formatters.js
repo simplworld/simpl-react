@@ -11,5 +11,9 @@ export const decimalPlaces = function decimalPlaces(value, ownProps) {
   if (value === '') {
     return null;
   }
-  return parseFloat(value).toFixed(ownProps.decimalPlaces);
+  const float = parseFloat(value);
+  if (isNaN(float)) {
+    return null;
+  }
+  return float.toFixed(ownProps.decimalPlaces);
 };

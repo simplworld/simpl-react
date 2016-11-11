@@ -1,5 +1,6 @@
 /* eslint "no-underscore-dangle": "off" */
 import React from 'react';
+import { stopSubmit } from 'redux-form';
 
 import _ from 'lodash';
 import validator from 'validator';
@@ -48,7 +49,7 @@ const getInputProps = function getInputProps(props) {
     if (props.type) {
       overrides.type = props.type;
     }
-    if (props.value) {
+    if (!['', null].includes(props.value)) {
       overrides.value = props.value;
     }
     return Object.assign({}, props.input, overrides);
@@ -163,21 +164,26 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         super(props, context);
 
         let formattedValue = '';
-        if (props.value !== undefined && props.value !== null && props.value !== '') {
+        if (![undefined, null, ''].includes(props.value)) {
           formattedValue = this.format(props.value, this.mergedProps(this.props));
         }
         this.state = {
           messages: this.props.messages || [],
           validationState: null,
           value: formattedValue,
+          hasReduxForm: context._reduxForm !== undefined,
         };
         this.onChange = this.onChange.bind(this);
         this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
       }
 
       componentWillReceiveProps(props) {
+        if (props.value === undefined) {
+          return;
+        }
         let formattedValue;
-        if (props.value !== undefined && props.value !== null && props.value !== '') {
+        if (![undefined, null, ''].includes(props.value)) {
           formattedValue = this.format(props.value, this.mergedProps(props));
         } else {
           formattedValue = props.value;
@@ -234,14 +240,32 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         const sanitizedValue = this.sanitize(originalValue, this.props);
         const formattedValue = this.format(originalValue, this.mergedProps(this.props));
 
-        if (formattedValue) {
+        // If part of a redux form and there are errors, dispatch actions to
+        // mark the form as invalid. Warnings will still allow the form to be
+        // submitted.
+        if (this.state.hasReduxForm) {
+          if (sanitizedValue === null || allErrors.length > 0) {
+            const reduxFormErrors = { [this.props.name]: allErrors.join(', ') };
+            const formName = this.context._reduxForm.form;
+            this.context._reduxForm.dispatch(
+              stopSubmit(formName, reduxFormErrors)
+            );
+          }
+        }
+
+        if (formattedValue !== null) {
           this.setState({
             value: formattedValue,
             validationState,
             messages,
           });
         }
-        if (sanitizedValue !== null && this.props.onBlur) {
+        // the enetered value is invalid
+        if (sanitizedValue === null) {
+          return;
+        }
+
+        if (this.props.onBlur) {
           const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });
           const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });
           this.props.onBlur(sanitizedEvent, formattedValue);
@@ -256,7 +280,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           [...this.props.warnings, ...warningValidators], originalValue, this.props
         );
 
-        if (!originalValue && this.props.required === true) {
+        if (originalValue === '' && this.props.required === true) {
           allErrors.push('This field is required.');
         }
 
@@ -309,7 +333,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           if (isNaN(sanitized)) {
             return null;
           }
-          return sanitized || previousValue;
+          return sanitized !== null ? sanitized : previousValue;
         }, value);
         return sanitizedValue;
       }
@@ -327,7 +351,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           onBlur: this.onBlur,
           onFocus: this.onFocus,
           onChange: this.onChange,
-          value: this.state.value || '',
+          value: [null, NaN].includes(this.state.value) ? '' : this.state.value,
         });
         const inputProps = getInputProps(props);
 
@@ -356,8 +380,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     };
 
     ValidatedComponent.propTypes = {
-      name: React.PropTypes.string,
-      required: React.PropTypes.boolean,
+      name: React.PropTypes.string.isRequired,
+      required: React.PropTypes.bool,
       value: React.PropTypes.any,
       meta: React.PropTypes.object,
       onChange: React.PropTypes.func,
