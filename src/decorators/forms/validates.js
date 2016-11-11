@@ -217,6 +217,13 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         }
       }
 
+      onFocus() {
+        this.setState({
+          validationState: null,
+          messages: [],
+        });
+      }
+
       onBlur(e) {
         const originalValue = e.target.value;
 
@@ -318,6 +325,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       render() {
         const props = Object.assign({}, this.props, {
           onBlur: this.onBlur,
+          onFocus: this.onFocus,
           onChange: this.onChange,
           value: this.state.value,
         });
