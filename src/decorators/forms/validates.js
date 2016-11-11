@@ -342,6 +342,9 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       formatters: [],
       required: false,
     };
+
+    ValidatedComponent.contextTypes = {
+      _reduxForm: React.PropTypes.object,
     };
 
     ValidatedComponent.propTypes = {
