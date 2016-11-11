@@ -159,8 +159,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     const parentProps = Component.defaultProps;
 
     class ValidatedComponent extends React.Component {
-      constructor(props) {
-        super(props);
+      constructor(props, context) {
+        super(props, context);
 
         let formattedValue = '';
         if (props.value !== undefined && props.value !== null && props.value !== '') {
