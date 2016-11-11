@@ -6,7 +6,6 @@ import validator from 'validator';
 
 const verboseValidator = function verboseValidator(validation, value) {
   const messages = {
-    isRequired: 'This field is required.',
     isEmail: `The specified value "${value}" is not a valid email address.`,
     isNumeric: 'The specified value is not an integer.',
     isDecimal: 'The specified value is not a decimal.',
