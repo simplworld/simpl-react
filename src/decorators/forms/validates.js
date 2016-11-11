@@ -5,6 +5,9 @@ import validator from 'validator';
 
 
 const verboseValidator = function verboseValidator(validation, value) {
+  if (!value) {
+    return null;
+  }
   const messages = {
     isEmail: `The specified value "${value}" is not a valid email address.`,
     isNumeric: 'The specified value is not an integer.',
