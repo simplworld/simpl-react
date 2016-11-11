@@ -348,6 +348,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     };
 
     ValidatedComponent.propTypes = {
+      name: React.PropTypes.string,
       required: React.PropTypes.boolean,
       value: React.PropTypes.any,
       meta: React.PropTypes.object,
