@@ -1,3 +1,4 @@
+/* eslint "no-underscore-dangle": "off" */
 import React from 'react';
 
 import _ from 'lodash';
