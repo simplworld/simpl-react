@@ -1,19 +1,24 @@
+/* eslint "no-underscore-dangle": "off" */
 import React from 'react';
+import { stopSubmit } from 'redux-form';
 
 import _ from 'lodash';
 import validator from 'validator';
 
 
 const verboseValidator = function verboseValidator(validation, value) {
+  if (!value) {
+    return null;
+  }
   const messages = {
-    isRequired: 'This field is required.',
     isEmail: `The specified value "${value}" is not a valid email address.`,
     isNumeric: 'The specified value is not an integer.',
+    isDecimal: 'The specified value is not a decimal.',
     isLowercase: 'The specified value must be lowercase',
     isUppercase: 'The specified value must be uppercase',
   };
 
-  return validator[validation](value) ? undefined : messages[validation] || 'Invalid value';
+  return validator[validation](value) ? null : messages[validation] || 'Invalid value';
 };
 
 
@@ -27,15 +32,15 @@ const verboseValidator = function verboseValidator(validation, value) {
 const getInputProps = function getInputProps(props) {
   if (props.input) {
     // The component is called form a redux-form Field.
-    // Use the `Field` properties, but also remember to call original
-    // component's event handlers.
+    // Use the `Field` properties, but also remember the original
+    // component's event handlers and value.
     const overrides = {};
 
     ['onChange', 'onBlur', 'onFocus'].forEach((method) => {
       if (props[method]) {
-        const patched = (...args) => {
-          props[method](...args);
-          props.input[method](...args);
+        const patched = (e, formattedValue) => {
+          props[method](e);
+          props.input[method](formattedValue);
         };
         overrides[method] = patched;
       }
@@ -43,6 +48,9 @@ const getInputProps = function getInputProps(props) {
 
     if (props.type) {
       overrides.type = props.type;
+    }
+    if (!['', null].includes(props.value)) {
+      overrides.value = props.value;
     }
     return Object.assign({}, props.input, overrides);
   }
@@ -152,27 +160,33 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     const parentProps = Component.defaultProps;
 
     class ValidatedComponent extends React.Component {
-      constructor(props) {
-        super(props);
+      constructor(props, context) {
+        super(props, context);
 
         let formattedValue = '';
-        if (props.value !== undefined || props.value !== '') {
+        if (![undefined, null, ''].includes(props.value)) {
           formattedValue = this.format(props.value, this.mergedProps(this.props));
         }
         this.state = {
           messages: this.props.messages || [],
           validationState: null,
           value: formattedValue,
+          hasReduxForm: context._reduxForm !== undefined,
         };
         this.onChange = this.onChange.bind(this);
+        this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
       }
 
       componentWillReceiveProps(props) {
-        let formattedValue = '';
-        if (props.value !== this.props.value) {
-          if (props.value !== undefined || props.value !== '') {
-            formattedValue = this.format(props.value, this.mergedProps(props));
-          }
+        if (props.value === undefined) {
+          return;
+        }
+        let formattedValue;
+        if (![undefined, null, ''].includes(props.value)) {
+          formattedValue = this.format(props.value, this.mergedProps(props));
+        } else {
+          formattedValue = props.value;
         }
 
         // add errors/warnings coming from redux-form
@@ -197,14 +211,78 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       }
 
       onChange(e) {
+        this.setState({
+          value: e.target.value,
+        });
+
+        if (this.state.hasReduxForm) {
+        // Update the redux-form state is the field is decorated with `reduxForm'=
+          this.context._reduxForm.dispatch(
+            this.context._reduxForm.change(this.props.name, e.target.value)
+          );
+        }
+      }
+
+      onFocus() {
+        this.setState({
+          validationState: null,
+          messages: [],
+        });
+      }
+
+      onBlur(e) {
         const originalValue = e.target.value;
 
+        const { validationState, allErrors, allWarnings } = this.validate(originalValue);
+
+        const messages = [...allErrors, ...allWarnings];
+
+        const sanitizedValue = this.sanitize(originalValue, this.props);
+        const formattedValue = this.format(originalValue, this.mergedProps(this.props));
+
+        // If part of a redux form and there are errors, dispatch actions to
+        // mark the form as invalid. Warnings will still allow the form to be
+        // submitted.
+        if (this.state.hasReduxForm) {
+          if (sanitizedValue === null || allErrors.length > 0) {
+            const reduxFormErrors = { [this.props.name]: allErrors.join(', ') };
+            const formName = this.context._reduxForm.form;
+            this.context._reduxForm.dispatch(
+              stopSubmit(formName, reduxFormErrors)
+            );
+          }
+        }
+
+        if (formattedValue !== null) {
+          this.setState({
+            value: formattedValue,
+            validationState,
+            messages,
+          });
+        }
+        // the enetered value is invalid
+        if (sanitizedValue === null) {
+          return;
+        }
+
+        if (this.props.onBlur) {
+          const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });
+          const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });
+          this.props.onBlur(sanitizedEvent, formattedValue);
+        }
+      }
+
+      validate(originalValue) {
         const allErrors = this.mapValidators(
           [...this.props.errors, ...errorValidators], originalValue, this.props
         );
         const allWarnings = this.mapValidators(
           [...this.props.warnings, ...warningValidators], originalValue, this.props
         );
+
+        if (originalValue === '' && this.props.required === true) {
+          allErrors.push('This field is required.');
+        }
 
         let validationState = 'success';
         if (allErrors.length) {
@@ -213,19 +291,11 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           validationState = 'warning';
         }
 
-        const messages = [...allErrors, ...allWarnings];
-
-        const sanitizedValue = this.sanitize(originalValue, this.props);
-        const formattedValue = this.format(originalValue, this.mergedProps(this.props));
-
-        this.setState({
-          value: formattedValue,
+        return {
           validationState,
-          messages,
-        });
-        if (this.props.onChange) {
-          this.props.onChange(sanitizedValue);
-        }
+          allErrors,
+          allWarnings,
+        };
       }
 
       mergedProps(props) {
@@ -242,8 +312,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
               stringValue(value)
             );
           }
-          return undefined;
-        }).filter((result) => result !== undefined);
+          return null;
+        }).filter((result) => result !== null);
       }
 
       sanitize(value, props) {
@@ -255,12 +325,15 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         }
 
         const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {
-          if (_.isFunction(sanitizer)) {
-            return sanitizer(previousValue, props) || previousValue;
-          } else if (_.isString(sanitizer)) {
-            return validator[sanitizer](stringValue(previousValue)) || previousValue;
+          let sanitizerFunc = sanitizer;
+          if (_.isString(sanitizer)) {
+            sanitizerFunc = validator[sanitizer];
           }
-          return undefined;
+          const sanitized = sanitizerFunc(stringValue(previousValue));
+          if (isNaN(sanitized)) {
+            return null;
+          }
+          return sanitized !== null ? sanitized : previousValue;
         }, value);
         return sanitizedValue;
       }
@@ -275,7 +348,10 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
 
       render() {
         const props = Object.assign({}, this.props, {
+          onBlur: this.onBlur,
+          onFocus: this.onFocus,
           onChange: this.onChange,
+          value: [null, NaN].includes(this.state.value) ? '' : this.state.value,
         });
         const inputProps = getInputProps(props);
 
@@ -296,12 +372,20 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       warnings: [],
       sanitizers: [],
       formatters: [],
+      required: false,
+    };
+
+    ValidatedComponent.contextTypes = {
+      _reduxForm: React.PropTypes.object,
     };
 
     ValidatedComponent.propTypes = {
+      name: React.PropTypes.string.isRequired,
+      required: React.PropTypes.bool,
       value: React.PropTypes.any,
       meta: React.PropTypes.object,
       onChange: React.PropTypes.func,
+      onBlur: React.PropTypes.func,
       messages: React.PropTypes.array,
       errors: React.PropTypes.array,
       warnings: React.PropTypes.array,

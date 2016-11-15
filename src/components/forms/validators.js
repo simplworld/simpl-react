@@ -3,13 +3,13 @@
  *
  * @param      {string}  value     The value to validate
  * @param      {object}  ownProps  The component's own properties
- * @return     {string|undefined}  Either an error message, or `undefined`
+ * @return     {string|null}  Either an error message, or `null`
  */
 export const min = function min(value, ownProps) {
-  if (parseFloat(value) < ownProps.min) {
+  if (ownProps.min !== undefined && parseFloat(value) < ownProps.min) {
     return `Value can't be less than ${ownProps.min}.`;
   }
-  return undefined;
+  return null;
 };
 
 /**
@@ -17,11 +17,11 @@ export const min = function min(value, ownProps) {
  *
  * @param      {string}  value     The value to validate
  * @param      {object}  ownProps  The component's own properties
- * @return     {string|undefined}  Either an error message, or `undefined`
+ * @return     {string|null}  Either an error message, or `null`
  */
-export const max = function min(value, ownProps) {
-  if (parseFloat(value) > ownProps.max) {
+export const max = function max(value, ownProps) {
+  if (ownProps.max !== undefined && parseFloat(value) > ownProps.max) {
     return `Value can't be greater than ${ownProps.max}.`;
   }
-  return undefined;
+  return null;
 };

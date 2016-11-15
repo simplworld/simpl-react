@@ -4,8 +4,16 @@
  *
  * @param      {string}  value     The input value
  * @param      {object}  ownProps  The component's own properties
- * @return     {string}  The formatted valued
+ * @return     {string|null}  The formatted valued, or `null` if `value` is the
+ * emptry string.
  */
 export const decimalPlaces = function decimalPlaces(value, ownProps) {
-  return parseFloat(value).toFixed(ownProps.decimalPlaces);
+  if (value === '') {
+    return null;
+  }
+  const float = parseFloat(value);
+  if (isNaN(float)) {
+    return null;
+  }
+  return float.toFixed(ownProps.decimalPlaces);
 };
