@@ -11,6 +11,8 @@ import createLogger from 'redux-logger';
 
 import createHistory from 'history/lib/createBrowserHistory';
 
+console.info(createHistory);
+
 const loggerMiddleware = createLogger();
 
 // eslint-disable-next-line no-underscore-dangle
