@@ -218,13 +218,21 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
             this.context._reduxForm.change(this.props.name, e.target.value)
           );
         }
+
+        if (this.props.onChange) {
+          this.props.onChange(e);
+        }
       }
 
-      onFocus() {
+      onFocus(e) {
         this.setState({
           validationState: null,
           messages: [],
         });
+
+        if (this.props.onFocus) {
+          this.props.onFocus(e);
+        }
       }
 
       onBlur(e) {
