@@ -179,35 +179,32 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       }
 
       componentWillReceiveProps(props) {
-        if (props.value === undefined) {
+        // add value and errors/warnings coming from redux-form
+
+        if (_.isEqual(this.props, props)) {
           return;
         }
-        let formattedValue;
-        if (![undefined, null, ''].includes(props.value)) {
-          formattedValue = this.format(props.value, this.mergedProps(props));
-        } else {
-          formattedValue = props.value;
-        }
 
-        // add errors/warnings coming from redux-form
-        let validationState = this.state.validationState;
-        const messages = [...this.state.messages];
+        const newState = {
+          validationState: null,
+          messages: [],
+        };
+
+        if (props.value !== this.state.value) {
+          newState.value = this.format(props.value, this.mergedProps(props));
+        }
 
         if (props.meta) {
           if (props.meta.error) {
-            validationState = 'error';
-            messages.push(props.meta.error);
+            newState.validationState = 'error';
+            newState.messages.push(props.meta.error);
           } else if (props.meta.warning) {
-            validationState = 'warning';
-            messages.push(props.meta.warning);
+            newState.validationState = 'warning';
+            newState.messages.push(props.meta.warning);
           }
         }
 
-        this.setState({
-          value: formattedValue,
-          validationState,
-          messages,
-        });
+        this.setState(newState);
       }
 
       onChange(e) {
@@ -221,13 +218,21 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
             this.context._reduxForm.change(this.props.name, e.target.value)
           );
         }
+
+        if (this.props.onChange) {
+          this.props.onChange(e);
+        }
       }
 
-      onFocus() {
+      onFocus(e) {
         this.setState({
           validationState: null,
           messages: [],
         });
+
+        if (this.props.onFocus) {
+          this.props.onFocus(e);
+        }
       }
 
       onBlur(e) {
