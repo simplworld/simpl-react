@@ -24,6 +24,7 @@ const initial = {
   result: [],
   phase: [],
   role: [],
+  errors: []
 };
 
 const simpl = recycleState(createReducer(initial, {
@@ -146,6 +147,11 @@ const simpl = recycleState(createReducer(initial, {
       rolesLoaded: true,
       loaded,
     });
+  },
+  [SimplActions.showGenericError](state, action) {
+    const error = { msg: action.payload[0] };
+    const errors = [...state.errors, error];
+    return Object.assign({}, state, { errors });
   },
 }), `${StateActions.recycleState}`);
 
