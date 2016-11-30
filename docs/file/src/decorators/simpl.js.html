@@ -73,6 +73,7 @@ import { stopSubmit } from &apos;redux-form&apos;;
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
+  showGenericError,
 } from &apos;../actions/simpl&apos;;
 
 import { subscribes } from &apos;./pubsub/subscribes&apos;;
@@ -94,6 +95,7 @@ export function simpl(options = {}) {
 
     const mapStateToProps = (state) =&gt; ({
       simplLoaded: state.simpl.loaded,
+      errors: state.errors,
     });
 
     const mapDispatchToProps = (dispatch) =&gt; ({
@@ -119,9 +121,14 @@ export function simpl(options = {}) {
         return Promise.resolve();
       },
       onReceived(args, kwargs, event) {
-        if (event.topic.endsWith(`.error.form.${options.username}`)) {
-          const [form, errors] = args;
-          dispatch(stopSubmit(form, errors));
+        console.log(kwargs);
+        if (kwargs.error) {
+          if (kwargs.error === &apos;application.error.validation_error&apos;) {
+            const [form, errors] = args;
+            dispatch(stopSubmit(form, errors));
+          } else {
+            dispatch(showGenericError(args, kwargs));
+          }
         } else {
           const [pk, resourceName, data] = args;
           const resolvedTopics = optionsWithDefaults.topics.map(
@@ -166,7 +173,7 @@ export function simpl(options = {}) {
         `${topic}.remove_child`,
       ])
     , [
-      `model:error.form.${options.username}`,
+      `model:error.${options.username}`,
     ]);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 

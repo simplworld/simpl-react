@@ -110,6 +110,8 @@ export const getRoles = createNamedAction(&apos;GET_ROLES&apos;, (scope, ...args
   AutobahnReact.call(`${scope}.get_roles`, args)
 ));
 
+export const showGenericError = createNamedAction(&apos;SHOW_GENERIC_ERROR&apos;);
+
 // populate simpl.user space with current user&apos;s info
 export const getUserInfo = createNamedAction(&apos;GET_USER_INFO&apos;);
 
