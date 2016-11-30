@@ -21,7 +21,7 @@ function Input(props) {
       <InputGroup>
         <InputGroup.Addon>{props.currency}</InputGroup.Addon>
         <FormControl
-          {...props.inputProps}
+          {...props}
         />
       </InputGroup>
       {errors}

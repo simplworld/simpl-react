@@ -15,7 +15,7 @@ function Input(props) {
     >
       <InputGroup>
         <FormControl
-          {...props.inputProps}
+          {...props}
         />
       </InputGroup>
       {errors}
