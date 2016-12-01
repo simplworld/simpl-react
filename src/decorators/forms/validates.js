@@ -21,57 +21,6 @@ const verboseValidator = function verboseValidator(validation, value) {
   return validator[validation](value) ? null : messages[validation] || 'Invalid value';
 };
 
-
-/**
- * Given an object of `props`, returns an object containing only the `props`
- * supported by `input` elements.
- *
- * @param      {Object}  props   The original `props`
- * @return     {Object}  The props for the `input`.
- */
-const getInputProps = function getInputProps(props) {
-  if (props.input) {
-    // The component is called form a redux-form Field.
-    // Use the `Field` properties, but also remember the original
-    // component's event handlers and value.
-    const overrides = {};
-
-    ['onChange', 'onBlur', 'onFocus'].forEach((method) => {
-      if (props[method]) {
-        const patched = (e, formattedValue) => {
-          props[method](e);
-          props.input[method](formattedValue);
-        };
-        overrides[method] = patched;
-      }
-    });
-
-    if (props.type) {
-      overrides.type = props.type;
-    }
-    if (!['', null].includes(props.value)) {
-      overrides.value = props.value;
-    }
-    return Object.assign({}, props.input, overrides);
-  }
-  return {
-    type: props.type,
-    value: props.value,
-    name: props.name,
-    onChange: props.onChange,
-    onBlur: props.onBlur,
-    onFocus: props.onFocus,
-    placeholder: props.placeholder,
-    required: props.required,
-    disabled: props.disabled,
-    readOnly: props.readonly,
-    maxLength: props.maxlength,
-    min: props.min,
-    max: props.max,
-    step: props.step,
-  };
-};
-
 /**
  * Convert a value to a string, if possible. Otherwise returns the unchanged
  * value. `null` and `undefined` are coerced to the empty string.
@@ -164,8 +113,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         super(props, context);
 
         let formattedValue = '';
-        if (![undefined, null, ''].includes(props.value)) {
-          formattedValue = this.format(props.value, this.mergedProps(this.props));
+        if (![undefined, null, ''].includes(this.props.initialValue)) {
+          formattedValue = this.format(this.props.initialValue, this.mergedProps(this.props));
         }
         this.state = {
           messages: this.props.messages || [],
@@ -189,10 +138,6 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           validationState: null,
           messages: [],
         };
-
-        if (props.value !== this.state.value) {
-          newState.value = this.format(props.value, this.mergedProps(props));
-        }
 
         if (props.meta) {
           if (props.meta.error) {
@@ -265,7 +210,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
             messages,
           });
         }
-        // the enetered value is invalid
+        // the entered value is invalid
         if (sanitizedValue === null) {
           return;
         }
@@ -352,20 +297,14 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       }
 
       render() {
-        const props = Object.assign({}, this.props, {
-          onBlur: this.onBlur,
-          onFocus: this.onFocus,
-          onChange: this.onChange,
-          value: [null, NaN].includes(this.state.value) ? '' : this.state.value,
-        });
-        const inputProps = getInputProps(props);
-
         return (
           <span>
             <Component
-              inputProps={inputProps}
-              {...props}
               {...this.state}
+              onChange={this.onChange}
+              onBlur={this.onBlur}
+              onFocus={this.onFocus}
+              type={this.props.type}
             />
           </span>
         );
@@ -387,10 +326,12 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     ValidatedComponent.propTypes = {
       name: React.PropTypes.string.isRequired,
       required: React.PropTypes.bool,
-      value: React.PropTypes.any,
+      initialValue: React.PropTypes.any,
+      type: React.PropTypes.string,
       meta: React.PropTypes.object,
       onChange: React.PropTypes.func,
       onBlur: React.PropTypes.func,
+      onFocus: React.PropTypes.func,
       messages: React.PropTypes.array,
       errors: React.PropTypes.array,
       warnings: React.PropTypes.array,
