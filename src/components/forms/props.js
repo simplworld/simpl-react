@@ -35,3 +35,19 @@ export const reduxFormPropTypes = {
   submitting: React.PropTypes.bool,
   handleSubmit: React.PropTypes.func,
 };
+
+
+export function getInputProps(props) {
+  return {
+    value: props.value,
+    type: props.type,
+    min: props.min,
+    max: props.max,
+    step: props.step,
+    readOnly: props.readOnly,
+    required: props.required,
+    onBlur: props.onBlur,
+    onChange: props.onChange,
+    onFocus: props.onFocus,
+  };
+}

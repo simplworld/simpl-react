@@ -181,6 +181,13 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       }
 
       onBlur(e) {
+        if (this.props.readOnly === true) {
+          if (this.props.onBlur) {
+            this.props.onBlur(e);
+          }
+          return;
+        }
+
         const originalValue = e.target.value;
 
         const { validationState, allErrors, allWarnings } = this.validate(originalValue);
@@ -305,6 +312,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               type={this.props.type}
+              required={this.props.required}
+              readOnly={this.props.readOnly}
             />
           </span>
         );
@@ -317,6 +326,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       sanitizers: [],
       formatters: [],
       required: false,
+      readOnly: false,
     };
 
     ValidatedComponent.contextTypes = {
@@ -326,6 +336,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     ValidatedComponent.propTypes = {
       name: React.PropTypes.string.isRequired,
       required: React.PropTypes.bool,
+      readOnly: React.PropTypes.bool,
       initialValue: React.PropTypes.any,
       type: React.PropTypes.string,
       meta: React.PropTypes.object,

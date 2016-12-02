@@ -2,7 +2,7 @@ import React from 'react';
 import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
 import { validateField } from '../../decorators/forms/validates';
-import { inputPropTypes } from './props';
+import { inputPropTypes, getInputProps } from './props';
 
 
 function Input(props) {
@@ -15,7 +15,7 @@ function Input(props) {
       <InputGroup>
         <InputGroup.Addon>@</InputGroup.Addon>
         <FormControl
-          {...props}
+          {...getInputProps(props)}
         />
       </InputGroup>
       {errors}
