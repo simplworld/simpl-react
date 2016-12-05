@@ -74,7 +74,7 @@ import React from &apos;react&apos;;
 import { FormControl, FormGroup, HelpBlock, InputGroup } from &apos;react-bootstrap&apos;;
 
 import { validateField } from &apos;../../decorators/forms/validates&apos;;
-import { inputPropTypes } from &apos;./props&apos;;
+import { inputPropTypes, getInputProps } from &apos;./props&apos;;
 import { min, max } from &apos;./validators&apos;;
 import { decimalPlaces } from &apos;./formatters&apos;;
 
@@ -89,7 +89,7 @@ function Input(props) {
       &lt;InputGroup&gt;
         &lt;InputGroup.Addon&gt;{props.currency}&lt;/InputGroup.Addon&gt;
         &lt;FormControl
-          {...props}
+          {...getInputProps(props)}
         /&gt;
       &lt;/InputGroup&gt;
       {errors}
