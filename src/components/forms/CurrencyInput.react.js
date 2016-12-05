@@ -6,7 +6,7 @@ import React from 'react';
 import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
 import { validateField } from '../../decorators/forms/validates';
-import { inputPropTypes } from './props';
+import { inputPropTypes, getInputProps } from './props';
 import { min, max } from './validators';
 import { decimalPlaces } from './formatters';
 
@@ -21,7 +21,7 @@ function Input(props) {
       <InputGroup>
         <InputGroup.Addon>{props.currency}</InputGroup.Addon>
         <FormControl
-          {...props}
+          {...getInputProps(props)}
         />
       </InputGroup>
       {errors}
