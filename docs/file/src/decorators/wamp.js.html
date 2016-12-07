@@ -70,6 +70,7 @@
 
 import AutobahnReact from &apos;../autobahn&apos;;
 
+import Progress from &apos;../components/Progress.react&apos;;
 
 /**
  * @function
@@ -81,21 +82,22 @@ export function wamp(options = {}) {
       url: &apos;ws://localhost:8080/ws&apos;,
       realm: &apos;realm1&apos;,
       prefixes: {},
+      progressComponent: Progress,
     };
-    const optionsWithDefaults = Object.assign(defaults, {}, options);
+    const optionsWithDefaults = Object.assign({}, defaults, options);
 
     class WampContainer extends React.Component {
       constructor(props) {
         super(props);
         this.state = {
-          connected: false,
+          progress: &apos;offline&apos;,
         };
       }
       componentWillMount() {
         // Callback called whenever the connection is lost
         AutobahnReact.Connection.onLost(() =&gt; {
           console.log(&apos;Connection lost :/!&apos;);
-          this.setState({ connected: false });
+          this.setState({ progress: &apos;offline&apos; });
         });
         // Callback called whenever the connection is ready
       // eslint-disable-next-line no-unused-vars
@@ -105,7 +107,7 @@ export function wamp(options = {}) {
             const value = optionsWithDefaults.prefixes[key];
             console.log(&apos;added prefix: &apos;, key, value);
             session.prefix(key, value);
-            this.setState({ connected: true });
+            this.setState({ progress: &apos;connected&apos; });
           });
         });
         AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
@@ -125,10 +127,18 @@ export function wamp(options = {}) {
         }
       }
       render() {
-        if (!this.state.connected) {
-          return (&lt;div&gt;Connecting...&lt;/div&gt;);
+        if (this.state.progress === &apos;offline&apos;) {
+          return (
+            &lt;div className={`wamp wamp-${this.state.progress}`}&gt;
+              &lt;optionsWithDefaults.progressComponent {...this.props} {...this.state} /&gt;
+            &lt;/div&gt;
+          );
         }
-        return &lt;Component {...this.props} {...this.state} /&gt;;
+        return (
+          &lt;div className={`wamp wamp-${this.state.progress}`}&gt;
+            &lt;Component {...this.props} {...this.state} /&gt;
+          &lt;/div&gt;
+        );
       }
     }
 

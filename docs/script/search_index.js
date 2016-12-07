@@ -516,6 +516,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/components/progress.react.js",
+    "file/src/components/Progress.react.js.html",
+    "src/components/Progress.react.js",
+    "file"
+  ],
+  [
     "src/components/rpccaller.react.js",
     "file/src/components/RPCCaller.react.js.html",
     "src/components/RPCCaller.react.js",

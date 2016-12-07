@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/decorators/simpl.js | Simpl-react API Document</title>
+  <title data-ice="title">src/components/Progress.react.js | Simpl-react API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -65,193 +65,17 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/decorators/simpl.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/components/Progress.react.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 
-import { connect } from &apos;react-redux&apos;;
-import { stopSubmit } from &apos;redux-form&apos;;
-import {
-  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
-  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
-  // eslint-disable-next-line comma-dangle
-  showGenericError
-} from &apos;../actions/simpl&apos;;
 
-import Progress from &apos;../components/Progress.react&apos;;
-
-import { subscribes } from &apos;./pubsub/subscribes&apos;;
-import { wamp } from &apos;./wamp&apos;;
-import _ from &apos;lodash&apos;;
-import AutobahnReact from &apos;../autobahn&apos;;
-
-/**
- * Decorator to wrap your main app
- * @example
- * export default simpl({
- *   username: &apos;username&apos;,
- *   password: &apos;password&apos;,
- *   url: &apos;ws://example.com/ws&apos;,
- *   progressComponent: MyProgressComponent,
- *   topics: () =&gt; [&apos;topic1&apos;, &apos;topic2&apos;],
- *   prefixes: {
- *     model: &apos;org.example.namespace&apos;
- *   }
- * })(MyComponent);
-
- * @function
- * @memberof Simpl.decorators
- * @param {Object} options - An object of options.
- * @param {string} options.username - The username for authenticating on the WAMP Router.
- * @param {string} options.password - The password for authenticating on the WAMP Router.
- * @param {string} options.url - The URL of the WAMP router.
- * @param {function} [options.progressComponent] - A customized Component to show
- * the App&apos;s connection state. The component will receive a `progress` prop which
- * can have one of the following values:
- * * `offline`: The initial value. The app is not connected to the WAMP Router, yet.
- * * `connected`: The app is connected and authenticated, but it still needs to download data.
- * * `loaded`: The app has downloaded all the relevant data.
- * @param {function} options.topics - A function return a list of topic to subsribe to.
- * @param {Object} [options.prefixes] - An object mapping names to topic prefixes,
- * to be used as shortcuts.
- */
-export function simpl(options) {
-  return (Component) =&gt; {
-    const optionsWithDefaults = Object.assign({}, {
-      progressComponent: Progress,
-    }, options);
-    if (_.isFunction(options.topics)) {
-      optionsWithDefaults.topics = options.topics();
-    }
-
-    const mapStateToProps = (state, ownProps) =&gt; ({
-      progress: state.simpl.loaded === true ? &apos;loaded&apos; : ownProps.progress,
-      errors: state.errors,
-      progressComponent: optionsWithDefaults.progressComponent,
-    });
-
-    const mapDispatchToProps = (dispatch) =&gt; ({
-      onReady() {
-        if (optionsWithDefaults.topics) {
-          optionsWithDefaults.topics.forEach((topic) =&gt; {
-            dispatch(connectedScope(topic));
-            dispatch(getRunUsers(topic));
-            dispatch(getCurrentRunPhase(topic));
-            dispatch(getDataTree(topic));
-          });
-        }
-        dispatch(getPhases(&apos;model:model.game&apos;));
-        dispatch(getRoles(&apos;model:model.game&apos;));
-        return Promise.resolve();
-      },
-      onLeave() {
-        if (optionsWithDefaults.topics) {
-          optionsWithDefaults.topics.forEach((topic) =&gt; {
-            dispatch(disconnectedScope(topic));
-          });
-        }
-        return Promise.resolve();
-      },
-      onReceived(args, kwargs, event) {
-        if (kwargs.error) {
-          if (kwargs.error === &apos;application.error.validation_error&apos;) {
-            const [form, errors] = args;
-            dispatch(stopSubmit(form, errors));
-          } else {
-            dispatch(showGenericError(args, kwargs));
-          }
-        } else {
-          const [pk, resourceName, data] = args;
-          const resolvedTopics = optionsWithDefaults.topics.map(
-            (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
-          );
-          resolvedTopics.forEach((topic) =&gt; {
-            const actions = {
-              [`${topic}.add_child`]: addChild,
-              [`${topic}.remove_child`]: removeChild,
-              [`${topic}.update_child`]: updateScope,
-            };
-            if (actions[event.topic]) {
-              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
-            }
-          });
-        }
-      },
-    });
-
-
-    class AppContainer extends React.Component {
-
-      shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.progress === &apos;loaded&apos;) {
-          return false;
-        }
-        return this.props !== nextProps || this.state !== nextState;
-      }
-      render() {
-        return &lt;Component {...this.props} {...this.state} /&gt;;
-      }
-    }
-
-    AppContainer.propTypes = {
-      progress: React.PropTypes.string.isRequired,
-    };
-
-
-    const appTopics = optionsWithDefaults.topics.reduce(
-      (memo, topic) =&gt; memo.concat([
-        `${topic}.add_child`,
-        `${topic}.update_child`,
-        `${topic}.remove_child`,
-      ])
-    , [
-      `model:error.${options.username}`,
-    ]);
-    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
-
-    // eslint-disable-next-line react/no-multi-comp
-    class Simpl extends React.Component {
-      componentWillMount() {
-        this.props.onReady();
-        window.addEventListener(&apos;beforeunload&apos;, this.props.onLeave);
-      }
-      componentWillUnmount() {
-        window.removeEventListener(&apos;beforeunload&apos;, this.props.onLeave);
-      }
-      render() {
-        if (this.props.progress !== &apos;loaded&apos;) {
-          return (
-            &lt;div className={`simpl simpl-${this.props.progress}`}&gt;
-              &lt;this.props.progressComponent {...this.props} {...this.state} /&gt;
-            &lt;/div&gt;
-            );
-        }
-        return (
-          &lt;div className={`simpl simpl-${this.props.progress}`}&gt;
-            &lt;SubscribedAppContainer {...this.props} {...this.state} /&gt;
-          &lt;/div&gt;
-        );
-      }
-    }
-
-    Simpl.propTypes = {
-      progress: React.PropTypes.string.isRequired,
-      onLeave: React.PropTypes.func,
-      onReady: React.PropTypes.func.isRequired,
-      progressComponent: React.PropTypes.func.isRequired,
-    };
-
-    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
-    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);
-
-    return WampContainer;
-  };
+function Progress(props) {
+  const text = props.progress === &apos;offline&apos; ? &apos;Connecting&#x2026;&apos; : &apos;Loading data&#x2026;&apos;;
+  return (&lt;div&gt;{text}&lt;/div&gt;);
 }
 
-/**
- * @namespace simpl
- * @memberof Simpl.decorators
- */
-export default simpl;
+
+export default Progress;
 </code></pre>
 
 </div>

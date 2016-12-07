@@ -289,13 +289,14 @@ Use this to create an option that&apos;s usable from within a reducer.</p>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="function/index.html#static-function-simpl">simpl</a></span></span><span data-ice="signature">(options: {}): <span>*</span></span>
+           <span data-ice="name"><span><a href="function/index.html#static-function-simpl">simpl</a></span></span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Decorator to wrap your main app</p>
+</div>
       </div>
     </td>
     <td>
@@ -1019,18 +1020,19 @@ emptry string.</p>
     
     
     
-    <span data-ice="name">simpl</span><span data-ice="signature">(options: {}): <span>*</span></span>
+    <span data-ice="name">simpl</span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/decorators/simpl.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/decorators/simpl.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {simpl} from &apos;<span><a href="file/src/decorators/simpl.js.html#lineNumber21">simpl/lib/decorators/simpl</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {simpl} from &apos;<span><a href="file/src/decorators/simpl.js.html#lineNumber49">simpl/lib/decorators/simpl</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Decorator to wrap your main app</p>
+</div>
 
   
 
@@ -1044,10 +1046,60 @@ emptry string.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">options</td>
-      <td data-ice="type">{}</td>
-      <td data-ice="appendix"><ul><li>optional</li>
-<li>default: {}</li></ul></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>An object of options.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.username</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The username for authenticating on the WAMP Router.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.password</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The password for authenticating on the WAMP Router.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.url</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The URL of the WAMP router.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.progressComponent</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>A customized Component to show
+the App&apos;s connection state. The component will receive a <code>progress</code> prop which
+can have one of the following values:</p>
+<ul>
+<li><code>offline</code>: The initial value. The app is not connected to the WAMP Router, yet.</li>
+<li><code>connected</code>: The app is connected and authenticated, but it still needs to download data.</li>
+<li><code>loaded</code>: The app has downloaded all the relevant data.</li>
+</ul>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.topics</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">function</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>A function return a list of topic to subsribe to.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.prefixes</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li></ul></td>
+      <td data-ice="description"><p>An object mapping names to topic prefixes,
+to be used as shortcuts.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1072,7 +1124,23 @@ emptry string.</p>
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">export default simpl({
+  username: &apos;username&apos;,
+  password: &apos;password&apos;,
+  url: &apos;ws://example.com/ws&apos;,
+  progressComponent: MyProgressComponent,
+  topics: () =&gt; [&apos;topic1&apos;, &apos;topic2&apos;],
+  prefixes: {
+    model: &apos;org.example.namespace&apos;
+  }
+})(MyComponent);</code></pre>
+    </div>
+</div>
 
   
 
@@ -1360,11 +1428,11 @@ class MyComponent extends React.Component {
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/decorators/wamp.js.html#lineNumber10">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/decorators/wamp.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {wamp} from &apos;<span><a href="file/src/decorators/wamp.js.html#lineNumber10">simpl/lib/decorators/wamp</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {wamp} from &apos;<span><a href="file/src/decorators/wamp.js.html#lineNumber11">simpl/lib/decorators/wamp</a></span>&apos;</code></pre></div>
   
   
   
