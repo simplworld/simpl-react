@@ -1,4 +1,4 @@
-import actions from '../lib/utils/actions'
+import actions from '../lib/utils/actions';
 
 describe('Actions', () => {
   it('test stringify', () => {
@@ -9,5 +9,5 @@ describe('Actions', () => {
     const named = actions.createNamedAction("NAME")
     expect(named.toString()).toEqual("NAME")
     expect(named()).toEqual({type: "NAME"})
-  })
-})
+  });
+});

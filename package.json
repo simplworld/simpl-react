@@ -9,7 +9,8 @@
     "lib": "lib/"
   },
   "scripts": {
-    "test": "karma start",
+    "test": "jest",
+    "karma": "karma start",
     "watch": "gulp watch",
     "docs": "rm -rf docs && esdoc -c esdoc.json",
     "compile": "npm run docs && rm -rf lib && babel src --out-dir lib"
@@ -61,10 +62,10 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
-    "enzyme": "^2.2.0",
     "babel-register": "^6.18.0",
     "babelify": "^7.2.0",
     "browserify": "^13.1.1",
+    "enzyme": "^2.6.0",
     "esdoc": "^0.4.8",
     "esdoc-es7-plugin": "0.0.3",
     "esdoc-importpath-plugin": "0.0.1",
@@ -83,6 +84,7 @@
     "gulp-watch": "^4.3.11",
     "html-loader": "^0.4.3",
     "jasmine-core": "^2.4.1",
+    "jest": "^17.0.3",
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
     "karma-babel-preprocessor": "^6.0.1",
@@ -109,6 +111,11 @@
           "sourceMapRelative": "$PWD/src"
         }
       ]
+    ]
+  },
+  "jest": {
+    "testPathDirs": [
+      "test"
     ]
   },
   "author": "",
