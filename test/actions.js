@@ -8,6 +8,6 @@ describe('Actions', () => {
   it('test createNamedAction', () => {
     const named = actions.createNamedAction("NAME")
     expect(named.toString()).toEqual("NAME")
-    expect(named()).toEqual({type: "NAME", payload: undefined})
+    expect(named()).toEqual({type: "NAME"})
   })
 })
