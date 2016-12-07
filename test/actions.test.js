@@ -1,4 +1,4 @@
-import actions from '../lib/utils/actions';
+import actions from '../src/utils/actions';
 
 describe('Actions', () => {
   it('test stringify', () => {
