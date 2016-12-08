@@ -40,6 +40,7 @@ export const reduxFormPropTypes = {
 export function getInputProps(props) {
   return {
     value: props.value,
+    name: props.name,
     type: props.type,
     min: props.min,
     max: props.max,
