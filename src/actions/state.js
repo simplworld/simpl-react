@@ -1,6 +1,6 @@
 import { createNamedAction } from '../utils/actions';
 
-export const recyleStateAction = createNamedAction('RECYCLE_STATE');
+export const recyleStateAction = createNamedAction('simpl/RECYCLE_STATE');
 
 /**
  * @namespace state
