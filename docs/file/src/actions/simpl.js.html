@@ -73,8 +73,8 @@ import AutobahnReact from &apos;../autobahn&apos;;
  * action creators
  */
 
-export const addChild = createNamedAction(&apos;CHILD_ADD&apos;);
-export const removeChild = createNamedAction(&apos;CHILD_REMOVE&apos;);
+export const addChild = createNamedAction(&apos;simpl/CHILD_ADD&apos;);
+export const removeChild = createNamedAction(&apos;simpl/CHILD_REMOVE&apos;);
 
 /**
  * Given a scope&apos;s topic return a recursive representation of that scope and its
@@ -84,36 +84,36 @@ export const removeChild = createNamedAction(&apos;CHILD_REMOVE&apos;);
  * @param {string} scope - the scope&apos;s topic
  * @returns {NamedReduxAction}
  */
-export const getDataTree = createNamedAction(&apos;DATATREE_GET&apos;, (scope, ...args) =&gt; (
+export const getDataTree = createNamedAction(&apos;simpl/DATATREE_GET&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_scope_tree`, args)
 ));
-export const getRunUsers = createNamedAction(&apos;RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
+export const getRunUsers = createNamedAction(&apos;simpl/RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_active_runusers`, args)
 ));
-export const updateScope = createNamedAction(&apos;SCOPE_UPDATE&apos;);
-export const connectedScope = createNamedAction(&apos;SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
+export const updateScope = createNamedAction(&apos;simpl/SCOPE_UPDATE&apos;);
+export const connectedScope = createNamedAction(&apos;simpl/SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
   AutobahnReact.publish(`${scope}.connected`, args)
 ));
-export const disconnectedScope = createNamedAction(&apos;SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
+export const disconnectedScope = createNamedAction(&apos;simpl/SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
   AutobahnReact.publish(`${scope}.disconnected`, args)
 ));
 
-export const getCurrentRunPhase = createNamedAction(&apos;CURRENT_RUN&apos;, (scope, ...args) =&gt; (
+export const getCurrentRunPhase = createNamedAction(&apos;simpl/CURRENT_RUN&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)
 ));
 
-export const getPhases = createNamedAction(&apos;GET_PHASES&apos;, (scope, ...args) =&gt; (
+export const getPhases = createNamedAction(&apos;simpl/GET_PHASES&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_phases`, args)
 ));
 
-export const getRoles = createNamedAction(&apos;GET_ROLES&apos;, (scope, ...args) =&gt; (
+export const getRoles = createNamedAction(&apos;simpl/GET_ROLES&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_roles`, args)
 ));
 
-export const showGenericError = createNamedAction(&apos;SHOW_GENERIC_ERROR&apos;);
+export const showGenericError = createNamedAction(&apos;simpl/SHOW_GENERIC_ERROR&apos;);
 
 // populate simpl.user space with current user&apos;s info
-export const getUserInfo = createNamedAction(&apos;GET_USER_INFO&apos;);
+export const getUserInfo = createNamedAction(&apos;simpl/GET_USER_INFO&apos;);
 
 
 /**

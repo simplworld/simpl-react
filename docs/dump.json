@@ -84,7 +84,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createNamedAction } from '../utils/actions';\n\n/*\n * action creators\n */\n\nexport const appendMessage = createNamedAction('MESSAGE_APPEND');\nexport const updateMessage = createNamedAction('MESSAGE_UPDATE');\n\n\n/**\n * @namespace messages\n * @memberof Simpl.actions\n */\nexport default {\n  appendMessage,\n  updateMessage,\n};\n"
+    "content": "import { createNamedAction } from '../utils/actions';\n\n/*\n * action creators\n */\n\nexport const appendMessage = createNamedAction('simpl/MESSAGE_APPEND');\nexport const updateMessage = createNamedAction('simpl/MESSAGE_UPDATE');\n\n\n/**\n * @namespace messages\n * @memberof Simpl.actions\n */\nexport default {\n  appendMessage,\n  updateMessage,\n};\n"
   },
   {
     "__docId__": 5,
@@ -139,7 +139,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createNamedAction } from '../utils/actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createNamedAction('CHILD_ADD');\nexport const removeChild = createNamedAction('CHILD_REMOVE');\n\n/**\n * Given a scope's topic return a recursive representation of that scope and its\n * children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createNamedAction('DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\nexport const getRunUsers = createNamedAction('RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\nexport const updateScope = createNamedAction('SCOPE_UPDATE');\nexport const connectedScope = createNamedAction('SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\nexport const disconnectedScope = createNamedAction('SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createNamedAction('CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createNamedAction('GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createNamedAction('GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\nexport const showGenericError = createNamedAction('SHOW_GENERIC_ERROR');\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createNamedAction('GET_USER_INFO');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n};\n"
+    "content": "import { createNamedAction } from '../utils/actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createNamedAction('simpl/CHILD_ADD');\nexport const removeChild = createNamedAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic return a recursive representation of that scope and its\n * children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createNamedAction('simpl/DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\nexport const getRunUsers = createNamedAction('simpl/RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\nexport const updateScope = createNamedAction('simpl/SCOPE_UPDATE');\nexport const connectedScope = createNamedAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\nexport const disconnectedScope = createNamedAction('simpl/SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createNamedAction('simpl/CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createNamedAction('simpl/GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createNamedAction('simpl/GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\nexport const showGenericError = createNamedAction('simpl/SHOW_GENERIC_ERROR');\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createNamedAction('simpl/GET_USER_INFO');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n};\n"
   },
   {
     "__docId__": 8,
@@ -437,7 +437,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createNamedAction } from '../utils/actions';\n\nexport const recyleStateAction = createNamedAction('RECYCLE_STATE');\n\n/**\n * @namespace state\n * @memberof Simpl.actions\n */\nexport default {\n  recyleStateAction,\n};\n"
+    "content": "import { createNamedAction } from '../utils/actions';\n\nexport const recyleStateAction = createNamedAction('simpl/RECYCLE_STATE');\n\n/**\n * @namespace state\n * @memberof Simpl.actions\n */\nexport default {\n  recyleStateAction,\n};\n"
   },
   {
     "__docId__": 21,
@@ -1745,7 +1745,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "/**\n * A React Component.\n * @typedef {object} ReactElement\n */\nimport forms from './forms';\nimport RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\n\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  forms,\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n};\n"
+    "content": "/**\n * A React Component.\n * @typedef {object} ReactElement\n */\nimport forms from './forms';\nimport RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\nimport Progress from './Progress.react';\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  forms,\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n  Progress,\n};\n"
   },
   {
     "__docId__": 76,

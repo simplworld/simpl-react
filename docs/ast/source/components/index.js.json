@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 377,
+  "end": 429,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 21,
+      "line": 22,
       "column": 0
     }
   },
@@ -304,13 +304,80 @@
         "value": "./TopicSubscriber.react",
         "rawValue": "./TopicSubscriber.react",
         "raw": "'./TopicSubscriber.react'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 244,
+      "end": 284,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 40
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 251,
+          "end": 259,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 7
+            },
+            "end": {
+              "line": 9,
+              "column": 15
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 251,
+            "end": 259,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 7
+              },
+              "end": {
+                "line": 9,
+                "column": 15
+              }
+            },
+            "name": "Progress"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 265,
+        "end": 283,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 21
+          },
+          "end": {
+            "line": 9,
+            "column": 39
+          }
+        },
+        "value": "./Progress.react",
+        "rawValue": "./Progress.react",
+        "raw": "'./Progress.react'"
       },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace components\n * @memberof Simpl\n ",
-          "start": 246,
-          "end": 297,
+          "start": 286,
+          "end": 337,
           "loc": {
             "start": {
               "line": 11,
@@ -322,45 +389,45 @@
             }
           },
           "range": [
-            246,
-            297
+            286,
+            337
           ]
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 298,
-      "end": 376,
+      "start": 338,
+      "end": 428,
       "loc": {
         "start": {
           "line": 15,
           "column": 0
         },
         "end": {
-          "line": 20,
+          "line": 21,
           "column": 2
         }
       },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 313,
-        "end": 375,
+        "start": 353,
+        "end": 427,
         "loc": {
           "start": {
             "line": 15,
             "column": 15
           },
           "end": {
-            "line": 20,
+            "line": 21,
             "column": 1
           }
         },
         "properties": [
           {
             "type": "Property",
-            "start": 317,
-            "end": 322,
+            "start": 357,
+            "end": 362,
             "loc": {
               "start": {
                 "line": 16,
@@ -376,8 +443,8 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 317,
-              "end": 322,
+              "start": 357,
+              "end": 362,
               "loc": {
                 "start": {
                   "line": 16,
@@ -394,8 +461,8 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 317,
-              "end": 322,
+              "start": 357,
+              "end": 362,
               "loc": {
                 "start": {
                   "line": 16,
@@ -411,8 +478,8 @@
                 {
                   "type": "Block",
                   "value": "*\n * @namespace components\n * @memberof Simpl\n ",
-                  "start": 246,
-                  "end": 297,
+                  "start": 286,
+                  "end": 337,
                   "loc": {
                     "start": {
                       "line": 11,
@@ -424,8 +491,8 @@
                     }
                   },
                   "range": [
-                    246,
-                    297
+                    286,
+                    337
                   ]
                 }
               ]
@@ -434,8 +501,8 @@
           },
           {
             "type": "Property",
-            "start": 326,
-            "end": 335,
+            "start": 366,
+            "end": 375,
             "loc": {
               "start": {
                 "line": 17,
@@ -451,8 +518,8 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 326,
-              "end": 335,
+              "start": 366,
+              "end": 375,
               "loc": {
                 "start": {
                   "line": 17,
@@ -468,8 +535,8 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 326,
-              "end": 335,
+              "start": 366,
+              "end": 375,
               "loc": {
                 "start": {
                   "line": 17,
@@ -485,8 +552,8 @@
           },
           {
             "type": "Property",
-            "start": 339,
-            "end": 353,
+            "start": 379,
+            "end": 393,
             "loc": {
               "start": {
                 "line": 18,
@@ -502,8 +569,8 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 339,
-              "end": 353,
+              "start": 379,
+              "end": 393,
               "loc": {
                 "start": {
                   "line": 18,
@@ -519,8 +586,8 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 339,
-              "end": 353,
+              "start": 379,
+              "end": 393,
               "loc": {
                 "start": {
                   "line": 18,
@@ -536,8 +603,8 @@
           },
           {
             "type": "Property",
-            "start": 357,
-            "end": 372,
+            "start": 397,
+            "end": 412,
             "loc": {
               "start": {
                 "line": 19,
@@ -553,8 +620,8 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 357,
-              "end": 372,
+              "start": 397,
+              "end": 412,
               "loc": {
                 "start": {
                   "line": 19,
@@ -570,8 +637,8 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 357,
-              "end": 372,
+              "start": 397,
+              "end": 412,
               "loc": {
                 "start": {
                   "line": 19,
@@ -584,14 +651,65 @@
               },
               "name": "TopicSubscriber"
             }
+          },
+          {
+            "type": "Property",
+            "start": 416,
+            "end": 424,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 2
+              },
+              "end": {
+                "line": 20,
+                "column": 10
+              }
+            },
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "key": {
+              "type": "Identifier",
+              "start": 416,
+              "end": 424,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 10
+                }
+              },
+              "name": "Progress"
+            },
+            "kind": "init",
+            "value": {
+              "type": "Identifier",
+              "start": 416,
+              "end": 424,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 10
+                }
+              },
+              "name": "Progress"
+            }
           }
         ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace components\n * @memberof Simpl\n ",
-            "start": 246,
-            "end": 297,
+            "start": 286,
+            "end": 337,
             "loc": {
               "start": {
                 "line": 11,
@@ -603,8 +721,8 @@
               }
             },
             "range": [
-              246,
-              297
+              286,
+              337
             ]
           }
         ],
@@ -614,8 +732,8 @@
         {
           "type": "Block",
           "value": "*\n * @namespace components\n * @memberof Simpl\n ",
-          "start": 246,
-          "end": 297,
+          "start": 286,
+          "end": 337,
           "loc": {
             "start": {
               "line": 11,
@@ -627,8 +745,8 @@
             }
           },
           "range": [
-            246,
-            297
+            286,
+            337
           ]
         }
       ]
