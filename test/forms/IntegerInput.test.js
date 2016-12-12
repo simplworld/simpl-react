@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { reduxFormPropTypes } from '../../src/components/forms/props';
-import DecimalInput from '../../src/components/forms/DecimalInput.react';
+import IntegerInput from '../../src/components/forms/IntegerInput.react';
 import { Provider } from 'react-redux';
 
 import store from '../store';
@@ -16,7 +16,7 @@ function MyForm(props) {
     <form>
       <Field
         name="decimal"
-        component={DecimalInput}
+        component={IntegerInput}
         initialValue={props.initialValue}
         min={props.min}
         max={props.max}
@@ -51,23 +51,12 @@ function setup() {
 }
 
 
-describe('DecimalInput', () => {
+describe('IntegerInput', () => {
   it('format correctly', () => {
     const { enzymeWrapper } = setup();
     const input = enzymeWrapper.find('input');
 
-    expect(input.prop('value')).toEqual('2.00');
-
-    input.node.value = '5';
-
-    // Formatting does not happen on change, but on blur
-    input.simulate('change');
-    // make sure the original value is still there
-    expect(input.node.value).toEqual('5');
-
-    input.simulate('blur');
-    // value is now formatted
-    expect(input.node.value).toEqual('5.00');
+    expect(input.prop('value')).toEqual(2);
   });
 
   it('validates', () => {
@@ -87,6 +76,10 @@ describe('DecimalInput', () => {
     input.simulate('blur');
     expect(input.node.value).toEqual('not a number');
     expect(enzymeWrapper.find('.help-block').length).toEqual(1);
+
+    // errors should disappear on focus
+    input.simulate('focus');
+    expect(enzymeWrapper.find('.help-block').length).toEqual(0);
 
     // Submitting button should now be disabled
     expect(enzymeWrapper.find('button[type="submit"]').prop('disabled')).toEqual(true);
