@@ -26,7 +26,7 @@ const verboseValidator = function verboseValidator(validation, value) {
  * value. `null` and `undefined` are coerced to the empty string.
  *
  * @param      {any}   value   The value to coerced
- * @return     {any}  Either the value converted to a string, or the vlaue itself.
+ * @return     {any}  Either the value converted to a string, or the value itself.
  */
 const stringValue = function stringValue(value) {
   if (value === null || value === undefined) return '';
