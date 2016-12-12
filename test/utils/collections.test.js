@@ -1,4 +1,4 @@
-import collections from '../src/utils/collections';
+import collections from '../../src/utils/collections';
 
 describe('Collections', () => {
   it('test updateInCollection', () => {
