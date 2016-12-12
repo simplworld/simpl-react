@@ -4,7 +4,7 @@ import { reduxFormPropTypes } from '../../src/components/forms/props';
 import IntegerInput from '../../src/components/forms/IntegerInput.react';
 import { Provider } from 'react-redux';
 
-import store from '../store';
+import store from '../../src/test/store';
 
 import { reduxForm, Field } from 'redux-form';
 
