@@ -33,7 +33,11 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/TopicPublisher.react.js~TopicPublisher.html">TopicPublisher</a></span></span></li>
@@ -59,6 +63,7 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">decorators/rpc</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-calls">calls</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">test</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
 </ul>
@@ -77,8 +82,8 @@ export const addChild = createNamedAction(&apos;simpl/CHILD_ADD&apos;);
 export const removeChild = createNamedAction(&apos;simpl/CHILD_REMOVE&apos;);
 
 /**
- * Given a scope&apos;s topic return a recursive representation of that scope and its
- * children.
+ * Given a scope&apos;s topic, returns a recursive representation of that scope and
+ * its children.
  * @function
  * @memberof Simpl.actions.simpl
  * @param {string} scope - the scope&apos;s topic
@@ -87,13 +92,55 @@ export const removeChild = createNamedAction(&apos;simpl/CHILD_REMOVE&apos;);
 export const getDataTree = createNamedAction(&apos;simpl/DATATREE_GET&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_scope_tree`, args)
 ));
+
+/**
+ * Given a scope&apos;s topic, returns a list of runusers that belong to the scope.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {string} scope - the scope&apos;s topic
+ * @returns {NamedReduxAction}
+ */
 export const getRunUsers = createNamedAction(&apos;simpl/RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_active_runusers`, args)
 ));
+
+
+/**
+ * Update the scope in the redux state with the received payload.
+ *
+ * The payload
+ * must contain a `resource_name` property (eg: `&apos;decision&apos;`, `&apos;result&apos;`, etc.)
+ * and a `pk` property, to properly identify the correct scope to be updated.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {object} scope - the scope&apos;s JSON representation
+ * @returns {NamedReduxAction}
+ */
 export const updateScope = createNamedAction(&apos;simpl/SCOPE_UPDATE&apos;);
+
+
+/**
+ * Dispatched when the client is ready to listen to a specific scope.
+ *
+ * Currently only used for debugging purposes.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {string} scope - the scope&apos;s topic
+ * @returns {NamedReduxAction}
+ */
 export const connectedScope = createNamedAction(&apos;simpl/SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
   AutobahnReact.publish(`${scope}.connected`, args)
 ));
+
+/**
+ * Dispatched when the client gets disconnected and can&apos;t listen to the scope.
+ *
+ * Currently only used for debugging purposes.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {string} scope - the scope&apos;s topic
+ * @returns {NamedReduxAction}
+ */
 export const disconnectedScope = createNamedAction(&apos;simpl/SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
   AutobahnReact.publish(`${scope}.disconnected`, args)
 ));

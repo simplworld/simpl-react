@@ -72,6 +72,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "simpl/lib/actions/simpl~connectedscope",
+    "variable/index.html#static-variable-connectedScope",
+    "<span>connectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/utils/actions~createnamedaction",
     "function/index.html#static-function-createNamedAction",
     "<span>createNamedAction</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions</span>",
@@ -84,6 +90,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "simpl/lib/actions/simpl~disconnectedscope",
+    "variable/index.html#static-variable-disconnectedScope",
+    "<span>disconnectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/stores~finalcreatestorefactory",
     "function/index.html#static-function-finalCreateStoreFactory",
     "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores</span>",
@@ -93,6 +105,12 @@ window.esdocSearchIndex = [
     "simpl/lib/actions/simpl~getdatatree",
     "variable/index.html#static-variable-getDataTree",
     "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/actions/simpl~getrunusers",
+    "variable/index.html#static-variable-getRunUsers",
+    "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
@@ -132,10 +150,22 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "simpl/lib/test/store~store",
+    "variable/index.html#static-variable-store",
+    "<span>store</span> <span class=\"search-result-import-path\">simpl/lib/test/store</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/decorators/pubsub/subscribes~subscribes",
     "function/index.html#static-function-subscribes",
     "<span>subscribes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/subscribes</span>",
     "function"
+  ],
+  [
+    "simpl/lib/actions/simpl~updatescope",
+    "variable/index.html#static-variable-updateScope",
+    "<span>updateScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
   ],
   [
     "simpl/lib/decorators/forms/validates~validatefield",
@@ -729,6 +759,18 @@ window.esdocSearchIndex = [
     "src/stores.js",
     "file/src/stores.js.html",
     "src/stores.js",
+    "file"
+  ],
+  [
+    "src/test/index.js",
+    "file/src/test/index.js.html",
+    "src/test/index.js",
+    "file"
+  ],
+  [
+    "src/test/store.js",
+    "file/src/test/store.js.html",
+    "src/test/store.js",
     "file"
   ],
   [

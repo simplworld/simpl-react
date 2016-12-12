@@ -139,7 +139,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createNamedAction } from '../utils/actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createNamedAction('simpl/CHILD_ADD');\nexport const removeChild = createNamedAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic return a recursive representation of that scope and its\n * children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createNamedAction('simpl/DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\nexport const getRunUsers = createNamedAction('simpl/RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\nexport const updateScope = createNamedAction('simpl/SCOPE_UPDATE');\nexport const connectedScope = createNamedAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\nexport const disconnectedScope = createNamedAction('simpl/SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createNamedAction('simpl/CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createNamedAction('simpl/GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createNamedAction('simpl/GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\nexport const showGenericError = createNamedAction('simpl/SHOW_GENERIC_ERROR');\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createNamedAction('simpl/GET_USER_INFO');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n};\n"
+    "content": "import { createNamedAction } from '../utils/actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createNamedAction('simpl/CHILD_ADD');\nexport const removeChild = createNamedAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic, returns a recursive representation of that scope and\n * its children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createNamedAction('simpl/DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\n\n/**\n * Given a scope's topic, returns a list of runusers that belong to the scope.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getRunUsers = createNamedAction('simpl/RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\n\n\n/**\n * Update the scope in the redux state with the received payload.\n *\n * The payload\n * must contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\n * and a `pk` property, to properly identify the correct scope to be updated.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {object} scope - the scope's JSON representation\n * @returns {NamedReduxAction}\n */\nexport const updateScope = createNamedAction('simpl/SCOPE_UPDATE');\n\n\n/**\n * Dispatched when the client is ready to listen to a specific scope.\n *\n * Currently only used for debugging purposes.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const connectedScope = createNamedAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\n\n/**\n * Dispatched when the client gets disconnected and can't listen to the scope.\n *\n * Currently only used for debugging purposes.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const disconnectedScope = createNamedAction('simpl/SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createNamedAction('simpl/CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createNamedAction('simpl/GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createNamedAction('simpl/GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\nexport const showGenericError = createNamedAction('simpl/SHOW_GENERIC_ERROR');\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createNamedAction('simpl/GET_USER_INFO');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n};\n"
   },
   {
     "__docId__": 8,
@@ -195,7 +195,7 @@
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{getDataTree}",
-    "description": "Given a scope's topic return a recursive representation of that scope and its\nchildren.",
+    "description": "Given a scope's topic, returns a recursive representation of that scope and\nits children.",
     "lineNumber": 19,
     "unknown": [
       {
@@ -249,9 +249,42 @@
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{getRunUsers}",
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
+    "description": "Given a scope's topic, returns a list of runusers that belong to the scope.",
+    "lineNumber": 30,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.actions.simpl"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "{NamedReduxAction}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "scope",
+        "description": "the scope's topic"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NamedReduxAction"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -270,9 +303,42 @@
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{updateScope}",
-    "description": null,
-    "lineNumber": 25,
-    "undocument": true,
+    "description": "Update the scope in the redux state with the received payload.\n\nThe payload\nmust contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\nand a `pk` property, to properly identify the correct scope to be updated.",
+    "lineNumber": 46,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.actions.simpl"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "{NamedReduxAction}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "scope",
+        "description": "the scope's JSON representation"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NamedReduxAction"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -291,9 +357,42 @@
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{connectedScope}",
-    "description": null,
-    "lineNumber": 26,
-    "undocument": true,
+    "description": "Dispatched when the client is ready to listen to a specific scope.\n\nCurrently only used for debugging purposes.",
+    "lineNumber": 58,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.actions.simpl"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "{NamedReduxAction}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "scope",
+        "description": "the scope's topic"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NamedReduxAction"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -312,9 +411,42 @@
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{disconnectedScope}",
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
+    "description": "Dispatched when the client gets disconnected and can't listen to the scope.\n\nCurrently only used for debugging purposes.",
+    "lineNumber": 71,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.actions.simpl"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "{NamedReduxAction}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "scope",
+        "description": "the scope's topic"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NamedReduxAction"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -334,7 +466,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{getCurrentRunPhase}",
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 75,
     "undocument": true,
     "type": {
       "types": [
@@ -355,7 +487,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{getPhases}",
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 79,
     "undocument": true,
     "type": {
       "types": [
@@ -376,7 +508,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{getRoles}",
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 83,
     "undocument": true,
     "type": {
       "types": [
@@ -397,7 +529,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{showGenericError}",
     "description": null,
-    "lineNumber": 45,
+    "lineNumber": 87,
     "undocument": true,
     "type": {
       "types": [
@@ -418,7 +550,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{getUserInfo}",
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 90,
     "undocument": true,
     "type": {
       "types": [
@@ -1790,7 +1922,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "/* eslint \"no-underscore-dangle\": \"off\" */\nimport React from 'react';\nimport { stopSubmit } from 'redux-form';\n\nimport _ from 'lodash';\nimport validator from 'validator';\n\n\nconst verboseValidator = function verboseValidator(validation, value) {\n  if (!value) {\n    return null;\n  }\n  const messages = {\n    isEmail: `The specified value \"${value}\" is not a valid email address.`,\n    isNumeric: 'The specified value is not an integer.',\n    isDecimal: 'The specified value is not a decimal.',\n    isLowercase: 'The specified value must be lowercase',\n    isUppercase: 'The specified value must be uppercase',\n  };\n\n  return validator[validation](value) ? null : messages[validation] || 'Invalid value';\n};\n\n/**\n * Convert a value to a string, if possible. Otherwise returns the unchanged\n * value. `null` and `undefined` are coerced to the empty string.\n *\n * @param      {any}   value   The value to coerced\n * @return     {any}  Either the value converted to a string, or the vlaue itself.\n */\nconst stringValue = function stringValue(value) {\n  if (value === null || value === undefined) return '';\n  return value.toString !== undefined ? value.toString() : value;\n};\n\n/**\n * Options to validate a component\n * @typedef {Object} ValidationOptions\n * @property      {Array<string, function>}   errors  An array of validators\n * that may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   warnings   An array of validators\n * that may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   sanitizers  An array of saniters\n * to modify the field's returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<function>}           formatters  An array of saniters\n * to modify the field's rendered value.\n */\n\n/**\n * Add value validation to a single field.\n * @memberof Simpl.decorators.forms\n * @example\n * import React from 'react';\n *\n * import {validates} from 'simpl/lib/decorators/forms/validates';\n * import {FormControl} from 'react-bootstrap';\n *\n * const noSpam = (value, ownProps) => {\n *     // validation logic goes here\n *     if (value.endsWith('@spam.com')) {\n *         return \"that's spam\"\n *     }\n * };\n *\n * const itsNew = (value, ownProps) => {\n *     if (value === ownProps.previousEmail) {\n *         return \"email didn't change\"\n *     }\n * };\n *\n * function EmailField(props) {\n *     // all aestethics goes here\n *     return (\n *         <FormControl\n *             type=\"email\"\n *             {...props}\n *         />\n *     )\n * }\n *\n * const ValidatingEmailField = validateField({\n *     errors: ['isEmail', noSpam],\n *     warnings: [itsNew]\n * )(EmailField);\n *\n * class MyComponent extends React.Component {\n *     render() {\n *         return(\n *             <div>\n *                 <ValidatingEmailField\n *                     previousEmail=\"my@email.com\"\n *                     errors={['isRequired']}\n *                 />\n *             </div>\n *         );\n *     }\n * }\n *\n * @param      {ValidationOptions}  options  An object of options\n * @returns    {ReactElement} A React component.\n */\nexport function validateField({ errors, warnings, sanitizers, formatters }) {\n  const errorValidators = errors || [];\n  const warningValidators = warnings || [];\n  const optionsSanitizers = sanitizers || [];\n  const optionsFormatters = formatters || [];\n\n  return (Component) => {\n    const parentProps = Component.defaultProps;\n\n    class ValidatedComponent extends React.Component {\n      constructor(props, context) {\n        super(props, context);\n\n        let formattedValue = '';\n        if (![undefined, null, ''].includes(this.props.initialValue)) {\n          formattedValue = this.format(this.props.initialValue, this.mergedProps(this.props));\n        }\n        this.state = {\n          messages: this.props.messages || [],\n          validationState: null,\n          value: formattedValue,\n          hasReduxForm: context._reduxForm !== undefined,\n        };\n        this.onChange = this.onChange.bind(this);\n        this.onBlur = this.onBlur.bind(this);\n        this.onFocus = this.onFocus.bind(this);\n      }\n\n      componentWillReceiveProps(props) {\n        // add value and errors/warnings coming from redux-form\n\n        if (_.isEqual(this.props, props)) {\n          return;\n        }\n\n        const newState = {\n          validationState: null,\n          messages: [],\n        };\n\n        if (props.meta) {\n          if (props.meta.error) {\n            newState.validationState = 'error';\n            newState.messages.push(props.meta.error);\n          } else if (props.meta.warning) {\n            newState.validationState = 'warning';\n            newState.messages.push(props.meta.warning);\n          }\n        }\n\n        this.setState(newState);\n      }\n\n      onChange(e) {\n        this.setState({\n          value: e.target.value,\n        });\n\n        if (this.state.hasReduxForm) {\n        // Update the redux-form state is the field is decorated with `reduxForm'=\n          this.context._reduxForm.dispatch(\n            this.context._reduxForm.change(this.props.name, e.target.value)\n          );\n        }\n\n        if (this.props.onChange) {\n          this.props.onChange(e);\n        }\n      }\n\n      onFocus(e) {\n        this.setState({\n          validationState: null,\n          messages: [],\n        });\n\n        if (this.props.onFocus) {\n          this.props.onFocus(e);\n        }\n      }\n\n      onBlur(e) {\n        if (this.props.readOnly === true) {\n          if (this.props.onBlur) {\n            this.props.onBlur(e);\n          }\n          return;\n        }\n\n        const originalValue = e.target.value;\n\n        const { validationState, allErrors, allWarnings } = this.validate(originalValue);\n\n        const messages = [...allErrors, ...allWarnings];\n\n        const sanitizedValue = this.sanitize(originalValue, this.props);\n        const formattedValue = this.format(originalValue, this.mergedProps(this.props));\n\n        // If part of a redux form and there are errors, dispatch actions to\n        // mark the form as invalid. Warnings will still allow the form to be\n        // submitted.\n        if (this.state.hasReduxForm) {\n          if (sanitizedValue === null || allErrors.length > 0) {\n            const reduxFormErrors = { [this.props.name]: allErrors.join(', ') };\n            const formName = this.context._reduxForm.form;\n            this.context._reduxForm.dispatch(\n              stopSubmit(formName, reduxFormErrors)\n            );\n          }\n        }\n\n        if (formattedValue !== null) {\n          this.setState({\n            value: formattedValue,\n            validationState,\n            messages,\n          });\n        }\n        // the entered value is invalid\n        if (sanitizedValue === null) {\n          return;\n        }\n\n        if (this.props.onBlur) {\n          const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });\n          const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });\n          this.props.onBlur(sanitizedEvent, formattedValue);\n        }\n      }\n\n      validate(originalValue) {\n        const allErrors = this.mapValidators(\n          [...this.props.errors, ...errorValidators], originalValue, this.props\n        );\n        const allWarnings = this.mapValidators(\n          [...this.props.warnings, ...warningValidators], originalValue, this.props\n        );\n\n        if (originalValue === '' && this.props.required === true) {\n          allErrors.push('This field is required.');\n        }\n\n        let validationState = 'success';\n        if (allErrors.length) {\n          validationState = 'error';\n        } else if (allWarnings.length) {\n          validationState = 'warning';\n        }\n\n        return {\n          validationState,\n          allErrors,\n          allWarnings,\n        };\n      }\n\n      mergedProps(props) {\n        return Object.assign({}, parentProps, props);\n      }\n\n      mapValidators(validators, value, props) {\n        return validators.map((validation) => {\n          if (_.isFunction(validation)) {\n            return validation(value, props);\n          } else if (_.isString(validation)) {\n            return verboseValidator(\n              validation,\n              stringValue(value)\n            );\n          }\n          return null;\n        }).filter((result) => result !== null);\n      }\n\n      sanitize(value, props) {\n        const allSanitizers = [...props.sanitizers, ...optionsSanitizers];\n\n        // `redux-form` commpatibility\n        if (props.normalize) {\n          allSanitizers.push(props.normalize);\n        }\n\n        const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {\n          let sanitizerFunc = sanitizer;\n          if (_.isString(sanitizer)) {\n            sanitizerFunc = validator[sanitizer];\n          }\n          const sanitized = sanitizerFunc(stringValue(previousValue));\n          if (isNaN(sanitized)) {\n            return null;\n          }\n          return sanitized !== null ? sanitized : previousValue;\n        }, value);\n        return sanitizedValue;\n      }\n\n      format(value, props) {\n        const allFormatters = [...props.formatters, ...optionsFormatters];\n        const formattedValue = allFormatters.reduce(\n          (previousValue, formatter) => formatter(previousValue, props) || previousValue\n        , value);\n        return formattedValue;\n      }\n\n      render() {\n        return (\n          <span>\n            <Component\n              {...this.state}\n              onChange={this.onChange}\n              onBlur={this.onBlur}\n              onFocus={this.onFocus}\n              type={this.props.type}\n              name={this.props.name}\n              required={this.props.required}\n              readOnly={this.props.readOnly}\n            />\n          </span>\n        );\n      }\n    }\n\n    ValidatedComponent.defaultProps = {\n      errors: [],\n      warnings: [],\n      sanitizers: [],\n      formatters: [],\n      required: false,\n      readOnly: false,\n    };\n\n    ValidatedComponent.contextTypes = {\n      _reduxForm: React.PropTypes.object,\n    };\n\n    ValidatedComponent.propTypes = {\n      name: React.PropTypes.string.isRequired,\n      required: React.PropTypes.bool,\n      readOnly: React.PropTypes.bool,\n      initialValue: React.PropTypes.any,\n      type: React.PropTypes.string,\n      meta: React.PropTypes.object,\n      onChange: React.PropTypes.func,\n      onBlur: React.PropTypes.func,\n      onFocus: React.PropTypes.func,\n      messages: React.PropTypes.array,\n      errors: React.PropTypes.array,\n      warnings: React.PropTypes.array,\n      sanitizers: React.PropTypes.array,\n      formatters: React.PropTypes.arrayOf(React.PropTypes.func),\n    };\n\n    return ValidatedComponent;\n  };\n}\n\nexport default validateField;\n"
+    "content": "/* eslint \"no-underscore-dangle\": \"off\" */\nimport React from 'react';\nimport { stopSubmit } from 'redux-form';\n\nimport _ from 'lodash';\nimport validator from 'validator';\n\n\nconst verboseValidator = function verboseValidator(validation, value) {\n  if (!value) {\n    return null;\n  }\n  const messages = {\n    isEmail: `The specified value \"${value}\" is not a valid email address.`,\n    isNumeric: 'The specified value is not an integer.',\n    isDecimal: 'The specified value is not a decimal.',\n    isLowercase: 'The specified value must be lowercase',\n    isUppercase: 'The specified value must be uppercase',\n  };\n\n  return validator[validation](value) ? null : messages[validation] || 'Invalid value';\n};\n\n/**\n * Convert a value to a string, if possible. Otherwise returns the unchanged\n * value. `null` and `undefined` are coerced to the empty string.\n *\n * @param      {any}   value   The value to coerced\n * @return     {any}  Either the value converted to a string, or the value itself.\n */\nconst stringValue = function stringValue(value) {\n  if (value === null || value === undefined) return '';\n  return value.toString !== undefined ? value.toString() : value;\n};\n\n/**\n * Options to validate a component\n * @typedef {Object} ValidationOptions\n * @property      {Array<string, function>}   errors  An array of validators\n * that may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   warnings   An array of validators\n * that may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   sanitizers  An array of saniters\n * to modify the field's returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<function>}           formatters  An array of saniters\n * to modify the field's rendered value.\n */\n\n/**\n * Add value validation to a single field.\n * @memberof Simpl.decorators.forms\n * @example\n * import React from 'react';\n *\n * import {validates} from 'simpl/lib/decorators/forms/validates';\n * import {FormControl} from 'react-bootstrap';\n *\n * const noSpam = (value, ownProps) => {\n *     // validation logic goes here\n *     if (value.endsWith('@spam.com')) {\n *         return \"that's spam\"\n *     }\n * };\n *\n * const itsNew = (value, ownProps) => {\n *     if (value === ownProps.previousEmail) {\n *         return \"email didn't change\"\n *     }\n * };\n *\n * function EmailField(props) {\n *     // all aestethics goes here\n *     return (\n *         <FormControl\n *             type=\"email\"\n *             {...props}\n *         />\n *     )\n * }\n *\n * const ValidatingEmailField = validateField({\n *     errors: ['isEmail', noSpam],\n *     warnings: [itsNew]\n * )(EmailField);\n *\n * class MyComponent extends React.Component {\n *     render() {\n *         return(\n *             <div>\n *                 <ValidatingEmailField\n *                     previousEmail=\"my@email.com\"\n *                     errors={['isRequired']}\n *                 />\n *             </div>\n *         );\n *     }\n * }\n *\n * @param      {ValidationOptions}  options  An object of options\n * @returns    {ReactElement} A React component.\n */\nexport function validateField({ errors, warnings, sanitizers, formatters }) {\n  const errorValidators = errors || [];\n  const warningValidators = warnings || [];\n  const optionsSanitizers = sanitizers || [];\n  const optionsFormatters = formatters || [];\n\n  return (Component) => {\n    const parentProps = Component.defaultProps;\n\n    class ValidatedComponent extends React.Component {\n      constructor(props, context) {\n        super(props, context);\n\n        let formattedValue = '';\n        if (![undefined, null, ''].includes(this.props.initialValue)) {\n          formattedValue = this.format(this.props.initialValue, this.mergedProps(this.props));\n        }\n        this.state = {\n          messages: this.props.messages || [],\n          validationState: null,\n          value: formattedValue,\n          hasReduxForm: context._reduxForm !== undefined,\n        };\n        this.onChange = this.onChange.bind(this);\n        this.onBlur = this.onBlur.bind(this);\n        this.onFocus = this.onFocus.bind(this);\n      }\n\n      componentWillReceiveProps(props) {\n        // add value and errors/warnings coming from redux-form\n\n        if (_.isEqual(this.props, props)) {\n          return;\n        }\n\n        const newState = {\n          validationState: null,\n          messages: [],\n        };\n\n        if (props.meta) {\n          if (props.meta.error) {\n            newState.validationState = 'error';\n            newState.messages.push(props.meta.error);\n          } else if (props.meta.warning) {\n            newState.validationState = 'warning';\n            newState.messages.push(props.meta.warning);\n          }\n        }\n\n        this.setState(newState);\n      }\n\n      onChange(e) {\n        this.setState({\n          value: e.target.value,\n        });\n\n        if (this.state.hasReduxForm) {\n        // Update the redux-form state is the field is decorated with `reduxForm'=\n          this.context._reduxForm.dispatch(\n            this.context._reduxForm.change(this.props.name, e.target.value)\n          );\n        }\n\n        if (this.props.onChange) {\n          this.props.onChange(e);\n        }\n      }\n\n      onFocus(e) {\n        this.setState({\n          validationState: null,\n          messages: [],\n        });\n\n        if (this.props.onFocus) {\n          this.props.onFocus(e);\n        }\n      }\n\n      onBlur(e) {\n        if (this.props.readOnly === true) {\n          if (this.props.onBlur) {\n            this.props.onBlur(e);\n          }\n          return;\n        }\n\n        const originalValue = e.target.value;\n\n        const { validationState, allErrors, allWarnings } = this.validate(originalValue);\n\n        const messages = [...allErrors, ...allWarnings];\n\n        const sanitizedValue = this.sanitize(originalValue, this.props);\n        const formattedValue = this.format(originalValue, this.mergedProps(this.props));\n\n        // If part of a redux form and there are errors, dispatch actions to\n        // mark the form as invalid. Warnings will still allow the form to be\n        // submitted.\n        if (this.state.hasReduxForm) {\n          if (sanitizedValue === null || allErrors.length > 0) {\n            const reduxFormErrors = { [this.props.name]: allErrors.join(', ') };\n            const formName = this.context._reduxForm.form;\n            this.context._reduxForm.dispatch(\n              stopSubmit(formName, reduxFormErrors)\n            );\n          }\n        }\n\n        if (formattedValue !== null) {\n          this.setState({\n            value: formattedValue,\n            validationState,\n            messages,\n          });\n        }\n        // the entered value is invalid\n        if (sanitizedValue === null) {\n          return;\n        }\n\n        if (this.props.onBlur) {\n          const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });\n          const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });\n          this.props.onBlur(sanitizedEvent, formattedValue);\n        }\n      }\n\n      validate(originalValue) {\n        const allErrors = this.mapValidators(\n          [...this.props.errors, ...errorValidators], originalValue, this.props\n        );\n        const allWarnings = this.mapValidators(\n          [...this.props.warnings, ...warningValidators], originalValue, this.props\n        );\n\n        if (originalValue === '' && this.props.required === true) {\n          allErrors.push('This field is required.');\n        }\n\n        let validationState = 'success';\n        if (allErrors.length) {\n          validationState = 'error';\n        } else if (allWarnings.length) {\n          validationState = 'warning';\n        }\n\n        return {\n          validationState,\n          allErrors,\n          allWarnings,\n        };\n      }\n\n      mergedProps(props) {\n        return Object.assign({}, parentProps, props);\n      }\n\n      mapValidators(validators, value, props) {\n        return validators.map((validation) => {\n          if (_.isFunction(validation)) {\n            return validation(value, props);\n          } else if (_.isString(validation)) {\n            return verboseValidator(\n              validation,\n              stringValue(value)\n            );\n          }\n          return null;\n        }).filter((result) => result !== null);\n      }\n\n      sanitize(value, props) {\n        const allSanitizers = [...props.sanitizers, ...optionsSanitizers];\n\n        // `redux-form` commpatibility\n        if (props.normalize) {\n          allSanitizers.push(props.normalize);\n        }\n\n        const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {\n          let sanitizerFunc = sanitizer;\n          if (_.isString(sanitizer)) {\n            sanitizerFunc = validator[sanitizer];\n          }\n          const sanitized = sanitizerFunc(stringValue(previousValue));\n          if (isNaN(sanitized)) {\n            return null;\n          }\n          return sanitized !== null ? sanitized : previousValue;\n        }, value);\n        return sanitizedValue;\n      }\n\n      format(value, props) {\n        const allFormatters = [...props.formatters, ...optionsFormatters];\n        const formattedValue = allFormatters.reduce(\n          (previousValue, formatter) => formatter(previousValue, props) || previousValue\n        , value);\n        return formattedValue;\n      }\n\n      render() {\n        return (\n          <span>\n            <Component\n              {...this.state}\n              onChange={this.onChange}\n              onBlur={this.onBlur}\n              onFocus={this.onFocus}\n              type={this.props.type}\n              name={this.props.name}\n              required={this.props.required}\n              readOnly={this.props.readOnly}\n            />\n          </span>\n        );\n      }\n    }\n\n    ValidatedComponent.defaultProps = {\n      errors: [],\n      warnings: [],\n      sanitizers: [],\n      formatters: [],\n      required: false,\n      readOnly: false,\n    };\n\n    ValidatedComponent.contextTypes = {\n      _reduxForm: React.PropTypes.object,\n    };\n\n    ValidatedComponent.propTypes = {\n      name: React.PropTypes.string.isRequired,\n      required: React.PropTypes.bool,\n      readOnly: React.PropTypes.bool,\n      initialValue: React.PropTypes.any,\n      type: React.PropTypes.string,\n      meta: React.PropTypes.object,\n      onChange: React.PropTypes.func,\n      onBlur: React.PropTypes.func,\n      onFocus: React.PropTypes.func,\n      messages: React.PropTypes.array,\n      errors: React.PropTypes.array,\n      warnings: React.PropTypes.array,\n      sanitizers: React.PropTypes.array,\n      formatters: React.PropTypes.arrayOf(React.PropTypes.func),\n    };\n\n    return ValidatedComponent;\n  };\n}\n\nexport default validateField;\n"
   },
   {
     "__docId__": 79,
@@ -1860,7 +1992,7 @@
         "any"
       ],
       "spread": false,
-      "description": "Either the value converted to a string, or the vlaue itself."
+      "description": "Either the value converted to a string, or the value itself."
     },
     "generator": false
   },
@@ -2984,6 +3116,113 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/test/index.js",
+    "memberof": null,
+    "longname": "src/test/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import store from './store';\n\n\n/**\n * @namespace test\n * @memberof Simpl\n */\nexport default {\n  store,\n};\n"
+  },
+  {
+    "__docId__": 124,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/test/store.js",
+    "memberof": null,
+    "longname": "src/test/store.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { finalCreateStoreFactory } from '../stores';\nimport { simplReducers } from '../reducers/combined';\n\nconst rootReducer = simplReducers({});\n\n\nfunction configureStore(initialState) {\n  const finalCreateStore = finalCreateStoreFactory('production');\n  const store = finalCreateStore(rootReducer, initialState);\n\n  return store;\n}\n\n/**\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n */\nexport const store = configureStore();\n\nexport default store;\n"
+  },
+  {
+    "__docId__": 125,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "rootReducer",
+    "memberof": "src/test/store.js",
+    "longname": "src/test/store.js~rootReducer",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/test/store",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 126,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "configureStore",
+    "memberof": "src/test/store.js",
+    "longname": "src/test/store.js~configureStore",
+    "access": null,
+    "export": false,
+    "importPath": "simpl/lib/test/store",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "initialState",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 127,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "store",
+    "memberof": "src/test/store.js",
+    "longname": "src/test/store.js~store",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/test/store",
+    "importStyle": "{store}",
+    "description": "A minimal, pre-configured store that can be used for testing.",
+    "lineNumber": 20,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": "store"
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.test"
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/utils/actions.js",
     "memberof": null,
     "longname": "src/utils/actions.js",
@@ -2993,7 +3232,7 @@
     "content": "/**\n * @namespace actions\n * @memberof Simpl.utils\n */\nimport { createAction } from 'redux-actions';\n\n\nexport function stringify(name, arg) {\n  /* eslint no-param-reassign: \"off\" */\n  arg.toString = () => name;\n  return arg;\n}\n\n/**\n *  An action that's serializable to the provided action name.\n * @typedef {function} NamedReduxAction\n * @param {string} type - A unique name for the action\n * @param {function|undefined} [action] - Logic to perform before this action\n * will make it to the reducer.\n * @property {function} toString() - return the action's name.\n*/\n\n/**\n * Shortcut function to create an action that's serializable to a string and usable\n * as an object property.\n * Use this to create an option that's usable from within a reducer.\n * @function\n * @memberof Simpl.utils.actions\n * @param {string} type - A unique name for the action\n * @param {spread} args - Additional arguments to pass to redux-actions.createAction.\n * @returns {NamedReduxAction}\n */\nexport function createNamedAction(type, ...args) {\n  return stringify(type, createAction(type, ...args));\n}\n\nexport default {\n  stringify,\n  createNamedAction,\n};\n"
   },
   {
-    "__docId__": 124,
+    "__docId__": 129,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3029,7 +3268,7 @@
     "generator": false
   },
   {
-    "__docId__": 125,
+    "__docId__": 130,
     "kind": "typedef",
     "static": true,
     "variation": null,
@@ -3082,7 +3321,7 @@
     }
   },
   {
-    "__docId__": 126,
+    "__docId__": 131,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3142,7 +3381,7 @@
     "generator": false
   },
   {
-    "__docId__": 127,
+    "__docId__": 132,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3155,7 +3394,7 @@
     "content": "export function updateInCollection(collection, index, updates) {\n  if (index === undefined || index === null || index >= collection.length) {\n    return [...collection, Object.assign({}, updates)];\n  }\n  return [\n    ...collection.slice(0, index),\n    Object.assign({}, collection[index], updates),\n    ...collection.slice(index + 1),\n  ];\n}\n\nexport function updateCollection(collection, updates) {\n  return collection.map((item) => Object.assign({}, item, updates));\n}\n\nexport function popAtIndex(collection, index) {\n  if (index < 0) {\n    return collection.slice(0, index);\n  }\n  return [\n    ...collection.slice(0, index),\n    ...collection.slice(index + 1, collection.length),\n  ];\n}\n\n\nexport default {\n  updateInCollection,\n  updateCollection,\n  popAtIndex,\n};\n"
   },
   {
-    "__docId__": 128,
+    "__docId__": 133,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3197,7 +3436,7 @@
     "generator": false
   },
   {
-    "__docId__": 129,
+    "__docId__": 134,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3233,7 +3472,7 @@
     "generator": false
   },
   {
-    "__docId__": 130,
+    "__docId__": 135,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3269,7 +3508,7 @@
     "generator": false
   },
   {
-    "__docId__": 131,
+    "__docId__": 136,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3282,7 +3521,7 @@
     "content": "import actions from './actions';\nimport collections from './collections';\nimport reducers from './reducers';\n\n\n/**\n * @namespace utils\n * @memberof Simpl\n */\nexport default {\n  actions,\n  collections,\n  reducers,\n};\n"
   },
   {
-    "__docId__": 132,
+    "__docId__": 137,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3295,7 +3534,7 @@
     "content": "import { updateInCollection } from './collections';\n\n\nexport function updateObjectOrCollection(state, action, updates) {\n  let collection;\n\n  if (action.payload.key !== undefined) {\n    collection = updateInCollection(state, action.payload.key, updates);\n  } else {\n    collection = Object.assign({}, state, updates);\n  }\n  return collection;\n}\n\nexport default {\n  updateObjectOrCollection,\n};\n"
   },
   {
-    "__docId__": 133,
+    "__docId__": 138,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3337,7 +3576,7 @@
     "generator": false
   },
   {
-    "__docId__": 135,
+    "__docId__": 140,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3350,7 +3589,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 136,
+    "__docId__": 141,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3363,7 +3602,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 137,
+    "__docId__": 142,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3376,7 +3615,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 143,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3389,7 +3628,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 144,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3402,7 +3641,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 145,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3415,7 +3654,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 146,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3428,7 +3667,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 147,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3441,7 +3680,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 148,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3454,7 +3693,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 149,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3467,7 +3706,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 150,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3480,7 +3719,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 151,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3493,7 +3732,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 147,
+    "__docId__": 152,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3506,7 +3745,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 148,
+    "__docId__": 153,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3519,7 +3758,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 149,
+    "__docId__": 154,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3532,7 +3771,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 155,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3545,7 +3784,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 151,
+    "__docId__": 156,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3558,7 +3797,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 152,
+    "__docId__": 157,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3571,7 +3810,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 153,
+    "__docId__": 158,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3584,7 +3823,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 159,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3597,7 +3836,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 155,
+    "__docId__": 160,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3610,7 +3849,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 156,
+    "__docId__": 161,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3623,7 +3862,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 162,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3636,7 +3875,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 163,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3649,7 +3888,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 159,
+    "__docId__": 164,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3662,7 +3901,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 160,
+    "__docId__": 165,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3675,7 +3914,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 161,
+    "__docId__": 166,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3688,7 +3927,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 162,
+    "__docId__": 167,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3701,7 +3940,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 163,
+    "__docId__": 168,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3714,7 +3953,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 164,
+    "__docId__": 169,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3727,7 +3966,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 165,
+    "__docId__": 170,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3740,7 +3979,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 166,
+    "__docId__": 171,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3753,7 +3992,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 172,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3766,7 +4005,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 168,
+    "__docId__": 173,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3779,7 +4018,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 169,
+    "__docId__": 174,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3792,7 +4031,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 170,
+    "__docId__": 175,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3805,7 +4044,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 171,
+    "__docId__": 176,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3818,7 +4057,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 172,
+    "__docId__": 177,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3831,7 +4070,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 173,
+    "__docId__": 178,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3844,7 +4083,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 174,
+    "__docId__": 179,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3857,7 +4096,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 175,
+    "__docId__": 180,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3870,7 +4109,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 176,
+    "__docId__": 181,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3883,7 +4122,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 177,
+    "__docId__": 182,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3896,7 +4135,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 178,
+    "__docId__": 183,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3909,7 +4148,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 179,
+    "__docId__": 184,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3922,7 +4161,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 180,
+    "__docId__": 185,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3935,7 +4174,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 181,
+    "__docId__": 186,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3948,7 +4187,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 183,
+    "__docId__": 188,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3961,7 +4200,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 184,
+    "__docId__": 189,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3974,7 +4213,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 185,
+    "__docId__": 190,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3987,7 +4226,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 186,
+    "__docId__": 191,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4000,7 +4239,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 187,
+    "__docId__": 192,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4013,7 +4252,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 188,
+    "__docId__": 193,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4026,7 +4265,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 189,
+    "__docId__": 194,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4039,7 +4278,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 190,
+    "__docId__": 195,
     "kind": "external",
     "static": true,
     "variation": null,
