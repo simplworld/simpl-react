@@ -1,9 +1,9 @@
 image: node
 
 before_script:
+  - npm install -q npm-install-peers && ./node_modules/.bin/npm-install-peers
   - npm install -q
   - npm install -q --devOnly
-  - npm install -q npm-install-peers && ./node_modules/.bin/npm-install-peers
 
 test:
   script:
