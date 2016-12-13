@@ -1,5 +1,6 @@
+image: node
+
 before_script:
-  - apt-get update -qq && apt-get install -y -qq sqlite3 libsqlite3-dev nodejs
   - npm install
   - npm install --devOnly
   - npm install npm-install-peers && ./node_modules/.bin/npm-install-peers
