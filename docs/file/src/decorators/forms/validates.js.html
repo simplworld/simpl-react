@@ -386,6 +386,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
               onFocus={this.onFocus}
               type={this.props.type}
               name={this.props.name}
+              id={this.props.id}
               required={this.props.required}
               readOnly={this.props.readOnly}
             /&gt;
@@ -409,6 +410,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
 
     ValidatedComponent.propTypes = {
       name: React.PropTypes.string.isRequired,
+      id: React.PropTypes.string,
       required: React.PropTypes.bool,
       readOnly: React.PropTypes.bool,
       initialValue: React.PropTypes.any,
