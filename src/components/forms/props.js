@@ -12,6 +12,7 @@ export const inputPropTypes = {
   type: React.PropTypes.string,
   value: React.PropTypes.any,
   name: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string,
   onChange: React.PropTypes.func,
   onBlur: React.PropTypes.func,
   onFocus: React.PropTypes.func,
@@ -40,6 +41,7 @@ export function getInputProps(props) {
   return {
     value: props.value,
     name: props.name,
+    id: props.id,
     type: props.type,
     min: props.min,
     max: props.max,
