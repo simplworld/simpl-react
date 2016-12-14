@@ -12,8 +12,7 @@ test:
 pages:
   script:
     - npm run docs
-    - mkdir public
-    - cp -R docs public
+    - mv docs public
   artifacts:
     paths:
     - public
