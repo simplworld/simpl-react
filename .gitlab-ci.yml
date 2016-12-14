@@ -8,3 +8,14 @@ before_script:
 test:
   script:
     - npm test
+
+pages:
+  script:
+    - npm run docs
+    - mkdir public
+    - cp -R docs public
+  artifacts:
+    paths:
+    - public
+  only:
+    - develop
