@@ -15,7 +15,7 @@ deploy:
     - npm pack
   artifacts:
     paths:
-    - *.tgz
+      - ./simpl-*.tgz
   only:
     - develop
 
