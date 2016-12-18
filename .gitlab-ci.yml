@@ -3,7 +3,6 @@ image: node
 before_script:
   - npm install -q npm-install-peers && ./node_modules/.bin/npm-install-peers
   - npm install -q
-  - npm install -q --devOnly
 
 stages:
   - test
@@ -14,7 +13,7 @@ test:
   script:
     - npm test
 
-upload:
+release:
   stage: release
   script:
     - npm run compile

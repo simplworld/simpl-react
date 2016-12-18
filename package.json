@@ -13,7 +13,7 @@
     "karma": "karma start",
     "watch": "gulp watch",
     "docs": "rm -rf docs && esdoc -c esdoc.json",
-    "compile": "npm run docs && rm -rf lib && babel src --out-dir lib"
+    "compile": "rm -rf lib && babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
