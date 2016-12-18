@@ -5,11 +5,17 @@ before_script:
   - npm install -q
   - npm install -q --devOnly
 
+stages:
+  - test
+  - release
+
 test:
+  stage: test
   script:
     - npm test
 
-deploy:
+upload:
+  stage: release
   script:
     - npm run compile
     - npm pack
@@ -20,6 +26,7 @@ deploy:
     - develop
 
 pages:
+  stage: release
   script:
     - npm run docs
     - mv docs public
