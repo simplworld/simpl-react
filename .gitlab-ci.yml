@@ -9,6 +9,16 @@ test:
   script:
     - npm test
 
+deploy:
+  script:
+    - npm run compile
+    - npm pack
+  artifacts:
+    paths:
+    - *.tgz
+  only:
+    - develop
+
 pages:
   script:
     - npm run docs
