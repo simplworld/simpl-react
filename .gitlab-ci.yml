@@ -17,11 +17,10 @@ release:
   stage: release
   script:
     - npm run compile
-    - npm pack
-    - tar zxvf simpl-*.tgz
+    - rm -rf node_modules docs src test .git
   artifacts:
     paths:
-      - .package/
+      - .
   only:
     - develop
 
@@ -34,4 +33,4 @@ pages:
     paths:
     - public
   only:
-    - develop
+    - tags
