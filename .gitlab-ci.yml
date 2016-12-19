@@ -17,10 +17,9 @@ release:
   stage: release
   script:
     - npm run compile
-    - npm pack
   artifacts:
     paths:
-      - ./simpl-*.tgz
+      - .
   only:
     - develop
 
