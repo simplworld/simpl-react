@@ -17,9 +17,11 @@ release:
   stage: release
   script:
     - npm run compile
+    - npm pack
+    - tar zxvf simpl-*.tgz
   artifacts:
     paths:
-      - .
+      - .package/
   only:
     - develop
 
