@@ -121,6 +121,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           validationState: null,
           value: formattedValue,
           hasReduxForm: context._reduxForm !== undefined,
+          name: this.props.name || this.props.input.name,
         };
         this.onChange = this.onChange.bind(this);
         this.onBlur = this.onBlur.bind(this);
@@ -160,7 +161,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         if (this.state.hasReduxForm) {
         // Update the redux-form state is the field is decorated with `reduxForm'=
           this.context._reduxForm.dispatch(
-            this.context._reduxForm.change(this.props.name, e.target.value)
+            this.context._reduxForm.change(this.state.name, e.target.value)
           );
         }
 
@@ -202,12 +203,15 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         // submitted.
         if (this.state.hasReduxForm) {
           if (sanitizedValue === null || allErrors.length > 0) {
-            const reduxFormErrors = { [this.props.name]: allErrors.join(', ') };
+            const reduxFormErrors = { [this.state.name]: allErrors.join(', ') };
             const formName = this.context._reduxForm.form;
             this.context._reduxForm.dispatch(
               stopSubmit(formName, reduxFormErrors)
             );
           }
+          this.context._reduxForm.dispatch(
+            this.context._reduxForm.blur(this.state.name, e.target.value)
+          );
         }
 
         if (formattedValue !== null) {
@@ -312,7 +316,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
               onBlur={this.onBlur}
               onFocus={this.onFocus}
               type={this.props.type}
-              name={this.props.name}
+              name={this.state.name}
               id={this.props.id}
               required={this.props.required}
               readOnly={this.props.readOnly}
@@ -336,7 +340,8 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     };
 
     ValidatedComponent.propTypes = {
-      name: React.PropTypes.string.isRequired,
+      name: React.PropTypes.string,
+      input: React.PropTypes.object,
       id: React.PropTypes.string,
       required: React.PropTypes.bool,
       readOnly: React.PropTypes.bool,
