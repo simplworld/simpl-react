@@ -89,6 +89,13 @@ export const showGenericError = createNamedAction('simpl/SHOW_GENERIC_ERROR');
 // populate simpl.user space with current user's info
 export const getUserInfo = createNamedAction('simpl/GET_USER_INFO');
 
+/**
+ * Remove the most recent error from the store.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @returns {NamedReduxAction}
+ */
 export const popError = createNamedAction('simpl/POP_ERROR');
 
 
