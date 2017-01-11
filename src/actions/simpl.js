@@ -89,6 +89,8 @@ export const showGenericError = createNamedAction('simpl/SHOW_GENERIC_ERROR');
 // populate simpl.user space with current user's info
 export const getUserInfo = createNamedAction('simpl/GET_USER_INFO');
 
+export const popError = createNamedAction('simpl/POP_ERROR');
+
 
 /**
  * @namespace simpl
@@ -107,4 +109,5 @@ export default {
   getUserInfo,
   getPhases,
   getRoles,
+  popError,
 };

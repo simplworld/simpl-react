@@ -153,6 +153,11 @@ const simpl = recycleState(createReducer(initial, {
     const errors = [...state.errors, error];
     return Object.assign({}, state, { errors });
   },
+  [SimplActions.popError](state) {
+    const errors = [...state.errors];
+    errors.pop();
+    return Object.assign({}, state, { errors });
+  },
 }), `${StateActions.recycleState}`);
 
 export default simpl;
