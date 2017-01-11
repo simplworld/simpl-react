@@ -126,6 +126,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "simpl/lib/actions/simpl~poperror",
+    "variable/index.html#static-variable-popError",
+    "<span>popError</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/decorators/pubsub/publishes~publishes",
     "function/index.html#static-function-publishes",
     "<span>publishes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/publishes</span>",
