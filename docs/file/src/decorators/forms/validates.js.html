@@ -250,15 +250,15 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           messages: [],
         });
 
-        if (this.props.onFocus) {
-          this.props.onFocus(e);
+        if (this.props.focus) {
+          this.props.focus(e);
         }
       }
 
       onBlur(e) {
         if (this.props.readOnly === true) {
-          if (this.props.onBlur) {
-            this.props.onBlur(e);
+          if (this.props.blur) {
+            this.props.blur(e);
           }
           return;
         }
@@ -300,10 +300,10 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           return;
         }
 
-        if (this.props.onBlur) {
+        if (this.props.blur) {
           const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });
           const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });
-          this.props.onBlur(sanitizedEvent, formattedValue);
+          this.props.blur(sanitizedEvent, formattedValue);
         }
       }
 
@@ -424,6 +424,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       meta: React.PropTypes.object,
       onChange: React.PropTypes.func,
       onBlur: React.PropTypes.func,
+      blur: React.PropTypes.func,
       onFocus: React.PropTypes.func,
       messages: React.PropTypes.array,
       errors: React.PropTypes.array,
