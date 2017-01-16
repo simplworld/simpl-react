@@ -221,6 +221,7 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
             messages,
           });
         }
+
         // the entered value is invalid
         if (sanitizedValue === null) {
           return;
@@ -290,8 +291,9 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
           if (_.isString(sanitizer)) {
             sanitizerFunc = validator[sanitizer];
           }
+
           const sanitized = sanitizerFunc(stringValue(previousValue));
-          if (isNaN(sanitized)) {
+          if (props.input.type === 'number' && isNaN(sanitized)) {
             return null;
           }
           return sanitized !== null ? sanitized : previousValue;
