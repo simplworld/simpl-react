@@ -18,6 +18,7 @@ function MyForm(props) {
         name="myInputName"
         component={TextInput}
         initialValue={props.initialValue}
+        blur={props.mockBlur}
       />
       <button
         type="submit"
@@ -34,11 +35,14 @@ MyForm.propTypes = reduxFormPropTypes;
 const ValidatingForm = reduxForm({ form: 'myForm' })(MyForm);
 
 function setup() {
+  const mockBlur = jest.fn();
+
   const props = {
     initialValue: 'some value',
+    mockBlur,
   };
 
-  const enzymeWrapper = render(<Provider store={store}><ValidatingForm {...props} /></Provider>);
+  const enzymeWrapper = mount(<Provider store={store}><ValidatingForm {...props} /></Provider>);
 
   return {
     props,
@@ -53,5 +57,12 @@ describe('Forms', () => {
     const input = enzymeWrapper.find('input');
 
     expect(input.is('[name="myInputName"]')).toEqual(true);
+  });
+  it('calls the `blur` prop function', () => {
+    const { props, enzymeWrapper } = setup();
+    const input = enzymeWrapper.find('input');
+    input.simulate('blur');
+
+    expect(props.mockBlur.mock.calls.length).toBe(1);
   });
 });
