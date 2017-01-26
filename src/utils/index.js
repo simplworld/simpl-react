@@ -1,4 +1,3 @@
-import actions from './actions';
 import collections from './collections';
 import reducers from './reducers';
 
@@ -8,7 +7,6 @@ import reducers from './reducers';
  * @memberof Simpl
  */
 export default {
-  actions,
   collections,
   reducers,
 };

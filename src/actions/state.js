@@ -1,6 +1,6 @@
-import { createNamedAction } from '../utils/actions';
+import { createAction } from 'redux-actions';
 
-export const recyleStateAction = createNamedAction('simpl/RECYCLE_STATE');
+export const recyleStateAction = createAction('simpl/RECYCLE_STATE');
 
 /**
  * @namespace state
