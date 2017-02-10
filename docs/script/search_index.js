@@ -78,12 +78,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "simpl/lib/utils/actions~createnamedaction",
-    "function/index.html#static-function-createNamedAction",
-    "<span>createNamedAction</span> <span class=\"search-result-import-path\">simpl/lib/utils/actions</span>",
-    "function"
-  ],
-  [
     "simpl/lib/components/forms/formatters~decimalplaces",
     "function/index.html#static-function-decimalPlaces",
     "<span>decimalPlaces</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/formatters</span>",
@@ -778,18 +772,6 @@ window.esdocSearchIndex = [
     "file/src/test/store.js.html",
     "src/test/store.js",
     "file"
-  ],
-  [
-    "src/utils/actions.js",
-    "file/src/utils/actions.js.html",
-    "src/utils/actions.js",
-    "file"
-  ],
-  [
-    "src/utils/actions.js~namedreduxaction",
-    "typedef/index.html#static-typedef-NamedReduxAction",
-    "src/utils/actions.js~NamedReduxAction",
-    "typedef"
   ],
   [
     "src/utils/collections.js",

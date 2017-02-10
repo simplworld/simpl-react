@@ -65,20 +65,23 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">test</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h3 id="installation">Installation</h3>
 <pre><code><code class="source-code prettyprint">$ npm install git+ssh://git@stash.wharton.upenn.edu:7999/ll/simpl-react.git --save</code>
+</code></pre><p>Install <code>bumpversion</code>:</p>
+<pre><code><code class="source-code prettyprint">$ pip install bumpversion</code>
 </code></pre><h3 id="documentation">Documentation</h3>
 <p>API docs are <a href="https://lldev-team.gitlab.io/simpl-react/">available online</a></p>
 <h3 id="building">Building</h3>
 <pre><code><code class="source-code prettyprint">$ npm install
 $ npm run compile --production</code>
-</code></pre><h3 id="building-the-documentation">Building the documentation</h3>
+</code></pre><p>Commit then, to release a new version, increment the version number with:</p>
+<pre><code><code class="source-code prettyprint">$ bumpversion patch</code>
+</code></pre><p>and commit the tag</p>
+<h3 id="building-the-documentation">Building the documentation</h3>
 <pre><code><code class="source-code prettyprint">$ npm run docs
 $ open docs/index.html</code>
 </code></pre></div>

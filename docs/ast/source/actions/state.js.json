@@ -1,7 +1,7 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 227,
+  "end": 214,
   "loc": {
     "start": {
       "line": 1,
@@ -17,7 +17,7 @@
     {
       "type": "ImportDeclaration",
       "start": 0,
-      "end": 53,
+      "end": 45,
       "loc": {
         "start": {
           "line": 1,
@@ -25,14 +25,14 @@
         },
         "end": {
           "line": 1,
-          "column": 53
+          "column": 45
         }
       },
       "specifiers": [
         {
           "type": "ImportSpecifier",
           "start": 9,
-          "end": 26,
+          "end": 21,
           "loc": {
             "start": {
               "line": 1,
@@ -40,13 +40,13 @@
             },
             "end": {
               "line": 1,
-              "column": 26
+              "column": 21
             }
           },
           "imported": {
             "type": "Identifier",
             "start": 9,
-            "end": 26,
+            "end": 21,
             "loc": {
               "start": {
                 "line": 1,
@@ -54,15 +54,15 @@
               },
               "end": {
                 "line": 1,
-                "column": 26
+                "column": 21
               }
             },
-            "name": "createNamedAction"
+            "name": "createAction"
           },
           "local": {
             "type": "Identifier",
             "start": 9,
-            "end": 26,
+            "end": 21,
             "loc": {
               "start": {
                 "line": 1,
@@ -70,37 +70,37 @@
               },
               "end": {
                 "line": 1,
-                "column": 26
+                "column": 21
               }
             },
-            "name": "createNamedAction"
+            "name": "createAction"
           }
         }
       ],
       "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 34,
-        "end": 52,
+        "start": 29,
+        "end": 44,
         "loc": {
           "start": {
             "line": 1,
-            "column": 34
+            "column": 29
           },
           "end": {
             "line": 1,
-            "column": 52
+            "column": 44
           }
         },
-        "value": "../utils/actions",
-        "rawValue": "../utils/actions",
-        "raw": "'../utils/actions'"
+        "value": "redux-actions",
+        "rawValue": "redux-actions",
+        "raw": "'redux-actions'"
       }
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 55,
-      "end": 129,
+      "start": 47,
+      "end": 116,
       "loc": {
         "start": {
           "line": 3,
@@ -108,13 +108,13 @@
         },
         "end": {
           "line": 3,
-          "column": 74
+          "column": 69
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 62,
-        "end": 129,
+        "start": 54,
+        "end": 116,
         "loc": {
           "start": {
             "line": 3,
@@ -122,14 +122,14 @@
           },
           "end": {
             "line": 3,
-            "column": 74
+            "column": 69
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 68,
-            "end": 128,
+            "start": 60,
+            "end": 115,
             "loc": {
               "start": {
                 "line": 3,
@@ -137,13 +137,13 @@
               },
               "end": {
                 "line": 3,
-                "column": 73
+                "column": 68
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 68,
-              "end": 85,
+              "start": 60,
+              "end": 77,
               "loc": {
                 "start": {
                   "line": 3,
@@ -158,8 +158,8 @@
             },
             "init": {
               "type": "CallExpression",
-              "start": 88,
-              "end": 128,
+              "start": 80,
+              "end": 115,
               "loc": {
                 "start": {
                   "line": 3,
@@ -167,13 +167,13 @@
                 },
                 "end": {
                   "line": 3,
-                  "column": 73
+                  "column": 68
                 }
               },
               "callee": {
                 "type": "Identifier",
-                "start": 88,
-                "end": 105,
+                "start": 80,
+                "end": 92,
                 "loc": {
                   "start": {
                     "line": 3,
@@ -181,24 +181,24 @@
                   },
                   "end": {
                     "line": 3,
-                    "column": 50
+                    "column": 45
                   }
                 },
-                "name": "createNamedAction"
+                "name": "createAction"
               },
               "arguments": [
                 {
                   "type": "Literal",
-                  "start": 106,
-                  "end": 127,
+                  "start": 93,
+                  "end": 114,
                   "loc": {
                     "start": {
                       "line": 3,
-                      "column": 51
+                      "column": 46
                     },
                     "end": {
                       "line": 3,
-                      "column": 72
+                      "column": 67
                     }
                   },
                   "value": "simpl/RECYCLE_STATE",
@@ -214,8 +214,8 @@
           {
             "type": "Block",
             "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-            "start": 131,
-            "end": 185,
+            "start": 118,
+            "end": 172,
             "loc": {
               "start": {
                 "line": 5,
@@ -227,8 +227,8 @@
               }
             },
             "range": [
-              131,
-              185
+              118,
+              172
             ]
           }
         ],
@@ -240,8 +240,8 @@
         {
           "type": "Block",
           "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-          "start": 131,
-          "end": 185,
+          "start": 118,
+          "end": 172,
           "loc": {
             "start": {
               "line": 5,
@@ -253,16 +253,16 @@
             }
           },
           "range": [
-            131,
-            185
+            118,
+            172
           ]
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 186,
-      "end": 226,
+      "start": 173,
+      "end": 213,
       "loc": {
         "start": {
           "line": 9,
@@ -275,8 +275,8 @@
       },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 201,
-        "end": 225,
+        "start": 188,
+        "end": 212,
         "loc": {
           "start": {
             "line": 9,
@@ -290,8 +290,8 @@
         "properties": [
           {
             "type": "Property",
-            "start": 205,
-            "end": 222,
+            "start": 192,
+            "end": 209,
             "loc": {
               "start": {
                 "line": 10,
@@ -307,8 +307,8 @@
             "computed": false,
             "key": {
               "type": "Identifier",
-              "start": 205,
-              "end": 222,
+              "start": 192,
+              "end": 209,
               "loc": {
                 "start": {
                   "line": 10,
@@ -325,8 +325,8 @@
             "kind": "init",
             "value": {
               "type": "Identifier",
-              "start": 205,
-              "end": 222,
+              "start": 192,
+              "end": 209,
               "loc": {
                 "start": {
                   "line": 10,
@@ -342,8 +342,8 @@
                 {
                   "type": "Block",
                   "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-                  "start": 131,
-                  "end": 185,
+                  "start": 118,
+                  "end": 172,
                   "loc": {
                     "start": {
                       "line": 5,
@@ -355,8 +355,8 @@
                     }
                   },
                   "range": [
-                    131,
-                    185
+                    118,
+                    172
                   ]
                 }
               ]
@@ -368,8 +368,8 @@
           {
             "type": "Block",
             "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-            "start": 131,
-            "end": 185,
+            "start": 118,
+            "end": 172,
             "loc": {
               "start": {
                 "line": 5,
@@ -381,8 +381,8 @@
               }
             },
             "range": [
-              131,
-              185
+              118,
+              172
             ]
           }
         ],
@@ -392,8 +392,8 @@
         {
           "type": "Block",
           "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-          "start": 131,
-          "end": 185,
+          "start": 118,
+          "end": 172,
           "loc": {
             "start": {
               "line": 5,
@@ -405,8 +405,8 @@
             }
           },
           "range": [
-            131,
-            185
+            118,
+            172
           ]
         }
       ]

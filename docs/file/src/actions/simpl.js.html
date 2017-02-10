@@ -65,22 +65,20 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-registers">registers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">reducers</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-simplReducers">simplReducers</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">test</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span></li>
-<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">utils</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createNamedAction">createNamedAction</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-NamedReduxAction">NamedReduxAction</a></span></span></li>
 </ul>
 </div>
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/actions/simpl.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createNamedAction } from &apos;../utils/actions&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createAction } from &apos;redux-actions&apos;;
 import AutobahnReact from &apos;../autobahn&apos;;
 
 /*
  * action creators
  */
 
-export const addChild = createNamedAction(&apos;simpl/CHILD_ADD&apos;);
-export const removeChild = createNamedAction(&apos;simpl/CHILD_REMOVE&apos;);
+export const addChild = createAction(&apos;simpl/CHILD_ADD&apos;);
+export const removeChild = createAction(&apos;simpl/CHILD_REMOVE&apos;);
 
 /**
  * Given a scope&apos;s topic, returns a recursive representation of that scope and
@@ -90,7 +88,7 @@ export const removeChild = createNamedAction(&apos;simpl/CHILD_REMOVE&apos;);
  * @param {string} scope - the scope&apos;s topic
  * @returns {NamedReduxAction}
  */
-export const getDataTree = createNamedAction(&apos;simpl/DATATREE_GET&apos;, (scope, ...args) =&gt; (
+export const getDataTree = createAction(&apos;simpl/DATATREE_GET&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_scope_tree`, args)
 ));
 
@@ -101,7 +99,7 @@ export const getDataTree = createNamedAction(&apos;simpl/DATATREE_GET&apos;, (sc
  * @param {string} scope - the scope&apos;s topic
  * @returns {NamedReduxAction}
  */
-export const getRunUsers = createNamedAction(&apos;simpl/RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
+export const getRunUsers = createAction(&apos;simpl/RUNUSERS_GET&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_active_runusers`, args)
 ));
 
@@ -117,7 +115,7 @@ export const getRunUsers = createNamedAction(&apos;simpl/RUNUSERS_GET&apos;, (sc
  * @param {object} scope - the scope&apos;s JSON representation
  * @returns {NamedReduxAction}
  */
-export const updateScope = createNamedAction(&apos;simpl/SCOPE_UPDATE&apos;);
+export const updateScope = createAction(&apos;simpl/SCOPE_UPDATE&apos;);
 
 
 /**
@@ -129,7 +127,7 @@ export const updateScope = createNamedAction(&apos;simpl/SCOPE_UPDATE&apos;);
  * @param {string} scope - the scope&apos;s topic
  * @returns {NamedReduxAction}
  */
-export const connectedScope = createNamedAction(&apos;simpl/SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
+export const connectedScope = createAction(&apos;simpl/SCOPE_CONNECTED&apos;, (scope, ...args) =&gt; (
   AutobahnReact.publish(`${scope}.connected`, args)
 ));
 
@@ -142,26 +140,26 @@ export const connectedScope = createNamedAction(&apos;simpl/SCOPE_CONNECTED&apos
  * @param {string} scope - the scope&apos;s topic
  * @returns {NamedReduxAction}
  */
-export const disconnectedScope = createNamedAction(&apos;simpl/SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
+export const disconnectedScope = createAction(&apos;simpl/SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
   AutobahnReact.publish(`${scope}.disconnected`, args)
 ));
 
-export const getCurrentRunPhase = createNamedAction(&apos;simpl/CURRENT_RUN&apos;, (scope, ...args) =&gt; (
+export const getCurrentRunPhase = createAction(&apos;simpl/CURRENT_RUN&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)
 ));
 
-export const getPhases = createNamedAction(&apos;simpl/GET_PHASES&apos;, (scope, ...args) =&gt; (
+export const getPhases = createAction(&apos;simpl/GET_PHASES&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_phases`, args)
 ));
 
-export const getRoles = createNamedAction(&apos;simpl/GET_ROLES&apos;, (scope, ...args) =&gt; (
+export const getRoles = createAction(&apos;simpl/GET_ROLES&apos;, (scope, ...args) =&gt; (
   AutobahnReact.call(`${scope}.get_roles`, args)
 ));
 
-export const showGenericError = createNamedAction(&apos;simpl/SHOW_GENERIC_ERROR&apos;);
+export const showGenericError = createAction(&apos;simpl/SHOW_GENERIC_ERROR&apos;);
 
 // populate simpl.user space with current user&apos;s info
-export const getUserInfo = createNamedAction(&apos;simpl/GET_USER_INFO&apos;);
+export const getUserInfo = createAction(&apos;simpl/GET_USER_INFO&apos;);
 
 /**
  * Remove the most recent error from the store.
@@ -170,7 +168,7 @@ export const getUserInfo = createNamedAction(&apos;simpl/GET_USER_INFO&apos;);
  * @memberof Simpl.actions.simpl
  * @returns {NamedReduxAction}
  */
-export const popError = createNamedAction(&apos;simpl/POP_ERROR&apos;);
+export const popError = createAction(&apos;simpl/POP_ERROR&apos;);
 
 
 /**
