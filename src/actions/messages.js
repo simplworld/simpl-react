@@ -1,11 +1,11 @@
-import { createNamedAction } from '../utils/actions';
+import { createAction } from 'redux-actions';
 
 /*
  * action creators
  */
 
-export const appendMessage = createNamedAction('simpl/MESSAGE_APPEND');
-export const updateMessage = createNamedAction('simpl/MESSAGE_UPDATE');
+export const appendMessage = createAction('simpl/MESSAGE_APPEND');
+export const updateMessage = createAction('simpl/MESSAGE_UPDATE');
 
 
 /**
