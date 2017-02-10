@@ -1,8 +1,8 @@
 image: node
 
 before_script:
-  - npm install --progress=false -q npm-install-peers && ./node_modules/.bin/npm-install-peers
-  - npm install --progress=false -q
+  - npm install --progress=false -s npm-install-peers && ./node_modules/.bin/npm-install-peers
+  - npm install --progress=false -s
 
 stages:
   - test
