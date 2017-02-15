@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import AutobahnReact from '../autobahn';
+import { setConnectionStatus } from '../actions/simpl';
+import { CONNECTION_STATUS } from '../constants';
 
-import Progress from '../components/Progress.react';
+import { wampOptionsWithDefaults, wampSetup } from './utils';
 
 /**
  * @function
@@ -10,75 +12,45 @@ import Progress from '../components/Progress.react';
  */
 export function wamp(options = {}) {
   return (Component) => {
-    const defaults = {
-      url: 'ws://localhost:8080/ws',
-      realm: 'realm1',
-      prefixes: {},
-      progressComponent: Progress,
-    };
-    const optionsWithDefaults = Object.assign({}, defaults, options);
+    const optionsWithDefaults = wampOptionsWithDefaults(options);
 
-    class WampContainer extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          progress: 'offline',
-        };
-      }
+    class Wamp extends React.Component {
       componentWillMount() {
-        // Callback called whenever the connection is lost
-        AutobahnReact.Connection.onLost(() => {
-          console.log('Connection lost :/!');
-          this.setState({ progress: 'offline' });
-        });
-        // Callback called whenever the connection is ready
-      // eslint-disable-next-line no-unused-vars
-        AutobahnReact.Connection.onReady(([session, details]) => {
-          console.log('Connection established!');
-          Object.keys(optionsWithDefaults.prefixes).forEach((key) => {
-            const value = optionsWithDefaults.prefixes[key];
-            console.log('added prefix: ', key, value);
-            session.prefix(key, value);
-            this.setState({ progress: 'connected' });
-          });
-        });
-        AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
-        if (optionsWithDefaults.username) {
-          AutobahnReact.Auth.logIn({
-            username: optionsWithDefaults.username,
-            password: optionsWithDefaults.password,
-          }).then(() => {
-            console.log('authd');
-            if (this.props.onReady) {
-              this.props.onReady();
-            }
-          }).catch((err) => {
-            console.log(err);
-            console.log('not authd');
-          });
-        }
+        wampSetup(this, optionsWithDefaults);
       }
       render() {
-        if (this.state.progress === 'offline') {
+        if (this.props.connectionStatus === CONNECTION_STATUS.CONNECTING) {
           return (
-            <div className={`wamp wamp-${this.state.progress}`}>
-              <optionsWithDefaults.progressComponent {...this.props} {...this.state} />
+            <div className={`wamp wamp-${this.props.connectionStatus}`}>
+              <optionsWithDefaults.progressComponent {...this.props} />
             </div>
           );
         }
         return (
-          <div className={`wamp wamp-${this.state.progress}`}>
-            <Component {...this.props} {...this.state} />
+          <div className={`wamp wamp-${this.props.connectionStatus}`}>
+            <Component {...this.props} />
           </div>
         );
       }
     }
 
-    WampContainer.propTypes = {
+    Wamp.propTypes = {
       onReady: React.PropTypes.func,
+      connectionStatus: React.PropTypes.string.isRequired,
+      setConnectionStatus: React.PropTypes.func.isRequired,
     };
 
-    return WampContainer;
+    const mapStateToProps = (state) => ({
+      connectionStatus: state.simpl.connectionStatus,
+    });
+
+    const mapDispatchToProps = (dispatch) => ({
+      setConnectionStatus(status) {
+        dispatch(setConnectionStatus(status));
+      },
+    });
+
+    return connect(mapStateToProps, mapDispatchToProps)(Wamp);
   };
 }
 

@@ -1,20 +1,22 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 import { stopSubmit } from 'redux-form';
+
+import _ from 'lodash';
+
+import AutobahnReact from '../autobahn';
+
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
   // eslint-disable-next-line comma-dangle
-  showGenericError
+  showGenericError, setConnectionStatus
 } from '../actions/simpl';
-
-import Progress from '../components/Progress.react';
+import { CONNECTION_STATUS } from '../constants';
 
 import { subscribes } from './pubsub/subscribes';
-import { wamp } from './wamp';
-import _ from 'lodash';
-import AutobahnReact from '../autobahn';
+import { wampOptionsWithDefaults, wampSetup } from './utils';
+
 
 /**
  * Decorator to wrap your main app
@@ -37,31 +39,33 @@ import AutobahnReact from '../autobahn';
  * @param {string} options.password - The password for authenticating on the WAMP Router.
  * @param {string} options.url - The URL of the WAMP router.
  * @param {function} [options.progressComponent] - A customized Component to show
- * the App's connection state. The component will receive a `progress` prop which
+ * the App's connection state. The component will receive a `connectionStatus` prop which
  * can have one of the following values:
- * * `offline`: The initial value. The app is not connected to the WAMP Router, yet.
+ * * `connecting`: The initial value. The app is not connected to the WAMP Router, yet.
  * * `connected`: The app is connected and authenticated, but it still needs to download data.
  * * `loaded`: The app has downloaded all the relevant data.
+ * * `offline`:  The connection was dropped.
  * @param {function} options.topics - A function return a list of topic to subsribe to.
  * @param {Object} [options.prefixes] - An object mapping names to topic prefixes,
  * to be used as shortcuts.
  */
 export function simpl(options) {
   return (Component) => {
-    const optionsWithDefaults = Object.assign({}, {
-      progressComponent: Progress,
-    }, options);
+    const optionsWithDefaults = wampOptionsWithDefaults(options);
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
     }
 
-    const mapStateToProps = (state, ownProps) => ({
-      progress: state.simpl.loaded === true ? 'loaded' : ownProps.progress,
+    const mapStateToProps = (state) => ({
+      connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
     });
 
     const mapDispatchToProps = (dispatch) => ({
+      setConnectionStatus(status) {
+        dispatch(setConnectionStatus(status));
+      },
       onReady() {
         if (optionsWithDefaults.topics) {
           optionsWithDefaults.topics.forEach((topic) => {
@@ -114,7 +118,7 @@ export function simpl(options) {
     class AppContainer extends React.Component {
 
       shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.progress === 'loaded') {
+        if (this.props.connectionStatus === CONNECTION_STATUS.LOADED) {
           return false;
         }
         return this.props !== nextProps || this.state !== nextState;
@@ -125,7 +129,7 @@ export function simpl(options) {
     }
 
     AppContainer.propTypes = {
-      progress: React.PropTypes.string.isRequired,
+      connectionStatus: React.PropTypes.string.isRequired,
     };
 
 
@@ -143,22 +147,22 @@ export function simpl(options) {
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
       componentWillMount() {
-        this.props.onReady();
+        wampSetup(this, optionsWithDefaults);
         window.addEventListener('beforeunload', this.props.onLeave);
       }
       componentWillUnmount() {
         window.removeEventListener('beforeunload', this.props.onLeave);
       }
       render() {
-        if (this.props.progress !== 'loaded') {
+        if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {
           return (
-            <div className={`simpl simpl-${this.props.progress}`}>
+            <div className={`simpl simpl-${this.props.connectionStatus}`}>
               <this.props.progressComponent {...this.props} {...this.state} />
             </div>
             );
         }
         return (
-          <div className={`simpl simpl-${this.props.progress}`}>
+          <div className={`simpl simpl-${this.props.connectionStatus}`}>
             <SubscribedAppContainer {...this.props} {...this.state} />
           </div>
         );
@@ -166,16 +170,16 @@ export function simpl(options) {
     }
 
     Simpl.propTypes = {
-      progress: React.PropTypes.string.isRequired,
+      connectionStatus: React.PropTypes.string.isRequired,
       onLeave: React.PropTypes.func,
       onReady: React.PropTypes.func.isRequired,
       progressComponent: React.PropTypes.func.isRequired,
+      setConnectionStatus: React.PropTypes.func.isRequired,
     };
 
     const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
-    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);
 
-    return WampContainer;
+    return SimplContainer;
   };
 }
 
