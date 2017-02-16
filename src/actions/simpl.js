@@ -31,6 +31,14 @@ export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, ...args) =
   AutobahnReact.call(`${scope}.get_active_runusers`, args)
 ));
 
+/**
+ * Set the connection status on the store.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {symbol} status - the connection status.
+ * @returns {NamedReduxAction}
+ */
+export const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');
 
 /**
  * Update the scope in the redux state with the received payload.

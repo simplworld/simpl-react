@@ -4,6 +4,7 @@ import recycleState from 'redux-recycle';
 const SimplActions = require('../actions/simpl');
 const StateActions = require('../actions/state');
 
+import { CONNECTION_STATUS } from '../constants';
 import { popAtIndex, updateInCollection } from '../utils/collections';
 
 
@@ -11,7 +12,7 @@ const initial = {
   treeLoaded: false,
   phasesLoaded: false,
   rolesLoaded: false,
-  loaded: false,
+  connectionStatus: CONNECTION_STATUS.CONNECTING,
   user: {},
   current: {},
   run: [],
@@ -24,7 +25,7 @@ const initial = {
   result: [],
   phase: [],
   role: [],
-  errors: []
+  errors: [],
 };
 
 const simpl = recycleState(createReducer(initial, {
@@ -75,13 +76,13 @@ const simpl = recycleState(createReducer(initial, {
     if (action.payload.error) {
       return this.handleError(state, action);
     }
-    let loaded = state.loaded;
+    let connectionStatus = state.connectionStatus;
     if (state.phasesLoaded) {
-      loaded = true;
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
     return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
       treeLoaded: true,
-      loaded,
+      connectionStatus,
     });
   },
   [SimplActions.updateScope](state, action) {
@@ -127,26 +128,29 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { user: foundRunuser });
   },
   [SimplActions.getPhases](state, action) {
-    let loaded = state.loaded;
+    let connectionStatus = state.connectionStatus;
     if (state.treeLoaded && state.rolesLoaded) {
-      loaded = true;
+      connectionStatus = CONNECTION_STATUS.LOADED;
     }
     return Object.assign({}, state, {
       phase: action.payload,
       phasesLoaded: true,
-      loaded,
+      connectionStatus,
     });
   },
   [SimplActions.getRoles](state, action) {
-    let loaded = state.loaded;
+    let connectionStatus = state.connectionStatus;
     if (state.treeLoaded && state.phasesLoaded) {
-      loaded = true;
+      connectionStatus = CONNECTION_STATUS.LOADED;
     }
     return Object.assign({}, state, {
       role: action.payload,
       rolesLoaded: true,
-      loaded,
+      connectionStatus,
     });
+  },
+  [SimplActions.setConnectionStatus](state, action) {
+    return Object.assign({}, state, { connectionStatus: action.payload });
   },
   [SimplActions.showGenericError](state, action) {
     const error = { msg: action.payload[0] };
