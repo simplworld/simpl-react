@@ -33,11 +33,13 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONNECTION_STATUS">CONNECTION_STATUS</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setConnectionStatus">setConnectionStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
@@ -71,22 +73,24 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/simpl.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
-
 import { connect } from &apos;react-redux&apos;;
 import { stopSubmit } from &apos;redux-form&apos;;
+
+import _ from &apos;lodash&apos;;
+
+import AutobahnReact from &apos;../autobahn&apos;;
+
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
   // eslint-disable-next-line comma-dangle
-  showGenericError
+  showGenericError, setConnectionStatus
 } from &apos;../actions/simpl&apos;;
-
-import Progress from &apos;../components/Progress.react&apos;;
+import { CONNECTION_STATUS } from &apos;../constants&apos;;
 
 import { subscribes } from &apos;./pubsub/subscribes&apos;;
-import { wamp } from &apos;./wamp&apos;;
-import _ from &apos;lodash&apos;;
-import AutobahnReact from &apos;../autobahn&apos;;
+import { wampOptionsWithDefaults, wampSetup } from &apos;./utils&apos;;
+
 
 /**
  * Decorator to wrap your main app
@@ -109,31 +113,33 @@ import AutobahnReact from &apos;../autobahn&apos;;
  * @param {string} options.password - The password for authenticating on the WAMP Router.
  * @param {string} options.url - The URL of the WAMP router.
  * @param {function} [options.progressComponent] - A customized Component to show
- * the App&apos;s connection state. The component will receive a `progress` prop which
+ * the App&apos;s connection state. The component will receive a `connectionStatus` prop which
  * can have one of the following values:
- * * `offline`: The initial value. The app is not connected to the WAMP Router, yet.
+ * * `connecting`: The initial value. The app is not connected to the WAMP Router, yet.
  * * `connected`: The app is connected and authenticated, but it still needs to download data.
  * * `loaded`: The app has downloaded all the relevant data.
+ * * `offline`:  The connection was dropped.
  * @param {function} options.topics - A function return a list of topic to subsribe to.
  * @param {Object} [options.prefixes] - An object mapping names to topic prefixes,
  * to be used as shortcuts.
  */
 export function simpl(options) {
   return (Component) =&gt; {
-    const optionsWithDefaults = Object.assign({}, {
-      progressComponent: Progress,
-    }, options);
+    const optionsWithDefaults = wampOptionsWithDefaults(options);
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
     }
 
-    const mapStateToProps = (state, ownProps) =&gt; ({
-      progress: state.simpl.loaded === true ? &apos;loaded&apos; : ownProps.progress,
+    const mapStateToProps = (state) =&gt; ({
+      connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
     });
 
     const mapDispatchToProps = (dispatch) =&gt; ({
+      setConnectionStatus(status) {
+        dispatch(setConnectionStatus(status));
+      },
       onReady() {
         if (optionsWithDefaults.topics) {
           optionsWithDefaults.topics.forEach((topic) =&gt; {
@@ -186,7 +192,7 @@ export function simpl(options) {
     class AppContainer extends React.Component {
 
       shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.progress === &apos;loaded&apos;) {
+        if (this.props.connectionStatus === CONNECTION_STATUS.LOADED) {
           return false;
         }
         return this.props !== nextProps || this.state !== nextState;
@@ -197,7 +203,7 @@ export function simpl(options) {
     }
 
     AppContainer.propTypes = {
-      progress: React.PropTypes.string.isRequired,
+      connectionStatus: React.PropTypes.string.isRequired,
     };
 
 
@@ -215,22 +221,22 @@ export function simpl(options) {
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
       componentWillMount() {
-        this.props.onReady();
+        wampSetup(this, optionsWithDefaults);
         window.addEventListener(&apos;beforeunload&apos;, this.props.onLeave);
       }
       componentWillUnmount() {
         window.removeEventListener(&apos;beforeunload&apos;, this.props.onLeave);
       }
       render() {
-        if (this.props.progress !== &apos;loaded&apos;) {
+        if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {
           return (
-            &lt;div className={`simpl simpl-${this.props.progress}`}&gt;
+            &lt;div className={`simpl simpl-${this.props.connectionStatus}`}&gt;
               &lt;this.props.progressComponent {...this.props} {...this.state} /&gt;
             &lt;/div&gt;
             );
         }
         return (
-          &lt;div className={`simpl simpl-${this.props.progress}`}&gt;
+          &lt;div className={`simpl simpl-${this.props.connectionStatus}`}&gt;
             &lt;SubscribedAppContainer {...this.props} {...this.state} /&gt;
           &lt;/div&gt;
         );
@@ -238,16 +244,16 @@ export function simpl(options) {
     }
 
     Simpl.propTypes = {
-      progress: React.PropTypes.string.isRequired,
+      connectionStatus: React.PropTypes.string.isRequired,
       onLeave: React.PropTypes.func,
       onReady: React.PropTypes.func.isRequired,
       progressComponent: React.PropTypes.func.isRequired,
+      setConnectionStatus: React.PropTypes.func.isRequired,
     };
 
     const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
-    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);
 
-    return WampContainer;
+    return SimplContainer;
   };
 }
 

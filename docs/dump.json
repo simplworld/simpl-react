@@ -139,7 +139,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createAction } from 'redux-actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createAction('simpl/CHILD_ADD');\nexport const removeChild = createAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic, returns a recursive representation of that scope and\n * its children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createAction('simpl/DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\n\n/**\n * Given a scope's topic, returns a list of runusers that belong to the scope.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\n\n\n/**\n * Update the scope in the redux state with the received payload.\n *\n * The payload\n * must contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\n * and a `pk` property, to properly identify the correct scope to be updated.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {object} scope - the scope's JSON representation\n * @returns {NamedReduxAction}\n */\nexport const updateScope = createAction('simpl/SCOPE_UPDATE');\n\n\n/**\n * Dispatched when the client is ready to listen to a specific scope.\n *\n * Currently only used for debugging purposes.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\n\n/**\n * Dispatched when the client gets disconnected and can't listen to the scope.\n *\n * Currently only used for debugging purposes.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createAction('simpl/GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createAction('simpl/GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\nexport const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createAction('simpl/GET_USER_INFO');\n\n/**\n * Remove the most recent error from the store.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @returns {NamedReduxAction}\n */\nexport const popError = createAction('simpl/POP_ERROR');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n  popError,\n};\n"
+    "content": "import { createAction } from 'redux-actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addChild = createAction('simpl/CHILD_ADD');\nexport const removeChild = createAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic, returns a recursive representation of that scope and\n * its children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createAction('simpl/DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\n\n/**\n * Given a scope's topic, returns a list of runusers that belong to the scope.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\n\n/**\n * Set the connection status on the store.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {symbol} status - the connection status.\n * @returns {NamedReduxAction}\n */\nexport const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');\n\n/**\n * Update the scope in the redux state with the received payload.\n *\n * The payload\n * must contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\n * and a `pk` property, to properly identify the correct scope to be updated.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {object} scope - the scope's JSON representation\n * @returns {NamedReduxAction}\n */\nexport const updateScope = createAction('simpl/SCOPE_UPDATE');\n\n\n/**\n * Dispatched when the client is ready to listen to a specific scope.\n *\n * Currently only used for debugging purposes.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\n\n/**\n * Dispatched when the client gets disconnected and can't listen to the scope.\n *\n * Currently only used for debugging purposes.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createAction('simpl/GET_PHASES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_phases`, args)\n));\n\nexport const getRoles = createAction('simpl/GET_ROLES', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_roles`, args)\n));\n\nexport const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');\n\n// populate simpl.user space with current user's info\nexport const getUserInfo = createAction('simpl/GET_USER_INFO');\n\n/**\n * Remove the most recent error from the store.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @returns {NamedReduxAction}\n */\nexport const popError = createAction('simpl/POP_ERROR');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getUserInfo,\n  getPhases,\n  getRoles,\n  popError,\n};\n"
   },
   {
     "__docId__": 8,
@@ -296,6 +296,60 @@
     "kind": "variable",
     "static": true,
     "variation": null,
+    "name": "setConnectionStatus",
+    "memberof": "src/actions/simpl.js",
+    "longname": "src/actions/simpl.js~setConnectionStatus",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/actions/simpl",
+    "importStyle": "{setConnectionStatus}",
+    "description": "Set the connection status on the store.",
+    "lineNumber": 41,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.actions.simpl"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "{NamedReduxAction}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "symbol"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "status",
+        "description": "the connection status."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NamedReduxAction"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
     "name": "updateScope",
     "memberof": "src/actions/simpl.js",
     "longname": "src/actions/simpl.js~updateScope",
@@ -304,7 +358,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{updateScope}",
     "description": "Update the scope in the redux state with the received payload.\n\nThe payload\nmust contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\nand a `pk` property, to properly identify the correct scope to be updated.",
-    "lineNumber": 46,
+    "lineNumber": 54,
     "unknown": [
       {
         "tagName": "@function",
@@ -346,7 +400,7 @@
     }
   },
   {
-    "__docId__": 13,
+    "__docId__": 14,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -358,61 +412,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{connectedScope}",
     "description": "Dispatched when the client is ready to listen to a specific scope.\n\nCurrently only used for debugging purposes.",
-    "lineNumber": 58,
-    "unknown": [
-      {
-        "tagName": "@function",
-        "tagValue": ""
-      },
-      {
-        "tagName": "@memberof",
-        "tagValue": "Simpl.actions.simpl"
-      },
-      {
-        "tagName": "@returns",
-        "tagValue": "{NamedReduxAction}"
-      }
-    ],
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "string"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "scope",
-        "description": "the scope's topic"
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "NamedReduxAction"
-      ],
-      "spread": false,
-      "description": ""
-    },
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 14,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "disconnectedScope",
-    "memberof": "src/actions/simpl.js",
-    "longname": "src/actions/simpl.js~disconnectedScope",
-    "access": null,
-    "export": true,
-    "importPath": "simpl/lib/actions/simpl",
-    "importStyle": "{disconnectedScope}",
-    "description": "Dispatched when the client gets disconnected and can't listen to the scope.\n\nCurrently only used for debugging purposes.",
-    "lineNumber": 71,
+    "lineNumber": 66,
     "unknown": [
       {
         "tagName": "@function",
@@ -458,16 +458,49 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "getCurrentRunPhase",
+    "name": "disconnectedScope",
     "memberof": "src/actions/simpl.js",
-    "longname": "src/actions/simpl.js~getCurrentRunPhase",
+    "longname": "src/actions/simpl.js~disconnectedScope",
     "access": null,
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
-    "importStyle": "{getCurrentRunPhase}",
-    "description": null,
-    "lineNumber": 75,
-    "undocument": true,
+    "importStyle": "{disconnectedScope}",
+    "description": "Dispatched when the client gets disconnected and can't listen to the scope.\n\nCurrently only used for debugging purposes.",
+    "lineNumber": 79,
+    "unknown": [
+      {
+        "tagName": "@function",
+        "tagValue": ""
+      },
+      {
+        "tagName": "@memberof",
+        "tagValue": "Simpl.actions.simpl"
+      },
+      {
+        "tagName": "@returns",
+        "tagValue": "{NamedReduxAction}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "scope",
+        "description": "the scope's topic"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "NamedReduxAction"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -479,15 +512,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "getPhases",
+    "name": "getCurrentRunPhase",
     "memberof": "src/actions/simpl.js",
-    "longname": "src/actions/simpl.js~getPhases",
+    "longname": "src/actions/simpl.js~getCurrentRunPhase",
     "access": null,
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
-    "importStyle": "{getPhases}",
+    "importStyle": "{getCurrentRunPhase}",
     "description": null,
-    "lineNumber": 79,
+    "lineNumber": 83,
     "undocument": true,
     "type": {
       "types": [
@@ -500,15 +533,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "getRoles",
+    "name": "getPhases",
     "memberof": "src/actions/simpl.js",
-    "longname": "src/actions/simpl.js~getRoles",
+    "longname": "src/actions/simpl.js~getPhases",
     "access": null,
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
-    "importStyle": "{getRoles}",
+    "importStyle": "{getPhases}",
     "description": null,
-    "lineNumber": 83,
+    "lineNumber": 87,
     "undocument": true,
     "type": {
       "types": [
@@ -521,15 +554,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "showGenericError",
+    "name": "getRoles",
     "memberof": "src/actions/simpl.js",
-    "longname": "src/actions/simpl.js~showGenericError",
+    "longname": "src/actions/simpl.js~getRoles",
     "access": null,
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
-    "importStyle": "{showGenericError}",
+    "importStyle": "{getRoles}",
     "description": null,
-    "lineNumber": 87,
+    "lineNumber": 91,
     "undocument": true,
     "type": {
       "types": [
@@ -542,15 +575,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "getUserInfo",
+    "name": "showGenericError",
     "memberof": "src/actions/simpl.js",
-    "longname": "src/actions/simpl.js~getUserInfo",
+    "longname": "src/actions/simpl.js~showGenericError",
     "access": null,
     "export": true,
     "importPath": "simpl/lib/actions/simpl",
-    "importStyle": "{getUserInfo}",
+    "importStyle": "{showGenericError}",
     "description": null,
-    "lineNumber": 90,
+    "lineNumber": 95,
     "undocument": true,
     "type": {
       "types": [
@@ -563,6 +596,27 @@
     "kind": "variable",
     "static": true,
     "variation": null,
+    "name": "getUserInfo",
+    "memberof": "src/actions/simpl.js",
+    "longname": "src/actions/simpl.js~getUserInfo",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/actions/simpl",
+    "importStyle": "{getUserInfo}",
+    "description": null,
+    "lineNumber": 98,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 21,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
     "name": "popError",
     "memberof": "src/actions/simpl.js",
     "longname": "src/actions/simpl.js~popError",
@@ -571,7 +625,7 @@
     "importPath": "simpl/lib/actions/simpl",
     "importStyle": "{popError}",
     "description": "Remove the most recent error from the store.",
-    "lineNumber": 99,
+    "lineNumber": 107,
     "unknown": [
       {
         "tagName": "@function",
@@ -601,7 +655,7 @@
     }
   },
   {
-    "__docId__": 21,
+    "__docId__": 22,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -614,7 +668,7 @@
     "content": "import { createAction } from 'redux-actions';\n\nexport const recyleStateAction = createAction('simpl/RECYCLE_STATE');\n\n/**\n * @namespace state\n * @memberof Simpl.actions\n */\nexport default {\n  recyleStateAction,\n};\n"
   },
   {
-    "__docId__": 22,
+    "__docId__": 23,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -635,7 +689,7 @@
     }
   },
   {
-    "__docId__": 23,
+    "__docId__": 24,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -648,7 +702,7 @@
     "content": "import Autobahn from 'autobahn-react';\n\nexport const AutobahnReact = Autobahn;\n\nexport default AutobahnReact;\n"
   },
   {
-    "__docId__": 24,
+    "__docId__": 25,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -669,7 +723,7 @@
     }
   },
   {
-    "__docId__": 25,
+    "__docId__": 26,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -679,10 +733,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\n\nfunction Progress(props) {\n  const text = props.progress === 'offline' ? 'Connecting…' : 'Loading data…';\n  return (<div>{text}</div>);\n}\n\nProgress.propTypes = {\n  progress: React.PropTypes.string.isRequired,\n};\n\nexport default Progress;\n"
+    "content": "import React from 'react';\n\nimport { CONNECTION_STATUS } from '../constants';\n\n\nfunction Progress(props) {\n  let text;\n  if (props.connectionStatus === CONNECTION_STATUS.CONNECTING) {\n    text = 'Connecting…';\n  } else if (props.connectionStatus === CONNECTION_STATUS.CONNECTED) {\n    text = 'Loading data…';\n  } else if (props.connectionStatus === CONNECTION_STATUS.OFFLINE) {\n    text = 'Connection lost. If this persist, please contact the administrator.';\n  }\n  return (<div>{text}</div>);\n}\n\nProgress.propTypes = {\n  connectionStatus: React.PropTypes.string.isRequired,\n};\n\nexport default Progress;\n"
   },
   {
-    "__docId__": 26,
+    "__docId__": 27,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -694,7 +748,7 @@
     "importPath": "simpl/lib/components/Progress.react",
     "importStyle": "Progress",
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 6,
     "undocument": true,
     "params": [
       {
@@ -712,7 +766,7 @@
     "generator": false
   },
   {
-    "__docId__": 27,
+    "__docId__": 28,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -725,7 +779,7 @@
     "content": "import React from 'react';\nimport { calls } from '../decorators/rpc';\n\n\n/**\n * @class RPCCaller\n * @extends {React.Component}\n * @memberof Simpl.components\n */\nclass RPCCaller extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.RpcContainer = calls(Child, this.props.callee, this.props.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.RpcContainer {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nRPCCaller.propTypes = {\n  callee: React.PropTypes.string.isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default RPCCaller;\n"
   },
   {
-    "__docId__": 28,
+    "__docId__": 29,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -754,7 +808,7 @@
     ]
   },
   {
-    "__docId__": 29,
+    "__docId__": 30,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -769,7 +823,7 @@
     "generator": false
   },
   {
-    "__docId__": 30,
+    "__docId__": 31,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -787,7 +841,7 @@
     }
   },
   {
-    "__docId__": 31,
+    "__docId__": 32,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -807,7 +861,7 @@
     "generator": false
   },
   {
-    "__docId__": 32,
+    "__docId__": 33,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -820,7 +874,7 @@
     "content": "import React from 'react';\n\nimport { publishes } from '../decorators/pubsub/publishes';\n\n\n/**\n * @class TopicPublisher\n * @extends {React.Component}\n * @memberof Simpl.components\n */\nclass TopicPublisher extends React.Component {\n  componentWillMount() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    this.Publisher = publishes(Child, this.props.topic, this.props.options);\n  }\n  componentWillUpdate(nextProps) {\n    const Child = React.Children.only(nextProps.children).type;\n    this.Publisher = publishes(Child, nextProps.topic, nextProps.options);\n  }\n  render() {\n    return (\n      <div>\n        <this.Publisher {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicPublisher.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\nexport default TopicPublisher;\n"
   },
   {
-    "__docId__": 33,
+    "__docId__": 34,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -849,7 +903,7 @@
     ]
   },
   {
-    "__docId__": 34,
+    "__docId__": 35,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -864,7 +918,7 @@
     "generator": false
   },
   {
-    "__docId__": 35,
+    "__docId__": 36,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -882,7 +936,7 @@
     }
   },
   {
-    "__docId__": 36,
+    "__docId__": 37,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -904,7 +958,7 @@
     "generator": false
   },
   {
-    "__docId__": 37,
+    "__docId__": 38,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -922,7 +976,7 @@
     }
   },
   {
-    "__docId__": 38,
+    "__docId__": 39,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -942,7 +996,7 @@
     "generator": false
   },
   {
-    "__docId__": 39,
+    "__docId__": 40,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -955,7 +1009,7 @@
     "content": "import React from 'react';\n\nimport { subscribes } from '../decorators/pubsub/subscribes';\n\n\n/**\n * @class TopicSubscriber\n * @extends {React.Component}\n * @memberof Simpl.components\n */\nclass TopicSubscriber extends React.Component {\n  render() {\n    // eslint-disable-next-line react/prop-types\n    const Child = React.Children.only(this.props.children).type;\n    const SubscribedChild = subscribes(Child, this.props.topic, this.props.options);\n\n    return (\n      <div>\n        <SubscribedChild {...this.props} {...this.state} />\n      </div>\n    );\n  }\n}\n\nTopicSubscriber.propTypes = {\n  topic: React.PropTypes.oneOfType([\n    React.PropTypes.string,\n    React.PropTypes.func,\n  ]).isRequired,\n  options: React.PropTypes.object,\n};\n\n\nexport default TopicSubscriber;\n"
   },
   {
-    "__docId__": 40,
+    "__docId__": 41,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -984,7 +1038,7 @@
     ]
   },
   {
-    "__docId__": 41,
+    "__docId__": 42,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1004,7 +1058,7 @@
     "generator": false
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1017,7 +1071,7 @@
     "content": "/**\n * @namespace CurrencyInput\n * @memberof Simpl.components.forms\n */\nimport React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\nimport { min, max } from './validators';\nimport { decimalPlaces } from './formatters';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <InputGroup.Addon>{props.currency}</InputGroup.Addon>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n  decimalPlaces: 2,\n  currency: '$',\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n  decimalPlaces: React.PropTypes.number,\n  currency: React.PropTypes.string,\n});\n\n/**\n * A component that allows entering a decimal value and always shows it with fixed\n * precision, prefixed by a currency symbol.\n\n * Default validation options:\n *  * `errors`: ['isCurrency', {@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *  * `formatters`: [{@link decimalPlaces}]\n *\n * Default props: `{type: 'number', decimalPlaces: 2, currency: '$'}`\n * @namespace CurrencyInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const CurrencyInput = validateField({\n  errors: ['isCurrency', min, max],\n  sanitizers: ['toFloat'],\n  formatters: [decimalPlaces],\n})(Input);\n\nexport default CurrencyInput;\n"
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1047,7 +1101,7 @@
     "generator": false
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1084,7 +1138,7 @@
     }
   },
   {
-    "__docId__": 45,
+    "__docId__": 46,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1097,7 +1151,7 @@
     "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\nimport { min, max } from './validators';\nimport { decimalPlaces } from './formatters';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n  decimalPlaces: 2,\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n  decimalPlaces: React.PropTypes.number,\n});\n\n\n/**\n * A component that allows entering a decimal value and always shows it with fixed\n * precision.\n\n * Default validation options:\n *  * `errors`: ['isDecimal', {@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *  * `formatters`: [{@link decimalPlaces}]\n *\n * Default props: `{type: 'number', decimalPlaces: 2}`\n * @namespace DecimalInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const DecimalInput = validateField({\n  errors: ['isDecimal', min, max],\n  sanitizers: ['toFloat'],\n  formatters: [decimalPlaces],\n})(Input);\n\nexport default DecimalInput;\n"
   },
   {
-    "__docId__": 46,
+    "__docId__": 47,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1127,7 +1181,7 @@
     "generator": false
   },
   {
-    "__docId__": 47,
+    "__docId__": 48,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1164,7 +1218,7 @@
     }
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1177,7 +1231,7 @@
     "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <InputGroup.Addon>@</InputGroup.Addon>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'email',\n};\n\nInput.propTypes = inputPropTypes;\n\n\n/**\n * A component that allows entering and eamil address.\n\n * Default validation options:\n *  * `errors`: `['isEmail']`,\n *  * `sanitizers`: `['normalizeEmail']`\n *\n * Default props: `{type: 'email'}`\n * @namespace EmailInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const EmailInput = validateField({\n  errors: ['isEmail'],\n  sanitizers: ['normalizeEmail'],\n})(Input);\n\n\nexport default EmailInput;\n"
   },
   {
-    "__docId__": 49,
+    "__docId__": 50,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1207,7 +1261,7 @@
     "generator": false
   },
   {
-    "__docId__": 50,
+    "__docId__": 51,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1244,7 +1298,7 @@
     }
   },
   {
-    "__docId__": 51,
+    "__docId__": 52,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1257,7 +1311,7 @@
     "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\nimport { min, max } from './validators';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n  step: 0.1,\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n  decimalPlaces: React.PropTypes.number,\n});\n\n/**\n * A component that allows entering a float number.\n\n * Default validation options:\n *  * `errors`: ['isFloat', {@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *\n * Default props: `{type: 'number', step: 0.1}`\n * @namespace FloatInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const FloatInput = validateField({\n  errors: ['isFloat', min, max],\n  sanitizers: ['toFloat'],\n})(Input);\n\nexport default FloatInput;\n"
   },
   {
-    "__docId__": 52,
+    "__docId__": 53,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1287,7 +1341,7 @@
     "generator": false
   },
   {
-    "__docId__": 53,
+    "__docId__": 54,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1324,7 +1378,7 @@
     }
   },
   {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1337,7 +1391,7 @@
     "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\nimport { min, max } from './validators';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n});\n\n/**\n * A component that allows entering an integer number.\n\n * Default validation options:\n *  * `errors`: ['isInt', {@link min}, {@link max}],\n *  * `sanitizers`: `['toInt']`\n *\n * Default props: `{type: 'number'}`\n * @namespace IntegerInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const IntegerInput = validateField({\n  errors: ['isInt', min, max],\n  sanitizers: ['toInt'],\n})(Input);\n\n\nexport default IntegerInput;\n"
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1367,7 +1421,7 @@
     "generator": false
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1404,7 +1458,7 @@
     }
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1417,7 +1471,7 @@
     "content": "\nimport React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\nimport { min, max } from './validators';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'number',\n};\n\nInput.propTypes = Object.assign({}, inputPropTypes, {\n  min: React.PropTypes.number,\n  max: React.PropTypes.number,\n  step: React.PropTypes.number,\n});\n\n/**\n * A component to validate a number.\n\n * Default validation options:\n *  * `errors`: [{@link min}, {@link max}],\n *  * `sanitizers`: `['toFloat']`\n *\n * Default props: `{type: 'number'}`\n * @namespace NumberInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const NumberInput = validateField({\n  errors: [min, max],\n  sanitizers: ['toFloat'],\n})(Input);\n\nexport default NumberInput;\n"
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1447,7 +1501,7 @@
     "generator": false
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1484,7 +1538,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 61,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1497,7 +1551,7 @@
     "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...getInputProps(props)}\n          type=\"password\"\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.propTypes = inputPropTypes;\n\n/**\n * A component for entering a password. The `type` props is hardcoded to `'password'`.\n *\n * @namespace PasswordInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const PasswordInput = validateField({\n})(Input);\n\nexport default PasswordInput;\n"
   },
   {
-    "__docId__": 61,
+    "__docId__": 62,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1527,7 +1581,7 @@
     "generator": false
   },
   {
-    "__docId__": 62,
+    "__docId__": 63,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1564,7 +1618,7 @@
     }
   },
   {
-    "__docId__": 63,
+    "__docId__": 64,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1577,7 +1631,7 @@
     "content": "import React from 'react';\nimport { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';\n\nimport { validateField } from '../../decorators/forms/validates';\nimport { inputPropTypes, getInputProps } from './props';\n\n\nfunction Input(props) {\n  const errors = props.messages.map((msg) => <HelpBlock key={msg}>{msg}</HelpBlock>);\n\n  return (\n    <FormGroup\n      validationState={props.validationState}\n    >\n      <InputGroup>\n        <FormControl\n          {...getInputProps(props)}\n        />\n      </InputGroup>\n      {errors}\n    </FormGroup>\n  );\n}\n\nInput.defaultProps = {\n  type: 'text',\n};\n\nInput.propTypes = inputPropTypes;\n\n/**\n * A component that allows entering text.\n\n * Default validation options: `{sanitizers: ['trim']}`\n\n * Default props: `{type: 'text'}`\n * @namespace TextInput\n * @memberof Simpl.components.forms\n * @type {ReactElement}\n * @extends React.Component\n */\nexport const TextInput = validateField({\n  sanitizers: ['trim'],\n})(Input);\n\nexport default TextInput;\n"
   },
   {
-    "__docId__": 64,
+    "__docId__": 65,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1607,7 +1661,7 @@
     "generator": false
   },
   {
-    "__docId__": 65,
+    "__docId__": 66,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1644,7 +1698,7 @@
     }
   },
   {
-    "__docId__": 66,
+    "__docId__": 67,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1657,7 +1711,7 @@
     "content": "/**\n * Return a fixed-precision representation of the given value, according to\n * `props.decimalPlaces`\n *\n * @param      {string}  value     The input value\n * @param      {object}  ownProps  The component's own properties\n * @return     {string|null}  The formatted valued, or `null` if `value` is the\n * emptry string.\n */\nexport const decimalPlaces = function decimalPlaces(value, ownProps) {\n  if (value === '') {\n    return null;\n  }\n  const float = parseFloat(value);\n  if (isNaN(float)) {\n    return null;\n  }\n  return float.toFixed(ownProps.decimalPlaces);\n};\n"
   },
   {
-    "__docId__": 67,
+    "__docId__": 68,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1704,7 +1758,7 @@
     "generator": false
   },
   {
-    "__docId__": 68,
+    "__docId__": 69,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1717,7 +1771,7 @@
     "content": "import CurrencyInput from './CurrencyInput.react';\nimport DecimalInput from './DecimalInput.react';\nimport EmailInput from './EmailInput.react';\nimport FloatInput from './FloatInput.react';\nimport IntegerInput from './IntegerInput.react';\nimport NumberInput from './NumberInput.react';\nimport PasswordInput from './PasswordInput.react';\nimport TextInput from './TextInput.react';\n\n/**\n * @namespace forms\n * @memberof Simpl.components\n */\nexport default {\n  CurrencyInput,\n  DecimalInput,\n  EmailInput,\n  FloatInput,\n  IntegerInput,\n  NumberInput,\n  PasswordInput,\n  TextInput,\n};\n"
   },
   {
-    "__docId__": 69,
+    "__docId__": 70,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1730,7 +1784,7 @@
     "content": "import React from 'react';\n\n\nexport const inputPropTypes = {\n  errors: React.PropTypes.array,\n  warning: React.PropTypes.array,\n  sanitizers: React.PropTypes.array,\n  formatters: React.PropTypes.array,\n  messages: React.PropTypes.array,\n  validationState: React.PropTypes.string,\n\n  type: React.PropTypes.string,\n  value: React.PropTypes.any,\n  name: React.PropTypes.string.isRequired,\n  id: React.PropTypes.string,\n  onChange: React.PropTypes.func,\n  onBlur: React.PropTypes.func,\n  onFocus: React.PropTypes.func,\n  placeholder: React.PropTypes.string,\n  required: React.PropTypes.bool,\n  disabled: React.PropTypes.bool,\n  readOnly: React.PropTypes.bool,\n  maxLength: React.PropTypes.number,\n};\n\n\nexport const reduxFormPropTypes = {\n  input: React.PropTypes.object,\n  label: React.PropTypes.string,\n  type: React.PropTypes.string,\n  meta: React.PropTypes.object,\n  error: React.PropTypes.any,\n  pristine: React.PropTypes.bool,\n  reset: React.PropTypes.func,\n  submitting: React.PropTypes.bool,\n  handleSubmit: React.PropTypes.func,\n};\n\n\nexport function getInputProps(props) {\n  return {\n    value: props.value,\n    name: props.name,\n    id: props.id,\n    type: props.type,\n    min: props.min,\n    max: props.max,\n    step: props.step,\n    readOnly: props.readOnly,\n    required: props.required,\n    onBlur: props.onBlur,\n    onChange: props.onChange,\n    onFocus: props.onFocus,\n  };\n}\n"
   },
   {
-    "__docId__": 70,
+    "__docId__": 71,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1751,7 +1805,7 @@
     }
   },
   {
-    "__docId__": 71,
+    "__docId__": 72,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1772,7 +1826,7 @@
     }
   },
   {
-    "__docId__": 72,
+    "__docId__": 73,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1802,7 +1856,7 @@
     "generator": false
   },
   {
-    "__docId__": 73,
+    "__docId__": 74,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1815,7 +1869,7 @@
     "content": "/**\n * Check if the provided values is smaller than the `min` prop.\n *\n * @param      {string}  value     The value to validate\n * @param      {object}  ownProps  The component's own properties\n * @return     {string|null}  Either an error message, or `null`\n */\nexport const min = function min(value, ownProps) {\n  if (ownProps.min !== undefined && parseFloat(value) < ownProps.min) {\n    return `Value can't be less than ${ownProps.min}.`;\n  }\n  return null;\n};\n\n/**\n * Check if the provided values is greater than the `max` prop.\n *\n * @param      {string}  value     The value to validate\n * @param      {object}  ownProps  The component's own properties\n * @return     {string|null}  Either an error message, or `null`\n */\nexport const max = function max(value, ownProps) {\n  if (ownProps.max !== undefined && parseFloat(value) > ownProps.max) {\n    return `Value can't be greater than ${ownProps.max}.`;\n  }\n  return null;\n};\n"
   },
   {
-    "__docId__": 74,
+    "__docId__": 75,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1862,7 +1916,7 @@
     "generator": false
   },
   {
-    "__docId__": 75,
+    "__docId__": 76,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1909,7 +1963,7 @@
     "generator": false
   },
   {
-    "__docId__": 76,
+    "__docId__": 77,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1922,7 +1976,7 @@
     "content": "/**\n * A React Component.\n * @typedef {object} ReactElement\n */\nimport forms from './forms';\nimport RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\nimport Progress from './Progress.react';\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  forms,\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n  Progress,\n};\n"
   },
   {
-    "__docId__": 77,
+    "__docId__": 78,
     "kind": "typedef",
     "static": true,
     "variation": null,
@@ -1941,7 +1995,96 @@
     }
   },
   {
-    "__docId__": 78,
+    "__docId__": 79,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/constants.js",
+    "memberof": null,
+    "longname": "src/constants.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "/**\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n */\nexport const CONNECTION_STATUS = {\n  CONNECTING: 'connecting',\n  CONNECTED: 'connected',\n  LOADED: 'loaded',\n  OFFLINE: 'offline',\n};\n"
+  },
+  {
+    "__docId__": 80,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "CONNECTION_STATUS",
+    "memberof": "src/constants.js",
+    "longname": "src/constants.js~CONNECTION_STATUS",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/constants",
+    "importStyle": "{CONNECTION_STATUS}",
+    "description": "A constant describing all the possible connection status.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@readonly",
+        "tagValue": ""
+      }
+    ],
+    "properties": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "defaultValue": "'connecting'",
+        "defaultRaw": "'connecting'",
+        "name": "CONNECTING",
+        "description": "The initial value. The app is not connected to\nthe WAMP Router, yet."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "defaultValue": "'connected'",
+        "defaultRaw": "'connected'",
+        "name": "CONNECTED",
+        "description": "The app is connected and authenticated, but it\nstill needs to download data."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "defaultValue": "'loaded'",
+        "defaultRaw": "'loaded'",
+        "name": "LOADED",
+        "description": "The app has downloaded all the relevant data."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "defaultValue": "'offline'",
+        "defaultRaw": "'offline'",
+        "name": "OFFLINE",
+        "description": "The connection was dropped."
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 81,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1954,7 +2097,7 @@
     "content": "import validates from './validates';\n\n/**\n * @namespace forms\n * @memberof Simpl.decorators\n */\nexport default {\n  validates,\n};\n"
   },
   {
-    "__docId__": 79,
+    "__docId__": 82,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1967,7 +2110,7 @@
     "content": "/* eslint \"no-underscore-dangle\": \"off\" */\nimport React from 'react';\nimport { stopSubmit } from 'redux-form';\n\nimport _ from 'lodash';\nimport validator from 'validator';\n\n\nconst verboseValidator = function verboseValidator(validation, value) {\n  if (!value) {\n    return null;\n  }\n  const messages = {\n    isEmail: `The specified value \"${value}\" is not a valid email address.`,\n    isNumeric: 'The specified value is not an integer.',\n    isDecimal: 'The specified value is not a decimal.',\n    isLowercase: 'The specified value must be lowercase',\n    isUppercase: 'The specified value must be uppercase',\n  };\n\n  return validator[validation](value) ? null : messages[validation] || 'Invalid value';\n};\n\n/**\n * Convert a value to a string, if possible. Otherwise returns the unchanged\n * value. `null` and `undefined` are coerced to the empty string.\n *\n * @param      {any}   value   The value to coerced\n * @return     {any}  Either the value converted to a string, or the value itself.\n */\nconst stringValue = function stringValue(value) {\n  if (value === null || value === undefined) return '';\n  return value.toString !== undefined ? value.toString() : value;\n};\n\n/**\n * Options to validate a component\n * @typedef {Object} ValidationOptions\n * @property      {Array<string, function>}   errors  An array of validators\n * that may return an error message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   warnings   An array of validators\n * that may return a warning message. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<string, function>}   sanitizers  An array of saniters\n * to modify the field's returned value. For available strings, see the npm [validator](https://www.npmjs.com/package/validator) package\n * @property      {Array<function>}           formatters  An array of saniters\n * to modify the field's rendered value.\n */\n\n/**\n * Add value validation to a single field.\n * @memberof Simpl.decorators.forms\n * @example\n * import React from 'react';\n *\n * import {validates} from 'simpl/lib/decorators/forms/validates';\n * import {FormControl} from 'react-bootstrap';\n *\n * const noSpam = (value, ownProps) => {\n *     // validation logic goes here\n *     if (value.endsWith('@spam.com')) {\n *         return \"that's spam\"\n *     }\n * };\n *\n * const itsNew = (value, ownProps) => {\n *     if (value === ownProps.previousEmail) {\n *         return \"email didn't change\"\n *     }\n * };\n *\n * function EmailField(props) {\n *     // all aestethics goes here\n *     return (\n *         <FormControl\n *             type=\"email\"\n *             {...props}\n *         />\n *     )\n * }\n *\n * const ValidatingEmailField = validateField({\n *     errors: ['isEmail', noSpam],\n *     warnings: [itsNew]\n * )(EmailField);\n *\n * class MyComponent extends React.Component {\n *     render() {\n *         return(\n *             <div>\n *                 <ValidatingEmailField\n *                     previousEmail=\"my@email.com\"\n *                     errors={['isRequired']}\n *                 />\n *             </div>\n *         );\n *     }\n * }\n *\n * @param      {ValidationOptions}  options  An object of options\n * @returns    {ReactElement} A React component.\n */\nexport function validateField({ errors, warnings, sanitizers, formatters }) {\n  const errorValidators = errors || [];\n  const warningValidators = warnings || [];\n  const optionsSanitizers = sanitizers || [];\n  const optionsFormatters = formatters || [];\n\n  return (Component) => {\n    const parentProps = Component.defaultProps;\n\n    class ValidatedComponent extends React.Component {\n      constructor(props, context) {\n        super(props, context);\n\n        let formattedValue = '';\n        if (![undefined, null, ''].includes(this.props.initialValue)) {\n          formattedValue = this.format(this.props.initialValue, this.mergedProps(this.props));\n        }\n        this.state = {\n          messages: this.props.messages || [],\n          validationState: null,\n          value: formattedValue,\n          hasReduxForm: context._reduxForm !== undefined,\n          name: this.props.name || this.props.input.name,\n        };\n        this.onChange = this.onChange.bind(this);\n        this.onBlur = this.onBlur.bind(this);\n        this.onFocus = this.onFocus.bind(this);\n      }\n\n      componentWillReceiveProps(props) {\n        // add value and errors/warnings coming from redux-form\n\n        if (_.isEqual(this.props, props)) {\n          return;\n        }\n\n        const newState = {\n          validationState: null,\n          messages: [],\n        };\n\n        if (props.meta) {\n          if (props.meta.error) {\n            newState.validationState = 'error';\n            newState.messages.push(props.meta.error);\n          } else if (props.meta.warning) {\n            newState.validationState = 'warning';\n            newState.messages.push(props.meta.warning);\n          }\n        }\n\n        this.setState(newState);\n      }\n\n      onChange(e) {\n        this.setState({\n          value: e.target.value,\n        });\n\n        if (this.state.hasReduxForm) {\n        // Update the redux-form state is the field is decorated with `reduxForm'=\n          this.context._reduxForm.dispatch(\n            this.context._reduxForm.change(this.state.name, e.target.value)\n          );\n        }\n\n        if (this.props.onChange) {\n          this.props.onChange(e);\n        }\n      }\n\n      onFocus(e) {\n        this.setState({\n          validationState: null,\n          messages: [],\n        });\n\n        if (this.props.focus) {\n          this.props.focus(e);\n        }\n      }\n\n      onBlur(e) {\n        if (this.props.readOnly === true) {\n          if (this.props.blur) {\n            this.props.blur(e);\n          }\n          return;\n        }\n\n        const originalValue = e.target.value;\n\n        const { validationState, allErrors, allWarnings } = this.validate(originalValue);\n\n        const messages = [...allErrors, ...allWarnings];\n\n        const sanitizedValue = this.sanitize(originalValue, this.props);\n        const formattedValue = this.format(originalValue, this.mergedProps(this.props));\n\n        // If part of a redux form and there are errors, dispatch actions to\n        // mark the form as invalid. Warnings will still allow the form to be\n        // submitted.\n        if (this.state.hasReduxForm) {\n          if (sanitizedValue === null || allErrors.length > 0) {\n            const reduxFormErrors = { [this.state.name]: allErrors.join(', ') };\n            const formName = this.context._reduxForm.form;\n            this.context._reduxForm.dispatch(\n              stopSubmit(formName, reduxFormErrors)\n            );\n          }\n          this.context._reduxForm.dispatch(\n            this.context._reduxForm.blur(this.state.name, e.target.value)\n          );\n        }\n\n        if (formattedValue !== null) {\n          this.setState({\n            value: formattedValue,\n            validationState,\n            messages,\n          });\n        }\n\n        // the entered value is invalid\n        if (sanitizedValue === null) {\n          return;\n        }\n\n        if (this.props.blur) {\n          const sanitizedTarget = Object.assign({}, e.target, { value: sanitizedValue });\n          const sanitizedEvent = Object.assign({}, e, { target: sanitizedTarget });\n          this.props.blur(sanitizedEvent, formattedValue);\n        }\n      }\n\n      validate(originalValue) {\n        const allErrors = this.mapValidators(\n          [...this.props.errors, ...errorValidators], originalValue, this.props\n        );\n        const allWarnings = this.mapValidators(\n          [...this.props.warnings, ...warningValidators], originalValue, this.props\n        );\n\n        if (originalValue === '' && this.props.required === true) {\n          allErrors.push('This field is required.');\n        }\n\n        let validationState = 'success';\n        if (allErrors.length) {\n          validationState = 'error';\n        } else if (allWarnings.length) {\n          validationState = 'warning';\n        }\n\n        return {\n          validationState,\n          allErrors,\n          allWarnings,\n        };\n      }\n\n      mergedProps(props) {\n        return Object.assign({}, parentProps, props);\n      }\n\n      mapValidators(validators, value, props) {\n        return validators.map((validation) => {\n          if (_.isFunction(validation)) {\n            return validation(value, props);\n          } else if (_.isString(validation)) {\n            return verboseValidator(\n              validation,\n              stringValue(value)\n            );\n          }\n          return null;\n        }).filter((result) => result !== null);\n      }\n\n      sanitize(value, props) {\n        const allSanitizers = [...props.sanitizers, ...optionsSanitizers];\n\n        // `redux-form` commpatibility\n        if (props.normalize) {\n          allSanitizers.push(props.normalize);\n        }\n\n        const sanitizedValue = allSanitizers.reduce((previousValue, sanitizer) => {\n          let sanitizerFunc = sanitizer;\n          if (_.isString(sanitizer)) {\n            sanitizerFunc = validator[sanitizer];\n          }\n\n          const sanitized = sanitizerFunc(stringValue(previousValue));\n          if (props.input.type === 'number' && isNaN(sanitized)) {\n            return null;\n          }\n          return sanitized !== null ? sanitized : previousValue;\n        }, value);\n        return sanitizedValue;\n      }\n\n      format(value, props) {\n        const allFormatters = [...props.formatters, ...optionsFormatters];\n        const formattedValue = allFormatters.reduce(\n          (previousValue, formatter) => formatter(previousValue, props) || previousValue\n        , value);\n        return formattedValue;\n      }\n\n      render() {\n        return (\n          <span>\n            <Component\n              {...this.state}\n              onChange={this.onChange}\n              onBlur={this.onBlur}\n              onFocus={this.onFocus}\n              type={this.props.type}\n              name={this.state.name}\n              id={this.props.id}\n              required={this.props.required}\n              readOnly={this.props.readOnly}\n            />\n          </span>\n        );\n      }\n    }\n\n    ValidatedComponent.defaultProps = {\n      errors: [],\n      warnings: [],\n      sanitizers: [],\n      formatters: [],\n      required: false,\n      readOnly: false,\n    };\n\n    ValidatedComponent.contextTypes = {\n      _reduxForm: React.PropTypes.object,\n    };\n\n    ValidatedComponent.propTypes = {\n      name: React.PropTypes.string,\n      input: React.PropTypes.object,\n      id: React.PropTypes.string,\n      required: React.PropTypes.bool,\n      readOnly: React.PropTypes.bool,\n      initialValue: React.PropTypes.any,\n      type: React.PropTypes.string,\n      meta: React.PropTypes.object,\n      onChange: React.PropTypes.func,\n      onBlur: React.PropTypes.func,\n      blur: React.PropTypes.func,\n      onFocus: React.PropTypes.func,\n      messages: React.PropTypes.array,\n      errors: React.PropTypes.array,\n      warnings: React.PropTypes.array,\n      sanitizers: React.PropTypes.array,\n      formatters: React.PropTypes.arrayOf(React.PropTypes.func),\n    };\n\n    return ValidatedComponent;\n  };\n}\n\nexport default validateField;\n"
   },
   {
-    "__docId__": 80,
+    "__docId__": 83,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2003,7 +2146,7 @@
     "generator": false
   },
   {
-    "__docId__": 81,
+    "__docId__": 84,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2039,7 +2182,7 @@
     "generator": false
   },
   {
-    "__docId__": 82,
+    "__docId__": 85,
     "kind": "typedef",
     "static": true,
     "variation": null,
@@ -2099,7 +2242,7 @@
     }
   },
   {
-    "__docId__": 83,
+    "__docId__": 86,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2148,7 +2291,7 @@
     "generator": false
   },
   {
-    "__docId__": 84,
+    "__docId__": 87,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2161,7 +2304,7 @@
     "content": "import forms from './forms';\nimport pubsub from './pubsub';\nimport rpc from './rpc';\nimport simpl from './simpl';\nimport wamp from './wamp';\n\n\n/**\n * @namespace decorators\n * @memberof Simpl\n */\nexport default {\n  forms,\n  pubsub,\n  rpc,\n  simpl,\n  wamp,\n};\n"
   },
   {
-    "__docId__": 85,
+    "__docId__": 88,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2174,7 +2317,7 @@
     "content": "import publishes from './publishes';\nimport subscribes from './subscribes';\n\n\n/**\n * @namespace pubsub\n * @memberof Simpl.decorators\n */\nexport default {\n  publishes,\n  subscribes,\n};\n"
   },
   {
-    "__docId__": 86,
+    "__docId__": 89,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2187,7 +2330,7 @@
     "content": "import React from 'react';\n\nimport _ from 'lodash';\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function publishes\n * @memberof Simpl.decorators.pubsub\n */\nexport function publishes(topic, options = {}) {\n  return (Component) => {\n    const defaults = { acknowledge: true, disclose_me: true, exclude_me: false };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n    class Publisher extends React.Component {\n      constructor(props) {\n        super(props);\n        this.publish = this.publish.bind(this);\n      }\n      publish(payload) {\n        const args = payload.args || [];\n        const kwargs = payload.kwargs || {};\n        let resolvedTopic = topic;\n\n        if (_.isFunction(topic)) {\n          resolvedTopic = topic.bind(this)(this.props);\n        }\n        return AutobahnReact.publish(resolvedTopic, args, kwargs, optionsWithDefaults)\n        .then(publication => {\n          if (this.props.onPublished) {\n            return this.props.onPublished(\n              resolvedTopic, args, kwargs, optionsWithDefaults, publication\n            );\n          }\n          return publication;\n        })\n        .catch(error => {\n          if (this.props.onPublishedError) {\n            return this.props.onPublishedError(\n              resolvedTopic, args, kwargs, optionsWithDefaults, error\n            );\n          }\n          return error;\n        });\n      }\n      render() {\n        return <Component {...this.props} {...this.state} publish={this.publish} />;\n      }\n    }\n\n    Publisher.propTypes = {\n      onPublished: React.PropTypes.func,\n      onPublishedError: React.PropTypes.func,\n    };\n\n    return Publisher;\n  };\n}\n\nexport default publishes;\n"
   },
   {
-    "__docId__": 87,
+    "__docId__": 90,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2235,7 +2378,7 @@
     "generator": false
   },
   {
-    "__docId__": 88,
+    "__docId__": 91,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2248,7 +2391,7 @@
     "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport _ from 'lodash';\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function subscribes\n * @memberof Simpl.decorators.pubsub\n */\nexport function subscribes(topics, options = {}, staticMethods = {}) {\n  return (Component) => {\n    const defaults = { match: 'prefix' };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n    const mapDispatchToProps = (dispatch, ownProps) => ({\n      onMessage(args, kwargs, event) {\n        const store = ownProps.append === undefined ? true : ownProps.append;\n        const action = store ? this.appendMessage : this.updateMessage;\n\n        action({ args, kwargs, event });\n        if (ownProps.onReceived !== undefined) {\n          ownProps.onReceived(args, kwargs, event);\n        }\n      },\n    });\n\n    class SubscriptionContainer extends React.Component {\n      constructor(props) {\n        super(props);\n        this.state = {\n          data: [],\n        };\n        this.appendMessage = this.appendMessage.bind(this);\n        this.updateMessage = this.updateMessage.bind(this);\n      }\n      componentDidMount() {\n        this.subscriptions = [];\n        // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onReady(([session, details]) => {\n          this.subscribeTo(session);\n        });\n        this.subscribeTo(AutobahnReact);\n      }\n      shouldComponentUpdate(nextProps, nextState) {\n        return this.props !== nextProps || this.state !== nextState;\n      }\n      componentWillUnmount() {\n        const resolvedTopics = this.getTopics();\n        console.log(`Unmounting ${resolvedTopics}`);\n        this.unsubscribe();\n      }\n      getTopics() {\n        let resolvedTopics;\n        if (!_.isArray(topics)) {\n          resolvedTopics = [topics];\n        } else {\n          resolvedTopics = [...topics];\n        }\n        return resolvedTopics.map((topic) => {\n          if (_.isFunction(topic)) {\n            return topic.bind(this)(this.props);\n          }\n          return topic;\n        });\n      }\n      subscribeTo(session) {\n        const handler = this.props.onMessage.bind(this);\n        const resolvedTopics = this.getTopics();\n\n        resolvedTopics.forEach((topic) => {\n          session.subscribe(topic, handler, optionsWithDefaults)\n          .then(subscription => {\n            this.subscriptions.push(subscription);\n            console.log(`Subscribed to ${topic}`);\n          })\n          .catch(error => {\n            console.error(`Failed to auto-subscribe to a topic: ${topic}!`, error);\n          });\n        });\n      }\n      unsubscribe() {\n        this.subscriptions.forEach(subscription => {\n          console.log(`Unsubscribing from '${subscription.topic}'`);\n          AutobahnReact.unsubscribe(subscription);\n        });\n      }\n      appendMessage(message) {\n        const newVar = [...this.state.data || [], message];\n\n        this.setState({\n          data: newVar,\n        });\n      }\n      updateMessage(message) {\n        this.setState({\n          data: message,\n        });\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    SubscriptionContainer.propTypes = {\n      append: React.PropTypes.bool,\n      options: React.PropTypes.object,\n      onMessage: React.PropTypes.func,\n    };\n\n    for (var functionName in staticMethods) {\n      SubscriptionContainer[functionName] = staticMethods[functionName];\n    }\n\n    return connect(null, mapDispatchToProps)(SubscriptionContainer);\n  };\n}\n\nexport default subscribes;\n"
   },
   {
-    "__docId__": 89,
+    "__docId__": 92,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2305,7 +2448,7 @@
     "generator": false
   },
   {
-    "__docId__": 90,
+    "__docId__": 93,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2318,7 +2461,7 @@
     "content": "import React from 'react';\n\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function calls(procedure, options = {}) {\n  return (Component) => {\n    const defaults = {};\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n    class Caller extends React.Component {\n      constructor(props) {\n        super(props);\n        this.call = this.call.bind(this);\n      }\n      call(payload) {\n        const args = payload.args || [];\n        const kwargs = payload.kwargs || {};\n        return AutobahnReact.call(procedure, args, kwargs, optionsWithDefaults);\n      }\n      render() {\n        return <Component {...this.props} {...this.state} call={this.call} />;\n      }\n    }\n\n    return Caller;\n  };\n}\n\nexport default calls;\n"
   },
   {
-    "__docId__": 91,
+    "__docId__": 94,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2366,7 +2509,7 @@
     "generator": false
   },
   {
-    "__docId__": 92,
+    "__docId__": 95,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2379,7 +2522,7 @@
     "content": "import calls from './calls';\nimport registers from './registers';\n\n\n/**\n * @namespace rpc\n * @memberof Simpl.decorators\n */\nexport default {\n  calls,\n  registers,\n};\n"
   },
   {
-    "__docId__": 93,
+    "__docId__": 96,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2392,7 +2535,7 @@
     "content": "import React from 'react';\n\nimport AutobahnReact from '../../autobahn';\n\n\n/**\n * @function\n * @memberof Simpl.decorators.rpc\n */\nexport function registers(Component, procedure, options = {}) {\n  return (Component) => {\n    const defaults = { match: 'prefix' };\n    const optionsWithDefaults = Object.assign(defaults, {}, options);\n\n\n    class Listener extends React.Component {\n      componentDidMount() {\n        this.registrations = [];\n\n        // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onReady(([session, details]) => {\n          this.register(session);\n        });\n        // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onLost(([session, details]) => {\n          this.register(AutobahnReact);\n        });\n      }\n      componentWillUnmount() {\n        this.unregister();\n      }\n      register(session) {\n        const handler = this.props.onCalled.bind(this);\n        session.register(procedure, handler, optionsWithDefaults).then((registration) => {\n          this.registrations.push(registration);\n          console.log(\"registered procedure \" + procedure);\n        });\n      }\n      unregister() {\n        this.registrations.forEach(registration => {\n          AutobahnReact.unregister(registration);\n        });\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    Listener.propTypes = {\n      append: React.PropTypes.bool,\n      options: React.PropTypes.object,\n      onCalled: React.PropTypes.func,\n    };\n\n    return Listener;\n  };\n}\n\n\nexport default registers;\n"
   },
   {
-    "__docId__": 94,
+    "__docId__": 97,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2446,7 +2589,7 @@
     "generator": false
   },
   {
-    "__docId__": 95,
+    "__docId__": 98,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2456,10 +2599,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport { connect } from 'react-redux';\nimport { stopSubmit } from 'redux-form';\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n  // eslint-disable-next-line comma-dangle\n  showGenericError\n} from '../actions/simpl';\n\nimport Progress from '../components/Progress.react';\n\nimport { subscribes } from './pubsub/subscribes';\nimport { wamp } from './wamp';\nimport _ from 'lodash';\nimport AutobahnReact from '../autobahn';\n\n/**\n * Decorator to wrap your main app\n * @example\n * export default simpl({\n *   username: 'username',\n *   password: 'password',\n *   url: 'ws://example.com/ws',\n *   progressComponent: MyProgressComponent,\n *   topics: () => ['topic1', 'topic2'],\n *   prefixes: {\n *     model: 'org.example.namespace'\n *   }\n * })(MyComponent);\n\n * @function\n * @memberof Simpl.decorators\n * @param {Object} options - An object of options.\n * @param {string} options.username - The username for authenticating on the WAMP Router.\n * @param {string} options.password - The password for authenticating on the WAMP Router.\n * @param {string} options.url - The URL of the WAMP router.\n * @param {function} [options.progressComponent] - A customized Component to show\n * the App's connection state. The component will receive a `progress` prop which\n * can have one of the following values:\n * * `offline`: The initial value. The app is not connected to the WAMP Router, yet.\n * * `connected`: The app is connected and authenticated, but it still needs to download data.\n * * `loaded`: The app has downloaded all the relevant data.\n * @param {function} options.topics - A function return a list of topic to subsribe to.\n * @param {Object} [options.prefixes] - An object mapping names to topic prefixes,\n * to be used as shortcuts.\n */\nexport function simpl(options) {\n  return (Component) => {\n    const optionsWithDefaults = Object.assign({}, {\n      progressComponent: Progress,\n    }, options);\n    if (_.isFunction(options.topics)) {\n      optionsWithDefaults.topics = options.topics();\n    }\n\n    const mapStateToProps = (state, ownProps) => ({\n      progress: state.simpl.loaded === true ? 'loaded' : ownProps.progress,\n      errors: state.errors,\n      progressComponent: optionsWithDefaults.progressComponent,\n    });\n\n    const mapDispatchToProps = (dispatch) => ({\n      onReady() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(connectedScope(topic));\n            dispatch(getRunUsers(topic));\n            dispatch(getCurrentRunPhase(topic));\n            dispatch(getDataTree(topic));\n          });\n        }\n        dispatch(getPhases('model:model.game'));\n        dispatch(getRoles('model:model.game'));\n        return Promise.resolve();\n      },\n      onLeave() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(disconnectedScope(topic));\n          });\n        }\n        return Promise.resolve();\n      },\n      onReceived(args, kwargs, event) {\n        if (kwargs.error) {\n          if (kwargs.error === 'application.error.validation_error') {\n            const [form, errors] = args;\n            dispatch(stopSubmit(form, errors));\n          } else {\n            dispatch(showGenericError(args, kwargs));\n          }\n        } else {\n          const [pk, resourceName, data] = args;\n          const resolvedTopics = optionsWithDefaults.topics.map(\n            (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)\n          );\n          resolvedTopics.forEach((topic) => {\n            const actions = {\n              [`${topic}.add_child`]: addChild,\n              [`${topic}.remove_child`]: removeChild,\n              [`${topic}.update_child`]: updateScope,\n            };\n            if (actions[event.topic]) {\n              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));\n            }\n          });\n        }\n      },\n    });\n\n\n    class AppContainer extends React.Component {\n\n      shouldComponentUpdate(nextProps, nextState) {\n        if (this.props.progress === 'loaded') {\n          return false;\n        }\n        return this.props !== nextProps || this.state !== nextState;\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    AppContainer.propTypes = {\n      progress: React.PropTypes.string.isRequired,\n    };\n\n\n    const appTopics = optionsWithDefaults.topics.reduce(\n      (memo, topic) => memo.concat([\n        `${topic}.add_child`,\n        `${topic}.update_child`,\n        `${topic}.remove_child`,\n      ])\n    , [\n      `model:error.${options.username}`,\n    ]);\n    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);\n\n    // eslint-disable-next-line react/no-multi-comp\n    class Simpl extends React.Component {\n      componentWillMount() {\n        this.props.onReady();\n        window.addEventListener('beforeunload', this.props.onLeave);\n      }\n      componentWillUnmount() {\n        window.removeEventListener('beforeunload', this.props.onLeave);\n      }\n      render() {\n        if (this.props.progress !== 'loaded') {\n          return (\n            <div className={`simpl simpl-${this.props.progress}`}>\n              <this.props.progressComponent {...this.props} {...this.state} />\n            </div>\n            );\n        }\n        return (\n          <div className={`simpl simpl-${this.props.progress}`}>\n            <SubscribedAppContainer {...this.props} {...this.state} />\n          </div>\n        );\n      }\n    }\n\n    Simpl.propTypes = {\n      progress: React.PropTypes.string.isRequired,\n      onLeave: React.PropTypes.func,\n      onReady: React.PropTypes.func.isRequired,\n      progressComponent: React.PropTypes.func.isRequired,\n    };\n\n    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n    const WampContainer = wamp(optionsWithDefaults)(SimplContainer);\n\n    return WampContainer;\n  };\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
+    "content": "import React from 'react';\nimport { connect } from 'react-redux';\nimport { stopSubmit } from 'redux-form';\n\nimport _ from 'lodash';\n\nimport AutobahnReact from '../autobahn';\n\nimport {\n  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,\n  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,\n  // eslint-disable-next-line comma-dangle\n  showGenericError, setConnectionStatus\n} from '../actions/simpl';\nimport { CONNECTION_STATUS } from '../constants';\n\nimport { subscribes } from './pubsub/subscribes';\nimport { wampOptionsWithDefaults, wampSetup } from './utils';\n\n\n/**\n * Decorator to wrap your main app\n * @example\n * export default simpl({\n *   username: 'username',\n *   password: 'password',\n *   url: 'ws://example.com/ws',\n *   progressComponent: MyProgressComponent,\n *   topics: () => ['topic1', 'topic2'],\n *   prefixes: {\n *     model: 'org.example.namespace'\n *   }\n * })(MyComponent);\n\n * @function\n * @memberof Simpl.decorators\n * @param {Object} options - An object of options.\n * @param {string} options.username - The username for authenticating on the WAMP Router.\n * @param {string} options.password - The password for authenticating on the WAMP Router.\n * @param {string} options.url - The URL of the WAMP router.\n * @param {function} [options.progressComponent] - A customized Component to show\n * the App's connection state. The component will receive a `connectionStatus` prop which\n * can have one of the following values:\n * * `connecting`: The initial value. The app is not connected to the WAMP Router, yet.\n * * `connected`: The app is connected and authenticated, but it still needs to download data.\n * * `loaded`: The app has downloaded all the relevant data.\n * * `offline`:  The connection was dropped.\n * @param {function} options.topics - A function return a list of topic to subsribe to.\n * @param {Object} [options.prefixes] - An object mapping names to topic prefixes,\n * to be used as shortcuts.\n */\nexport function simpl(options) {\n  return (Component) => {\n    const optionsWithDefaults = wampOptionsWithDefaults(options);\n    if (_.isFunction(options.topics)) {\n      optionsWithDefaults.topics = options.topics();\n    }\n\n    const mapStateToProps = (state) => ({\n      connectionStatus: state.simpl.connectionStatus,\n      errors: state.errors,\n      progressComponent: optionsWithDefaults.progressComponent,\n    });\n\n    const mapDispatchToProps = (dispatch) => ({\n      setConnectionStatus(status) {\n        dispatch(setConnectionStatus(status));\n      },\n      onReady() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(connectedScope(topic));\n            dispatch(getRunUsers(topic));\n            dispatch(getCurrentRunPhase(topic));\n            dispatch(getDataTree(topic));\n          });\n        }\n        dispatch(getPhases('model:model.game'));\n        dispatch(getRoles('model:model.game'));\n        return Promise.resolve();\n      },\n      onLeave() {\n        if (optionsWithDefaults.topics) {\n          optionsWithDefaults.topics.forEach((topic) => {\n            dispatch(disconnectedScope(topic));\n          });\n        }\n        return Promise.resolve();\n      },\n      onReceived(args, kwargs, event) {\n        if (kwargs.error) {\n          if (kwargs.error === 'application.error.validation_error') {\n            const [form, errors] = args;\n            dispatch(stopSubmit(form, errors));\n          } else {\n            dispatch(showGenericError(args, kwargs));\n          }\n        } else {\n          const [pk, resourceName, data] = args;\n          const resolvedTopics = optionsWithDefaults.topics.map(\n            (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)\n          );\n          resolvedTopics.forEach((topic) => {\n            const actions = {\n              [`${topic}.add_child`]: addChild,\n              [`${topic}.remove_child`]: removeChild,\n              [`${topic}.update_child`]: updateScope,\n            };\n            if (actions[event.topic]) {\n              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));\n            }\n          });\n        }\n      },\n    });\n\n\n    class AppContainer extends React.Component {\n\n      shouldComponentUpdate(nextProps, nextState) {\n        if (this.props.connectionStatus === CONNECTION_STATUS.LOADED) {\n          return false;\n        }\n        return this.props !== nextProps || this.state !== nextState;\n      }\n      render() {\n        return <Component {...this.props} {...this.state} />;\n      }\n    }\n\n    AppContainer.propTypes = {\n      connectionStatus: React.PropTypes.string.isRequired,\n    };\n\n\n    const appTopics = optionsWithDefaults.topics.reduce(\n      (memo, topic) => memo.concat([\n        `${topic}.add_child`,\n        `${topic}.update_child`,\n        `${topic}.remove_child`,\n      ])\n    , [\n      `model:error.${options.username}`,\n    ]);\n    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);\n\n    // eslint-disable-next-line react/no-multi-comp\n    class Simpl extends React.Component {\n      componentWillMount() {\n        wampSetup(this, optionsWithDefaults);\n        window.addEventListener('beforeunload', this.props.onLeave);\n      }\n      componentWillUnmount() {\n        window.removeEventListener('beforeunload', this.props.onLeave);\n      }\n      render() {\n        if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {\n          return (\n            <div className={`simpl simpl-${this.props.connectionStatus}`}>\n              <this.props.progressComponent {...this.props} {...this.state} />\n            </div>\n            );\n        }\n        return (\n          <div className={`simpl simpl-${this.props.connectionStatus}`}>\n            <SubscribedAppContainer {...this.props} {...this.state} />\n          </div>\n        );\n      }\n    }\n\n    Simpl.propTypes = {\n      connectionStatus: React.PropTypes.string.isRequired,\n      onLeave: React.PropTypes.func,\n      onReady: React.PropTypes.func.isRequired,\n      progressComponent: React.PropTypes.func.isRequired,\n      setConnectionStatus: React.PropTypes.func.isRequired,\n    };\n\n    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);\n\n    return SimplContainer;\n  };\n}\n\n/**\n * @namespace simpl\n * @memberof Simpl.decorators\n */\nexport default simpl;\n"
   },
   {
-    "__docId__": 96,
+    "__docId__": 99,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2474,7 +2617,7 @@
     "examples": [
       "export default simpl({\n  username: 'username',\n  password: 'password',\n  url: 'ws://example.com/ws',\n  progressComponent: MyProgressComponent,\n  topics: () => ['topic1', 'topic2'],\n  prefixes: {\n    model: 'org.example.namespace'\n  }\n})(MyComponent);"
     ],
-    "lineNumber": 49,
+    "lineNumber": 52,
     "unknown": [
       {
         "tagName": "@function",
@@ -2534,7 +2677,7 @@
         "spread": false,
         "optional": true,
         "name": "options.progressComponent",
-        "description": "A customized Component to show\nthe App's connection state. The component will receive a `progress` prop which\ncan have one of the following values:\n* `offline`: The initial value. The app is not connected to the WAMP Router, yet.\n* `connected`: The app is connected and authenticated, but it still needs to download data.\n* `loaded`: The app has downloaded all the relevant data."
+        "description": "A customized Component to show\nthe App's connection state. The component will receive a `connectionStatus` prop which\ncan have one of the following values:\n* `connecting`: The initial value. The app is not connected to the WAMP Router, yet.\n* `connected`: The app is connected and authenticated, but it still needs to download data.\n* `loaded`: The app has downloaded all the relevant data.\n* `offline`:  The connection was dropped."
       },
       {
         "nullable": null,
@@ -2565,7 +2708,81 @@
     "generator": false
   },
   {
-    "__docId__": 97,
+    "__docId__": 100,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/decorators/utils.js",
+    "memberof": null,
+    "longname": "src/decorators/utils.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import AutobahnReact from '../autobahn';\nimport Progress from '../components/Progress.react';\n\nimport { CONNECTION_STATUS } from '../constants';\n\n\nexport function wampSetup(component, options) {\n  // Callback called whenever the connection is lost\n  AutobahnReact.Connection.onLost(() => {\n    console.log('Connection lost :/!');\n    component.props.setConnectionStatus(CONNECTION_STATUS.OFFLINE);\n  });\n  // Callback called whenever the connection is ready\n// eslint-disable-next-line no-unused-vars\n  AutobahnReact.Connection.onReady(([session, details]) => {\n    console.log('Connection established!');\n    Object.keys(options.prefixes).forEach((key) => {\n      const value = options.prefixes[key];\n      console.log('added prefix: ', key, value);\n      session.prefix(key, value);\n      component.props.setConnectionStatus(CONNECTION_STATUS.CONNECTED);\n    });\n  });\n  AutobahnReact.Connection.initialize(options.url, options.realm);\n  if (options.username) {\n    AutobahnReact.Auth.logIn({\n      username: options.username,\n      password: options.password,\n    }).then(() => {\n      console.log('authd');\n      if (component.props.onReady) {\n        component.props.onReady();\n      }\n    }).catch((err) => {\n      console.log(err);\n      console.log('not authd');\n    });\n  }\n}\n\nexport function wampOptionsWithDefaults(options) {\n  const defaults = {\n    url: 'ws://localhost:8080/ws',\n    realm: 'realm1',\n    prefixes: {},\n    progressComponent: Progress,\n  };\n  return Object.assign({}, defaults, options);\n}\n"
+  },
+  {
+    "__docId__": 101,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "wampSetup",
+    "memberof": "src/decorators/utils.js",
+    "longname": "src/decorators/utils.js~wampSetup",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/decorators/utils",
+    "importStyle": "{wampSetup}",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "params": [
+      {
+        "name": "component",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "options",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 102,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "wampOptionsWithDefaults",
+    "memberof": "src/decorators/utils.js",
+    "longname": "src/decorators/utils.js~wampOptionsWithDefaults",
+    "access": null,
+    "export": true,
+    "importPath": "simpl/lib/decorators/utils",
+    "importStyle": "{wampOptionsWithDefaults}",
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "params": [
+      {
+        "name": "options",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 103,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2575,10 +2792,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nimport AutobahnReact from '../autobahn';\n\nimport Progress from '../components/Progress.react';\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function wamp(options = {}) {\n  return (Component) => {\n    const defaults = {\n      url: 'ws://localhost:8080/ws',\n      realm: 'realm1',\n      prefixes: {},\n      progressComponent: Progress,\n    };\n    const optionsWithDefaults = Object.assign({}, defaults, options);\n\n    class WampContainer extends React.Component {\n      constructor(props) {\n        super(props);\n        this.state = {\n          progress: 'offline',\n        };\n      }\n      componentWillMount() {\n        // Callback called whenever the connection is lost\n        AutobahnReact.Connection.onLost(() => {\n          console.log('Connection lost :/!');\n          this.setState({ progress: 'offline' });\n        });\n        // Callback called whenever the connection is ready\n      // eslint-disable-next-line no-unused-vars\n        AutobahnReact.Connection.onReady(([session, details]) => {\n          console.log('Connection established!');\n          Object.keys(optionsWithDefaults.prefixes).forEach((key) => {\n            const value = optionsWithDefaults.prefixes[key];\n            console.log('added prefix: ', key, value);\n            session.prefix(key, value);\n            this.setState({ progress: 'connected' });\n          });\n        });\n        AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);\n        if (optionsWithDefaults.username) {\n          AutobahnReact.Auth.logIn({\n            username: optionsWithDefaults.username,\n            password: optionsWithDefaults.password,\n          }).then(() => {\n            console.log('authd');\n            if (this.props.onReady) {\n              this.props.onReady();\n            }\n          }).catch((err) => {\n            console.log(err);\n            console.log('not authd');\n          });\n        }\n      }\n      render() {\n        if (this.state.progress === 'offline') {\n          return (\n            <div className={`wamp wamp-${this.state.progress}`}>\n              <optionsWithDefaults.progressComponent {...this.props} {...this.state} />\n            </div>\n          );\n        }\n        return (\n          <div className={`wamp wamp-${this.state.progress}`}>\n            <Component {...this.props} {...this.state} />\n          </div>\n        );\n      }\n    }\n\n    WampContainer.propTypes = {\n      onReady: React.PropTypes.func,\n    };\n\n    return WampContainer;\n  };\n}\n\nexport default wamp;\n"
+    "content": "import React from 'react';\nimport { connect } from 'react-redux';\n\nimport { setConnectionStatus } from '../actions/simpl';\nimport { CONNECTION_STATUS } from '../constants';\n\nimport { wampOptionsWithDefaults, wampSetup } from './utils';\n\n/**\n * @function\n * @memberof Simpl.decorators\n */\nexport function wamp(options = {}) {\n  return (Component) => {\n    const optionsWithDefaults = wampOptionsWithDefaults(options);\n\n    class Wamp extends React.Component {\n      componentWillMount() {\n        wampSetup(this, optionsWithDefaults);\n      }\n      render() {\n        if (this.props.connectionStatus === CONNECTION_STATUS.CONNECTING) {\n          return (\n            <div className={`wamp wamp-${this.props.connectionStatus}`}>\n              <optionsWithDefaults.progressComponent {...this.props} />\n            </div>\n          );\n        }\n        return (\n          <div className={`wamp wamp-${this.props.connectionStatus}`}>\n            <Component {...this.props} />\n          </div>\n        );\n      }\n    }\n\n    Wamp.propTypes = {\n      onReady: React.PropTypes.func,\n      connectionStatus: React.PropTypes.string.isRequired,\n      setConnectionStatus: React.PropTypes.func.isRequired,\n    };\n\n    const mapStateToProps = (state) => ({\n      connectionStatus: state.simpl.connectionStatus,\n    });\n\n    const mapDispatchToProps = (dispatch) => ({\n      setConnectionStatus(status) {\n        dispatch(setConnectionStatus(status));\n      },\n    });\n\n    return connect(mapStateToProps, mapDispatchToProps)(Wamp);\n  };\n}\n\nexport default wamp;\n"
   },
   {
-    "__docId__": 98,
+    "__docId__": 104,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2590,7 +2807,7 @@
     "importPath": "simpl/lib/decorators/wamp",
     "importStyle": "{wamp}",
     "description": "",
-    "lineNumber": 11,
+    "lineNumber": 13,
     "unknown": [
       {
         "tagName": "@function",
@@ -2620,7 +2837,7 @@
     "generator": false
   },
   {
-    "__docId__": 99,
+    "__docId__": 105,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2633,7 +2850,7 @@
     "content": "import actions from './actions';\nimport autobahn from './autobahn';\nimport components from './components';\nimport decorators from './decorators';\nimport reducers from './reducers';\nimport stores from './stores';\nimport utils from './utils';\n\n\n/**\n * @module Simpl\n * @namespace Simpl\n */\nexport default {\n  actions,\n  autobahn,\n  components,\n  decorators,\n  reducers,\n  stores,\n  utils,\n};\n"
   },
   {
-    "__docId__": 100,
+    "__docId__": 106,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2646,7 +2863,7 @@
     "content": "/**\n * @namespace combined\n * @memberof Simpl.reducers\n */\nimport { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\nimport { reducer as form } from 'redux-form';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\n/**\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n */\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n    form,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n"
   },
   {
-    "__docId__": 101,
+    "__docId__": 107,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2676,7 +2893,7 @@
     "generator": false
   },
   {
-    "__docId__": 102,
+    "__docId__": 108,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2706,7 +2923,7 @@
     "generator": false
   },
   {
-    "__docId__": 103,
+    "__docId__": 109,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2742,7 +2959,7 @@
     "generator": false
   },
   {
-    "__docId__": 104,
+    "__docId__": 110,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2755,7 +2972,7 @@
     "content": "import combined from './combined';\nimport messages from './messages';\nimport simpl from './simpl';\n\nexport const combinedReducer = combined;\nexport const messagesReducer = messages;\nexport const simplReducer = simpl;\n\n/**\n * @namespace reducers\n * @memberof Simpl\n */\nexport default {\n  combined,\n  messages,\n  simpl,\n};\n"
   },
   {
-    "__docId__": 105,
+    "__docId__": 111,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2776,7 +2993,7 @@
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 112,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2797,7 +3014,7 @@
     }
   },
   {
-    "__docId__": 107,
+    "__docId__": 113,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2818,7 +3035,7 @@
     }
   },
   {
-    "__docId__": 108,
+    "__docId__": 114,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2831,7 +3048,7 @@
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst MessageActions = require('../actions/messages');\nconst StateActions = require('../actions/state');\n\n\nconst initial = {\n};\n\nconst Message = function Message(payload) {\n  return { args: payload[0], kwargs: payload[1], details: payload[2] };\n};\n\nconst messages = recycleState(createReducer(initial, {\n  [MessageActions.appendMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    const newVar = [...state[variable] || [], message];\n\n    return Object.assign({}, state, { [variable]: newVar });\n  },\n  [MessageActions.updateMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    return Object.assign({}, state, { [variable]: message });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default messages;\n"
   },
   {
-    "__docId__": 109,
+    "__docId__": 115,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2852,7 +3069,7 @@
     }
   },
   {
-    "__docId__": 110,
+    "__docId__": 116,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2873,7 +3090,7 @@
     }
   },
   {
-    "__docId__": 111,
+    "__docId__": 117,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2894,7 +3111,7 @@
     }
   },
   {
-    "__docId__": 112,
+    "__docId__": 118,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -2924,7 +3141,7 @@
     "generator": false
   },
   {
-    "__docId__": 113,
+    "__docId__": 119,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2945,7 +3162,7 @@
     }
   },
   {
-    "__docId__": 114,
+    "__docId__": 120,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -2955,10 +3172,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  loaded: false,\n  user: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  round: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n  errors: []\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    console.error(action.payload.error, action.payload.args, action.payload.kwargs);\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  getDataTree(state, action) {\n    const newState = this.addChild(state, action);\n    return action.payload.children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child })\n    , newState);\n  },\n  [SimplActions.addChild](state, action) {\n    return this.addChild(state, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    const key = action.payload.resource_name;\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    const updated = popAtIndex(state[key], index);\n    return Object.assign({}, state, { [key]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let loaded = state.loaded;\n    if (state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getUserInfo](state, action) {\n    // Get the current user's info into the user namespace\n    const username = action.payload;\n    const roleTypes = new Set();\n    let foundRunuser;\n\n    state.runuser.forEach((runuser) => {\n      if (runuser.role_name) {\n        roleTypes.add(runuser.role_name);\n      }\n\n      if (runuser.username === username) {\n        foundRunuser = runuser;\n      }\n    });\n\n    // Remove this user's role and we're left with the \"other\" role names\n    roleTypes.delete(foundRunuser.role_name);\n    foundRunuser.other_roles = Array.from(roleTypes);\n    return Object.assign({}, state, { user: foundRunuser });\n  },\n  [SimplActions.getPhases](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.rolesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let loaded = state.loaded;\n    if (state.treeLoaded && state.phasesLoaded) {\n      loaded = true;\n    }\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      loaded,\n    });\n  },\n  [SimplActions.showGenericError](state, action) {\n    const error = { msg: action.payload[0] };\n    const errors = [...state.errors, error];\n    return Object.assign({}, state, { errors });\n  },\n  [SimplActions.popError](state) {\n    const errors = [...state.errors];\n    errors.pop();\n    return Object.assign({}, state, { errors });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n"
+    "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { CONNECTION_STATUS } from '../constants';\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  connectionStatus: CONNECTION_STATUS.CONNECTING,\n  user: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  round: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n  errors: [],\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    console.error(action.payload.error, action.payload.args, action.payload.kwargs);\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  getDataTree(state, action) {\n    const newState = this.addChild(state, action);\n    return action.payload.children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child })\n    , newState);\n  },\n  [SimplActions.addChild](state, action) {\n    return this.addChild(state, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    const key = action.payload.resource_name;\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    const updated = popAtIndex(state[key], index);\n    return Object.assign({}, state, { [key]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let connectionStatus = state.connectionStatus;\n    if (state.phasesLoaded) {\n      connectionStatus = CONNECTION_STATUS.CONNECTED;\n    }\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getUserInfo](state, action) {\n    // Get the current user's info into the user namespace\n    const username = action.payload;\n    const roleTypes = new Set();\n    let foundRunuser;\n\n    state.runuser.forEach((runuser) => {\n      if (runuser.role_name) {\n        roleTypes.add(runuser.role_name);\n      }\n\n      if (runuser.username === username) {\n        foundRunuser = runuser;\n      }\n    });\n\n    // Remove this user's role and we're left with the \"other\" role names\n    roleTypes.delete(foundRunuser.role_name);\n    foundRunuser.other_roles = Array.from(roleTypes);\n    return Object.assign({}, state, { user: foundRunuser });\n  },\n  [SimplActions.getPhases](state, action) {\n    let connectionStatus = state.connectionStatus;\n    if (state.treeLoaded && state.rolesLoaded) {\n      connectionStatus = CONNECTION_STATUS.LOADED;\n    }\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let connectionStatus = state.connectionStatus;\n    if (state.treeLoaded && state.phasesLoaded) {\n      connectionStatus = CONNECTION_STATUS.LOADED;\n    }\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.setConnectionStatus](state, action) {\n    return Object.assign({}, state, { connectionStatus: action.payload });\n  },\n  [SimplActions.showGenericError](state, action) {\n    const error = { msg: action.payload[0] };\n    const errors = [...state.errors, error];\n    return Object.assign({}, state, { errors });\n  },\n  [SimplActions.popError](state) {\n    const errors = [...state.errors];\n    errors.pop();\n    return Object.assign({}, state, { errors });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n"
   },
   {
-    "__docId__": 115,
+    "__docId__": 121,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -2979,7 +3196,7 @@
     }
   },
   {
-    "__docId__": 116,
+    "__docId__": 122,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3000,7 +3217,7 @@
     }
   },
   {
-    "__docId__": 117,
+    "__docId__": 123,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3012,7 +3229,7 @@
     "importPath": "simpl/lib/reducers/simpl",
     "importStyle": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 11,
     "undocument": true,
     "type": {
       "types": [
@@ -3021,7 +3238,7 @@
     }
   },
   {
-    "__docId__": 118,
+    "__docId__": 124,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3033,7 +3250,7 @@
     "importPath": "simpl/lib/reducers/simpl",
     "importStyle": "simpl",
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 31,
     "undocument": true,
     "type": {
       "types": [
@@ -3042,7 +3259,7 @@
     }
   },
   {
-    "__docId__": 119,
+    "__docId__": 125,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3055,7 +3272,7 @@
     "content": "/**\n * @namespace stores\n * @memberof Simpl\n */\nimport { createStore, applyMiddleware, compose } from 'redux';\nimport { reduxReactRouter } from 'redux-router';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nimport createHistory from 'history/lib/createBrowserHistory';\n\nconst loggerMiddleware = createLogger();\n\n// eslint-disable-next-line no-underscore-dangle\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n  reduxReactRouter({ createHistory }),\n];\n\n/**\n * Adds promise, thunk, router and dev tools middlewares to your store\n *\n * @param      {string}  NODE_ENV  The node env\n * @return     {function}  a `createStore` factory\n */\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production'\n    // eslint-disable-next-line no-underscore-dangle\n    && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n"
   },
   {
-    "__docId__": 120,
+    "__docId__": 126,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3076,7 +3293,7 @@
     }
   },
   {
-    "__docId__": 121,
+    "__docId__": 127,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3097,7 +3314,7 @@
     }
   },
   {
-    "__docId__": 122,
+    "__docId__": 128,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3118,7 +3335,7 @@
     }
   },
   {
-    "__docId__": 123,
+    "__docId__": 129,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3154,7 +3371,7 @@
     "generator": false
   },
   {
-    "__docId__": 124,
+    "__docId__": 130,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3167,7 +3384,7 @@
     "content": "import store from './store';\n\n\n/**\n * @namespace test\n * @memberof Simpl\n */\nexport default {\n  store,\n};\n"
   },
   {
-    "__docId__": 125,
+    "__docId__": 131,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3180,7 +3397,7 @@
     "content": "import { finalCreateStoreFactory } from '../stores';\nimport { simplReducers } from '../reducers/combined';\n\nconst rootReducer = simplReducers({});\n\n\nfunction configureStore(initialState) {\n  const finalCreateStore = finalCreateStoreFactory('production');\n  const store = finalCreateStore(rootReducer, initialState);\n\n  return store;\n}\n\n/**\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n */\nexport const store = configureStore();\n\nexport default store;\n"
   },
   {
-    "__docId__": 126,
+    "__docId__": 132,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3201,7 +3418,7 @@
     }
   },
   {
-    "__docId__": 127,
+    "__docId__": 133,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3231,7 +3448,7 @@
     "generator": false
   },
   {
-    "__docId__": 128,
+    "__docId__": 134,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -3261,7 +3478,7 @@
     }
   },
   {
-    "__docId__": 129,
+    "__docId__": 135,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3274,7 +3491,7 @@
     "content": "export function updateInCollection(collection, index, updates) {\n  if (index === undefined || index === null || index >= collection.length) {\n    return [...collection, Object.assign({}, updates)];\n  }\n  return [\n    ...collection.slice(0, index),\n    Object.assign({}, collection[index], updates),\n    ...collection.slice(index + 1),\n  ];\n}\n\nexport function updateCollection(collection, updates) {\n  return collection.map((item) => Object.assign({}, item, updates));\n}\n\nexport function popAtIndex(collection, index) {\n  if (index < 0) {\n    return collection.slice(0, index);\n  }\n  return [\n    ...collection.slice(0, index),\n    ...collection.slice(index + 1, collection.length),\n  ];\n}\n\n\nexport default {\n  updateInCollection,\n  updateCollection,\n  popAtIndex,\n};\n"
   },
   {
-    "__docId__": 130,
+    "__docId__": 136,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3316,7 +3533,7 @@
     "generator": false
   },
   {
-    "__docId__": 131,
+    "__docId__": 137,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3352,7 +3569,7 @@
     "generator": false
   },
   {
-    "__docId__": 132,
+    "__docId__": 138,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3388,7 +3605,7 @@
     "generator": false
   },
   {
-    "__docId__": 133,
+    "__docId__": 139,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3401,7 +3618,7 @@
     "content": "import collections from './collections';\nimport reducers from './reducers';\n\n\n/**\n * @namespace utils\n * @memberof Simpl\n */\nexport default {\n  collections,\n  reducers,\n};\n"
   },
   {
-    "__docId__": 134,
+    "__docId__": 140,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -3414,7 +3631,7 @@
     "content": "import { updateInCollection } from './collections';\n\n\nexport function updateObjectOrCollection(state, action, updates) {\n  let collection;\n\n  if (action.payload.key !== undefined) {\n    collection = updateInCollection(state, action.payload.key, updates);\n  } else {\n    collection = Object.assign({}, state, updates);\n  }\n  return collection;\n}\n\nexport default {\n  updateObjectOrCollection,\n};\n"
   },
   {
-    "__docId__": 135,
+    "__docId__": 141,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -3456,7 +3673,7 @@
     "generator": false
   },
   {
-    "__docId__": 137,
+    "__docId__": 143,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3469,7 +3686,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 138,
+    "__docId__": 144,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3482,7 +3699,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 139,
+    "__docId__": 145,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3495,7 +3712,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 140,
+    "__docId__": 146,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3508,7 +3725,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 141,
+    "__docId__": 147,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3521,7 +3738,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 142,
+    "__docId__": 148,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3534,7 +3751,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 143,
+    "__docId__": 149,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3547,7 +3764,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 144,
+    "__docId__": 150,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3560,7 +3777,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 145,
+    "__docId__": 151,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3573,7 +3790,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 146,
+    "__docId__": 152,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3586,7 +3803,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 147,
+    "__docId__": 153,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3599,7 +3816,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 148,
+    "__docId__": 154,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3612,7 +3829,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 149,
+    "__docId__": 155,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3625,7 +3842,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 150,
+    "__docId__": 156,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3638,7 +3855,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 151,
+    "__docId__": 157,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3651,7 +3868,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 152,
+    "__docId__": 158,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3664,7 +3881,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 153,
+    "__docId__": 159,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3677,7 +3894,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 154,
+    "__docId__": 160,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3690,7 +3907,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 155,
+    "__docId__": 161,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3703,7 +3920,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 156,
+    "__docId__": 162,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3716,7 +3933,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 157,
+    "__docId__": 163,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3729,7 +3946,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 158,
+    "__docId__": 164,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3742,7 +3959,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 159,
+    "__docId__": 165,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3755,7 +3972,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 160,
+    "__docId__": 166,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3768,7 +3985,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 161,
+    "__docId__": 167,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3781,7 +3998,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 162,
+    "__docId__": 168,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3794,7 +4011,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 163,
+    "__docId__": 169,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3807,7 +4024,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 164,
+    "__docId__": 170,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3820,7 +4037,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 165,
+    "__docId__": 171,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3833,7 +4050,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 166,
+    "__docId__": 172,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3846,7 +4063,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 167,
+    "__docId__": 173,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3859,7 +4076,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 168,
+    "__docId__": 174,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3872,7 +4089,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 169,
+    "__docId__": 175,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3885,7 +4102,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 170,
+    "__docId__": 176,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3898,7 +4115,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 171,
+    "__docId__": 177,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3911,7 +4128,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 172,
+    "__docId__": 178,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3924,7 +4141,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 173,
+    "__docId__": 179,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3937,7 +4154,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 174,
+    "__docId__": 180,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3950,7 +4167,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 175,
+    "__docId__": 181,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3963,7 +4180,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 176,
+    "__docId__": 182,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3976,7 +4193,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 177,
+    "__docId__": 183,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -3989,7 +4206,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 178,
+    "__docId__": 184,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4002,7 +4219,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 179,
+    "__docId__": 185,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4015,7 +4232,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 180,
+    "__docId__": 186,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4028,7 +4245,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 181,
+    "__docId__": 187,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4041,7 +4258,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 182,
+    "__docId__": 188,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4054,7 +4271,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 183,
+    "__docId__": 189,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4067,7 +4284,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 185,
+    "__docId__": 191,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4080,7 +4297,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 186,
+    "__docId__": 192,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4093,7 +4310,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 187,
+    "__docId__": 193,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4106,7 +4323,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 188,
+    "__docId__": 194,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4119,7 +4336,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 189,
+    "__docId__": 195,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4132,7 +4349,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 190,
+    "__docId__": 196,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4145,7 +4362,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 191,
+    "__docId__": 197,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -4158,7 +4375,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 192,
+    "__docId__": 198,
     "kind": "external",
     "static": true,
     "variation": null,

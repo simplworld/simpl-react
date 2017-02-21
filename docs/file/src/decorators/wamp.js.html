@@ -33,11 +33,13 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-finalCreateStoreFactory">finalCreateStoreFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONNECTION_STATUS">CONNECTION_STATUS</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setConnectionStatus">setConnectionStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-ReduxAction">ReduxAction</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/components/RPCCaller.react.js~RPCCaller.html">RPCCaller</a></span></span></li>
@@ -71,10 +73,12 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/wamp.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import { connect } from &apos;react-redux&apos;;
 
-import AutobahnReact from &apos;../autobahn&apos;;
+import { setConnectionStatus } from &apos;../actions/simpl&apos;;
+import { CONNECTION_STATUS } from &apos;../constants&apos;;
 
-import Progress from &apos;../components/Progress.react&apos;;
+import { wampOptionsWithDefaults, wampSetup } from &apos;./utils&apos;;
 
 /**
  * @function
@@ -82,75 +86,45 @@ import Progress from &apos;../components/Progress.react&apos;;
  */
 export function wamp(options = {}) {
   return (Component) =&gt; {
-    const defaults = {
-      url: &apos;ws://localhost:8080/ws&apos;,
-      realm: &apos;realm1&apos;,
-      prefixes: {},
-      progressComponent: Progress,
-    };
-    const optionsWithDefaults = Object.assign({}, defaults, options);
+    const optionsWithDefaults = wampOptionsWithDefaults(options);
 
-    class WampContainer extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          progress: &apos;offline&apos;,
-        };
-      }
+    class Wamp extends React.Component {
       componentWillMount() {
-        // Callback called whenever the connection is lost
-        AutobahnReact.Connection.onLost(() =&gt; {
-          console.log(&apos;Connection lost :/!&apos;);
-          this.setState({ progress: &apos;offline&apos; });
-        });
-        // Callback called whenever the connection is ready
-      // eslint-disable-next-line no-unused-vars
-        AutobahnReact.Connection.onReady(([session, details]) =&gt; {
-          console.log(&apos;Connection established!&apos;);
-          Object.keys(optionsWithDefaults.prefixes).forEach((key) =&gt; {
-            const value = optionsWithDefaults.prefixes[key];
-            console.log(&apos;added prefix: &apos;, key, value);
-            session.prefix(key, value);
-            this.setState({ progress: &apos;connected&apos; });
-          });
-        });
-        AutobahnReact.Connection.initialize(optionsWithDefaults.url, optionsWithDefaults.realm);
-        if (optionsWithDefaults.username) {
-          AutobahnReact.Auth.logIn({
-            username: optionsWithDefaults.username,
-            password: optionsWithDefaults.password,
-          }).then(() =&gt; {
-            console.log(&apos;authd&apos;);
-            if (this.props.onReady) {
-              this.props.onReady();
-            }
-          }).catch((err) =&gt; {
-            console.log(err);
-            console.log(&apos;not authd&apos;);
-          });
-        }
+        wampSetup(this, optionsWithDefaults);
       }
       render() {
-        if (this.state.progress === &apos;offline&apos;) {
+        if (this.props.connectionStatus === CONNECTION_STATUS.CONNECTING) {
           return (
-            &lt;div className={`wamp wamp-${this.state.progress}`}&gt;
-              &lt;optionsWithDefaults.progressComponent {...this.props} {...this.state} /&gt;
+            &lt;div className={`wamp wamp-${this.props.connectionStatus}`}&gt;
+              &lt;optionsWithDefaults.progressComponent {...this.props} /&gt;
             &lt;/div&gt;
           );
         }
         return (
-          &lt;div className={`wamp wamp-${this.state.progress}`}&gt;
-            &lt;Component {...this.props} {...this.state} /&gt;
+          &lt;div className={`wamp wamp-${this.props.connectionStatus}`}&gt;
+            &lt;Component {...this.props} /&gt;
           &lt;/div&gt;
         );
       }
     }
 
-    WampContainer.propTypes = {
+    Wamp.propTypes = {
       onReady: React.PropTypes.func,
+      connectionStatus: React.PropTypes.string.isRequired,
+      setConnectionStatus: React.PropTypes.func.isRequired,
     };
 
-    return WampContainer;
+    const mapStateToProps = (state) =&gt; ({
+      connectionStatus: state.simpl.connectionStatus,
+    });
+
+    const mapDispatchToProps = (dispatch) =&gt; ({
+      setConnectionStatus(status) {
+        dispatch(setConnectionStatus(status));
+      },
+    });
+
+    return connect(mapStateToProps, mapDispatchToProps)(Wamp);
   };
 }
 

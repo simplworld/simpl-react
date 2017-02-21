@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "simpl/lib/constants~connection_status",
+    "variable/index.html#static-variable-CONNECTION_STATUS",
+    "<span>CONNECTION_STATUS</span> <span class=\"search-result-import-path\">simpl/lib/constants</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/components/forms/currencyinput.react~currencyinput",
     "variable/index.html#static-variable-CurrencyInput",
     "<span>CurrencyInput</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/CurrencyInput.react</span>",
@@ -136,6 +142,12 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-registers",
     "<span>registers</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/registers</span>",
     "function"
+  ],
+  [
+    "simpl/lib/actions/simpl~setconnectionstatus",
+    "variable/index.html#static-variable-setConnectionStatus",
+    "<span>setConnectionStatus</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
   ],
   [
     "simpl/lib/decorators/simpl~simpl",
@@ -654,6 +666,12 @@ window.esdocSearchIndex = [
     "typedef"
   ],
   [
+    "src/constants.js",
+    "file/src/constants.js.html",
+    "src/constants.js",
+    "file"
+  ],
+  [
     "src/decorators/forms/index.js",
     "file/src/decorators/forms/index.js.html",
     "src/decorators/forms/index.js",
@@ -717,6 +735,12 @@ window.esdocSearchIndex = [
     "src/decorators/simpl.js",
     "file/src/decorators/simpl.js.html",
     "src/decorators/simpl.js",
+    "file"
+  ],
+  [
+    "src/decorators/utils.js",
+    "file/src/decorators/utils.js.html",
+    "src/decorators/utils.js",
     "file"
   ],
   [
