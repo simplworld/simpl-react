@@ -1,52 +1,18 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 258,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 19,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 28,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 28
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 12,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 12
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 7,
-            "end": 12,
+            "name": "forms",
+            "range": [
+              7,
+              12
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -56,16 +22,32 @@
                 "line": 1,
                 "column": 12
               }
+            }
+          },
+          "range": [
+            7,
+            12
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
             },
-            "name": "forms"
+            "end": {
+              "line": 1,
+              "column": 12
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 18,
-        "end": 27,
+        "value": "./forms",
+        "raw": "'./forms'",
+        "range": [
+          18,
+          27
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -75,45 +57,35 @@
             "line": 1,
             "column": 27
           }
+        }
+      },
+      "range": [
+        0,
+        28
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "./forms",
-        "rawValue": "./forms",
-        "raw": "'./forms'"
+        "end": {
+          "line": 1,
+          "column": 28
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 29,
-      "end": 59,
-      "loc": {
-        "start": {
-          "line": 2,
-          "column": 0
-        },
-        "end": {
-          "line": 2,
-          "column": 30
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 36,
-          "end": 42,
-          "loc": {
-            "start": {
-              "line": 2,
-              "column": 7
-            },
-            "end": {
-              "line": 2,
-              "column": 13
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 36,
-            "end": 42,
+            "name": "pubsub",
+            "range": [
+              36,
+              42
+            ],
             "loc": {
               "start": {
                 "line": 2,
@@ -123,16 +95,32 @@
                 "line": 2,
                 "column": 13
               }
+            }
+          },
+          "range": [
+            36,
+            42
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
             },
-            "name": "pubsub"
+            "end": {
+              "line": 2,
+              "column": 13
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 48,
-        "end": 58,
+        "value": "./pubsub",
+        "raw": "'./pubsub'",
+        "range": [
+          48,
+          58
+        ],
         "loc": {
           "start": {
             "line": 2,
@@ -142,45 +130,35 @@
             "line": 2,
             "column": 29
           }
+        }
+      },
+      "range": [
+        29,
+        59
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
         },
-        "value": "./pubsub",
-        "rawValue": "./pubsub",
-        "raw": "'./pubsub'"
+        "end": {
+          "line": 2,
+          "column": 30
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 60,
-      "end": 84,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 24
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 67,
-          "end": 70,
-          "loc": {
-            "start": {
-              "line": 3,
-              "column": 7
-            },
-            "end": {
-              "line": 3,
-              "column": 10
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 67,
-            "end": 70,
+            "name": "rpc",
+            "range": [
+              67,
+              70
+            ],
             "loc": {
               "start": {
                 "line": 3,
@@ -190,16 +168,32 @@
                 "line": 3,
                 "column": 10
               }
+            }
+          },
+          "range": [
+            67,
+            70
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
             },
-            "name": "rpc"
+            "end": {
+              "line": 3,
+              "column": 10
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 76,
-        "end": 83,
+        "value": "./rpc",
+        "raw": "'./rpc'",
+        "range": [
+          76,
+          83
+        ],
         "loc": {
           "start": {
             "line": 3,
@@ -209,45 +203,35 @@
             "line": 3,
             "column": 23
           }
+        }
+      },
+      "range": [
+        60,
+        84
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
         },
-        "value": "./rpc",
-        "rawValue": "./rpc",
-        "raw": "'./rpc'"
+        "end": {
+          "line": 3,
+          "column": 24
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 85,
-      "end": 113,
-      "loc": {
-        "start": {
-          "line": 4,
-          "column": 0
-        },
-        "end": {
-          "line": 4,
-          "column": 28
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 92,
-          "end": 97,
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 7
-            },
-            "end": {
-              "line": 4,
-              "column": 12
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 92,
-            "end": 97,
+            "name": "simpl",
+            "range": [
+              92,
+              97
+            ],
             "loc": {
               "start": {
                 "line": 4,
@@ -257,16 +241,32 @@
                 "line": 4,
                 "column": 12
               }
+            }
+          },
+          "range": [
+            92,
+            97
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
             },
-            "name": "simpl"
+            "end": {
+              "line": 4,
+              "column": 12
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 103,
-        "end": 112,
+        "value": "./simpl",
+        "raw": "'./simpl'",
+        "range": [
+          103,
+          112
+        ],
         "loc": {
           "start": {
             "line": 4,
@@ -276,16 +276,85 @@
             "line": 4,
             "column": 27
           }
+        }
+      },
+      "range": [
+        85,
+        113
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
         },
-        "value": "./simpl",
-        "rawValue": "./simpl",
-        "raw": "'./simpl'"
+        "end": {
+          "line": 4,
+          "column": 28
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 114,
-      "end": 140,
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "wamp",
+            "range": [
+              121,
+              125
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 11
+              }
+            }
+          },
+          "range": [
+            121,
+            125
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 11
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./wamp",
+        "raw": "'./wamp'",
+        "range": [
+          131,
+          139
+        ],
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 17
+          },
+          "end": {
+            "line": 5,
+            "column": 25
+          }
+        }
+      },
+      "range": [
+        114,
+        140
+      ],
       "loc": {
         "start": {
           "line": 5,
@@ -296,64 +365,14 @@
           "column": 26
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 121,
-          "end": 125,
-          "loc": {
-            "start": {
-              "line": 5,
-              "column": 7
-            },
-            "end": {
-              "line": 5,
-              "column": 11
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 121,
-            "end": 125,
-            "loc": {
-              "start": {
-                "line": 5,
-                "column": 7
-              },
-              "end": {
-                "line": 5,
-                "column": 11
-              }
-            },
-            "name": "wamp"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 131,
-        "end": 139,
-        "loc": {
-          "start": {
-            "line": 5,
-            "column": 17
-          },
-          "end": {
-            "line": 5,
-            "column": 25
-          }
-        },
-        "value": "./wamp",
-        "rawValue": "./wamp",
-        "raw": "'./wamp'"
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace decorators\n * @memberof Simpl\n ",
-          "start": 143,
-          "end": 194,
+          "range": [
+            143,
+            194
+          ],
           "loc": {
             "start": {
               "line": 8,
@@ -363,32 +382,305 @@
               "line": 11,
               "column": 3
             }
-          },
-          "range": [
-            143,
-            194
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 195,
-      "end": 257,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 18,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 210,
-        "end": 256,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "forms",
+              "range": [
+                214,
+                219
+              ],
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 2
+                },
+                "end": {
+                  "line": 13,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "forms",
+              "range": [
+                214,
+                219
+              ],
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 2
+                },
+                "end": {
+                  "line": 13,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              214,
+              219
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 2
+              },
+              "end": {
+                "line": 13,
+                "column": 7
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "pubsub",
+              "range": [
+                223,
+                229
+              ],
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 2
+                },
+                "end": {
+                  "line": 14,
+                  "column": 8
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "pubsub",
+              "range": [
+                223,
+                229
+              ],
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 2
+                },
+                "end": {
+                  "line": 14,
+                  "column": 8
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              223,
+              229
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 2
+              },
+              "end": {
+                "line": 14,
+                "column": 8
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "rpc",
+              "range": [
+                233,
+                236
+              ],
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 2
+                },
+                "end": {
+                  "line": 15,
+                  "column": 5
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "rpc",
+              "range": [
+                233,
+                236
+              ],
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 2
+                },
+                "end": {
+                  "line": 15,
+                  "column": 5
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              233,
+              236
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 2
+              },
+              "end": {
+                "line": 15,
+                "column": 5
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "simpl",
+              "range": [
+                240,
+                245
+              ],
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "simpl",
+              "range": [
+                240,
+                245
+              ],
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              240,
+              245
+            ],
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 2
+              },
+              "end": {
+                "line": 16,
+                "column": 7
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "wamp",
+              "range": [
+                249,
+                253
+              ],
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 2
+                },
+                "end": {
+                  "line": 17,
+                  "column": 6
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "wamp",
+              "range": [
+                249,
+                253
+              ],
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 2
+                },
+                "end": {
+                  "line": 17,
+                  "column": 6
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              249,
+              253
+            ],
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 2
+              },
+              "end": {
+                "line": 17,
+                "column": 6
+              }
+            }
+          }
+        ],
+        "range": [
+          210,
+          256
+        ],
         "loc": {
           "start": {
             "line": 12,
@@ -399,293 +691,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 214,
-            "end": 219,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 2
-              },
-              "end": {
-                "line": 13,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 214,
-              "end": 219,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 2
-                },
-                "end": {
-                  "line": 13,
-                  "column": 7
-                }
-              },
-              "name": "forms",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 214,
-              "end": 219,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 2
-                },
-                "end": {
-                  "line": 13,
-                  "column": 7
-                }
-              },
-              "name": "forms",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace decorators\n * @memberof Simpl\n ",
-                  "start": 143,
-                  "end": 194,
-                  "loc": {
-                    "start": {
-                      "line": 8,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 11,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    143,
-                    194
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 223,
-            "end": 229,
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 2
-              },
-              "end": {
-                "line": 14,
-                "column": 8
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 223,
-              "end": 229,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 2
-                },
-                "end": {
-                  "line": 14,
-                  "column": 8
-                }
-              },
-              "name": "pubsub"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 223,
-              "end": 229,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 2
-                },
-                "end": {
-                  "line": 14,
-                  "column": 8
-                }
-              },
-              "name": "pubsub"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 233,
-            "end": 236,
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 2
-              },
-              "end": {
-                "line": 15,
-                "column": 5
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 233,
-              "end": 236,
-              "loc": {
-                "start": {
-                  "line": 15,
-                  "column": 2
-                },
-                "end": {
-                  "line": 15,
-                  "column": 5
-                }
-              },
-              "name": "rpc"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 233,
-              "end": 236,
-              "loc": {
-                "start": {
-                  "line": 15,
-                  "column": 2
-                },
-                "end": {
-                  "line": 15,
-                  "column": 5
-                }
-              },
-              "name": "rpc"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 240,
-            "end": 245,
-            "loc": {
-              "start": {
-                "line": 16,
-                "column": 2
-              },
-              "end": {
-                "line": 16,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 240,
-              "end": 245,
-              "loc": {
-                "start": {
-                  "line": 16,
-                  "column": 2
-                },
-                "end": {
-                  "line": 16,
-                  "column": 7
-                }
-              },
-              "name": "simpl"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 240,
-              "end": 245,
-              "loc": {
-                "start": {
-                  "line": 16,
-                  "column": 2
-                },
-                "end": {
-                  "line": 16,
-                  "column": 7
-                }
-              },
-              "name": "simpl"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 249,
-            "end": 253,
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 2
-              },
-              "end": {
-                "line": 17,
-                "column": 6
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 249,
-              "end": 253,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 6
-                }
-              },
-              "name": "wamp"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 249,
-              "end": 253,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 6
-                }
-              },
-              "name": "wamp"
-            }
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace decorators\n * @memberof Simpl\n ",
-            "start": 143,
-            "end": 194,
+            "range": [
+              143,
+              194
+            ],
             "loc": {
               "start": {
                 "line": 8,
@@ -695,21 +708,33 @@
                 "line": 11,
                 "column": 3
               }
-            },
-            "range": [
-              143,
-              194
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        195,
+        257
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace decorators\n * @memberof Simpl\n ",
-          "start": 143,
-          "end": 194,
+          "range": [
+            143,
+            194
+          ],
           "loc": {
             "start": {
               "line": 8,
@@ -719,13 +744,44 @@
               "line": 11,
               "column": 3
             }
-          },
-          "range": [
-            143,
-            194
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    257
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 18,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace decorators\n * @memberof Simpl\n ",
+      "range": [
+        143,
+        194
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 3
+        }
+      }
     }
   ]
 }

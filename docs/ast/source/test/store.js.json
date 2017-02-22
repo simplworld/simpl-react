@@ -1,38 +1,51 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 515,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 23,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 52,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 52
-        }
-      },
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "start": 9,
-          "end": 32,
+          "local": {
+            "type": "Identifier",
+            "name": "finalCreateStoreFactory",
+            "range": [
+              9,
+              32
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 32
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "finalCreateStoreFactory",
+            "range": [
+              9,
+              32
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 32
+              }
+            }
+          },
+          "range": [
+            9,
+            32
+          ],
           "loc": {
             "start": {
               "line": 1,
@@ -42,46 +55,17 @@
               "line": 1,
               "column": 32
             }
-          },
-          "imported": {
-            "type": "Identifier",
-            "start": 9,
-            "end": 32,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 9
-              },
-              "end": {
-                "line": 1,
-                "column": 32
-              }
-            },
-            "name": "finalCreateStoreFactory"
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 9,
-            "end": 32,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 9
-              },
-              "end": {
-                "line": 1,
-                "column": 32
-              }
-            },
-            "name": "finalCreateStoreFactory"
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 40,
-        "end": 51,
+        "value": "../stores",
+        "raw": "'../stores'",
+        "range": [
+          40,
+          51
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -91,31 +75,68 @@
             "line": 1,
             "column": 51
           }
+        }
+      },
+      "range": [
+        0,
+        52
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "../stores",
-        "rawValue": "../stores",
-        "raw": "'../stores'"
+        "end": {
+          "line": 1,
+          "column": 52
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 53,
-      "end": 106,
-      "loc": {
-        "start": {
-          "line": 2,
-          "column": 0
-        },
-        "end": {
-          "line": 2,
-          "column": 53
-        }
-      },
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "start": 62,
-          "end": 75,
+          "local": {
+            "type": "Identifier",
+            "name": "simplReducers",
+            "range": [
+              62,
+              75
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 22
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "simplReducers",
+            "range": [
+              62,
+              75
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 22
+              }
+            }
+          },
+          "range": [
+            62,
+            75
+          ],
           "loc": {
             "start": {
               "line": 2,
@@ -125,46 +146,17 @@
               "line": 2,
               "column": 22
             }
-          },
-          "imported": {
-            "type": "Identifier",
-            "start": 62,
-            "end": 75,
-            "loc": {
-              "start": {
-                "line": 2,
-                "column": 9
-              },
-              "end": {
-                "line": 2,
-                "column": 22
-              }
-            },
-            "name": "simplReducers"
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 62,
-            "end": 75,
-            "loc": {
-              "start": {
-                "line": 2,
-                "column": 9
-              },
-              "end": {
-                "line": 2,
-                "column": 22
-              }
-            },
-            "name": "simplReducers"
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 83,
-        "end": 105,
+        "value": "../reducers/combined",
+        "raw": "'../reducers/combined'",
+        "range": [
+          83,
+          105
+        ],
         "loc": {
           "start": {
             "line": 2,
@@ -174,45 +166,35 @@
             "line": 2,
             "column": 52
           }
+        }
+      },
+      "range": [
+        53,
+        106
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
         },
-        "value": "../reducers/combined",
-        "rawValue": "../reducers/combined",
-        "raw": "'../reducers/combined'"
+        "end": {
+          "line": 2,
+          "column": 53
+        }
       }
     },
     {
       "type": "VariableDeclaration",
-      "start": 108,
-      "end": 146,
-      "loc": {
-        "start": {
-          "line": 4,
-          "column": 0
-        },
-        "end": {
-          "line": 4,
-          "column": 38
-        }
-      },
       "declarations": [
         {
           "type": "VariableDeclarator",
-          "start": 114,
-          "end": 145,
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 6
-            },
-            "end": {
-              "line": 4,
-              "column": 37
-            }
-          },
           "id": {
             "type": "Identifier",
-            "start": 114,
-            "end": 125,
+            "name": "rootReducer",
+            "range": [
+              114,
+              125
+            ],
             "loc": {
               "start": {
                 "line": 4,
@@ -222,27 +204,17 @@
                 "line": 4,
                 "column": 17
               }
-            },
-            "name": "rootReducer"
+            }
           },
           "init": {
             "type": "CallExpression",
-            "start": 128,
-            "end": 145,
-            "loc": {
-              "start": {
-                "line": 4,
-                "column": 20
-              },
-              "end": {
-                "line": 4,
-                "column": 37
-              }
-            },
             "callee": {
               "type": "Identifier",
-              "start": 128,
-              "end": 141,
+              "name": "simplReducers",
+              "range": [
+                128,
+                141
+              ],
               "loc": {
                 "start": {
                   "line": 4,
@@ -252,14 +224,16 @@
                   "line": 4,
                   "column": 33
                 }
-              },
-              "name": "simplReducers"
+              }
             },
             "arguments": [
               {
                 "type": "ObjectExpression",
-                "start": 142,
-                "end": 144,
+                "properties": [],
+                "range": [
+                  142,
+                  144
+                ],
                 "loc": {
                   "start": {
                     "line": 4,
@@ -269,19 +243,395 @@
                     "line": 4,
                     "column": 36
                   }
-                },
-                "properties": []
+                }
               }
-            ]
+            ],
+            "range": [
+              128,
+              145
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 20
+              },
+              "end": {
+                "line": 4,
+                "column": 37
+              }
+            }
+          },
+          "range": [
+            114,
+            145
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 6
+            },
+            "end": {
+              "line": 4,
+              "column": 37
+            }
           }
         }
       ],
-      "kind": "const"
+      "kind": "const",
+      "range": [
+        108,
+        146
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 38
+        }
+      }
     },
     {
       "type": "FunctionDeclaration",
-      "start": 149,
-      "end": 334,
+      "id": {
+        "type": "Identifier",
+        "name": "configureStore",
+        "range": [
+          158,
+          172
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 9
+          },
+          "end": {
+            "line": 7,
+            "column": 23
+          }
+        }
+      },
+      "params": [
+        {
+          "type": "Identifier",
+          "name": "initialState",
+          "range": [
+            173,
+            185
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 24
+            },
+            "end": {
+              "line": 7,
+              "column": 36
+            }
+          }
+        }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "VariableDeclaration",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "Identifier",
+                  "name": "finalCreateStore",
+                  "range": [
+                    197,
+                    213
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 24
+                    }
+                  }
+                },
+                "init": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "finalCreateStoreFactory",
+                    "range": [
+                      216,
+                      239
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 27
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 50
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Literal",
+                      "value": "production",
+                      "raw": "'production'",
+                      "range": [
+                        240,
+                        252
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 51
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 63
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    216,
+                    253
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 27
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 64
+                    }
+                  }
+                },
+                "range": [
+                  197,
+                  253
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 64
+                  }
+                }
+              }
+            ],
+            "kind": "const",
+            "range": [
+              191,
+              254
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 2
+              },
+              "end": {
+                "line": 8,
+                "column": 65
+              }
+            }
+          },
+          {
+            "type": "VariableDeclaration",
+            "declarations": [
+              {
+                "type": "VariableDeclarator",
+                "id": {
+                  "type": "Identifier",
+                  "name": "store",
+                  "range": [
+                    263,
+                    268
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 13
+                    }
+                  }
+                },
+                "init": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "finalCreateStore",
+                    "range": [
+                      271,
+                      287
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 32
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "rootReducer",
+                      "range": [
+                        288,
+                        299
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 33
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 44
+                        }
+                      }
+                    },
+                    {
+                      "type": "Identifier",
+                      "name": "initialState",
+                      "range": [
+                        301,
+                        313
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 46
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 58
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    271,
+                    314
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 59
+                    }
+                  }
+                },
+                "range": [
+                  263,
+                  314
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 59
+                  }
+                }
+              }
+            ],
+            "kind": "const",
+            "range": [
+              257,
+              315
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 2
+              },
+              "end": {
+                "line": 9,
+                "column": 60
+              }
+            }
+          },
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "Identifier",
+              "name": "store",
+              "range": [
+                326,
+                331
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 9
+                },
+                "end": {
+                  "line": 11,
+                  "column": 14
+                }
+              }
+            },
+            "range": [
+              319,
+              332
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 2
+              },
+              "end": {
+                "line": 11,
+                "column": 15
+              }
+            }
+          }
+        ],
+        "range": [
+          187,
+          334
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 38
+          },
+          "end": {
+            "line": 12,
+            "column": 1
+          }
+        }
+      },
+      "generator": false,
+      "expression": false,
+      "range": [
+        149,
+        334
+      ],
       "loc": {
         "start": {
           "line": 7,
@@ -292,312 +642,14 @@
           "column": 1
         }
       },
-      "id": {
-        "type": "Identifier",
-        "start": 158,
-        "end": 172,
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 9
-          },
-          "end": {
-            "line": 7,
-            "column": 23
-          }
-        },
-        "name": "configureStore"
-      },
-      "generator": false,
-      "expression": false,
-      "async": false,
-      "params": [
-        {
-          "type": "Identifier",
-          "start": 173,
-          "end": 185,
-          "loc": {
-            "start": {
-              "line": 7,
-              "column": 24
-            },
-            "end": {
-              "line": 7,
-              "column": 36
-            }
-          },
-          "name": "initialState"
-        }
-      ],
-      "body": {
-        "type": "BlockStatement",
-        "start": 187,
-        "end": 334,
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 38
-          },
-          "end": {
-            "line": 12,
-            "column": 1
-          }
-        },
-        "body": [
-          {
-            "type": "VariableDeclaration",
-            "start": 191,
-            "end": 254,
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 2
-              },
-              "end": {
-                "line": 8,
-                "column": 65
-              }
-            },
-            "declarations": [
-              {
-                "type": "VariableDeclarator",
-                "start": 197,
-                "end": 253,
-                "loc": {
-                  "start": {
-                    "line": 8,
-                    "column": 8
-                  },
-                  "end": {
-                    "line": 8,
-                    "column": 64
-                  }
-                },
-                "id": {
-                  "type": "Identifier",
-                  "start": 197,
-                  "end": 213,
-                  "loc": {
-                    "start": {
-                      "line": 8,
-                      "column": 8
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 24
-                    }
-                  },
-                  "name": "finalCreateStore"
-                },
-                "init": {
-                  "type": "CallExpression",
-                  "start": 216,
-                  "end": 253,
-                  "loc": {
-                    "start": {
-                      "line": 8,
-                      "column": 27
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 64
-                    }
-                  },
-                  "callee": {
-                    "type": "Identifier",
-                    "start": 216,
-                    "end": 239,
-                    "loc": {
-                      "start": {
-                        "line": 8,
-                        "column": 27
-                      },
-                      "end": {
-                        "line": 8,
-                        "column": 50
-                      }
-                    },
-                    "name": "finalCreateStoreFactory"
-                  },
-                  "arguments": [
-                    {
-                      "type": "Literal",
-                      "start": 240,
-                      "end": 252,
-                      "loc": {
-                        "start": {
-                          "line": 8,
-                          "column": 51
-                        },
-                        "end": {
-                          "line": 8,
-                          "column": 63
-                        }
-                      },
-                      "value": "production",
-                      "rawValue": "production",
-                      "raw": "'production'"
-                    }
-                  ]
-                }
-              }
-            ],
-            "kind": "const"
-          },
-          {
-            "type": "VariableDeclaration",
-            "start": 257,
-            "end": 315,
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 2
-              },
-              "end": {
-                "line": 9,
-                "column": 60
-              }
-            },
-            "declarations": [
-              {
-                "type": "VariableDeclarator",
-                "start": 263,
-                "end": 314,
-                "loc": {
-                  "start": {
-                    "line": 9,
-                    "column": 8
-                  },
-                  "end": {
-                    "line": 9,
-                    "column": 59
-                  }
-                },
-                "id": {
-                  "type": "Identifier",
-                  "start": 263,
-                  "end": 268,
-                  "loc": {
-                    "start": {
-                      "line": 9,
-                      "column": 8
-                    },
-                    "end": {
-                      "line": 9,
-                      "column": 13
-                    }
-                  },
-                  "name": "store"
-                },
-                "init": {
-                  "type": "CallExpression",
-                  "start": 271,
-                  "end": 314,
-                  "loc": {
-                    "start": {
-                      "line": 9,
-                      "column": 16
-                    },
-                    "end": {
-                      "line": 9,
-                      "column": 59
-                    }
-                  },
-                  "callee": {
-                    "type": "Identifier",
-                    "start": 271,
-                    "end": 287,
-                    "loc": {
-                      "start": {
-                        "line": 9,
-                        "column": 16
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 32
-                      }
-                    },
-                    "name": "finalCreateStore"
-                  },
-                  "arguments": [
-                    {
-                      "type": "Identifier",
-                      "start": 288,
-                      "end": 299,
-                      "loc": {
-                        "start": {
-                          "line": 9,
-                          "column": 33
-                        },
-                        "end": {
-                          "line": 9,
-                          "column": 44
-                        }
-                      },
-                      "name": "rootReducer"
-                    },
-                    {
-                      "type": "Identifier",
-                      "start": 301,
-                      "end": 313,
-                      "loc": {
-                        "start": {
-                          "line": 9,
-                          "column": 46
-                        },
-                        "end": {
-                          "line": 9,
-                          "column": 58
-                        }
-                      },
-                      "name": "initialState"
-                    }
-                  ]
-                }
-              }
-            ],
-            "kind": "const"
-          },
-          {
-            "type": "ReturnStatement",
-            "start": 319,
-            "end": 332,
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 2
-              },
-              "end": {
-                "line": 11,
-                "column": 15
-              }
-            },
-            "argument": {
-              "type": "Identifier",
-              "start": 326,
-              "end": 331,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 9
-                },
-                "end": {
-                  "line": 11,
-                  "column": 14
-                }
-              },
-              "name": "store"
-            }
-          }
-        ],
-        "trailingComments": null
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n ",
-          "start": 336,
-          "end": 452,
+          "range": [
+            336,
+            452
+          ],
           "loc": {
             "start": {
               "line": 14,
@@ -607,32 +659,92 @@
               "line": 19,
               "column": 3
             }
-          },
-          "range": [
-            336,
-            452
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 453,
-      "end": 491,
-      "loc": {
-        "start": {
-          "line": 20,
-          "column": 0
-        },
-        "end": {
-          "line": 20,
-          "column": 38
-        }
-      },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 460,
-        "end": 491,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "store",
+              "range": [
+                466,
+                471
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 13
+                },
+                "end": {
+                  "line": 20,
+                  "column": 18
+                }
+              }
+            },
+            "init": {
+              "type": "CallExpression",
+              "callee": {
+                "type": "Identifier",
+                "name": "configureStore",
+                "range": [
+                  474,
+                  488
+                ],
+                "loc": {
+                  "start": {
+                    "line": 20,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 20,
+                    "column": 35
+                  }
+                }
+              },
+              "arguments": [],
+              "range": [
+                474,
+                490
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 21
+                },
+                "end": {
+                  "line": 20,
+                  "column": 37
+                }
+              }
+            },
+            "range": [
+              466,
+              490
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 13
+              },
+              "end": {
+                "line": 20,
+                "column": 37
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          460,
+          491
+        ],
         "loc": {
           "start": {
             "line": 20,
@@ -643,80 +755,14 @@
             "column": 38
           }
         },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 466,
-            "end": 490,
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 13
-              },
-              "end": {
-                "line": 20,
-                "column": 37
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 466,
-              "end": 471,
-              "loc": {
-                "start": {
-                  "line": 20,
-                  "column": 13
-                },
-                "end": {
-                  "line": 20,
-                  "column": 18
-                }
-              },
-              "name": "store",
-              "leadingComments": null
-            },
-            "init": {
-              "type": "CallExpression",
-              "start": 474,
-              "end": 490,
-              "loc": {
-                "start": {
-                  "line": 20,
-                  "column": 21
-                },
-                "end": {
-                  "line": 20,
-                  "column": 37
-                }
-              },
-              "callee": {
-                "type": "Identifier",
-                "start": 474,
-                "end": 488,
-                "loc": {
-                  "start": {
-                    "line": 20,
-                    "column": 21
-                  },
-                  "end": {
-                    "line": 20,
-                    "column": 35
-                  }
-                },
-                "name": "configureStore"
-              },
-              "arguments": []
-            },
-            "leadingComments": null
-          }
-        ],
-        "kind": "const",
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n ",
-            "start": 336,
-            "end": 452,
+            "range": [
+              336,
+              452
+            ],
             "loc": {
               "start": {
                 "line": 14,
@@ -726,23 +772,35 @@
                 "line": 19,
                 "column": 3
               }
-            },
-            "range": [
-              336,
-              452
-            ]
+            }
           }
         ],
         "trailingComments": []
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        453,
+        491
+      ],
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 20,
+          "column": 38
+        }
+      },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n ",
-          "start": 336,
-          "end": 452,
+          "range": [
+            336,
+            452
+          ],
           "loc": {
             "start": {
               "line": 14,
@@ -752,32 +810,19 @@
               "line": 19,
               "column": 3
             }
-          },
-          "range": [
-            336,
-            452
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 493,
-      "end": 514,
-      "loc": {
-        "start": {
-          "line": 22,
-          "column": 0
-        },
-        "end": {
-          "line": 22,
-          "column": 21
-        }
-      },
       "declaration": {
         "type": "Identifier",
-        "start": 508,
-        "end": 513,
+        "name": "store",
+        "range": [
+          508,
+          513
+        ],
         "loc": {
           "start": {
             "line": 22,
@@ -788,9 +833,57 @@
             "column": 20
           }
         },
-        "name": "store",
         "leadingComments": [],
         "trailingComments": []
+      },
+      "range": [
+        493,
+        514
+      ],
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 21
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    514
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 22,
+      "column": 21
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n ",
+      "range": [
+        336,
+        452
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 3
+        }
       }
     }
   ]

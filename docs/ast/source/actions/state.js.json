@@ -1,38 +1,51 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 214,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 12,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 45,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 45
-        }
-      },
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "start": 9,
-          "end": 21,
+          "local": {
+            "type": "Identifier",
+            "name": "createAction",
+            "range": [
+              9,
+              21
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "createAction",
+            "range": [
+              9,
+              21
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 21
+              }
+            }
+          },
+          "range": [
+            9,
+            21
+          ],
           "loc": {
             "start": {
               "line": 1,
@@ -42,46 +55,17 @@
               "line": 1,
               "column": 21
             }
-          },
-          "imported": {
-            "type": "Identifier",
-            "start": 9,
-            "end": 21,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 9
-              },
-              "end": {
-                "line": 1,
-                "column": 21
-              }
-            },
-            "name": "createAction"
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 9,
-            "end": 21,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 9
-              },
-              "end": {
-                "line": 1,
-                "column": 21
-              }
-            },
-            "name": "createAction"
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 29,
-        "end": 44,
+        "value": "redux-actions",
+        "raw": "'redux-actions'",
+        "range": [
+          29,
+          44
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -91,30 +75,125 @@
             "line": 1,
             "column": 44
           }
+        }
+      },
+      "range": [
+        0,
+        45
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "redux-actions",
-        "rawValue": "redux-actions",
-        "raw": "'redux-actions'"
+        "end": {
+          "line": 1,
+          "column": 45
+        }
       }
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 47,
-      "end": 116,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 69
-        }
-      },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 54,
-        "end": 116,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "recyleStateAction",
+              "range": [
+                60,
+                77
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 13
+                },
+                "end": {
+                  "line": 3,
+                  "column": 30
+                }
+              }
+            },
+            "init": {
+              "type": "CallExpression",
+              "callee": {
+                "type": "Identifier",
+                "name": "createAction",
+                "range": [
+                  80,
+                  92
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 33
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 45
+                  }
+                }
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "value": "simpl/RECYCLE_STATE",
+                  "raw": "'simpl/RECYCLE_STATE'",
+                  "range": [
+                    93,
+                    114
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 3,
+                      "column": 46
+                    },
+                    "end": {
+                      "line": 3,
+                      "column": 67
+                    }
+                  }
+                }
+              ],
+              "range": [
+                80,
+                115
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 33
+                },
+                "end": {
+                  "line": 3,
+                  "column": 68
+                }
+              }
+            },
+            "range": [
+              60,
+              115
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 13
+              },
+              "end": {
+                "line": 3,
+                "column": 68
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          54,
+          116
+        ],
         "loc": {
           "start": {
             "line": 3,
@@ -125,97 +204,15 @@
             "column": 69
           }
         },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 60,
-            "end": 115,
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 13
-              },
-              "end": {
-                "line": 3,
-                "column": 68
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 60,
-              "end": 77,
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 13
-                },
-                "end": {
-                  "line": 3,
-                  "column": 30
-                }
-              },
-              "name": "recyleStateAction"
-            },
-            "init": {
-              "type": "CallExpression",
-              "start": 80,
-              "end": 115,
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 33
-                },
-                "end": {
-                  "line": 3,
-                  "column": 68
-                }
-              },
-              "callee": {
-                "type": "Identifier",
-                "start": 80,
-                "end": 92,
-                "loc": {
-                  "start": {
-                    "line": 3,
-                    "column": 33
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 45
-                  }
-                },
-                "name": "createAction"
-              },
-              "arguments": [
-                {
-                  "type": "Literal",
-                  "start": 93,
-                  "end": 114,
-                  "loc": {
-                    "start": {
-                      "line": 3,
-                      "column": 46
-                    },
-                    "end": {
-                      "line": 3,
-                      "column": 67
-                    }
-                  },
-                  "value": "simpl/RECYCLE_STATE",
-                  "rawValue": "simpl/RECYCLE_STATE",
-                  "raw": "'simpl/RECYCLE_STATE'"
-                }
-              ]
-            }
-          }
-        ],
-        "kind": "const",
+        "leadingComments": [],
         "trailingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-            "start": 118,
-            "end": 172,
+            "range": [
+              118,
+              172
+            ],
             "loc": {
               "start": {
                 "line": 5,
@@ -225,23 +222,34 @@
                 "line": 8,
                 "column": 3
               }
-            },
-            "range": [
-              118,
-              172
-            ]
+            }
           }
-        ],
-        "leadingComments": []
+        ]
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        47,
+        116
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 69
+        }
+      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-          "start": 118,
-          "end": 172,
+          "range": [
+            118,
+            172
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -251,32 +259,77 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            118,
-            172
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 173,
-      "end": 213,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 11,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 188,
-        "end": 212,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "recyleStateAction",
+              "range": [
+                192,
+                209
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 19
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "recyleStateAction",
+              "range": [
+                192,
+                209
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 19
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              192,
+              209
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 2
+              },
+              "end": {
+                "line": 10,
+                "column": 19
+              }
+            }
+          }
+        ],
+        "range": [
+          188,
+          212
+        ],
         "loc": {
           "start": {
             "line": 9,
@@ -287,89 +340,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 192,
-            "end": 209,
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 2
-              },
-              "end": {
-                "line": 10,
-                "column": 19
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 192,
-              "end": 209,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 19
-                }
-              },
-              "name": "recyleStateAction",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 192,
-              "end": 209,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 19
-                }
-              },
-              "name": "recyleStateAction",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-                  "start": 118,
-                  "end": 172,
-                  "loc": {
-                    "start": {
-                      "line": 5,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    118,
-                    172
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-            "start": 118,
-            "end": 172,
+            "range": [
+              118,
+              172
+            ],
             "loc": {
               "start": {
                 "line": 5,
@@ -379,21 +357,33 @@
                 "line": 8,
                 "column": 3
               }
-            },
-            "range": [
-              118,
-              172
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        173,
+        213
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
-          "start": 118,
-          "end": 172,
+          "range": [
+            118,
+            172
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -403,13 +393,44 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            118,
-            172
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    213
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 11,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace state\n * @memberof Simpl.actions\n ",
+      "range": [
+        118,
+        172
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
     }
   ]
 }

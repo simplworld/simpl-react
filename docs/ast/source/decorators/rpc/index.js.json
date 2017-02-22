@@ -1,52 +1,18 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 166,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 13,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 28,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 28
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 12,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 12
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 7,
-            "end": 12,
+            "name": "calls",
+            "range": [
+              7,
+              12
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -56,16 +22,32 @@
                 "line": 1,
                 "column": 12
               }
+            }
+          },
+          "range": [
+            7,
+            12
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
             },
-            "name": "calls"
+            "end": {
+              "line": 1,
+              "column": 12
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 18,
-        "end": 27,
+        "value": "./calls",
+        "raw": "'./calls'",
+        "range": [
+          18,
+          27
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -75,16 +57,85 @@
             "line": 1,
             "column": 27
           }
+        }
+      },
+      "range": [
+        0,
+        28
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "./calls",
-        "rawValue": "./calls",
-        "raw": "'./calls'"
+        "end": {
+          "line": 1,
+          "column": 28
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 29,
-      "end": 65,
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "registers",
+            "range": [
+              36,
+              45
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            36,
+            45
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./registers",
+        "raw": "'./registers'",
+        "range": [
+          51,
+          64
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 22
+          },
+          "end": {
+            "line": 2,
+            "column": 35
+          }
+        }
+      },
+      "range": [
+        29,
+        65
+      ],
       "loc": {
         "start": {
           "line": 2,
@@ -95,64 +146,14 @@
           "column": 36
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 36,
-          "end": 45,
-          "loc": {
-            "start": {
-              "line": 2,
-              "column": 7
-            },
-            "end": {
-              "line": 2,
-              "column": 16
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 36,
-            "end": 45,
-            "loc": {
-              "start": {
-                "line": 2,
-                "column": 7
-              },
-              "end": {
-                "line": 2,
-                "column": 16
-              }
-            },
-            "name": "registers"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 51,
-        "end": 64,
-        "loc": {
-          "start": {
-            "line": 2,
-            "column": 22
-          },
-          "end": {
-            "line": 2,
-            "column": 35
-          }
-        },
-        "value": "./registers",
-        "rawValue": "./registers",
-        "raw": "'./registers'"
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace rpc\n * @memberof Simpl.decorators\n ",
-          "start": 68,
-          "end": 123,
+          "range": [
+            68,
+            123
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -162,32 +163,134 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            68,
-            123
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 124,
-      "end": 165,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 139,
-        "end": 164,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "calls",
+              "range": [
+                143,
+                148
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "calls",
+              "range": [
+                143,
+                148
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              143,
+              148
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 2
+              },
+              "end": {
+                "line": 10,
+                "column": 7
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "registers",
+              "range": [
+                152,
+                161
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 11
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "registers",
+              "range": [
+                152,
+                161
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 11
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              152,
+              161
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 2
+              },
+              "end": {
+                "line": 11,
+                "column": 11
+              }
+            }
+          }
+        ],
+        "range": [
+          139,
+          164
+        ],
         "loc": {
           "start": {
             "line": 9,
@@ -198,140 +301,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 143,
-            "end": 148,
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 2
-              },
-              "end": {
-                "line": 10,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 143,
-              "end": 148,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 7
-                }
-              },
-              "name": "calls",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 143,
-              "end": 148,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 7
-                }
-              },
-              "name": "calls",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace rpc\n * @memberof Simpl.decorators\n ",
-                  "start": 68,
-                  "end": 123,
-                  "loc": {
-                    "start": {
-                      "line": 5,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    68,
-                    123
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 152,
-            "end": 161,
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 2
-              },
-              "end": {
-                "line": 11,
-                "column": 11
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 152,
-              "end": 161,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-                  "column": 11
-                }
-              },
-              "name": "registers"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 152,
-              "end": 161,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-                  "column": 11
-                }
-              },
-              "name": "registers"
-            }
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace rpc\n * @memberof Simpl.decorators\n ",
-            "start": 68,
-            "end": 123,
+            "range": [
+              68,
+              123
+            ],
             "loc": {
               "start": {
                 "line": 5,
@@ -341,21 +318,33 @@
                 "line": 8,
                 "column": 3
               }
-            },
-            "range": [
-              68,
-              123
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        124,
+        165
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace rpc\n * @memberof Simpl.decorators\n ",
-          "start": 68,
-          "end": 123,
+          "range": [
+            68,
+            123
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -365,13 +354,44 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            68,
-            123
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    165
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 12,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace rpc\n * @memberof Simpl.decorators\n ",
+      "range": [
+        68,
+        123
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
     }
   ]
 }

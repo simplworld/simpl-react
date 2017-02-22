@@ -1,23 +1,68 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 106,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 11,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 28,
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "store",
+            "range": [
+              7,
+              12
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            7,
+            12
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./store",
+        "raw": "'./store'",
+        "range": [
+          18,
+          27
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 18
+          },
+          "end": {
+            "line": 1,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        0,
+        28
+      ],
       "loc": {
         "start": {
           "line": 1,
@@ -28,64 +73,14 @@
           "column": 28
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 12,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 12
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 7,
-            "end": 12,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 7
-              },
-              "end": {
-                "line": 1,
-                "column": 12
-              }
-            },
-            "name": "store"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 18,
-        "end": 27,
-        "loc": {
-          "start": {
-            "line": 1,
-            "column": 18
-          },
-          "end": {
-            "line": 1,
-            "column": 27
-          }
-        },
-        "value": "./store",
-        "rawValue": "./store",
-        "raw": "'./store'"
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-          "start": 31,
-          "end": 76,
+          "range": [
+            31,
+            76
+          ],
           "loc": {
             "start": {
               "line": 4,
@@ -95,32 +90,77 @@
               "line": 7,
               "column": 3
             }
-          },
-          "range": [
-            31,
-            76
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 77,
-      "end": 105,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 0
-        },
-        "end": {
-          "line": 10,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 92,
-        "end": 104,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "store",
+              "range": [
+                96,
+                101
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 2
+                },
+                "end": {
+                  "line": 9,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "store",
+              "range": [
+                96,
+                101
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 2
+                },
+                "end": {
+                  "line": 9,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              96,
+              101
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 2
+              },
+              "end": {
+                "line": 9,
+                "column": 7
+              }
+            }
+          }
+        ],
+        "range": [
+          92,
+          104
+        ],
         "loc": {
           "start": {
             "line": 8,
@@ -131,89 +171,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 96,
-            "end": 101,
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 2
-              },
-              "end": {
-                "line": 9,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 96,
-              "end": 101,
-              "loc": {
-                "start": {
-                  "line": 9,
-                  "column": 2
-                },
-                "end": {
-                  "line": 9,
-                  "column": 7
-                }
-              },
-              "name": "store",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 96,
-              "end": 101,
-              "loc": {
-                "start": {
-                  "line": 9,
-                  "column": 2
-                },
-                "end": {
-                  "line": 9,
-                  "column": 7
-                }
-              },
-              "name": "store",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-                  "start": 31,
-                  "end": 76,
-                  "loc": {
-                    "start": {
-                      "line": 4,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 7,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    31,
-                    76
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-            "start": 31,
-            "end": 76,
+            "range": [
+              31,
+              76
+            ],
             "loc": {
               "start": {
                 "line": 4,
@@ -223,21 +188,33 @@
                 "line": 7,
                 "column": 3
               }
-            },
-            "range": [
-              31,
-              76
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        77,
+        105
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-          "start": 31,
-          "end": 76,
+          "range": [
+            31,
+            76
+          ],
           "loc": {
             "start": {
               "line": 4,
@@ -247,13 +224,44 @@
               "line": 7,
               "column": 3
             }
-          },
-          "range": [
-            31,
-            76
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    105
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 10,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace test\n * @memberof Simpl\n ",
+      "range": [
+        31,
+        76
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 3
+        }
+      }
     }
   ]
 }

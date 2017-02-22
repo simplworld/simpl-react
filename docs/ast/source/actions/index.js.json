@@ -1,52 +1,18 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 436,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 24,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 34,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 34
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 15,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 15
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 7,
-            "end": 15,
+            "name": "messages",
+            "range": [
+              7,
+              15
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -56,16 +22,32 @@
                 "line": 1,
                 "column": 15
               }
+            }
+          },
+          "range": [
+            7,
+            15
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
             },
-            "name": "messages"
+            "end": {
+              "line": 1,
+              "column": 15
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 21,
-        "end": 33,
+        "value": "./messages",
+        "raw": "'./messages'",
+        "range": [
+          21,
+          33
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -75,45 +57,35 @@
             "line": 1,
             "column": 33
           }
+        }
+      },
+      "range": [
+        0,
+        34
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "./messages",
-        "rawValue": "./messages",
-        "raw": "'./messages'"
+        "end": {
+          "line": 1,
+          "column": 34
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 35,
-      "end": 63,
-      "loc": {
-        "start": {
-          "line": 2,
-          "column": 0
-        },
-        "end": {
-          "line": 2,
-          "column": 28
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 42,
-          "end": 47,
-          "loc": {
-            "start": {
-              "line": 2,
-              "column": 7
-            },
-            "end": {
-              "line": 2,
-              "column": 12
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 42,
-            "end": 47,
+            "name": "simpl",
+            "range": [
+              42,
+              47
+            ],
             "loc": {
               "start": {
                 "line": 2,
@@ -123,64 +95,70 @@
                 "line": 2,
                 "column": 12
               }
+            }
+          },
+          "range": [
+            42,
+            47
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
             },
-            "name": "simpl"
+            "end": {
+              "line": 2,
+              "column": 12
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 53,
-        "end": 62,
-        "loc": {
-          "start": {
-            "line": 2,
-            "column": 18
-          },
-          "end": {
-            "line": 2,
-            "column": 27
-          }
-        },
         "value": "./simpl",
-        "rawValue": "./simpl",
-        "raw": "'./simpl'"
+        "raw": "'./simpl'",
+        "range": [
+          53,
+          62
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 18
+          },
+          "end": {
+            "line": 2,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        35,
+        63
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 28
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 64,
-      "end": 92,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 28
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 71,
-          "end": 76,
-          "loc": {
-            "start": {
-              "line": 3,
-              "column": 7
-            },
-            "end": {
-              "line": 3,
-              "column": 12
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 71,
-            "end": 76,
+            "name": "state",
+            "range": [
+              71,
+              76
+            ],
             "loc": {
               "start": {
                 "line": 3,
@@ -190,16 +168,32 @@
                 "line": 3,
                 "column": 12
               }
+            }
+          },
+          "range": [
+            71,
+            76
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
             },
-            "name": "state"
+            "end": {
+              "line": 3,
+              "column": 12
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 82,
-        "end": 91,
+        "value": "./state",
+        "raw": "'./state'",
+        "range": [
+          82,
+          91
+        ],
         "loc": {
           "start": {
             "line": 3,
@@ -209,17 +203,30 @@
             "line": 3,
             "column": 27
           }
+        }
+      },
+      "range": [
+        64,
+        92
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
         },
-        "value": "./state",
-        "rawValue": "./state",
-        "raw": "'./state'"
+        "end": {
+          "line": 3,
+          "column": 28
+        }
       },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\n * Action.\n * @typedef {function} ReduxAction\n",
-          "start": 95,
-          "end": 224,
+          "range": [
+            95,
+            224
+          ],
           "loc": {
             "start": {
               "line": 6,
@@ -229,32 +236,74 @@
               "line": 10,
               "column": 2
             }
-          },
-          "range": [
-            95,
-            224
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 226,
-      "end": 266,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-          "column": 40
-        }
-      },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 233,
-        "end": 266,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "MessagesActions",
+              "range": [
+                239,
+                254
+              ],
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 12,
+                  "column": 28
+                }
+              }
+            },
+            "init": {
+              "type": "Identifier",
+              "name": "messages",
+              "range": [
+                257,
+                265
+              ],
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 31
+                },
+                "end": {
+                  "line": 12,
+                  "column": 39
+                }
+              }
+            },
+            "range": [
+              239,
+              265
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 13
+              },
+              "end": {
+                "line": 12,
+                "column": 39
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          233,
+          266
+        ],
         "loc": {
           "start": {
             "line": 12,
@@ -265,64 +314,14 @@
             "column": 40
           }
         },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 239,
-            "end": 265,
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 13
-              },
-              "end": {
-                "line": 12,
-                "column": 39
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 239,
-              "end": 254,
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 13
-                },
-                "end": {
-                  "line": 12,
-                  "column": 28
-                }
-              },
-              "name": "MessagesActions",
-              "leadingComments": null
-            },
-            "init": {
-              "type": "Identifier",
-              "start": 257,
-              "end": 265,
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 31
-                },
-                "end": {
-                  "line": 12,
-                  "column": 39
-                }
-              },
-              "name": "messages"
-            },
-            "leadingComments": null
-          }
-        ],
-        "kind": "const",
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\n * Action.\n * @typedef {function} ReduxAction\n",
-            "start": 95,
-            "end": 224,
+            "range": [
+              95,
+              224
+            ],
             "loc": {
               "start": {
                 "line": 6,
@@ -332,23 +331,35 @@
                 "line": 10,
                 "column": 2
               }
-            },
-            "range": [
-              95,
-              224
-            ]
+            }
           }
         ],
         "trailingComments": []
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        226,
+        266
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 40
+        }
+      },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\n * Action.\n * @typedef {function} ReduxAction\n",
-          "start": 95,
-          "end": 224,
+          "range": [
+            95,
+            224
+          ],
           "loc": {
             "start": {
               "line": 6,
@@ -358,32 +369,74 @@
               "line": 10,
               "column": 2
             }
-          },
-          "range": [
-            95,
-            224
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 267,
-      "end": 301,
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 0
-        },
-        "end": {
-          "line": 13,
-          "column": 34
-        }
-      },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 274,
-        "end": 301,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "SimplActions",
+              "range": [
+                280,
+                292
+              ],
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 13
+                },
+                "end": {
+                  "line": 13,
+                  "column": 25
+                }
+              }
+            },
+            "init": {
+              "type": "Identifier",
+              "name": "simpl",
+              "range": [
+                295,
+                300
+              ],
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 28
+                },
+                "end": {
+                  "line": 13,
+                  "column": 33
+                }
+              }
+            },
+            "range": [
+              280,
+              300
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 13
+              },
+              "end": {
+                "line": 13,
+                "column": 33
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          274,
+          301
+        ],
         "loc": {
           "start": {
             "line": 13,
@@ -394,80 +447,90 @@
             "column": 34
           }
         },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 280,
-            "end": 300,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 13
-              },
-              "end": {
-                "line": 13,
-                "column": 33
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 280,
-              "end": 292,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 13
-                },
-                "end": {
-                  "line": 13,
-                  "column": 25
-                }
-              },
-              "name": "SimplActions"
-            },
-            "init": {
-              "type": "Identifier",
-              "start": 295,
-              "end": 300,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 28
-                },
-                "end": {
-                  "line": 13,
-                  "column": 33
-                }
-              },
-              "name": "simpl"
-            }
-          }
-        ],
-        "kind": "const",
         "leadingComments": [],
         "trailingComments": []
       },
       "specifiers": [],
-      "source": null
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 302,
-      "end": 336,
+      "source": null,
+      "range": [
+        267,
+        301
+      ],
       "loc": {
         "start": {
-          "line": 14,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 14,
+          "line": 13,
           "column": 34
         }
-      },
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 309,
-        "end": 336,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "StateActions",
+              "range": [
+                315,
+                327
+              ],
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 13
+                },
+                "end": {
+                  "line": 14,
+                  "column": 25
+                }
+              }
+            },
+            "init": {
+              "type": "Identifier",
+              "name": "state",
+              "range": [
+                330,
+                335
+              ],
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 28
+                },
+                "end": {
+                  "line": 14,
+                  "column": 33
+                }
+              }
+            },
+            "range": [
+              315,
+              335
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 13
+              },
+              "end": {
+                "line": 14,
+                "column": 33
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          309,
+          336
+        ],
         "loc": {
           "start": {
             "line": 14,
@@ -478,62 +541,15 @@
             "column": 34
           }
         },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 315,
-            "end": 335,
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 13
-              },
-              "end": {
-                "line": 14,
-                "column": 33
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 315,
-              "end": 327,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 13
-                },
-                "end": {
-                  "line": 14,
-                  "column": 25
-                }
-              },
-              "name": "StateActions"
-            },
-            "init": {
-              "type": "Identifier",
-              "start": 330,
-              "end": 335,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 28
-                },
-                "end": {
-                  "line": 14,
-                  "column": 33
-                }
-              },
-              "name": "state"
-            }
-          }
-        ],
-        "kind": "const",
+        "leadingComments": [],
         "trailingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace actions\n * @memberof Simpl\n ",
-            "start": 337,
-            "end": 385,
+            "range": [
+              337,
+              385
+            ],
             "loc": {
               "start": {
                 "line": 15,
@@ -543,23 +559,34 @@
                 "line": 18,
                 "column": 3
               }
-            },
-            "range": [
-              337,
-              385
-            ]
+            }
           }
-        ],
-        "leadingComments": []
+        ]
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        302,
+        336
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 34
+        }
+      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace actions\n * @memberof Simpl\n ",
-          "start": 337,
-          "end": 385,
+          "range": [
+            337,
+            385
+          ],
           "loc": {
             "start": {
               "line": 15,
@@ -569,32 +596,191 @@
               "line": 18,
               "column": 3
             }
-          },
-          "range": [
-            337,
-            385
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 386,
-      "end": 435,
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 0
-        },
-        "end": {
-          "line": 23,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 401,
-        "end": 434,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "messages",
+              "range": [
+                405,
+                413
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 10
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "messages",
+              "range": [
+                405,
+                413
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 10
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              405,
+              413
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 2
+              },
+              "end": {
+                "line": 20,
+                "column": 10
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "simpl",
+              "range": [
+                417,
+                422
+              ],
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "simpl",
+              "range": [
+                417,
+                422
+              ],
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              417,
+              422
+            ],
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 2
+              },
+              "end": {
+                "line": 21,
+                "column": 7
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "state",
+              "range": [
+                426,
+                431
+              ],
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 2
+                },
+                "end": {
+                  "line": 22,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "state",
+              "range": [
+                426,
+                431
+              ],
+              "loc": {
+                "start": {
+                  "line": 22,
+                  "column": 2
+                },
+                "end": {
+                  "line": 22,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              426,
+              431
+            ],
+            "loc": {
+              "start": {
+                "line": 22,
+                "column": 2
+              },
+              "end": {
+                "line": 22,
+                "column": 7
+              }
+            }
+          }
+        ],
+        "range": [
+          401,
+          434
+        ],
         "loc": {
           "start": {
             "line": 19,
@@ -605,191 +791,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 405,
-            "end": 413,
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 2
-              },
-              "end": {
-                "line": 20,
-                "column": 10
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 405,
-              "end": 413,
-              "loc": {
-                "start": {
-                  "line": 20,
-                  "column": 2
-                },
-                "end": {
-                  "line": 20,
-                  "column": 10
-                }
-              },
-              "name": "messages",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 405,
-              "end": 413,
-              "loc": {
-                "start": {
-                  "line": 20,
-                  "column": 2
-                },
-                "end": {
-                  "line": 20,
-                  "column": 10
-                }
-              },
-              "name": "messages",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace actions\n * @memberof Simpl\n ",
-                  "start": 337,
-                  "end": 385,
-                  "loc": {
-                    "start": {
-                      "line": 15,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 18,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    337,
-                    385
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 417,
-            "end": 422,
-            "loc": {
-              "start": {
-                "line": 21,
-                "column": 2
-              },
-              "end": {
-                "line": 21,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 417,
-              "end": 422,
-              "loc": {
-                "start": {
-                  "line": 21,
-                  "column": 2
-                },
-                "end": {
-                  "line": 21,
-                  "column": 7
-                }
-              },
-              "name": "simpl"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 417,
-              "end": 422,
-              "loc": {
-                "start": {
-                  "line": 21,
-                  "column": 2
-                },
-                "end": {
-                  "line": 21,
-                  "column": 7
-                }
-              },
-              "name": "simpl"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 426,
-            "end": 431,
-            "loc": {
-              "start": {
-                "line": 22,
-                "column": 2
-              },
-              "end": {
-                "line": 22,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 426,
-              "end": 431,
-              "loc": {
-                "start": {
-                  "line": 22,
-                  "column": 2
-                },
-                "end": {
-                  "line": 22,
-                  "column": 7
-                }
-              },
-              "name": "state"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 426,
-              "end": 431,
-              "loc": {
-                "start": {
-                  "line": 22,
-                  "column": 2
-                },
-                "end": {
-                  "line": 22,
-                  "column": 7
-                }
-              },
-              "name": "state"
-            }
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace actions\n * @memberof Simpl\n ",
-            "start": 337,
-            "end": 385,
+            "range": [
+              337,
+              385
+            ],
             "loc": {
               "start": {
                 "line": 15,
@@ -799,21 +808,33 @@
                 "line": 18,
                 "column": 3
               }
-            },
-            "range": [
-              337,
-              385
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        386,
+        435
+      ],
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 23,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace actions\n * @memberof Simpl\n ",
-          "start": 337,
-          "end": 385,
+          "range": [
+            337,
+            385
+          ],
           "loc": {
             "start": {
               "line": 15,
@@ -823,13 +844,62 @@
               "line": 18,
               "column": 3
             }
-          },
-          "range": [
-            337,
-            385
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    435
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 23,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\n * Action.\n * @typedef {function} ReduxAction\n",
+      "range": [
+        95,
+        224
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * @namespace actions\n * @memberof Simpl\n ",
+      "range": [
+        337,
+        385
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 3
+        }
+      }
     }
   ]
 }

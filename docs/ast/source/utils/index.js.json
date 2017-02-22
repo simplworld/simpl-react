@@ -1,52 +1,18 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 172,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 13,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 40,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 40
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 18,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 18
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 7,
-            "end": 18,
+            "name": "collections",
+            "range": [
+              7,
+              18
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -56,16 +22,32 @@
                 "line": 1,
                 "column": 18
               }
+            }
+          },
+          "range": [
+            7,
+            18
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
             },
-            "name": "collections"
+            "end": {
+              "line": 1,
+              "column": 18
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 24,
-        "end": 39,
+        "value": "./collections",
+        "raw": "'./collections'",
+        "range": [
+          24,
+          39
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -75,16 +57,85 @@
             "line": 1,
             "column": 39
           }
+        }
+      },
+      "range": [
+        0,
+        40
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "./collections",
-        "rawValue": "./collections",
-        "raw": "'./collections'"
+        "end": {
+          "line": 1,
+          "column": 40
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 41,
-      "end": 75,
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "reducers",
+            "range": [
+              48,
+              56
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            48,
+            56
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 15
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./reducers",
+        "raw": "'./reducers'",
+        "range": [
+          62,
+          74
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 21
+          },
+          "end": {
+            "line": 2,
+            "column": 33
+          }
+        }
+      },
+      "range": [
+        41,
+        75
+      ],
       "loc": {
         "start": {
           "line": 2,
@@ -95,64 +146,14 @@
           "column": 34
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 48,
-          "end": 56,
-          "loc": {
-            "start": {
-              "line": 2,
-              "column": 7
-            },
-            "end": {
-              "line": 2,
-              "column": 15
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 48,
-            "end": 56,
-            "loc": {
-              "start": {
-                "line": 2,
-                "column": 7
-              },
-              "end": {
-                "line": 2,
-                "column": 15
-              }
-            },
-            "name": "reducers"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 62,
-        "end": 74,
-        "loc": {
-          "start": {
-            "line": 2,
-            "column": 21
-          },
-          "end": {
-            "line": 2,
-            "column": 33
-          }
-        },
-        "value": "./reducers",
-        "rawValue": "./reducers",
-        "raw": "'./reducers'"
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace utils\n * @memberof Simpl\n ",
-          "start": 78,
-          "end": 124,
+          "range": [
+            78,
+            124
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -162,32 +163,134 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            78,
-            124
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 125,
-      "end": 171,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 140,
-        "end": 170,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "collections",
+              "range": [
+                144,
+                155
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 13
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "collections",
+              "range": [
+                144,
+                155
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 13
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              144,
+              155
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 2
+              },
+              "end": {
+                "line": 10,
+                "column": 13
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "reducers",
+              "range": [
+                159,
+                167
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 10
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "reducers",
+              "range": [
+                159,
+                167
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 10
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              159,
+              167
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 2
+              },
+              "end": {
+                "line": 11,
+                "column": 10
+              }
+            }
+          }
+        ],
+        "range": [
+          140,
+          170
+        ],
         "loc": {
           "start": {
             "line": 9,
@@ -198,140 +301,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 144,
-            "end": 155,
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 2
-              },
-              "end": {
-                "line": 10,
-                "column": 13
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 144,
-              "end": 155,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 13
-                }
-              },
-              "name": "collections",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 144,
-              "end": 155,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 13
-                }
-              },
-              "name": "collections",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace utils\n * @memberof Simpl\n ",
-                  "start": 78,
-                  "end": 124,
-                  "loc": {
-                    "start": {
-                      "line": 5,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    78,
-                    124
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 159,
-            "end": 167,
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 2
-              },
-              "end": {
-                "line": 11,
-                "column": 10
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 159,
-              "end": 167,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-                  "column": 10
-                }
-              },
-              "name": "reducers"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 159,
-              "end": 167,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-                  "column": 10
-                }
-              },
-              "name": "reducers"
-            }
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace utils\n * @memberof Simpl\n ",
-            "start": 78,
-            "end": 124,
+            "range": [
+              78,
+              124
+            ],
             "loc": {
               "start": {
                 "line": 5,
@@ -341,21 +318,33 @@
                 "line": 8,
                 "column": 3
               }
-            },
-            "range": [
-              78,
-              124
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        125,
+        171
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace utils\n * @memberof Simpl\n ",
-          "start": 78,
-          "end": 124,
+          "range": [
+            78,
+            124
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -365,13 +354,44 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            78,
-            124
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    171
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 12,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace utils\n * @memberof Simpl\n ",
+      "range": [
+        78,
+        124
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
     }
   ]
 }

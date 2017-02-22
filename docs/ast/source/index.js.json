@@ -1,52 +1,18 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 390,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 23,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 32,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 32
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 14,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 14
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 7,
-            "end": 14,
+            "name": "actions",
+            "range": [
+              7,
+              14
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -56,16 +22,32 @@
                 "line": 1,
                 "column": 14
               }
+            }
+          },
+          "range": [
+            7,
+            14
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
             },
-            "name": "actions"
+            "end": {
+              "line": 1,
+              "column": 14
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 20,
-        "end": 31,
+        "value": "./actions",
+        "raw": "'./actions'",
+        "range": [
+          20,
+          31
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -75,45 +57,35 @@
             "line": 1,
             "column": 31
           }
+        }
+      },
+      "range": [
+        0,
+        32
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "./actions",
-        "rawValue": "./actions",
-        "raw": "'./actions'"
+        "end": {
+          "line": 1,
+          "column": 32
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 33,
-      "end": 67,
-      "loc": {
-        "start": {
-          "line": 2,
-          "column": 0
-        },
-        "end": {
-          "line": 2,
-          "column": 34
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 40,
-          "end": 48,
-          "loc": {
-            "start": {
-              "line": 2,
-              "column": 7
-            },
-            "end": {
-              "line": 2,
-              "column": 15
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 40,
-            "end": 48,
+            "name": "autobahn",
+            "range": [
+              40,
+              48
+            ],
             "loc": {
               "start": {
                 "line": 2,
@@ -123,198 +95,216 @@
                 "line": 2,
                 "column": 15
               }
+            }
+          },
+          "range": [
+            40,
+            48
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
             },
-            "name": "autobahn"
+            "end": {
+              "line": 2,
+              "column": 15
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 54,
-        "end": 66,
-        "loc": {
-          "start": {
-            "line": 2,
-            "column": 21
-          },
-          "end": {
-            "line": 2,
-            "column": 33
-          }
-        },
         "value": "./autobahn",
-        "rawValue": "./autobahn",
-        "raw": "'./autobahn'"
-      }
-    },
-    {
-      "type": "ImportDeclaration",
-      "start": 68,
-      "end": 106,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 38
-        }
-      },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 75,
-          "end": 85,
-          "loc": {
-            "start": {
-              "line": 3,
-              "column": 7
-            },
-            "end": {
-              "line": 3,
-              "column": 17
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 75,
-            "end": 85,
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 7
-              },
-              "end": {
-                "line": 3,
-                "column": 17
-              }
-            },
-            "name": "components"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 91,
-        "end": 105,
+        "raw": "'./autobahn'",
+        "range": [
+          54,
+          66
+        ],
         "loc": {
           "start": {
-            "line": 3,
-            "column": 23
+            "line": 2,
+            "column": 21
           },
           "end": {
-            "line": 3,
-            "column": 37
+            "line": 2,
+            "column": 33
           }
-        },
-        "value": "./components",
-        "rawValue": "./components",
-        "raw": "'./components'"
-      }
-    },
-    {
-      "type": "ImportDeclaration",
-      "start": 107,
-      "end": 145,
-      "loc": {
-        "start": {
-          "line": 4,
-          "column": 0
-        },
-        "end": {
-          "line": 4,
-          "column": 38
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 114,
-          "end": 124,
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 7
-            },
-            "end": {
-              "line": 4,
-              "column": 17
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 114,
-            "end": 124,
-            "loc": {
-              "start": {
-                "line": 4,
-                "column": 7
-              },
-              "end": {
-                "line": 4,
-                "column": 17
-              }
-            },
-            "name": "decorators"
-          }
-        }
+      "range": [
+        33,
+        67
       ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 130,
-        "end": 144,
-        "loc": {
-          "start": {
-            "line": 4,
-            "column": 23
-          },
-          "end": {
-            "line": 4,
-            "column": 37
-          }
-        },
-        "value": "./decorators",
-        "rawValue": "./decorators",
-        "raw": "'./decorators'"
-      }
-    },
-    {
-      "type": "ImportDeclaration",
-      "start": 146,
-      "end": 180,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 2,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 2,
           "column": 34
         }
-      },
+      }
+    },
+    {
+      "type": "ImportDeclaration",
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 153,
-          "end": 161,
+          "local": {
+            "type": "Identifier",
+            "name": "components",
+            "range": [
+              75,
+              85
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            }
+          },
+          "range": [
+            75,
+            85
+          ],
           "loc": {
             "start": {
-              "line": 5,
+              "line": 3,
               "column": 7
             },
             "end": {
-              "line": 5,
-              "column": 15
+              "line": 3,
+              "column": 17
             }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./components",
+        "raw": "'./components'",
+        "range": [
+          91,
+          105
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 23
           },
+          "end": {
+            "line": 3,
+            "column": 37
+          }
+        }
+      },
+      "range": [
+        68,
+        106
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "start": 153,
-            "end": 161,
+            "name": "decorators",
+            "range": [
+              114,
+              124
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 17
+              }
+            }
+          },
+          "range": [
+            114,
+            124
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 17
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./decorators",
+        "raw": "'./decorators'",
+        "range": [
+          130,
+          144
+        ],
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 23
+          },
+          "end": {
+            "line": 4,
+            "column": 37
+          }
+        }
+      },
+      "range": [
+        107,
+        145
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "reducers",
+            "range": [
+              153,
+              161
+            ],
             "loc": {
               "start": {
                 "line": 5,
@@ -324,16 +314,32 @@
                 "line": 5,
                 "column": 15
               }
+            }
+          },
+          "range": [
+            153,
+            161
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
             },
-            "name": "reducers"
+            "end": {
+              "line": 5,
+              "column": 15
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 167,
-        "end": 179,
+        "value": "./reducers",
+        "raw": "'./reducers'",
+        "range": [
+          167,
+          179
+        ],
         "loc": {
           "start": {
             "line": 5,
@@ -343,45 +349,35 @@
             "line": 5,
             "column": 33
           }
+        }
+      },
+      "range": [
+        146,
+        180
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
         },
-        "value": "./reducers",
-        "rawValue": "./reducers",
-        "raw": "'./reducers'"
+        "end": {
+          "line": 5,
+          "column": 34
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 181,
-      "end": 211,
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 0
-        },
-        "end": {
-          "line": 6,
-          "column": 30
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 188,
-          "end": 194,
-          "loc": {
-            "start": {
-              "line": 6,
-              "column": 7
-            },
-            "end": {
-              "line": 6,
-              "column": 13
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 188,
-            "end": 194,
+            "name": "stores",
+            "range": [
+              188,
+              194
+            ],
             "loc": {
               "start": {
                 "line": 6,
@@ -391,16 +387,32 @@
                 "line": 6,
                 "column": 13
               }
+            }
+          },
+          "range": [
+            188,
+            194
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
             },
-            "name": "stores"
+            "end": {
+              "line": 6,
+              "column": 13
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 200,
-        "end": 210,
+        "value": "./stores",
+        "raw": "'./stores'",
+        "range": [
+          200,
+          210
+        ],
         "loc": {
           "start": {
             "line": 6,
@@ -410,16 +422,85 @@
             "line": 6,
             "column": 29
           }
+        }
+      },
+      "range": [
+        181,
+        211
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
         },
-        "value": "./stores",
-        "rawValue": "./stores",
-        "raw": "'./stores'"
+        "end": {
+          "line": 6,
+          "column": 30
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 212,
-      "end": 240,
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "utils",
+            "range": [
+              219,
+              224
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            219,
+            224
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./utils",
+        "raw": "'./utils'",
+        "range": [
+          230,
+          239
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 18
+          },
+          "end": {
+            "line": 7,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        212,
+        240
+      ],
       "loc": {
         "start": {
           "line": 7,
@@ -430,64 +511,14 @@
           "column": 28
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 219,
-          "end": 224,
-          "loc": {
-            "start": {
-              "line": 7,
-              "column": 7
-            },
-            "end": {
-              "line": 7,
-              "column": 12
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 219,
-            "end": 224,
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 7
-              },
-              "end": {
-                "line": 7,
-                "column": 12
-              }
-            },
-            "name": "utils"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 230,
-        "end": 239,
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 18
-          },
-          "end": {
-            "line": 7,
-            "column": 27
-          }
-        },
-        "value": "./utils",
-        "rawValue": "./utils",
-        "raw": "'./utils'"
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-          "start": 243,
-          "end": 287,
+          "range": [
+            243,
+            287
+          ],
           "loc": {
             "start": {
               "line": 10,
@@ -497,32 +528,419 @@
               "line": 13,
               "column": 3
             }
-          },
-          "range": [
-            243,
-            287
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 288,
-      "end": 389,
-      "loc": {
-        "start": {
-          "line": 14,
-          "column": 0
-        },
-        "end": {
-          "line": 22,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 303,
-        "end": 388,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "actions",
+              "range": [
+                307,
+                314
+              ],
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 2
+                },
+                "end": {
+                  "line": 15,
+                  "column": 9
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "actions",
+              "range": [
+                307,
+                314
+              ],
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 2
+                },
+                "end": {
+                  "line": 15,
+                  "column": 9
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              307,
+              314
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 2
+              },
+              "end": {
+                "line": 15,
+                "column": 9
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "autobahn",
+              "range": [
+                318,
+                326
+              ],
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 10
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "autobahn",
+              "range": [
+                318,
+                326
+              ],
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 10
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              318,
+              326
+            ],
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 2
+              },
+              "end": {
+                "line": 16,
+                "column": 10
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "components",
+              "range": [
+                330,
+                340
+              ],
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 2
+                },
+                "end": {
+                  "line": 17,
+                  "column": 12
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "components",
+              "range": [
+                330,
+                340
+              ],
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 2
+                },
+                "end": {
+                  "line": 17,
+                  "column": 12
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              330,
+              340
+            ],
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 2
+              },
+              "end": {
+                "line": 17,
+                "column": 12
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "decorators",
+              "range": [
+                344,
+                354
+              ],
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 2
+                },
+                "end": {
+                  "line": 18,
+                  "column": 12
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "decorators",
+              "range": [
+                344,
+                354
+              ],
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 2
+                },
+                "end": {
+                  "line": 18,
+                  "column": 12
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              344,
+              354
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 2
+              },
+              "end": {
+                "line": 18,
+                "column": 12
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "reducers",
+              "range": [
+                358,
+                366
+              ],
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 2
+                },
+                "end": {
+                  "line": 19,
+                  "column": 10
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "reducers",
+              "range": [
+                358,
+                366
+              ],
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 2
+                },
+                "end": {
+                  "line": 19,
+                  "column": 10
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              358,
+              366
+            ],
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 2
+              },
+              "end": {
+                "line": 19,
+                "column": 10
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "stores",
+              "range": [
+                370,
+                376
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 8
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "stores",
+              "range": [
+                370,
+                376
+              ],
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 2
+                },
+                "end": {
+                  "line": 20,
+                  "column": 8
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              370,
+              376
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 2
+              },
+              "end": {
+                "line": 20,
+                "column": 8
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "utils",
+              "range": [
+                380,
+                385
+              ],
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 7
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "utils",
+              "range": [
+                380,
+                385
+              ],
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 21,
+                  "column": 7
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              380,
+              385
+            ],
+            "loc": {
+              "start": {
+                "line": 21,
+                "column": 2
+              },
+              "end": {
+                "line": 21,
+                "column": 7
+              }
+            }
+          }
+        ],
+        "range": [
+          303,
+          388
+        ],
         "loc": {
           "start": {
             "line": 14,
@@ -533,395 +951,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 307,
-            "end": 314,
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 2
-              },
-              "end": {
-                "line": 15,
-                "column": 9
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 307,
-              "end": 314,
-              "loc": {
-                "start": {
-                  "line": 15,
-                  "column": 2
-                },
-                "end": {
-                  "line": 15,
-                  "column": 9
-                }
-              },
-              "name": "actions",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 307,
-              "end": 314,
-              "loc": {
-                "start": {
-                  "line": 15,
-                  "column": 2
-                },
-                "end": {
-                  "line": 15,
-                  "column": 9
-                }
-              },
-              "name": "actions",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-                  "start": 243,
-                  "end": 287,
-                  "loc": {
-                    "start": {
-                      "line": 10,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 13,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    243,
-                    287
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 318,
-            "end": 326,
-            "loc": {
-              "start": {
-                "line": 16,
-                "column": 2
-              },
-              "end": {
-                "line": 16,
-                "column": 10
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 318,
-              "end": 326,
-              "loc": {
-                "start": {
-                  "line": 16,
-                  "column": 2
-                },
-                "end": {
-                  "line": 16,
-                  "column": 10
-                }
-              },
-              "name": "autobahn"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 318,
-              "end": 326,
-              "loc": {
-                "start": {
-                  "line": 16,
-                  "column": 2
-                },
-                "end": {
-                  "line": 16,
-                  "column": 10
-                }
-              },
-              "name": "autobahn"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 330,
-            "end": 340,
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 2
-              },
-              "end": {
-                "line": 17,
-                "column": 12
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 330,
-              "end": 340,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 12
-                }
-              },
-              "name": "components"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 330,
-              "end": 340,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 12
-                }
-              },
-              "name": "components"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 344,
-            "end": 354,
-            "loc": {
-              "start": {
-                "line": 18,
-                "column": 2
-              },
-              "end": {
-                "line": 18,
-                "column": 12
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 344,
-              "end": 354,
-              "loc": {
-                "start": {
-                  "line": 18,
-                  "column": 2
-                },
-                "end": {
-                  "line": 18,
-                  "column": 12
-                }
-              },
-              "name": "decorators"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 344,
-              "end": 354,
-              "loc": {
-                "start": {
-                  "line": 18,
-                  "column": 2
-                },
-                "end": {
-                  "line": 18,
-                  "column": 12
-                }
-              },
-              "name": "decorators"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 358,
-            "end": 366,
-            "loc": {
-              "start": {
-                "line": 19,
-                "column": 2
-              },
-              "end": {
-                "line": 19,
-                "column": 10
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 358,
-              "end": 366,
-              "loc": {
-                "start": {
-                  "line": 19,
-                  "column": 2
-                },
-                "end": {
-                  "line": 19,
-                  "column": 10
-                }
-              },
-              "name": "reducers"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 358,
-              "end": 366,
-              "loc": {
-                "start": {
-                  "line": 19,
-                  "column": 2
-                },
-                "end": {
-                  "line": 19,
-                  "column": 10
-                }
-              },
-              "name": "reducers"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 370,
-            "end": 376,
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 2
-              },
-              "end": {
-                "line": 20,
-                "column": 8
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 370,
-              "end": 376,
-              "loc": {
-                "start": {
-                  "line": 20,
-                  "column": 2
-                },
-                "end": {
-                  "line": 20,
-                  "column": 8
-                }
-              },
-              "name": "stores"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 370,
-              "end": 376,
-              "loc": {
-                "start": {
-                  "line": 20,
-                  "column": 2
-                },
-                "end": {
-                  "line": 20,
-                  "column": 8
-                }
-              },
-              "name": "stores"
-            }
-          },
-          {
-            "type": "Property",
-            "start": 380,
-            "end": 385,
-            "loc": {
-              "start": {
-                "line": 21,
-                "column": 2
-              },
-              "end": {
-                "line": 21,
-                "column": 7
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 380,
-              "end": 385,
-              "loc": {
-                "start": {
-                  "line": 21,
-                  "column": 2
-                },
-                "end": {
-                  "line": 21,
-                  "column": 7
-                }
-              },
-              "name": "utils"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 380,
-              "end": 385,
-              "loc": {
-                "start": {
-                  "line": 21,
-                  "column": 2
-                },
-                "end": {
-                  "line": 21,
-                  "column": 7
-                }
-              },
-              "name": "utils"
-            }
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-            "start": 243,
-            "end": 287,
+            "range": [
+              243,
+              287
+            ],
             "loc": {
               "start": {
                 "line": 10,
@@ -931,21 +968,33 @@
                 "line": 13,
                 "column": 3
               }
-            },
-            "range": [
-              243,
-              287
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        288,
+        389
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
-          "start": 243,
-          "end": 287,
+          "range": [
+            243,
+            287
+          ],
           "loc": {
             "start": {
               "line": 10,
@@ -955,13 +1004,44 @@
               "line": 13,
               "column": 3
             }
-          },
-          "range": [
-            243,
-            287
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    389
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 22,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @module Simpl\n * @namespace Simpl\n ",
+      "range": [
+        243,
+        287
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 3
+        }
+      }
     }
   ]
 }

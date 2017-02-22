@@ -1,52 +1,18 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 184,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 13,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 0,
-      "end": 36,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 36
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 7,
-          "end": 16,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
-            },
-            "end": {
-              "line": 1,
-              "column": 16
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 7,
-            "end": 16,
+            "name": "publishes",
+            "range": [
+              7,
+              16
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -56,16 +22,32 @@
                 "line": 1,
                 "column": 16
               }
+            }
+          },
+          "range": [
+            7,
+            16
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
             },
-            "name": "publishes"
+            "end": {
+              "line": 1,
+              "column": 16
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 22,
-        "end": 35,
+        "value": "./publishes",
+        "raw": "'./publishes'",
+        "range": [
+          22,
+          35
+        ],
         "loc": {
           "start": {
             "line": 1,
@@ -75,16 +57,85 @@
             "line": 1,
             "column": 35
           }
+        }
+      },
+      "range": [
+        0,
+        36
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
         },
-        "value": "./publishes",
-        "rawValue": "./publishes",
-        "raw": "'./publishes'"
+        "end": {
+          "line": 1,
+          "column": 36
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 37,
-      "end": 75,
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "subscribes",
+            "range": [
+              44,
+              54
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 17
+              }
+            }
+          },
+          "range": [
+            44,
+            54
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 17
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./subscribes",
+        "raw": "'./subscribes'",
+        "range": [
+          60,
+          74
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 23
+          },
+          "end": {
+            "line": 2,
+            "column": 37
+          }
+        }
+      },
+      "range": [
+        37,
+        75
+      ],
       "loc": {
         "start": {
           "line": 2,
@@ -95,64 +146,14 @@
           "column": 38
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "start": 44,
-          "end": 54,
-          "loc": {
-            "start": {
-              "line": 2,
-              "column": 7
-            },
-            "end": {
-              "line": 2,
-              "column": 17
-            }
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 44,
-            "end": 54,
-            "loc": {
-              "start": {
-                "line": 2,
-                "column": 7
-              },
-              "end": {
-                "line": 2,
-                "column": 17
-              }
-            },
-            "name": "subscribes"
-          }
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 60,
-        "end": 74,
-        "loc": {
-          "start": {
-            "line": 2,
-            "column": 23
-          },
-          "end": {
-            "line": 2,
-            "column": 37
-          }
-        },
-        "value": "./subscribes",
-        "rawValue": "./subscribes",
-        "raw": "'./subscribes'"
-      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace pubsub\n * @memberof Simpl.decorators\n ",
-          "start": 78,
-          "end": 136,
+          "range": [
+            78,
+            136
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -162,32 +163,134 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            78,
-            136
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 137,
-      "end": 183,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 12,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 152,
-        "end": 182,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "publishes",
+              "range": [
+                156,
+                165
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 11
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "publishes",
+              "range": [
+                156,
+                165
+              ],
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 11
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              156,
+              165
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 2
+              },
+              "end": {
+                "line": 10,
+                "column": 11
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "subscribes",
+              "range": [
+                169,
+                179
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 12
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "subscribes",
+              "range": [
+                169,
+                179
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 11,
+                  "column": 12
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              169,
+              179
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 2
+              },
+              "end": {
+                "line": 11,
+                "column": 12
+              }
+            }
+          }
+        ],
+        "range": [
+          152,
+          182
+        ],
         "loc": {
           "start": {
             "line": 9,
@@ -198,140 +301,14 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 156,
-            "end": 165,
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 2
-              },
-              "end": {
-                "line": 10,
-                "column": 11
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 156,
-              "end": 165,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 11
-                }
-              },
-              "name": "publishes",
-              "leadingComments": null
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 156,
-              "end": 165,
-              "loc": {
-                "start": {
-                  "line": 10,
-                  "column": 2
-                },
-                "end": {
-                  "line": 10,
-                  "column": 11
-                }
-              },
-              "name": "publishes",
-              "leadingComments": [
-                {
-                  "type": "Block",
-                  "value": "*\n * @namespace pubsub\n * @memberof Simpl.decorators\n ",
-                  "start": 78,
-                  "end": 136,
-                  "loc": {
-                    "start": {
-                      "line": 5,
-                      "column": 0
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 3
-                    }
-                  },
-                  "range": [
-                    78,
-                    136
-                  ]
-                }
-              ]
-            },
-            "leadingComments": null
-          },
-          {
-            "type": "Property",
-            "start": 169,
-            "end": 179,
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 2
-              },
-              "end": {
-                "line": 11,
-                "column": 12
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 169,
-              "end": 179,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-                  "column": 12
-                }
-              },
-              "name": "subscribes"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 169,
-              "end": 179,
-              "loc": {
-                "start": {
-                  "line": 11,
-                  "column": 2
-                },
-                "end": {
-                  "line": 11,
-                  "column": 12
-                }
-              },
-              "name": "subscribes"
-            }
-          }
-        ],
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * @namespace pubsub\n * @memberof Simpl.decorators\n ",
-            "start": 78,
-            "end": 136,
+            "range": [
+              78,
+              136
+            ],
             "loc": {
               "start": {
                 "line": 5,
@@ -341,21 +318,33 @@
                 "line": 8,
                 "column": 3
               }
-            },
-            "range": [
-              78,
-              136
-            ]
+            }
           }
         ],
         "trailingComments": []
+      },
+      "range": [
+        137,
+        183
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 2
+        }
       },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace pubsub\n * @memberof Simpl.decorators\n ",
-          "start": 78,
-          "end": 136,
+          "range": [
+            78,
+            136
+          ],
           "loc": {
             "start": {
               "line": 5,
@@ -365,13 +354,44 @@
               "line": 8,
               "column": 3
             }
-          },
-          "range": [
-            78,
-            136
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    183
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 12,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace pubsub\n * @memberof Simpl.decorators\n ",
+      "range": [
+        78,
+        136
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
     }
   ]
 }

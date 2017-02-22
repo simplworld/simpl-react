@@ -1,37 +1,303 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 613,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 18,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ExportNamedDeclaration",
-      "start": 479,
-      "end": 612,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 17,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 486,
-        "end": 612,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "CONNECTION_STATUS",
+              "range": [
+                492,
+                509
+              ],
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 12,
+                  "column": 30
+                }
+              }
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "CONNECTING",
+                    "range": [
+                      516,
+                      526
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Literal",
+                    "value": "connecting",
+                    "raw": "'connecting'",
+                    "range": [
+                      528,
+                      540
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 14
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 26
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    516,
+                    540
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 26
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "CONNECTED",
+                    "range": [
+                      544,
+                      553
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 11
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Literal",
+                    "value": "connected",
+                    "raw": "'connected'",
+                    "range": [
+                      555,
+                      566
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 24
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    544,
+                    566
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 24
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "LOADED",
+                    "range": [
+                      570,
+                      576
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 8
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Literal",
+                    "value": "loaded",
+                    "raw": "'loaded'",
+                    "range": [
+                      578,
+                      586
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 18
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    570,
+                    586
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 15,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 18
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "OFFLINE",
+                    "range": [
+                      590,
+                      597
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 9
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Literal",
+                    "value": "offline",
+                    "raw": "'offline'",
+                    "range": [
+                      599,
+                      608
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 20
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    590,
+                    608
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 20
+                    }
+                  }
+                }
+              ],
+              "range": [
+                512,
+                611
+              ],
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 33
+                },
+                "end": {
+                  "line": 17,
+                  "column": 1
+                }
+              }
+            },
+            "range": [
+              492,
+              611
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 13
+              },
+              "end": {
+                "line": 17,
+                "column": 1
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          486,
+          612
+        ],
         "loc": {
           "start": {
             "line": 12,
@@ -42,277 +308,14 @@
             "column": 2
           }
         },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 492,
-            "end": 611,
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 13
-              },
-              "end": {
-                "line": 17,
-                "column": 1
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 492,
-              "end": 509,
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 13
-                },
-                "end": {
-                  "line": 12,
-                  "column": 30
-                }
-              },
-              "name": "CONNECTION_STATUS",
-              "leadingComments": null
-            },
-            "init": {
-              "type": "ObjectExpression",
-              "start": 512,
-              "end": 611,
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 33
-                },
-                "end": {
-                  "line": 17,
-                  "column": 1
-                }
-              },
-              "properties": [
-                {
-                  "type": "Property",
-                  "start": 516,
-                  "end": 540,
-                  "loc": {
-                    "start": {
-                      "line": 13,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 13,
-                      "column": 26
-                    }
-                  },
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "key": {
-                    "type": "Identifier",
-                    "start": 516,
-                    "end": 526,
-                    "loc": {
-                      "start": {
-                        "line": 13,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 12
-                      }
-                    },
-                    "name": "CONNECTING"
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "start": 528,
-                    "end": 540,
-                    "loc": {
-                      "start": {
-                        "line": 13,
-                        "column": 14
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 26
-                      }
-                    },
-                    "value": "connecting",
-                    "rawValue": "connecting",
-                    "raw": "'connecting'"
-                  },
-                  "kind": "init"
-                },
-                {
-                  "type": "Property",
-                  "start": 544,
-                  "end": 566,
-                  "loc": {
-                    "start": {
-                      "line": 14,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 14,
-                      "column": 24
-                    }
-                  },
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "key": {
-                    "type": "Identifier",
-                    "start": 544,
-                    "end": 553,
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 11
-                      }
-                    },
-                    "name": "CONNECTED"
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "start": 555,
-                    "end": 566,
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 13
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 24
-                      }
-                    },
-                    "value": "connected",
-                    "rawValue": "connected",
-                    "raw": "'connected'"
-                  },
-                  "kind": "init"
-                },
-                {
-                  "type": "Property",
-                  "start": 570,
-                  "end": 586,
-                  "loc": {
-                    "start": {
-                      "line": 15,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 15,
-                      "column": 18
-                    }
-                  },
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "key": {
-                    "type": "Identifier",
-                    "start": 570,
-                    "end": 576,
-                    "loc": {
-                      "start": {
-                        "line": 15,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 15,
-                        "column": 8
-                      }
-                    },
-                    "name": "LOADED"
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "start": 578,
-                    "end": 586,
-                    "loc": {
-                      "start": {
-                        "line": 15,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 15,
-                        "column": 18
-                      }
-                    },
-                    "value": "loaded",
-                    "rawValue": "loaded",
-                    "raw": "'loaded'"
-                  },
-                  "kind": "init"
-                },
-                {
-                  "type": "Property",
-                  "start": 590,
-                  "end": 608,
-                  "loc": {
-                    "start": {
-                      "line": 16,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 16,
-                      "column": 20
-                    }
-                  },
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "key": {
-                    "type": "Identifier",
-                    "start": 590,
-                    "end": 597,
-                    "loc": {
-                      "start": {
-                        "line": 16,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 16,
-                        "column": 9
-                      }
-                    },
-                    "name": "OFFLINE"
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "start": 599,
-                    "end": 608,
-                    "loc": {
-                      "start": {
-                        "line": 16,
-                        "column": 11
-                      },
-                      "end": {
-                        "line": 16,
-                        "column": 20
-                      }
-                    },
-                    "value": "offline",
-                    "rawValue": "offline",
-                    "raw": "'offline'"
-                  },
-                  "kind": "init"
-                }
-              ]
-            },
-            "leadingComments": null
-          }
-        ],
-        "kind": "const",
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
-            "start": 0,
-            "end": 478,
+            "range": [
+              0,
+              478
+            ],
             "loc": {
               "start": {
                 "line": 1,
@@ -322,23 +325,35 @@
                 "line": 11,
                 "column": 3
               }
-            },
-            "range": [
-              0,
-              478
-            ]
+            }
           }
         ],
         "trailingComments": []
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        479,
+        612
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 2
+        }
+      },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
-          "start": 0,
-          "end": 478,
+          "range": [
+            0,
+            478
+          ],
           "loc": {
             "start": {
               "line": 1,
@@ -348,13 +363,44 @@
               "line": 11,
               "column": 3
             }
-          },
-          "range": [
-            0,
-            478
-          ]
+          }
         }
       ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    479,
+    612
+  ],
+  "loc": {
+    "start": {
+      "line": 12,
+      "column": 0
+    },
+    "end": {
+      "line": 17,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
+      "range": [
+        0,
+        478
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 3
+        }
+      }
     }
   ]
 }

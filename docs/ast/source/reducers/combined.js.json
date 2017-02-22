@@ -1,23 +1,86 @@
 {
   "type": "Program",
-  "start": 0,
-  "end": 1003,
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 47,
-      "column": 0
-    }
-  },
-  "sourceType": "module",
   "body": [
     {
       "type": "ImportDeclaration",
-      "start": 59,
-      "end": 99,
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "combineReducers",
+            "range": [
+              68,
+              83
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 9
+              },
+              "end": {
+                "line": 5,
+                "column": 24
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "combineReducers",
+            "range": [
+              68,
+              83
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 9
+              },
+              "end": {
+                "line": 5,
+                "column": 24
+              }
+            }
+          },
+          "range": [
+            68,
+            83
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 9
+            },
+            "end": {
+              "line": 5,
+              "column": 24
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "redux",
+        "raw": "'redux'",
+        "range": [
+          91,
+          98
+        ],
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 32
+          },
+          "end": {
+            "line": 5,
+            "column": 39
+          }
+        }
+      },
+      "range": [
+        59,
+        99
+      ],
       "loc": {
         "start": {
           "line": 5,
@@ -28,104 +91,14 @@
           "column": 40
         }
       },
-      "specifiers": [
-        {
-          "type": "ImportSpecifier",
-          "start": 68,
-          "end": 83,
-          "loc": {
-            "start": {
-              "line": 5,
-              "column": 9
-            },
-            "end": {
-              "line": 5,
-              "column": 24
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "start": 68,
-            "end": 83,
-            "loc": {
-              "start": {
-                "line": 5,
-                "column": 9
-              },
-              "end": {
-                "line": 5,
-                "column": 24
-              }
-            },
-            "name": "combineReducers",
-            "leadingComments": null
-          },
-          "local": {
-            "type": "Identifier",
-            "start": 68,
-            "end": 83,
-            "loc": {
-              "start": {
-                "line": 5,
-                "column": 9
-              },
-              "end": {
-                "line": 5,
-                "column": 24
-              }
-            },
-            "name": "combineReducers",
-            "leadingComments": [
-              {
-                "type": "Block",
-                "value": "*\n * @namespace combined\n * @memberof Simpl.reducers\n ",
-                "start": 0,
-                "end": 58,
-                "loc": {
-                  "start": {
-                    "line": 1,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 3
-                  }
-                },
-                "range": [
-                  0,
-                  58
-                ]
-              }
-            ]
-          },
-          "leadingComments": null
-        }
-      ],
-      "importKind": "value",
-      "source": {
-        "type": "Literal",
-        "start": 91,
-        "end": 98,
-        "loc": {
-          "start": {
-            "line": 5,
-            "column": 32
-          },
-          "end": {
-            "line": 5,
-            "column": 39
-          }
-        },
-        "value": "redux",
-        "rawValue": "redux",
-        "raw": "'redux'"
-      },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * @namespace combined\n * @memberof Simpl.reducers\n ",
-          "start": 0,
-          "end": 58,
+          "range": [
+            0,
+            58
+          ],
           "loc": {
             "start": {
               "line": 1,
@@ -135,63 +108,22 @@
               "line": 4,
               "column": 3
             }
-          },
-          "range": [
-            0,
-            58
-          ]
+          }
         }
       ]
     },
     {
       "type": "ImportDeclaration",
-      "start": 101,
-      "end": 163,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 0
-        },
-        "end": {
-          "line": 7,
-          "column": 62
-        }
-      },
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "start": 110,
-          "end": 134,
-          "loc": {
-            "start": {
-              "line": 7,
-              "column": 9
-            },
-            "end": {
-              "line": 7,
-              "column": 33
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "start": 110,
-            "end": 123,
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 9
-              },
-              "end": {
-                "line": 7,
-                "column": 22
-              }
-            },
-            "name": "routerReducer"
-          },
           "local": {
             "type": "Identifier",
-            "start": 127,
-            "end": 134,
+            "name": "routing",
+            "range": [
+              127,
+              134
+            ],
             "loc": {
               "start": {
                 "line": 7,
@@ -201,16 +133,50 @@
                 "line": 7,
                 "column": 33
               }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "routerReducer",
+            "range": [
+              110,
+              123
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 9
+              },
+              "end": {
+                "line": 7,
+                "column": 22
+              }
+            }
+          },
+          "range": [
+            110,
+            134
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 9
             },
-            "name": "routing"
+            "end": {
+              "line": 7,
+              "column": 33
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 142,
-        "end": 162,
+        "value": "react-router-redux",
+        "raw": "'react-router-redux'",
+        "range": [
+          142,
+          162
+        ],
         "loc": {
           "start": {
             "line": 7,
@@ -220,61 +186,35 @@
             "line": 7,
             "column": 61
           }
+        }
+      },
+      "range": [
+        101,
+        163
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
         },
-        "value": "react-router-redux",
-        "rawValue": "react-router-redux",
-        "raw": "'react-router-redux'"
+        "end": {
+          "line": 7,
+          "column": 62
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 164,
-      "end": 209,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 0
-        },
-        "end": {
-          "line": 8,
-          "column": 45
-        }
-      },
       "specifiers": [
         {
           "type": "ImportSpecifier",
-          "start": 173,
-          "end": 188,
-          "loc": {
-            "start": {
-              "line": 8,
-              "column": 9
-            },
-            "end": {
-              "line": 8,
-              "column": 24
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "start": 173,
-            "end": 180,
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 9
-              },
-              "end": {
-                "line": 8,
-                "column": 16
-              }
-            },
-            "name": "reducer"
-          },
           "local": {
             "type": "Identifier",
-            "start": 184,
-            "end": 188,
+            "name": "form",
+            "range": [
+              184,
+              188
+            ],
             "loc": {
               "start": {
                 "line": 8,
@@ -284,16 +224,50 @@
                 "line": 8,
                 "column": 24
               }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "reducer",
+            "range": [
+              173,
+              180
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 9
+              },
+              "end": {
+                "line": 8,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            173,
+            188
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 9
             },
-            "name": "form"
+            "end": {
+              "line": 8,
+              "column": 24
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 196,
-        "end": 208,
+        "value": "redux-form",
+        "raw": "'redux-form'",
+        "range": [
+          196,
+          208
+        ],
         "loc": {
           "start": {
             "line": 8,
@@ -303,45 +277,35 @@
             "line": 8,
             "column": 44
           }
+        }
+      },
+      "range": [
+        164,
+        209
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
         },
-        "value": "redux-form",
-        "rawValue": "redux-form",
-        "raw": "'redux-form'"
+        "end": {
+          "line": 8,
+          "column": 45
+        }
       }
     },
     {
       "type": "ImportDeclaration",
-      "start": 211,
-      "end": 239,
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 0
-        },
-        "end": {
-          "line": 10,
-          "column": 28
-        }
-      },
       "specifiers": [
         {
           "type": "ImportDefaultSpecifier",
-          "start": 218,
-          "end": 223,
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 7
-            },
-            "end": {
-              "line": 10,
-              "column": 12
-            }
-          },
           "local": {
             "type": "Identifier",
-            "start": 218,
-            "end": 223,
+            "name": "simpl",
+            "range": [
+              218,
+              223
+            ],
             "loc": {
               "start": {
                 "line": 10,
@@ -351,16 +315,32 @@
                 "line": 10,
                 "column": 12
               }
+            }
+          },
+          "range": [
+            218,
+            223
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 7
             },
-            "name": "simpl"
+            "end": {
+              "line": 10,
+              "column": 12
+            }
           }
         }
       ],
-      "importKind": "value",
       "source": {
         "type": "Literal",
-        "start": 229,
-        "end": 238,
+        "value": "./simpl",
+        "raw": "'./simpl'",
+        "range": [
+          229,
+          238
+        ],
         "loc": {
           "start": {
             "line": 10,
@@ -370,30 +350,402 @@
             "line": 10,
             "column": 27
           }
+        }
+      },
+      "range": [
+        211,
+        239
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
         },
-        "value": "./simpl",
-        "rawValue": "./simpl",
-        "raw": "'./simpl'"
+        "end": {
+          "line": 10,
+          "column": 28
+        }
       }
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 242,
-      "end": 390,
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 0
-        },
-        "end": {
-          "line": 18,
-          "column": 1
-        }
-      },
       "declaration": {
         "type": "FunctionDeclaration",
-        "start": 249,
-        "end": 390,
+        "id": {
+          "type": "Identifier",
+          "name": "routerReducers",
+          "range": [
+            258,
+            272
+          ],
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 16
+            },
+            "end": {
+              "line": 13,
+              "column": 30
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "reducers",
+            "range": [
+              273,
+              281
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 31
+              },
+              "end": {
+                "line": 13,
+                "column": 39
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": {
+                    "type": "Identifier",
+                    "name": "combined",
+                    "range": [
+                      293,
+                      301
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 16
+                      }
+                    }
+                  },
+                  "init": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "Object",
+                        "range": [
+                          304,
+                          310
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 19
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 25
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "assign",
+                        "range": [
+                          311,
+                          317
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 26
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 32
+                          }
+                        }
+                      },
+                      "range": [
+                        304,
+                        317
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 32
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "ObjectExpression",
+                        "properties": [],
+                        "range": [
+                          318,
+                          320
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 33
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 35
+                          }
+                        }
+                      },
+                      {
+                        "type": "Identifier",
+                        "name": "reducers",
+                        "range": [
+                          322,
+                          330
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 37
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 45
+                          }
+                        }
+                      },
+                      {
+                        "type": "ObjectExpression",
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "key": {
+                              "type": "Identifier",
+                              "name": "routing",
+                              "range": [
+                                338,
+                                345
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 11
+                                }
+                              }
+                            },
+                            "value": {
+                              "type": "Identifier",
+                              "name": "routing",
+                              "range": [
+                                338,
+                                345
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 11
+                                }
+                              }
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": true,
+                            "computed": false,
+                            "range": [
+                              338,
+                              345
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 15,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 15,
+                                "column": 11
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          332,
+                          350
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 47
+                          },
+                          "end": {
+                            "line": 16,
+                            "column": 3
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      304,
+                      351
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 19
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 4
+                      }
+                    }
+                  },
+                  "range": [
+                    293,
+                    351
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 4
+                    }
+                  }
+                }
+              ],
+              "kind": "const",
+              "range": [
+                287,
+                352
+              ],
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 2
+                },
+                "end": {
+                  "line": 16,
+                  "column": 5
+                }
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "combineReducers",
+                  "range": [
+                    362,
+                    377
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 17,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 17,
+                      "column": 24
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "combined",
+                    "range": [
+                      378,
+                      386
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 17,
+                        "column": 25
+                      },
+                      "end": {
+                        "line": 17,
+                        "column": 33
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  362,
+                  387
+                ],
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 34
+                  }
+                }
+              },
+              "range": [
+                355,
+                388
+              ],
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 2
+                },
+                "end": {
+                  "line": 17,
+                  "column": 35
+                }
+              }
+            }
+          ],
+          "range": [
+            283,
+            390
+          ],
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 41
+            },
+            "end": {
+              "line": 18,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          249,
+          390
+        ],
         "loc": {
           "start": {
             "line": 13,
@@ -404,362 +756,405 @@
             "column": 1
           }
         },
-        "id": {
-          "type": "Identifier",
-          "start": 258,
-          "end": 272,
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 16
-            },
-            "end": {
-              "line": 13,
-              "column": 30
-            }
-          },
-          "name": "routerReducers"
-        },
-        "generator": false,
-        "expression": false,
-        "async": false,
-        "params": [
-          {
-            "type": "Identifier",
-            "start": 273,
-            "end": 281,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 31
-              },
-              "end": {
-                "line": 13,
-                "column": 39
-              }
-            },
-            "name": "reducers"
-          }
-        ],
-        "body": {
-          "type": "BlockStatement",
-          "start": 283,
-          "end": 390,
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 41
-            },
-            "end": {
-              "line": 18,
-              "column": 1
-            }
-          },
-          "body": [
-            {
-              "type": "VariableDeclaration",
-              "start": 287,
-              "end": 352,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 2
-                },
-                "end": {
-                  "line": 16,
-                  "column": 5
-                }
-              },
-              "declarations": [
-                {
-                  "type": "VariableDeclarator",
-                  "start": 293,
-                  "end": 351,
-                  "loc": {
-                    "start": {
-                      "line": 14,
-                      "column": 8
-                    },
-                    "end": {
-                      "line": 16,
-                      "column": 4
-                    }
-                  },
-                  "id": {
-                    "type": "Identifier",
-                    "start": 293,
-                    "end": 301,
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 16
-                      }
-                    },
-                    "name": "combined"
-                  },
-                  "init": {
-                    "type": "CallExpression",
-                    "start": 304,
-                    "end": 351,
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 19
-                      },
-                      "end": {
-                        "line": 16,
-                        "column": 4
-                      }
-                    },
-                    "callee": {
-                      "type": "MemberExpression",
-                      "start": 304,
-                      "end": 317,
-                      "loc": {
-                        "start": {
-                          "line": 14,
-                          "column": 19
-                        },
-                        "end": {
-                          "line": 14,
-                          "column": 32
-                        }
-                      },
-                      "object": {
-                        "type": "Identifier",
-                        "start": 304,
-                        "end": 310,
-                        "loc": {
-                          "start": {
-                            "line": 14,
-                            "column": 19
-                          },
-                          "end": {
-                            "line": 14,
-                            "column": 25
-                          }
-                        },
-                        "name": "Object"
-                      },
-                      "property": {
-                        "type": "Identifier",
-                        "start": 311,
-                        "end": 317,
-                        "loc": {
-                          "start": {
-                            "line": 14,
-                            "column": 26
-                          },
-                          "end": {
-                            "line": 14,
-                            "column": 32
-                          }
-                        },
-                        "name": "assign"
-                      },
-                      "computed": false
-                    },
-                    "arguments": [
-                      {
-                        "type": "ObjectExpression",
-                        "start": 318,
-                        "end": 320,
-                        "loc": {
-                          "start": {
-                            "line": 14,
-                            "column": 33
-                          },
-                          "end": {
-                            "line": 14,
-                            "column": 35
-                          }
-                        },
-                        "properties": []
-                      },
-                      {
-                        "type": "Identifier",
-                        "start": 322,
-                        "end": 330,
-                        "loc": {
-                          "start": {
-                            "line": 14,
-                            "column": 37
-                          },
-                          "end": {
-                            "line": 14,
-                            "column": 45
-                          }
-                        },
-                        "name": "reducers"
-                      },
-                      {
-                        "type": "ObjectExpression",
-                        "start": 332,
-                        "end": 350,
-                        "loc": {
-                          "start": {
-                            "line": 14,
-                            "column": 47
-                          },
-                          "end": {
-                            "line": 16,
-                            "column": 3
-                          }
-                        },
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "start": 338,
-                            "end": 345,
-                            "loc": {
-                              "start": {
-                                "line": 15,
-                                "column": 4
-                              },
-                              "end": {
-                                "line": 15,
-                                "column": 11
-                              }
-                            },
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "key": {
-                              "type": "Identifier",
-                              "start": 338,
-                              "end": 345,
-                              "loc": {
-                                "start": {
-                                  "line": 15,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 15,
-                                  "column": 11
-                                }
-                              },
-                              "name": "routing"
-                            },
-                            "kind": "init",
-                            "value": {
-                              "type": "Identifier",
-                              "start": 338,
-                              "end": 345,
-                              "loc": {
-                                "start": {
-                                  "line": 15,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 15,
-                                  "column": 11
-                                }
-                              },
-                              "name": "routing"
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ],
-              "kind": "const"
-            },
-            {
-              "type": "ReturnStatement",
-              "start": 355,
-              "end": 388,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 2
-                },
-                "end": {
-                  "line": 17,
-                  "column": 35
-                }
-              },
-              "argument": {
-                "type": "CallExpression",
-                "start": 362,
-                "end": 387,
-                "loc": {
-                  "start": {
-                    "line": 17,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 17,
-                    "column": 34
-                  }
-                },
-                "callee": {
-                  "type": "Identifier",
-                  "start": 362,
-                  "end": 377,
-                  "loc": {
-                    "start": {
-                      "line": 17,
-                      "column": 9
-                    },
-                    "end": {
-                      "line": 17,
-                      "column": 24
-                    }
-                  },
-                  "name": "combineReducers"
-                },
-                "arguments": [
-                  {
-                    "type": "Identifier",
-                    "start": 378,
-                    "end": 386,
-                    "loc": {
-                      "start": {
-                        "line": 17,
-                        "column": 25
-                      },
-                      "end": {
-                        "line": 17,
-                        "column": 33
-                      }
-                    },
-                    "name": "combined"
-                  }
-                ]
-              }
-            }
-          ]
-        },
         "leadingComments": [],
         "trailingComments": []
       },
       "specifiers": [],
-      "source": null
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 392,
-      "end": 538,
+      "source": null,
+      "range": [
+        242,
+        390
+      ],
       "loc": {
         "start": {
-          "line": 20,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 25,
+          "line": 18,
           "column": 1
         }
-      },
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
       "declaration": {
         "type": "FunctionDeclaration",
-        "start": 399,
-        "end": 538,
+        "id": {
+          "type": "Identifier",
+          "name": "wampReducers",
+          "range": [
+            408,
+            420
+          ],
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 16
+            },
+            "end": {
+              "line": 20,
+              "column": 28
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "reducers",
+            "range": [
+              421,
+              429
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 29
+              },
+              "end": {
+                "line": 20,
+                "column": 37
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": {
+                    "type": "Identifier",
+                    "name": "combined",
+                    "range": [
+                      441,
+                      449
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 21,
+                        "column": 16
+                      }
+                    }
+                  },
+                  "init": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "Object",
+                        "range": [
+                          452,
+                          458
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 21,
+                            "column": 19
+                          },
+                          "end": {
+                            "line": 21,
+                            "column": 25
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "assign",
+                        "range": [
+                          459,
+                          465
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 21,
+                            "column": 26
+                          },
+                          "end": {
+                            "line": 21,
+                            "column": 32
+                          }
+                        }
+                      },
+                      "range": [
+                        452,
+                        465
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 21,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 21,
+                          "column": 32
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "ObjectExpression",
+                        "properties": [],
+                        "range": [
+                          466,
+                          468
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 21,
+                            "column": 33
+                          },
+                          "end": {
+                            "line": 21,
+                            "column": 35
+                          }
+                        }
+                      },
+                      {
+                        "type": "Identifier",
+                        "name": "reducers",
+                        "range": [
+                          470,
+                          478
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 21,
+                            "column": 37
+                          },
+                          "end": {
+                            "line": 21,
+                            "column": 45
+                          }
+                        }
+                      },
+                      {
+                        "type": "ObjectExpression",
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "key": {
+                              "type": "Identifier",
+                              "name": "routing",
+                              "range": [
+                                486,
+                                493
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 22,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 22,
+                                  "column": 11
+                                }
+                              }
+                            },
+                            "value": {
+                              "type": "Identifier",
+                              "name": "routing",
+                              "range": [
+                                486,
+                                493
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 22,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 22,
+                                  "column": 11
+                                }
+                              }
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": true,
+                            "computed": false,
+                            "range": [
+                              486,
+                              493
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 22,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 22,
+                                "column": 11
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          480,
+                          498
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 21,
+                            "column": 47
+                          },
+                          "end": {
+                            "line": 23,
+                            "column": 3
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      452,
+                      499
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 19
+                      },
+                      "end": {
+                        "line": 23,
+                        "column": 4
+                      }
+                    }
+                  },
+                  "range": [
+                    441,
+                    499
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 21,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 4
+                    }
+                  }
+                }
+              ],
+              "kind": "const",
+              "range": [
+                435,
+                500
+              ],
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 2
+                },
+                "end": {
+                  "line": 23,
+                  "column": 5
+                }
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "combineReducers",
+                  "range": [
+                    510,
+                    525
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 24
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "combined",
+                    "range": [
+                      526,
+                      534
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 24,
+                        "column": 25
+                      },
+                      "end": {
+                        "line": 24,
+                        "column": 33
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  510,
+                  535
+                ],
+                "loc": {
+                  "start": {
+                    "line": 24,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 24,
+                    "column": 34
+                  }
+                }
+              },
+              "range": [
+                503,
+                536
+              ],
+              "loc": {
+                "start": {
+                  "line": 24,
+                  "column": 2
+                },
+                "end": {
+                  "line": 24,
+                  "column": 35
+                }
+              }
+            }
+          ],
+          "range": [
+            431,
+            538
+          ],
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 39
+            },
+            "end": {
+              "line": 25,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          399,
+          538
+        ],
         "loc": {
           "start": {
             "line": 20,
@@ -770,345 +1165,15 @@
             "column": 1
           }
         },
-        "id": {
-          "type": "Identifier",
-          "start": 408,
-          "end": 420,
-          "loc": {
-            "start": {
-              "line": 20,
-              "column": 16
-            },
-            "end": {
-              "line": 20,
-              "column": 28
-            }
-          },
-          "name": "wampReducers"
-        },
-        "generator": false,
-        "expression": false,
-        "async": false,
-        "params": [
-          {
-            "type": "Identifier",
-            "start": 421,
-            "end": 429,
-            "loc": {
-              "start": {
-                "line": 20,
-                "column": 29
-              },
-              "end": {
-                "line": 20,
-                "column": 37
-              }
-            },
-            "name": "reducers"
-          }
-        ],
-        "body": {
-          "type": "BlockStatement",
-          "start": 431,
-          "end": 538,
-          "loc": {
-            "start": {
-              "line": 20,
-              "column": 39
-            },
-            "end": {
-              "line": 25,
-              "column": 1
-            }
-          },
-          "body": [
-            {
-              "type": "VariableDeclaration",
-              "start": 435,
-              "end": 500,
-              "loc": {
-                "start": {
-                  "line": 21,
-                  "column": 2
-                },
-                "end": {
-                  "line": 23,
-                  "column": 5
-                }
-              },
-              "declarations": [
-                {
-                  "type": "VariableDeclarator",
-                  "start": 441,
-                  "end": 499,
-                  "loc": {
-                    "start": {
-                      "line": 21,
-                      "column": 8
-                    },
-                    "end": {
-                      "line": 23,
-                      "column": 4
-                    }
-                  },
-                  "id": {
-                    "type": "Identifier",
-                    "start": 441,
-                    "end": 449,
-                    "loc": {
-                      "start": {
-                        "line": 21,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 21,
-                        "column": 16
-                      }
-                    },
-                    "name": "combined"
-                  },
-                  "init": {
-                    "type": "CallExpression",
-                    "start": 452,
-                    "end": 499,
-                    "loc": {
-                      "start": {
-                        "line": 21,
-                        "column": 19
-                      },
-                      "end": {
-                        "line": 23,
-                        "column": 4
-                      }
-                    },
-                    "callee": {
-                      "type": "MemberExpression",
-                      "start": 452,
-                      "end": 465,
-                      "loc": {
-                        "start": {
-                          "line": 21,
-                          "column": 19
-                        },
-                        "end": {
-                          "line": 21,
-                          "column": 32
-                        }
-                      },
-                      "object": {
-                        "type": "Identifier",
-                        "start": 452,
-                        "end": 458,
-                        "loc": {
-                          "start": {
-                            "line": 21,
-                            "column": 19
-                          },
-                          "end": {
-                            "line": 21,
-                            "column": 25
-                          }
-                        },
-                        "name": "Object"
-                      },
-                      "property": {
-                        "type": "Identifier",
-                        "start": 459,
-                        "end": 465,
-                        "loc": {
-                          "start": {
-                            "line": 21,
-                            "column": 26
-                          },
-                          "end": {
-                            "line": 21,
-                            "column": 32
-                          }
-                        },
-                        "name": "assign"
-                      },
-                      "computed": false
-                    },
-                    "arguments": [
-                      {
-                        "type": "ObjectExpression",
-                        "start": 466,
-                        "end": 468,
-                        "loc": {
-                          "start": {
-                            "line": 21,
-                            "column": 33
-                          },
-                          "end": {
-                            "line": 21,
-                            "column": 35
-                          }
-                        },
-                        "properties": []
-                      },
-                      {
-                        "type": "Identifier",
-                        "start": 470,
-                        "end": 478,
-                        "loc": {
-                          "start": {
-                            "line": 21,
-                            "column": 37
-                          },
-                          "end": {
-                            "line": 21,
-                            "column": 45
-                          }
-                        },
-                        "name": "reducers"
-                      },
-                      {
-                        "type": "ObjectExpression",
-                        "start": 480,
-                        "end": 498,
-                        "loc": {
-                          "start": {
-                            "line": 21,
-                            "column": 47
-                          },
-                          "end": {
-                            "line": 23,
-                            "column": 3
-                          }
-                        },
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "start": 486,
-                            "end": 493,
-                            "loc": {
-                              "start": {
-                                "line": 22,
-                                "column": 4
-                              },
-                              "end": {
-                                "line": 22,
-                                "column": 11
-                              }
-                            },
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "key": {
-                              "type": "Identifier",
-                              "start": 486,
-                              "end": 493,
-                              "loc": {
-                                "start": {
-                                  "line": 22,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 22,
-                                  "column": 11
-                                }
-                              },
-                              "name": "routing"
-                            },
-                            "kind": "init",
-                            "value": {
-                              "type": "Identifier",
-                              "start": 486,
-                              "end": 493,
-                              "loc": {
-                                "start": {
-                                  "line": 22,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 22,
-                                  "column": 11
-                                }
-                              },
-                              "name": "routing"
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ],
-              "kind": "const"
-            },
-            {
-              "type": "ReturnStatement",
-              "start": 503,
-              "end": 536,
-              "loc": {
-                "start": {
-                  "line": 24,
-                  "column": 2
-                },
-                "end": {
-                  "line": 24,
-                  "column": 35
-                }
-              },
-              "argument": {
-                "type": "CallExpression",
-                "start": 510,
-                "end": 535,
-                "loc": {
-                  "start": {
-                    "line": 24,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 24,
-                    "column": 34
-                  }
-                },
-                "callee": {
-                  "type": "Identifier",
-                  "start": 510,
-                  "end": 525,
-                  "loc": {
-                    "start": {
-                      "line": 24,
-                      "column": 9
-                    },
-                    "end": {
-                      "line": 24,
-                      "column": 24
-                    }
-                  },
-                  "name": "combineReducers"
-                },
-                "arguments": [
-                  {
-                    "type": "Identifier",
-                    "start": 526,
-                    "end": 534,
-                    "loc": {
-                      "start": {
-                        "line": 24,
-                        "column": 25
-                      },
-                      "end": {
-                        "line": 24,
-                        "column": 33
-                      }
-                    },
-                    "name": "combined"
-                  }
-                ]
-              }
-            }
-          ],
-          "trailingComments": null
-        },
+        "leadingComments": [],
         "trailingComments": [
           {
             "type": "Block",
             "value": "*\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n ",
-            "start": 540,
-            "end": 768,
+            "range": [
+              540,
+              768
+            ],
             "loc": {
               "start": {
                 "line": 27,
@@ -1118,23 +1183,34 @@
                 "line": 33,
                 "column": 3
               }
-            },
-            "range": [
-              540,
-              768
-            ]
+            }
           }
-        ],
-        "leadingComments": []
+        ]
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        392,
+        538
+      ],
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 25,
+          "column": 1
+        }
+      },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n ",
-          "start": 540,
-          "end": 768,
+          "range": [
+            540,
+            768
+          ],
           "loc": {
             "start": {
               "line": 27,
@@ -1144,32 +1220,503 @@
               "line": 33,
               "column": 3
             }
-          },
-          "range": [
-            540,
-            768
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 769,
-      "end": 937,
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 0
-        },
-        "end": {
-          "line": 41,
-          "column": 1
-        }
-      },
       "declaration": {
         "type": "FunctionDeclaration",
-        "start": 776,
-        "end": 937,
+        "id": {
+          "type": "Identifier",
+          "name": "simplReducers",
+          "range": [
+            785,
+            798
+          ],
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 16
+            },
+            "end": {
+              "line": 34,
+              "column": 29
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "reducers",
+            "range": [
+              799,
+              807
+            ],
+            "loc": {
+              "start": {
+                "line": 34,
+                "column": 30
+              },
+              "end": {
+                "line": 34,
+                "column": 38
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "id": {
+                    "type": "Identifier",
+                    "name": "combined",
+                    "range": [
+                      819,
+                      827
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 35,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 35,
+                        "column": 16
+                      }
+                    }
+                  },
+                  "init": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "Object",
+                        "range": [
+                          830,
+                          836
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 19
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 25
+                          }
+                        }
+                      },
+                      "property": {
+                        "type": "Identifier",
+                        "name": "assign",
+                        "range": [
+                          837,
+                          843
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 26
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 32
+                          }
+                        }
+                      },
+                      "range": [
+                        830,
+                        843
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 35,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 35,
+                          "column": 32
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "ObjectExpression",
+                        "properties": [],
+                        "range": [
+                          844,
+                          846
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 33
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 35
+                          }
+                        }
+                      },
+                      {
+                        "type": "Identifier",
+                        "name": "reducers",
+                        "range": [
+                          848,
+                          856
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 37
+                          },
+                          "end": {
+                            "line": 35,
+                            "column": 45
+                          }
+                        }
+                      },
+                      {
+                        "type": "ObjectExpression",
+                        "properties": [
+                          {
+                            "type": "Property",
+                            "key": {
+                              "type": "Identifier",
+                              "name": "routing",
+                              "range": [
+                                864,
+                                871
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 36,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 36,
+                                  "column": 11
+                                }
+                              }
+                            },
+                            "value": {
+                              "type": "Identifier",
+                              "name": "routing",
+                              "range": [
+                                864,
+                                871
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 36,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 36,
+                                  "column": 11
+                                }
+                              }
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": true,
+                            "computed": false,
+                            "range": [
+                              864,
+                              871
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 36,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 36,
+                                "column": 11
+                              }
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "key": {
+                              "type": "Identifier",
+                              "name": "simpl",
+                              "range": [
+                                877,
+                                882
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 37,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 37,
+                                  "column": 9
+                                }
+                              }
+                            },
+                            "value": {
+                              "type": "Identifier",
+                              "name": "simpl",
+                              "range": [
+                                877,
+                                882
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 37,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 37,
+                                  "column": 9
+                                }
+                              }
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": true,
+                            "computed": false,
+                            "range": [
+                              877,
+                              882
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 37,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 37,
+                                "column": 9
+                              }
+                            }
+                          },
+                          {
+                            "type": "Property",
+                            "key": {
+                              "type": "Identifier",
+                              "name": "form",
+                              "range": [
+                                888,
+                                892
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 38,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 38,
+                                  "column": 8
+                                }
+                              }
+                            },
+                            "value": {
+                              "type": "Identifier",
+                              "name": "form",
+                              "range": [
+                                888,
+                                892
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 38,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 38,
+                                  "column": 8
+                                }
+                              }
+                            },
+                            "kind": "init",
+                            "method": false,
+                            "shorthand": true,
+                            "computed": false,
+                            "range": [
+                              888,
+                              892
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 38,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 38,
+                                "column": 8
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          858,
+                          897
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 35,
+                            "column": 47
+                          },
+                          "end": {
+                            "line": 39,
+                            "column": 3
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      830,
+                      898
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 35,
+                        "column": 19
+                      },
+                      "end": {
+                        "line": 39,
+                        "column": 4
+                      }
+                    }
+                  },
+                  "range": [
+                    819,
+                    898
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 35,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 39,
+                      "column": 4
+                    }
+                  }
+                }
+              ],
+              "kind": "const",
+              "range": [
+                813,
+                899
+              ],
+              "loc": {
+                "start": {
+                  "line": 35,
+                  "column": 2
+                },
+                "end": {
+                  "line": 39,
+                  "column": 5
+                }
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "combineReducers",
+                  "range": [
+                    909,
+                    924
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 40,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 40,
+                      "column": 24
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "name": "combined",
+                    "range": [
+                      925,
+                      933
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 40,
+                        "column": 25
+                      },
+                      "end": {
+                        "line": 40,
+                        "column": 33
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  909,
+                  934
+                ],
+                "loc": {
+                  "start": {
+                    "line": 40,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 40,
+                    "column": 34
+                  }
+                }
+              },
+              "range": [
+                902,
+                935
+              ],
+              "loc": {
+                "start": {
+                  "line": 40,
+                  "column": 2
+                },
+                "end": {
+                  "line": 40,
+                  "column": 35
+                }
+              }
+            }
+          ],
+          "range": [
+            809,
+            937
+          ],
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 40
+            },
+            "end": {
+              "line": 41,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          776,
+          937
+        ],
         "loc": {
           "start": {
             "line": 34,
@@ -1180,447 +1727,14 @@
             "column": 1
           }
         },
-        "id": {
-          "type": "Identifier",
-          "start": 785,
-          "end": 798,
-          "loc": {
-            "start": {
-              "line": 34,
-              "column": 16
-            },
-            "end": {
-              "line": 34,
-              "column": 29
-            }
-          },
-          "name": "simplReducers",
-          "leadingComments": null
-        },
-        "generator": false,
-        "expression": false,
-        "async": false,
-        "params": [
-          {
-            "type": "Identifier",
-            "start": 799,
-            "end": 807,
-            "loc": {
-              "start": {
-                "line": 34,
-                "column": 30
-              },
-              "end": {
-                "line": 34,
-                "column": 38
-              }
-            },
-            "name": "reducers"
-          }
-        ],
-        "body": {
-          "type": "BlockStatement",
-          "start": 809,
-          "end": 937,
-          "loc": {
-            "start": {
-              "line": 34,
-              "column": 40
-            },
-            "end": {
-              "line": 41,
-              "column": 1
-            }
-          },
-          "body": [
-            {
-              "type": "VariableDeclaration",
-              "start": 813,
-              "end": 899,
-              "loc": {
-                "start": {
-                  "line": 35,
-                  "column": 2
-                },
-                "end": {
-                  "line": 39,
-                  "column": 5
-                }
-              },
-              "declarations": [
-                {
-                  "type": "VariableDeclarator",
-                  "start": 819,
-                  "end": 898,
-                  "loc": {
-                    "start": {
-                      "line": 35,
-                      "column": 8
-                    },
-                    "end": {
-                      "line": 39,
-                      "column": 4
-                    }
-                  },
-                  "id": {
-                    "type": "Identifier",
-                    "start": 819,
-                    "end": 827,
-                    "loc": {
-                      "start": {
-                        "line": 35,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 35,
-                        "column": 16
-                      }
-                    },
-                    "name": "combined"
-                  },
-                  "init": {
-                    "type": "CallExpression",
-                    "start": 830,
-                    "end": 898,
-                    "loc": {
-                      "start": {
-                        "line": 35,
-                        "column": 19
-                      },
-                      "end": {
-                        "line": 39,
-                        "column": 4
-                      }
-                    },
-                    "callee": {
-                      "type": "MemberExpression",
-                      "start": 830,
-                      "end": 843,
-                      "loc": {
-                        "start": {
-                          "line": 35,
-                          "column": 19
-                        },
-                        "end": {
-                          "line": 35,
-                          "column": 32
-                        }
-                      },
-                      "object": {
-                        "type": "Identifier",
-                        "start": 830,
-                        "end": 836,
-                        "loc": {
-                          "start": {
-                            "line": 35,
-                            "column": 19
-                          },
-                          "end": {
-                            "line": 35,
-                            "column": 25
-                          }
-                        },
-                        "name": "Object"
-                      },
-                      "property": {
-                        "type": "Identifier",
-                        "start": 837,
-                        "end": 843,
-                        "loc": {
-                          "start": {
-                            "line": 35,
-                            "column": 26
-                          },
-                          "end": {
-                            "line": 35,
-                            "column": 32
-                          }
-                        },
-                        "name": "assign"
-                      },
-                      "computed": false
-                    },
-                    "arguments": [
-                      {
-                        "type": "ObjectExpression",
-                        "start": 844,
-                        "end": 846,
-                        "loc": {
-                          "start": {
-                            "line": 35,
-                            "column": 33
-                          },
-                          "end": {
-                            "line": 35,
-                            "column": 35
-                          }
-                        },
-                        "properties": []
-                      },
-                      {
-                        "type": "Identifier",
-                        "start": 848,
-                        "end": 856,
-                        "loc": {
-                          "start": {
-                            "line": 35,
-                            "column": 37
-                          },
-                          "end": {
-                            "line": 35,
-                            "column": 45
-                          }
-                        },
-                        "name": "reducers"
-                      },
-                      {
-                        "type": "ObjectExpression",
-                        "start": 858,
-                        "end": 897,
-                        "loc": {
-                          "start": {
-                            "line": 35,
-                            "column": 47
-                          },
-                          "end": {
-                            "line": 39,
-                            "column": 3
-                          }
-                        },
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "start": 864,
-                            "end": 871,
-                            "loc": {
-                              "start": {
-                                "line": 36,
-                                "column": 4
-                              },
-                              "end": {
-                                "line": 36,
-                                "column": 11
-                              }
-                            },
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "key": {
-                              "type": "Identifier",
-                              "start": 864,
-                              "end": 871,
-                              "loc": {
-                                "start": {
-                                  "line": 36,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 36,
-                                  "column": 11
-                                }
-                              },
-                              "name": "routing"
-                            },
-                            "kind": "init",
-                            "value": {
-                              "type": "Identifier",
-                              "start": 864,
-                              "end": 871,
-                              "loc": {
-                                "start": {
-                                  "line": 36,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 36,
-                                  "column": 11
-                                }
-                              },
-                              "name": "routing"
-                            }
-                          },
-                          {
-                            "type": "Property",
-                            "start": 877,
-                            "end": 882,
-                            "loc": {
-                              "start": {
-                                "line": 37,
-                                "column": 4
-                              },
-                              "end": {
-                                "line": 37,
-                                "column": 9
-                              }
-                            },
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "key": {
-                              "type": "Identifier",
-                              "start": 877,
-                              "end": 882,
-                              "loc": {
-                                "start": {
-                                  "line": 37,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 37,
-                                  "column": 9
-                                }
-                              },
-                              "name": "simpl"
-                            },
-                            "kind": "init",
-                            "value": {
-                              "type": "Identifier",
-                              "start": 877,
-                              "end": 882,
-                              "loc": {
-                                "start": {
-                                  "line": 37,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 37,
-                                  "column": 9
-                                }
-                              },
-                              "name": "simpl"
-                            }
-                          },
-                          {
-                            "type": "Property",
-                            "start": 888,
-                            "end": 892,
-                            "loc": {
-                              "start": {
-                                "line": 38,
-                                "column": 4
-                              },
-                              "end": {
-                                "line": 38,
-                                "column": 8
-                              }
-                            },
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "key": {
-                              "type": "Identifier",
-                              "start": 888,
-                              "end": 892,
-                              "loc": {
-                                "start": {
-                                  "line": 38,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 38,
-                                  "column": 8
-                                }
-                              },
-                              "name": "form"
-                            },
-                            "kind": "init",
-                            "value": {
-                              "type": "Identifier",
-                              "start": 888,
-                              "end": 892,
-                              "loc": {
-                                "start": {
-                                  "line": 38,
-                                  "column": 4
-                                },
-                                "end": {
-                                  "line": 38,
-                                  "column": 8
-                                }
-                              },
-                              "name": "form"
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                }
-              ],
-              "kind": "const"
-            },
-            {
-              "type": "ReturnStatement",
-              "start": 902,
-              "end": 935,
-              "loc": {
-                "start": {
-                  "line": 40,
-                  "column": 2
-                },
-                "end": {
-                  "line": 40,
-                  "column": 35
-                }
-              },
-              "argument": {
-                "type": "CallExpression",
-                "start": 909,
-                "end": 934,
-                "loc": {
-                  "start": {
-                    "line": 40,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 40,
-                    "column": 34
-                  }
-                },
-                "callee": {
-                  "type": "Identifier",
-                  "start": 909,
-                  "end": 924,
-                  "loc": {
-                    "start": {
-                      "line": 40,
-                      "column": 9
-                    },
-                    "end": {
-                      "line": 40,
-                      "column": 24
-                    }
-                  },
-                  "name": "combineReducers"
-                },
-                "arguments": [
-                  {
-                    "type": "Identifier",
-                    "start": 925,
-                    "end": 933,
-                    "loc": {
-                      "start": {
-                        "line": 40,
-                        "column": 25
-                      },
-                      "end": {
-                        "line": 40,
-                        "column": 33
-                      }
-                    },
-                    "name": "combined"
-                  }
-                ]
-              }
-            }
-          ]
-        },
         "leadingComments": [
           {
             "type": "Block",
             "value": "*\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n ",
-            "start": 540,
-            "end": 768,
+            "range": [
+              540,
+              768
+            ],
             "loc": {
               "start": {
                 "line": 27,
@@ -1630,23 +1744,35 @@
                 "line": 33,
                 "column": 3
               }
-            },
-            "range": [
-              540,
-              768
-            ]
+            }
           }
         ],
         "trailingComments": []
       },
       "specifiers": [],
       "source": null,
+      "range": [
+        769,
+        937
+      ],
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 0
+        },
+        "end": {
+          "line": 41,
+          "column": 1
+        }
+      },
       "leadingComments": [
         {
           "type": "Block",
           "value": "*\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n ",
-          "start": 540,
-          "end": 768,
+          "range": [
+            540,
+            768
+          ],
           "loc": {
             "start": {
               "line": 27,
@@ -1656,32 +1782,134 @@
               "line": 33,
               "column": 3
             }
-          },
-          "range": [
-            540,
-            768
-          ]
+          }
         }
       ]
     },
     {
       "type": "ExportDefaultDeclaration",
-      "start": 939,
-      "end": 1002,
-      "loc": {
-        "start": {
-          "line": 43,
-          "column": 0
-        },
-        "end": {
-          "line": 46,
-          "column": 2
-        }
-      },
       "declaration": {
         "type": "ObjectExpression",
-        "start": 954,
-        "end": 1001,
+        "properties": [
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "routing",
+              "range": [
+                958,
+                965
+              ],
+              "loc": {
+                "start": {
+                  "line": 44,
+                  "column": 2
+                },
+                "end": {
+                  "line": 44,
+                  "column": 9
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "routerReducers",
+              "range": [
+                967,
+                981
+              ],
+              "loc": {
+                "start": {
+                  "line": 44,
+                  "column": 11
+                },
+                "end": {
+                  "line": 44,
+                  "column": 25
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": false,
+            "computed": false,
+            "range": [
+              958,
+              981
+            ],
+            "loc": {
+              "start": {
+                "line": 44,
+                "column": 2
+              },
+              "end": {
+                "line": 44,
+                "column": 25
+              }
+            }
+          },
+          {
+            "type": "Property",
+            "key": {
+              "type": "Identifier",
+              "name": "simplReducers",
+              "range": [
+                985,
+                998
+              ],
+              "loc": {
+                "start": {
+                  "line": 45,
+                  "column": 2
+                },
+                "end": {
+                  "line": 45,
+                  "column": 15
+                }
+              }
+            },
+            "value": {
+              "type": "Identifier",
+              "name": "simplReducers",
+              "range": [
+                985,
+                998
+              ],
+              "loc": {
+                "start": {
+                  "line": 45,
+                  "column": 2
+                },
+                "end": {
+                  "line": 45,
+                  "column": 15
+                }
+              }
+            },
+            "kind": "init",
+            "method": false,
+            "shorthand": true,
+            "computed": false,
+            "range": [
+              985,
+              998
+            ],
+            "loc": {
+              "start": {
+                "line": 45,
+                "column": 2
+              },
+              "end": {
+                "line": 45,
+                "column": 15
+              }
+            }
+          }
+        ],
+        "range": [
+          954,
+          1001
+        ],
         "loc": {
           "start": {
             "line": 43,
@@ -1692,112 +1920,75 @@
             "column": 1
           }
         },
-        "properties": [
-          {
-            "type": "Property",
-            "start": 958,
-            "end": 981,
-            "loc": {
-              "start": {
-                "line": 44,
-                "column": 2
-              },
-              "end": {
-                "line": 44,
-                "column": 25
-              }
-            },
-            "method": false,
-            "shorthand": false,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 958,
-              "end": 965,
-              "loc": {
-                "start": {
-                  "line": 44,
-                  "column": 2
-                },
-                "end": {
-                  "line": 44,
-                  "column": 9
-                }
-              },
-              "name": "routing"
-            },
-            "value": {
-              "type": "Identifier",
-              "start": 967,
-              "end": 981,
-              "loc": {
-                "start": {
-                  "line": 44,
-                  "column": 11
-                },
-                "end": {
-                  "line": 44,
-                  "column": 25
-                }
-              },
-              "name": "routerReducers"
-            },
-            "kind": "init"
-          },
-          {
-            "type": "Property",
-            "start": 985,
-            "end": 998,
-            "loc": {
-              "start": {
-                "line": 45,
-                "column": 2
-              },
-              "end": {
-                "line": 45,
-                "column": 15
-              }
-            },
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "key": {
-              "type": "Identifier",
-              "start": 985,
-              "end": 998,
-              "loc": {
-                "start": {
-                  "line": 45,
-                  "column": 2
-                },
-                "end": {
-                  "line": 45,
-                  "column": 15
-                }
-              },
-              "name": "simplReducers"
-            },
-            "kind": "init",
-            "value": {
-              "type": "Identifier",
-              "start": 985,
-              "end": 998,
-              "loc": {
-                "start": {
-                  "line": 45,
-                  "column": 2
-                },
-                "end": {
-                  "line": 45,
-                  "column": 15
-                }
-              },
-              "name": "simplReducers"
-            }
-          }
-        ],
         "leadingComments": [],
         "trailingComments": []
+      },
+      "range": [
+        939,
+        1002
+      ],
+      "loc": {
+        "start": {
+          "line": 43,
+          "column": 0
+        },
+        "end": {
+          "line": 46,
+          "column": 2
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    59,
+    1002
+  ],
+  "loc": {
+    "start": {
+      "line": 5,
+      "column": 0
+    },
+    "end": {
+      "line": 46,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @namespace combined\n * @memberof Simpl.reducers\n ",
+      "range": [
+        0,
+        58
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n ",
+      "range": [
+        540,
+        768
+      ],
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 0
+        },
+        "end": {
+          "line": 33,
+          "column": 3
+        }
       }
     }
   ]
