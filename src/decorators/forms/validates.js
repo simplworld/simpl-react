@@ -1,5 +1,6 @@
 /* eslint "no-underscore-dangle": "off" */
 import React from 'react';
+import { connect } from 'react-redux';
 import { stopSubmit } from 'redux-form';
 
 import _ from 'lodash';
@@ -202,13 +203,14 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
         // mark the form as invalid. Warnings will still allow the form to be
         // submitted.
         if (this.state.hasReduxForm) {
+          const formName = this.context._reduxForm.form;
+          const reduxFormErrors = { ...this.props.form[formName].submitErrors };
           if (sanitizedValue === null || allErrors.length > 0) {
-            const reduxFormErrors = { [this.state.name]: allErrors.join(', ') };
-            const formName = this.context._reduxForm.form;
-            this.context._reduxForm.dispatch(
-              stopSubmit(formName, reduxFormErrors)
-            );
+            reduxFormErrors[this.state.name] = allErrors.join(', ');
+          } else {
+            delete reduxFormErrors[this.state.name];
           }
+          this.props.stopSubmit(formName, reduxFormErrors);
           this.context._reduxForm.dispatch(
             this.context._reduxForm.blur(this.state.name, e.target.value)
           );
@@ -361,7 +363,13 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
       formatters: React.PropTypes.arrayOf(React.PropTypes.func),
     };
 
-    return ValidatedComponent;
+    const mapStateToProps = (state, ownProps) => ({
+      form: state.form,
+    });
+    const mapDispatchToProps = {
+      stopSubmit,
+    };
+    return connect(mapStateToProps, mapDispatchToProps)(ValidatedComponent);
   };
 }
 
