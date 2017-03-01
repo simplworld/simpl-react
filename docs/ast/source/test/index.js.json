@@ -1,18 +1,52 @@
 {
-  "type": "Program",
-  "body": [
-    {
-      "type": "ImportDeclaration",
-      "specifiers": [
-        {
-          "type": "ImportDefaultSpecifier",
-          "local": {
-            "type": "Identifier",
-            "name": "store",
-            "range": [
-              7,
-              12
-            ],
+  "type": "File",
+  "start": 0,
+  "end": 106,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 11,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 106,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 11,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ImportDeclaration",
+        "start": 0,
+        "end": 28,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 28
+          }
+        },
+        "specifiers": [
+          {
+            "type": "ImportDefaultSpecifier",
+            "start": 7,
+            "end": 12,
             "loc": {
               "start": {
                 "line": 1,
@@ -22,163 +56,52 @@
                 "line": 1,
                 "column": 12
               }
-            }
-          },
-          "range": [
-            7,
-            12
-          ],
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 7
             },
-            "end": {
-              "line": 1,
-              "column": 12
-            }
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "value": "./store",
-        "raw": "'./store'",
-        "range": [
-          18,
-          27
-        ],
-        "loc": {
-          "start": {
-            "line": 1,
-            "column": 18
-          },
-          "end": {
-            "line": 1,
-            "column": 27
-          }
-        }
-      },
-      "range": [
-        0,
-        28
-      ],
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 0
-        },
-        "end": {
-          "line": 1,
-          "column": 28
-        }
-      },
-      "trailingComments": [
-        {
-          "type": "Block",
-          "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-          "range": [
-            31,
-            76
-          ],
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 0
-            },
-            "end": {
-              "line": 7,
-              "column": 3
-            }
-          }
-        }
-      ]
-    },
-    {
-      "type": "ExportDefaultDeclaration",
-      "declaration": {
-        "type": "ObjectExpression",
-        "properties": [
-          {
-            "type": "Property",
-            "key": {
+            "local": {
               "type": "Identifier",
-              "name": "store",
-              "range": [
-                96,
-                101
-              ],
+              "start": 7,
+              "end": 12,
               "loc": {
                 "start": {
-                  "line": 9,
-                  "column": 2
+                  "line": 1,
+                  "column": 7
                 },
                 "end": {
-                  "line": 9,
-                  "column": 7
-                }
-              }
-            },
-            "value": {
-              "type": "Identifier",
-              "name": "store",
-              "range": [
-                96,
-                101
-              ],
-              "loc": {
-                "start": {
-                  "line": 9,
-                  "column": 2
+                  "line": 1,
+                  "column": 12
                 },
-                "end": {
-                  "line": 9,
-                  "column": 7
-                }
-              }
-            },
-            "kind": "init",
-            "method": false,
-            "shorthand": true,
-            "computed": false,
-            "range": [
-              96,
-              101
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 2
+                "identifierName": "store"
               },
-              "end": {
-                "line": 9,
-                "column": 7
-              }
+              "name": "store"
             }
           }
         ],
-        "range": [
-          92,
-          104
-        ],
-        "loc": {
-          "start": {
-            "line": 8,
-            "column": 15
+        "source": {
+          "type": "StringLiteral",
+          "start": 18,
+          "end": 27,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 18
+            },
+            "end": {
+              "line": 1,
+              "column": 27
+            }
           },
-          "end": {
-            "line": 10,
-            "column": 1
-          }
+          "extra": {
+            "rawValue": "./store",
+            "raw": "'./store'"
+          },
+          "value": "./store"
         },
-        "leadingComments": [
+        "trailingComments": [
           {
-            "type": "Block",
+            "type": "CommentBlock",
             "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-            "range": [
-              31,
-              76
-            ],
+            "start": 31,
+            "end": 76,
             "loc": {
               "start": {
                 "line": 4,
@@ -190,68 +113,143 @@
               }
             }
           }
-        ],
-        "trailingComments": []
+        ]
       },
-      "range": [
-        77,
-        105
-      ],
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 0
+      {
+        "type": "ExportDefaultDeclaration",
+        "start": 77,
+        "end": 105,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 0
+          },
+          "end": {
+            "line": 10,
+            "column": 2
+          }
         },
-        "end": {
-          "line": 10,
-          "column": 2
-        }
-      },
-      "leadingComments": [
-        {
-          "type": "Block",
-          "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-          "range": [
-            31,
-            76
-          ],
+        "declaration": {
+          "type": "ObjectExpression",
+          "start": 92,
+          "end": 104,
           "loc": {
             "start": {
-              "line": 4,
-              "column": 0
+              "line": 8,
+              "column": 15
             },
             "end": {
-              "line": 7,
-              "column": 3
+              "line": 10,
+              "column": 1
+            }
+          },
+          "properties": [
+            {
+              "type": "ObjectProperty",
+              "start": 96,
+              "end": 101,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 2
+                },
+                "end": {
+                  "line": 9,
+                  "column": 7
+                }
+              },
+              "method": false,
+              "shorthand": true,
+              "computed": false,
+              "key": {
+                "type": "Identifier",
+                "start": 96,
+                "end": 101,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 7
+                  },
+                  "identifierName": "store"
+                },
+                "name": "store",
+                "leadingComments": null
+              },
+              "value": {
+                "type": "Identifier",
+                "start": 96,
+                "end": 101,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 7
+                  },
+                  "identifierName": "store"
+                },
+                "name": "store"
+              },
+              "leadingComments": null,
+              "extra": {
+                "shorthand": true
+              }
+            }
+          ],
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * @namespace test\n * @memberof Simpl\n ",
+              "start": 31,
+              "end": 76,
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 0
+                },
+                "end": {
+                  "line": 7,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": []
+        },
+        "leadingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * @namespace test\n * @memberof Simpl\n ",
+            "start": 31,
+            "end": 76,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 3
+              }
             }
           }
-        }
-      ]
-    }
-  ],
-  "sourceType": "module",
-  "range": [
-    0,
-    105
-  ],
-  "loc": {
-    "start": {
-      "line": 1,
-      "column": 0
-    },
-    "end": {
-      "line": 10,
-      "column": 2
-    }
+        ]
+      }
+    ],
+    "directives": []
   },
   "comments": [
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n * @namespace test\n * @memberof Simpl\n ",
-      "range": [
-        31,
-        76
-      ],
+      "start": 31,
+      "end": 76,
       "loc": {
         "start": {
           "line": 4,
@@ -260,6 +258,367 @@
         "end": {
           "line": 7,
           "column": 3
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": {
+        "label": "import",
+        "keyword": "import",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "import",
+      "start": 0,
+      "end": 6,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "store",
+      "start": 7,
+      "end": 12,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 7
+        },
+        "end": {
+          "line": 1,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "from",
+      "start": 13,
+      "end": 17,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 13
+        },
+        "end": {
+          "line": 1,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "./store",
+      "start": 18,
+      "end": 27,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 18
+        },
+        "end": {
+          "line": 1,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 27,
+      "end": 28,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 27
+        },
+        "end": {
+          "line": 1,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": "*\n * @namespace test\n * @memberof Simpl\n ",
+      "start": 31,
+      "end": 76,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 77,
+      "end": 83,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "default",
+        "keyword": "default",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "default",
+      "start": 84,
+      "end": 91,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 7
+        },
+        "end": {
+          "line": 8,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 92,
+      "end": 93,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 15
+        },
+        "end": {
+          "line": 8,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "store",
+      "start": 96,
+      "end": 101,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 2
+        },
+        "end": {
+          "line": 9,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 101,
+      "end": 102,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 7
+        },
+        "end": {
+          "line": 9,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 103,
+      "end": 104,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 104,
+      "end": 105,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 1
+        },
+        "end": {
+          "line": 10,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 106,
+      "end": 106,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 0
         }
       }
     }

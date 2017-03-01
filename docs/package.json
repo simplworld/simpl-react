@@ -1,6 +1,6 @@
 {
   "name": "simpl",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "private": true,
   "description": "React components and utilities for the SIMPL Framework",
   "main": "lib/index.js",
@@ -22,7 +22,6 @@
   "dependencies": {
     "autobahn": "^0.10.1",
     "autobahn-react": "^0.3.1",
-    "bufferutil": "^1.2.1",
     "cookie-dough": "0.0.6",
     "history": "^3.0.0",
     "lodash": "^4.11.1",
@@ -37,7 +36,6 @@
     "redux-thunk": "^2.1.0",
     "superagent": "1.4.0",
     "superagent-promise": "^1.1.0",
-    "utf-8-validate": "^1.2.1",
     "validator": "^6.1.0"
   },
   "peerDependencies": {
@@ -66,8 +64,7 @@
     "babelify": "^7.2.0",
     "browserify": "^13.1.1",
     "enzyme": "^2.6.0",
-    "esdoc": "^0.4.8",
-    "esdoc-es7-plugin": "0.0.3",
+    "esdoc": "^0.5.2",
     "esdoc-importpath-plugin": "0.0.1",
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",
@@ -84,7 +81,7 @@
     "gulp-watch": "^4.3.11",
     "html-loader": "^0.4.3",
     "jasmine-core": "^2.4.1",
-    "jest": "^17.0.3",
+    "jest": "^19.0.1",
     "json-loader": "^0.5.4",
     "karma": "^0.13.22",
     "karma-babel-preprocessor": "^6.0.1",
@@ -119,7 +116,7 @@
     ]
   },
   "jest": {
-    "testPathDirs": [
+    "root": [
       "test"
     ]
   },

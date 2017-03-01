@@ -1,321 +1,363 @@
 {
-  "type": "Program",
-  "body": [
-    {
-      "type": "ExportNamedDeclaration",
-      "declaration": {
-        "type": "VariableDeclaration",
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "id": {
-              "type": "Identifier",
-              "name": "CONNECTION_STATUS",
-              "range": [
-                492,
-                509
-              ],
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 13
-                },
-                "end": {
-                  "line": 12,
-                  "column": 30
-                }
-              }
-            },
-            "init": {
-              "type": "ObjectExpression",
-              "properties": [
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "CONNECTING",
-                    "range": [
-                      516,
-                      526
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 13,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 12
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "value": "connecting",
-                    "raw": "'connecting'",
-                    "range": [
-                      528,
-                      540
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 13,
-                        "column": 14
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 26
-                      }
-                    }
-                  },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "range": [
-                    516,
-                    540
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 13,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 13,
-                      "column": 26
-                    }
-                  }
-                },
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "CONNECTED",
-                    "range": [
-                      544,
-                      553
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 11
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "value": "connected",
-                    "raw": "'connected'",
-                    "range": [
-                      555,
-                      566
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 13
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 24
-                      }
-                    }
-                  },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "range": [
-                    544,
-                    566
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 14,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 14,
-                      "column": 24
-                    }
-                  }
-                },
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "LOADED",
-                    "range": [
-                      570,
-                      576
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 15,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 15,
-                        "column": 8
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "value": "loaded",
-                    "raw": "'loaded'",
-                    "range": [
-                      578,
-                      586
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 15,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 15,
-                        "column": 18
-                      }
-                    }
-                  },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "range": [
-                    570,
-                    586
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 15,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 15,
-                      "column": 18
-                    }
-                  }
-                },
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "OFFLINE",
-                    "range": [
-                      590,
-                      597
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 16,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 16,
-                        "column": 9
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "value": "offline",
-                    "raw": "'offline'",
-                    "range": [
-                      599,
-                      608
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 16,
-                        "column": 11
-                      },
-                      "end": {
-                        "line": 16,
-                        "column": 20
-                      }
-                    }
-                  },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "range": [
-                    590,
-                    608
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 16,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 16,
-                      "column": 20
-                    }
-                  }
-                }
-              ],
-              "range": [
-                512,
-                611
-              ],
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 33
-                },
-                "end": {
-                  "line": 17,
-                  "column": 1
-                }
-              }
-            },
-            "range": [
-              492,
-              611
-            ],
-            "loc": {
-              "start": {
-                "line": 12,
-                "column": 13
-              },
-              "end": {
-                "line": 17,
-                "column": 1
-              }
-            }
-          }
-        ],
-        "kind": "const",
-        "range": [
-          486,
-          612
-        ],
+  "type": "File",
+  "start": 0,
+  "end": 613,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 18,
+      "column": 0
+    }
+  },
+  "program": {
+    "type": "Program",
+    "start": 0,
+    "end": 613,
+    "loc": {
+      "start": {
+        "line": 1,
+        "column": 0
+      },
+      "end": {
+        "line": 18,
+        "column": 0
+      }
+    },
+    "sourceType": "module",
+    "body": [
+      {
+        "type": "ExportNamedDeclaration",
+        "start": 479,
+        "end": 612,
         "loc": {
           "start": {
             "line": 12,
-            "column": 7
+            "column": 0
           },
           "end": {
             "line": 17,
             "column": 2
           }
         },
+        "specifiers": [],
+        "source": null,
+        "declaration": {
+          "type": "VariableDeclaration",
+          "start": 486,
+          "end": 612,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 7
+            },
+            "end": {
+              "line": 17,
+              "column": 2
+            }
+          },
+          "declarations": [
+            {
+              "type": "VariableDeclarator",
+              "start": 492,
+              "end": 611,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 17,
+                  "column": 1
+                }
+              },
+              "id": {
+                "type": "Identifier",
+                "start": 492,
+                "end": 509,
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 13
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 30
+                  },
+                  "identifierName": "CONNECTION_STATUS"
+                },
+                "name": "CONNECTION_STATUS",
+                "leadingComments": null
+              },
+              "init": {
+                "type": "ObjectExpression",
+                "start": 512,
+                "end": 611,
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 33
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 1
+                  }
+                },
+                "properties": [
+                  {
+                    "type": "ObjectProperty",
+                    "start": 516,
+                    "end": 540,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 26
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 516,
+                      "end": 526,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 12
+                        },
+                        "identifierName": "CONNECTING"
+                      },
+                      "name": "CONNECTING"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "start": 528,
+                      "end": 540,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 14
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 26
+                        }
+                      },
+                      "extra": {
+                        "rawValue": "connecting",
+                        "raw": "'connecting'"
+                      },
+                      "value": "connecting"
+                    }
+                  },
+                  {
+                    "type": "ObjectProperty",
+                    "start": 544,
+                    "end": 566,
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 24
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 544,
+                      "end": 553,
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 11
+                        },
+                        "identifierName": "CONNECTED"
+                      },
+                      "name": "CONNECTED"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "start": 555,
+                      "end": 566,
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 24
+                        }
+                      },
+                      "extra": {
+                        "rawValue": "connected",
+                        "raw": "'connected'"
+                      },
+                      "value": "connected"
+                    }
+                  },
+                  {
+                    "type": "ObjectProperty",
+                    "start": 570,
+                    "end": 586,
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 18
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 570,
+                      "end": 576,
+                      "loc": {
+                        "start": {
+                          "line": 15,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 15,
+                          "column": 8
+                        },
+                        "identifierName": "LOADED"
+                      },
+                      "name": "LOADED"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "start": 578,
+                      "end": 586,
+                      "loc": {
+                        "start": {
+                          "line": 15,
+                          "column": 10
+                        },
+                        "end": {
+                          "line": 15,
+                          "column": 18
+                        }
+                      },
+                      "extra": {
+                        "rawValue": "loaded",
+                        "raw": "'loaded'"
+                      },
+                      "value": "loaded"
+                    }
+                  },
+                  {
+                    "type": "ObjectProperty",
+                    "start": 590,
+                    "end": 608,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 20
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 590,
+                      "end": 597,
+                      "loc": {
+                        "start": {
+                          "line": 16,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 16,
+                          "column": 9
+                        },
+                        "identifierName": "OFFLINE"
+                      },
+                      "name": "OFFLINE"
+                    },
+                    "value": {
+                      "type": "StringLiteral",
+                      "start": 599,
+                      "end": 608,
+                      "loc": {
+                        "start": {
+                          "line": 16,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 16,
+                          "column": 20
+                        }
+                      },
+                      "extra": {
+                        "rawValue": "offline",
+                        "raw": "'offline'"
+                      },
+                      "value": "offline"
+                    }
+                  }
+                ]
+              },
+              "leadingComments": null
+            }
+          ],
+          "kind": "const",
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
+              "start": 0,
+              "end": 478,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 0
+                },
+                "end": {
+                  "line": 11,
+                  "column": 3
+                }
+              }
+            }
+          ],
+          "trailingComments": []
+        },
         "leadingComments": [
           {
-            "type": "Block",
+            "type": "CommentBlock",
             "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
-            "range": [
-              0,
-              478
-            ],
+            "start": 0,
+            "end": 478,
             "loc": {
               "start": {
                 "line": 1,
@@ -327,70 +369,17 @@
               }
             }
           }
-        ],
-        "trailingComments": []
-      },
-      "specifiers": [],
-      "source": null,
-      "range": [
-        479,
-        612
-      ],
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 0
-        },
-        "end": {
-          "line": 17,
-          "column": 2
-        }
-      },
-      "leadingComments": [
-        {
-          "type": "Block",
-          "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
-          "range": [
-            0,
-            478
-          ],
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 0
-            },
-            "end": {
-              "line": 11,
-              "column": 3
-            }
-          }
-        }
-      ]
-    }
-  ],
-  "sourceType": "module",
-  "range": [
-    479,
-    612
-  ],
-  "loc": {
-    "start": {
-      "line": 12,
-      "column": 0
-    },
-    "end": {
-      "line": 17,
-      "column": 2
-    }
+        ]
+      }
+    ],
+    "directives": []
   },
   "comments": [
     {
-      "type": "Block",
+      "type": "CommentBlock",
       "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
-      "range": [
-        0,
-        478
-      ],
+      "start": 0,
+      "end": 478,
       "loc": {
         "start": {
           "line": 1,
@@ -399,6 +388,655 @@
         "end": {
           "line": 11,
           "column": 3
+        }
+      }
+    }
+  ],
+  "tokens": [
+    {
+      "type": "CommentBlock",
+      "value": "*\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n ",
+      "start": 0,
+      "end": 478,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "export",
+        "keyword": "export",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "export",
+      "start": 479,
+      "end": 485,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "const",
+        "keyword": "const",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "const",
+      "start": 486,
+      "end": 491,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 7
+        },
+        "end": {
+          "line": 12,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "CONNECTION_STATUS",
+      "start": 492,
+      "end": 509,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 13
+        },
+        "end": {
+          "line": 12,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "=",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": true,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "=",
+      "start": 510,
+      "end": 511,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 31
+        },
+        "end": {
+          "line": 12,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "{",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 512,
+      "end": 513,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 33
+        },
+        "end": {
+          "line": 12,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "CONNECTING",
+      "start": 516,
+      "end": 526,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 2
+        },
+        "end": {
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ":",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 526,
+      "end": 527,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 12
+        },
+        "end": {
+          "line": 13,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "connecting",
+      "start": 528,
+      "end": 540,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 14
+        },
+        "end": {
+          "line": 13,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 540,
+      "end": 541,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 26
+        },
+        "end": {
+          "line": 13,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "CONNECTED",
+      "start": 544,
+      "end": 553,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 2
+        },
+        "end": {
+          "line": 14,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ":",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 553,
+      "end": 554,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 11
+        },
+        "end": {
+          "line": 14,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "connected",
+      "start": 555,
+      "end": 566,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 13
+        },
+        "end": {
+          "line": 14,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 566,
+      "end": 567,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 24
+        },
+        "end": {
+          "line": 14,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "LOADED",
+      "start": 570,
+      "end": 576,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 2
+        },
+        "end": {
+          "line": 15,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ":",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 576,
+      "end": 577,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 8
+        },
+        "end": {
+          "line": 15,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "loaded",
+      "start": 578,
+      "end": 586,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 10
+        },
+        "end": {
+          "line": 15,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 586,
+      "end": 587,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 18
+        },
+        "end": {
+          "line": 15,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "OFFLINE",
+      "start": 590,
+      "end": 597,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 2
+        },
+        "end": {
+          "line": 16,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ":",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 597,
+      "end": 598,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 9
+        },
+        "end": {
+          "line": 16,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "string",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "offline",
+      "start": 599,
+      "end": 608,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 11
+        },
+        "end": {
+          "line": 16,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 608,
+      "end": 609,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 20
+        },
+        "end": {
+          "line": 16,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "}",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 610,
+      "end": 611,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ";",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 611,
+      "end": 612,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 1
+        },
+        "end": {
+          "line": 17,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "eof",
+        "beforeExpr": false,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 613,
+      "end": 613,
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 0
         }
       }
     }
