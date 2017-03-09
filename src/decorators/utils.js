@@ -22,9 +22,9 @@ export function wampSetup(component, options) {
     });
   });
   AutobahnReact.Connection.initialize(options.url, options.realm);
-  if (options.username) {
+  if (options.authid) {
     AutobahnReact.Auth.logIn({
-      username: options.username,
+      username: options.authid,
       password: options.password,
     }).then(() => {
       console.log('authd');
