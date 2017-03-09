@@ -22,7 +22,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * Decorator to wrap your main app
  * @example
  * export default simpl({
- *   username: 'username',
+ *   authid: 123,
  *   password: 'password',
  *   url: 'ws://example.com/ws',
  *   progressComponent: MyProgressComponent,
@@ -35,7 +35,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * @function
  * @memberof Simpl.decorators
  * @param {Object} options - An object of options.
- * @param {string} options.username - The username for authenticating on the WAMP Router.
+ * @param {string} options.authid - The user id for authenticating on the WAMP Router. This will the user's id on Simpl-Games-Api
  * @param {string} options.password - The password for authenticating on the WAMP Router.
  * @param {string} options.url - The URL of the WAMP router.
  * @param {function} [options.progressComponent] - A customized Component to show
@@ -140,7 +140,7 @@ export function simpl(options) {
         `${topic}.remove_child`,
       ])
     , [
-      `model:error.${options.username}`,
+      `model:error.${options.authid}`,
     ]);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
