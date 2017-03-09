@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://gitlab.com/lldev-team/simpl-react.git">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -1013,10 +1013,10 @@ emptry string.</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
-      <td data-ice="name" data-depth="1">options.username</td>
+      <td data-ice="name" data-depth="1">options.authid</td>
       <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"><p>The username for authenticating on the WAMP Router.</p>
+      <td data-ice="description"><p>The user id for authenticating on the WAMP Router. This will the user&apos;s id on Simpl-Games-Api</p>
 </td>
     </tr>
 <tr data-ice="property" data-depth="1">
@@ -1096,7 +1096,7 @@ to be used as shortcuts.</p>
   <div class="example-doc" data-ice="exampleDoc">
       
       <pre class="prettyprint source-code"><code data-ice="exampleCode">export default simpl({
-  username: &apos;username&apos;,
+  authid: 123,
   password: &apos;password&apos;,
   url: &apos;ws://example.com/ws&apos;,
   progressComponent: MyProgressComponent,

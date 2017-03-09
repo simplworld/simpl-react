@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  
+  <a data-ice="repoURL" href="https://gitlab.com/lldev-team/simpl-react.git">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -96,7 +96,7 @@ import { wampOptionsWithDefaults, wampSetup } from &apos;./utils&apos;;
  * Decorator to wrap your main app
  * @example
  * export default simpl({
- *   username: &apos;username&apos;,
+ *   authid: 123,
  *   password: &apos;password&apos;,
  *   url: &apos;ws://example.com/ws&apos;,
  *   progressComponent: MyProgressComponent,
@@ -109,7 +109,7 @@ import { wampOptionsWithDefaults, wampSetup } from &apos;./utils&apos;;
  * @function
  * @memberof Simpl.decorators
  * @param {Object} options - An object of options.
- * @param {string} options.username - The username for authenticating on the WAMP Router.
+ * @param {string} options.authid - The user id for authenticating on the WAMP Router. This will the user&apos;s id on Simpl-Games-Api
  * @param {string} options.password - The password for authenticating on the WAMP Router.
  * @param {string} options.url - The URL of the WAMP router.
  * @param {function} [options.progressComponent] - A customized Component to show
@@ -214,7 +214,7 @@ export function simpl(options) {
         `${topic}.remove_child`,
       ])
     , [
-      `model:error.${options.username}`,
+      `model:error.${options.authid}`,
     ]);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
