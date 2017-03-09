@@ -108,7 +108,7 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getUserInfo](state, action) {
     // Get the current user's info into the user namespace
-    const username = action.payload;
+    const email = action.payload;
     const roleTypes = new Set();
     let foundRunuser;
 
@@ -117,7 +117,7 @@ const simpl = recycleState(createReducer(initial, {
         roleTypes.add(runuser.role_name);
       }
 
-      if (runuser.username === username) {
+      if (runuser.email === email) {
         foundRunuser = runuser;
       }
     });
