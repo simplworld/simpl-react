@@ -94,7 +94,15 @@ export const getRoles = createAction('simpl/GET_ROLES', (scope, ...args) => (
 
 export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
-// populate simpl.user space with current user's info
+
+/**
+ * Populate simpl.user space with current user's info.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {Number} simpl_id - The user id on simpl-games-api.
+ * @returns {NamedReduxAction}
+ */
 export const getUserInfo = createAction('simpl/GET_USER_INFO');
 
 /**
