@@ -24,7 +24,7 @@ export function wampSetup(component, options) {
   AutobahnReact.Connection.initialize(options.url, options.realm);
   if (options.authid) {
     AutobahnReact.Auth.logIn({
-      username: options.authid,
+      username: `${options.authid}`,
       password: options.password,
     }).then(() => {
       console.log('authd');
