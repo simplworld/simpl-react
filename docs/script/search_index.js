@@ -114,6 +114,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "simpl/lib/actions/simpl~getuserinfo",
+    "variable/index.html#static-variable-getUserInfo",
+    "<span>getUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/components/forms/validators~max",
     "function/index.html#static-function-max",
     "<span>max</span> <span class=\"search-result-import-path\">simpl/lib/components/forms/validators</span>",

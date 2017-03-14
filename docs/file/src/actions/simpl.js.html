@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUserInfo">getUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setConnectionStatus">setConnectionStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
@@ -168,7 +169,15 @@ export const getRoles = createAction(&apos;simpl/GET_ROLES&apos;, (scope, ...arg
 
 export const showGenericError = createAction(&apos;simpl/SHOW_GENERIC_ERROR&apos;);
 
-// populate simpl.user space with current user&apos;s info
+
+/**
+ * Populate simpl.user space with current user&apos;s info.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {Number} simpl_id - The user id on simpl-games-api.
+ * @returns {NamedReduxAction}
+ */
 export const getUserInfo = createAction(&apos;simpl/GET_USER_INFO&apos;);
 
 /**
