@@ -114,6 +114,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "simpl/lib/actions/simpl~getscenarios",
+    "variable/index.html#static-variable-getScenarios",
+    "<span>getScenarios</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/actions/simpl~getuserinfo",
     "variable/index.html#static-variable-getUserInfo",
     "<span>getUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",

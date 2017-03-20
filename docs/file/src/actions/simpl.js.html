@@ -38,6 +38,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getScenarios">getScenarios</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUserInfo">getUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setConnectionStatus">setConnectionStatus</a></span></span></li>
@@ -148,30 +149,41 @@ export const connectedScope = createAction(&apos;simpl/SCOPE_CONNECTED&apos;, (s
  * Currently only used for debugging purposes.
  * @function
  * @memberof Simpl.actions.simpl
- * @param {string} scope - the scope&apos;s topic
+ * @param {string} topic - the scope&apos;s topic
  * @returns {NamedReduxAction}
  */
-export const disconnectedScope = createAction(&apos;simpl/SCOPE_DISCONNECTED&apos;, (scope, ...args) =&gt; (
-  AutobahnReact.publish(`${scope}.disconnected`, args)
+export const disconnectedScope = createAction(&apos;simpl/SCOPE_DISCONNECTED&apos;, (topic, ...args) =&gt; (
+  AutobahnReact.publish(`${topic}.disconnected`, args)
 ));
 
-export const getCurrentRunPhase = createAction(&apos;simpl/CURRENT_RUN&apos;, (scope, ...args) =&gt; (
-  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)
+export const getCurrentRunPhase = createAction(&apos;simpl/CURRENT_RUN&apos;, (topic, ...args) =&gt; (
+  AutobahnReact.call(`${topic}.get_current_run_and_phase`, args)
 ));
 
-export const getPhases = createAction(&apos;simpl/GET_PHASES&apos;, (scope, ...args) =&gt; (
-  AutobahnReact.call(`${scope}.get_phases`, args)
+export const getPhases = createAction(&apos;simpl/GET_PHASES&apos;, (topic, ...args) =&gt; (
+  AutobahnReact.call(`${topic}.get_phases`, args)
 ));
 
-export const getRoles = createAction(&apos;simpl/GET_ROLES&apos;, (scope, ...args) =&gt; (
-  AutobahnReact.call(`${scope}.get_roles`, args)
+export const getRoles = createAction(&apos;simpl/GET_ROLES&apos;, (topic, ...args) =&gt; (
+  AutobahnReact.call(`${topic}.get_roles`, args)
 ));
 
 export const showGenericError = createAction(&apos;simpl/SHOW_GENERIC_ERROR&apos;);
 
+/**
+ * Populate simpl.scenario with current user&apos;s scenarios.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {String} topic - The runuser&apos;s topic.
+ * @returns {NamedReduxAction}
+ */
+export const getScenarios = createAction(&apos;simpl/GET_SCENARIOS&apos;, (topic) =&gt; (
+  AutobahnReact.call(`${topic}.get_scenarios`)
+));
 
 /**
- * Populate simpl.user space with current user&apos;s info.
+ * Populate simpl.user object with current user&apos;s info.
  *
  * @function
  * @memberof Simpl.actions.simpl
