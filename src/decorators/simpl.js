@@ -8,9 +8,9 @@ import AutobahnReact from '../autobahn';
 
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
-  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles,
+  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getUserInfo,
   // eslint-disable-next-line comma-dangle
-  showGenericError, setConnectionStatus
+  getScenarios, showGenericError, setConnectionStatus
 } from '../actions/simpl';
 import { CONNECTION_STATUS } from '../constants';
 
@@ -27,27 +27,33 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   url: 'ws://example.com/ws',
  *   progressComponent: MyProgressComponent,
  *   topics: () => ['topic1', 'topic2'],
+ *   root_topic: 'org.example.namespace'
  *   prefixes: {
- *     model: 'org.example.namespace'
+ *     special: 'org.example.namespace.special.shortcut'
  *   }
  * })(MyComponent);
 
  * @function
  * @memberof Simpl.decorators
  * @param {Object} options - An object of options.
- * @param {string} options.authid - The user id for authenticating on the WAMP Router. This will the user's id on Simpl-Games-Api
- * @param {string} options.password - The password for authenticating on the WAMP Router.
+ * @param {string} options.authid - The user id for authenticating on the WAMP
+ * Router. This will the user's id on Simpl-Games-Api
+ * @param {string} options.password - The password for authenticating on the
+ * WAMP Router.
  * @param {string} options.url - The URL of the WAMP router.
- * @param {function} [options.progressComponent] - A customized Component to show
- * the App's connection state. The component will receive a `connectionStatus` prop which
- * can have one of the following values:
+ * @param {function} [options.progressComponent] - A customized Component to
+ * show the App's connection state. The component will receive a
+ * `connectionStatus` prop which can have one of the following values:
  * * `connecting`: The initial value. The app is not connected to the WAMP Router, yet.
  * * `connected`: The app is connected and authenticated, but it still needs to download data.
  * * `loaded`: The app has downloaded all the relevant data.
  * * `offline`:  The connection was dropped.
- * @param {function} options.topics - A function return a list of topic to subsribe to.
- * @param {Object} [options.prefixes] - An object mapping names to topic prefixes,
- * to be used as shortcuts.
+ * @param {function} options.topics - A function return a list of topic to
+ * subscribe to.
+ * @param {string} options.root_topic - The root topic for your model. This will
+ * be used for the `'model'` prefix.
+ * @param {Object} [options.prefixes] - An object mapping names to topic
+ * prefixes, to be used as shortcuts.
  */
 export function simpl(options) {
   return (Component) => {
@@ -68,9 +74,20 @@ export function simpl(options) {
       },
       onReady() {
         if (optionsWithDefaults.topics) {
+
           optionsWithDefaults.topics.forEach((topic) => {
             dispatch(connectedScope(topic));
-            dispatch(getRunUsers(topic));
+            dispatch(
+              getRunUsers(topic)
+            ).then((action) => {
+              const authid = parseInt(options.authid, 10);
+              dispatch(getUserInfo(authid));
+              return action.payload;
+            }).then((runUsers) => {
+              runUsers.forEach((ru) => {
+                dispatch(getScenarios(`model:model.runuser.${ru.data.id}`));
+              })
+            });
             dispatch(getCurrentRunPhase(topic));
             dispatch(getDataTree(topic));
           });

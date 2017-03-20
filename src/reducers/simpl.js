@@ -108,6 +108,9 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getUserInfo](state, action) {
     // Get the current user's info into the user namespace
+    if (state.runuser.length == 0) {
+      throw "Runusers aren't loaded yet. You need to call `.getRunUsers` before calling `getUserInfo`.";
+    }
     const simpl_id = action.payload;
     const roleTypes = new Set();
     let foundRunuser;
@@ -126,6 +129,14 @@ const simpl = recycleState(createReducer(initial, {
     roleTypes.delete(foundRunuser.role_name);
     foundRunuser.other_roles = Array.from(roleTypes);
     return Object.assign({}, state, { user: foundRunuser });
+  },
+  [SimplActions.getScenarios](state, action) {
+    if (action.payload.error) {
+      return this.handleError(state, action);
+    }
+    return action.payload.reduce((memo, child) => (
+      this.addChild(memo, { payload: child })
+    ), Object.assign({}, state));
   },
   [SimplActions.getPhases](state, action) {
     let connectionStatus = state.connectionStatus;
