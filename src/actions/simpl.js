@@ -73,30 +73,41 @@ export const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...a
  * Currently only used for debugging purposes.
  * @function
  * @memberof Simpl.actions.simpl
- * @param {string} scope - the scope's topic
+ * @param {string} topic - the scope's topic
  * @returns {NamedReduxAction}
  */
-export const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (scope, ...args) => (
-  AutobahnReact.publish(`${scope}.disconnected`, args)
+export const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (topic, ...args) => (
+  AutobahnReact.publish(`${topic}.disconnected`, args)
 ));
 
-export const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_current_run_and_phase`, args)
+export const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (topic, ...args) => (
+  AutobahnReact.call(`${topic}.get_current_run_and_phase`, args)
 ));
 
-export const getPhases = createAction('simpl/GET_PHASES', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_phases`, args)
+export const getPhases = createAction('simpl/GET_PHASES', (topic, ...args) => (
+  AutobahnReact.call(`${topic}.get_phases`, args)
 ));
 
-export const getRoles = createAction('simpl/GET_ROLES', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_roles`, args)
+export const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (
+  AutobahnReact.call(`${topic}.get_roles`, args)
 ));
 
 export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
+/**
+ * Populate simpl.scenario with current user's scenarios.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {String} topic - The runuser's topic.
+ * @returns {NamedReduxAction}
+ */
+export const getScenarios = createAction('simpl/GET_SCENARIOS', (topic) => (
+  AutobahnReact.call(`${topic}.get_scenarios`)
+));
 
 /**
- * Populate simpl.user space with current user's info.
+ * Populate simpl.user object with current user's info.
  *
  * @function
  * @memberof Simpl.actions.simpl

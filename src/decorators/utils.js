@@ -14,6 +14,7 @@ export function wampSetup(component, options) {
 // eslint-disable-next-line no-unused-vars
   AutobahnReact.Connection.onReady(([session, details]) => {
     console.log('Connection established!');
+    session.prefix('model', options.root_topic)
     Object.keys(options.prefixes).forEach((key) => {
       const value = options.prefixes[key];
       console.log('added prefix: ', key, value);
