@@ -27,7 +27,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   url: 'ws://example.com/ws',
  *   progressComponent: MyProgressComponent,
  *   topics: () => ['topic1', 'topic2'],
- *   root_topic: 'org.example.namespace'
+ *   root_topic: 'org.example.namespace',
  *   prefixes: {
  *     special: 'org.example.namespace.special.shortcut'
  *   }
