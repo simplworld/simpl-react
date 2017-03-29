@@ -18,7 +18,6 @@ const initial = {
   run: [],
   runuser: [],
   world: [],
-  round: [],
   scenario: [],
   period: [],
   decision: [],

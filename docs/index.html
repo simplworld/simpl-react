@@ -75,17 +75,20 @@
 
 <div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h3 id="installation">Installation</h3>
 <pre><code><code class="source-code prettyprint">$ npm install git+ssh://git@stash.wharton.upenn.edu:7999/ll/simpl-react.git --save</code>
-</code></pre><p>Install <code>bumpversion</code>:</p>
-<pre><code><code class="source-code prettyprint">$ pip install bumpversion</code>
-</code></pre><h3 id="documentation">Documentation</h3>
-<p>API docs are <a href="https://lldev-team.gitlab.io/simpl-react/">available online</a></p>
-<h3 id="building">Building</h3>
+</code></pre><h3 id="development">Development</h3>
+<pre><code><code class="source-code prettyprint">$ npm install
+$ npm test</code>
+</code></pre><h3 id="building-lib">Building lib</h3>
 <pre><code><code class="source-code prettyprint">$ npm install
 $ npm run compile --production</code>
 </code></pre><p>Commit then, to release a new version, increment the version number with:</p>
-<pre><code><code class="source-code prettyprint">$ bumpversion patch</code>
-</code></pre><p>and commit the tag</p>
-<h3 id="building-the-documentation">Building the documentation</h3>
+<pre><code><code class="source-code prettyprint">$ pip install bumpversion
+$ bumpversion patch</code>
+</code></pre><p>Then push to the repo:</p>
+<pre><code><code class="source-code prettyprint">$ git push &amp;&amp; git push --tags</code>
+</code></pre><h3 id="documentation">Documentation</h3>
+<p>API docs are <a href="https://lldev-team.gitlab.io/simpl-react/">available online</a></p>
+<h3 id="building-docs">Building docs</h3>
 <pre><code><code class="source-code prettyprint">$ npm run docs
 $ open docs/index.html</code>
 </code></pre></div>
