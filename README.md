@@ -8,10 +8,14 @@
     $ npm test
 
 
-### Building lib
+### Build lib
 
-    $ npm install
     $ npm run compile --production
+
+### Build docs
+
+    $ npm run docs
+    $ open docs/index.html
 
 Commit then, to release a new version, increment the version number with:
 
@@ -27,9 +31,6 @@ Then push to the repo:
 API docs are [available online](https://lldev-team.gitlab.io/simpl-react/)
 
 
-### Building docs
 
-    $ npm run docs
-    $ open docs/index.html
 
 
