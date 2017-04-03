@@ -133,9 +133,11 @@ const simpl = recycleState(createReducer(initial, {
     if (action.payload.error) {
       return this.handleError(state, action);
     }
-    return action.payload.reduce((memo, child) => (
-      this.addChild(memo, { payload: child })
-    ), Object.assign({}, state));
+    let newState = {...state};
+    action.payload.forEach((scenario) => {
+      newState = this.getDataTree(newState, {payload: scenario});
+    })
+    return newState;
   },
   [SimplActions.getPhases](state, action) {
     let connectionStatus = state.connectionStatus;
