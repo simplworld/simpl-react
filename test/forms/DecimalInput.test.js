@@ -67,7 +67,9 @@ describe('DecimalInput', () => {
 
     input.simulate('blur');
     // value is now formatted
-    expect(input.node.value).toEqual('5.00');
+    setTimeout(() => {
+      expect(input.node.value).toEqual('5.00');
+    }, 1);
   });
 
   it('validates', () => {
