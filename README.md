@@ -26,4 +26,3 @@ and commit the tag
     $ npm run docs
     $ open docs/index.html
 
-
