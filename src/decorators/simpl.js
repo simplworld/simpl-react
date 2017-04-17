@@ -48,7 +48,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * * `connected`: The app is connected and authenticated, but it still needs to download data.
  * * `loaded`: The app has downloaded all the relevant data.
  * * `offline`:  The connection was dropped.
- * @param {function} options.topics - A function return a list of topic to
+ * @param {function} options.topics - A function returning a list of topics to
  * subscribe to.
  * @param {string} options.root_topic - The root topic for your model. This will
  * be used for the `'model'` prefix.
@@ -75,18 +75,20 @@ export function simpl(options) {
       onReady() {
         if (optionsWithDefaults.topics) {
 
+          const authid = parseInt(options.authid, 10);
           optionsWithDefaults.topics.forEach((topic) => {
             dispatch(connectedScope(topic));
             dispatch(
               getRunUsers(topic)
             ).then((action) => {
-              const authid = parseInt(options.authid, 10);
-              dispatch(getUserInfo(authid));
-              return action.payload;
-            }).then((runUsers) => {
+              const runUsers = action.payload;
               runUsers.forEach((ru) => {
-                dispatch(getScenarios(`model:model.runuser.${ru.data.id}`));
-              })
+                if (ru.data.user === authid) {
+                  dispatch(getScenarios(`model:model.runuser.${ru.data.id}`));
+                }
+              });
+            }).then(() => {
+              dispatch(getUserInfo(authid));
             });
             dispatch(getCurrentRunPhase(topic));
             dispatch(getDataTree(topic));
