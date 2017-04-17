@@ -1,12 +1,11 @@
 ### Installation
 
-    $ npm install git+ssh://git@stash.wharton.upenn.edu:7999/ll/simpl-react.git --save
+    $ npm install git+ssh://git@learninglab.githost.io/ll/simpl-react.git --save
 
 ### Development
 
     $ npm install
     $ npm test
-
 
 ### Build lib
 

@@ -85,48 +85,50 @@ export const inputPropTypes = {
   messages: React.PropTypes.array,
   validationState: React.PropTypes.string,
 
+  id: React.PropTypes.string,
+  name: React.PropTypes.string.isRequired,
+  onBlur: React.PropTypes.func,
+  onChange: React.PropTypes.func,
+  onFocus: React.PropTypes.func,
+  readOnly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
   type: React.PropTypes.string,
   value: React.PropTypes.any,
-  name: React.PropTypes.string.isRequired,
-  id: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  placeholder: React.PropTypes.string,
-  required: React.PropTypes.bool,
+
   disabled: React.PropTypes.bool,
-  readOnly: React.PropTypes.bool,
   maxLength: React.PropTypes.number,
+  placeholder: React.PropTypes.string,
 };
 
 
 export const reduxFormPropTypes = {
+  error: React.PropTypes.any,
+  handleSubmit: React.PropTypes.func,
   input: React.PropTypes.object,
   label: React.PropTypes.string,
-  type: React.PropTypes.string,
   meta: React.PropTypes.object,
-  error: React.PropTypes.any,
   pristine: React.PropTypes.bool,
   reset: React.PropTypes.func,
   submitting: React.PropTypes.bool,
-  handleSubmit: React.PropTypes.func,
+  type: React.PropTypes.string,
 };
 
 
 export function getInputProps(props) {
   return {
-    value: props.value,
-    name: props.name,
     id: props.id,
-    type: props.type,
-    min: props.min,
-    max: props.max,
-    step: props.step,
-    readOnly: props.readOnly,
-    required: props.required,
+    name: props.name,
     onBlur: props.onBlur,
     onChange: props.onChange,
     onFocus: props.onFocus,
+    readOnly: props.readOnly,
+    required: props.required,
+    type: props.type,
+    value: props.value,
+
+    max: props.min,
+    min: props.max,
+    step: props.step,
   };
 }
 </code></pre>
