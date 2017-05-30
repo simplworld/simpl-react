@@ -108,21 +108,21 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "simpl/lib/actions/simpl~getrunuserinfo",
+    "variable/index.html#static-variable-getRunUserInfo",
+    "<span>getRunUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
+    "simpl/lib/actions/simpl~getrunuserscenarios",
+    "variable/index.html#static-variable-getRunUserScenarios",
+    "<span>getRunUserScenarios</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "variable"
+  ],
+  [
     "simpl/lib/actions/simpl~getrunusers",
     "variable/index.html#static-variable-getRunUsers",
     "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/actions/simpl~getscenarios",
-    "variable/index.html#static-variable-getScenarios",
-    "<span>getScenarios</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
-    "variable"
-  ],
-  [
-    "simpl/lib/actions/simpl~getuserinfo",
-    "variable/index.html#static-variable-getUserInfo",
-    "<span>getUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [

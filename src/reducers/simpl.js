@@ -14,7 +14,7 @@ const initial = {
   rolesLoaded: false,
   scenariosLoaded: false,
   connectionStatus: CONNECTION_STATUS.CONNECTING,
-  user: {},
+  current_runuser: {},
   current: {},
   run: [],
   runuser: [],
@@ -105,10 +105,10 @@ const simpl = recycleState(createReducer(initial, {
       },
     });
   },
-  [SimplActions.getUserInfo](state, action) {
-    // Get the current user's info into the user namespace
+  [SimplActions.getRunUserInfo](state, action) {
+    // Get the current user's info into the current_runuser namespace
     if (state.runuser.length == 0) {
-      throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getUserInfo`.";
+      throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.";
     }
     const simpl_id = action.payload;
     const roleTypes = new Set();
@@ -124,12 +124,12 @@ const simpl = recycleState(createReducer(initial, {
       }
     });
 
-    // Remove this user's role and we're left with the "other" role names
+    // Remove this current_runuser's role and we're left with the "other" role names
     roleTypes.delete(foundRunuser.role_name);
     foundRunuser.other_roles = Array.from(roleTypes);
-    return Object.assign({}, state, { user: foundRunuser });
+    return Object.assign({}, state, { current_runuser: foundRunuser });
   },
-  [SimplActions.getScenarios](state, action) {
+  [SimplActions.getRunUserScenarios](state, action) {
     if (action.payload.error) {
       return this.handleError(state, action);
     }

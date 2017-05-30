@@ -8,9 +8,9 @@ import AutobahnReact from '../autobahn';
 
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
-  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getUserInfo,
+  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getRunUserInfo,
   // eslint-disable-next-line comma-dangle
-  getScenarios, showGenericError, setConnectionStatus
+  getRunUserScenarios, showGenericError, setConnectionStatus
 } from '../actions/simpl';
 import { CONNECTION_STATUS } from '../constants';
 
@@ -83,12 +83,12 @@ export function simpl(options) {
             ).then((action) => {
               const runUsers = action.payload;
               runUsers.forEach((ru) => {
-                if (ru.data.user === authid) {
-                  dispatch(getScenarios(`model:model.runuser.${ru.data.id}`));
+                if (ru.data.user === authid) {  // TODO if leader, also get player scenarios
+                  dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                 }
               });
             }).then(() => {
-              dispatch(getUserInfo(authid));
+              dispatch(getRunUserInfo(authid));
             });
             dispatch(getCurrentRunPhase(topic));
             dispatch(getDataTree(topic));

@@ -37,9 +37,9 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserInfo">getRunUserInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserScenarios">getRunUserScenarios</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getScenarios">getScenarios</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUserInfo">getUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setConnectionStatus">setConnectionStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
@@ -90,7 +90,7 @@ const initial = {
   rolesLoaded: false,
   scenariosLoaded: false,
   connectionStatus: CONNECTION_STATUS.CONNECTING,
-  user: {},
+  current_runuser: {},
   current: {},
   run: [],
   runuser: [],
@@ -181,10 +181,10 @@ const simpl = recycleState(createReducer(initial, {
       },
     });
   },
-  [SimplActions.getUserInfo](state, action) {
-    // Get the current user&apos;s info into the user namespace
+  [SimplActions.getRunUserInfo](state, action) {
+    // Get the current user&apos;s info into the current_runuser namespace
     if (state.runuser.length == 0) {
-      throw &quot;Runusers aren&apos;t loaded yet. You need to call `getRunUsers` before calling `getUserInfo`.&quot;;
+      throw &quot;Runusers aren&apos;t loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.&quot;;
     }
     const simpl_id = action.payload;
     const roleTypes = new Set();
@@ -200,12 +200,12 @@ const simpl = recycleState(createReducer(initial, {
       }
     });
 
-    // Remove this user&apos;s role and we&apos;re left with the &quot;other&quot; role names
+    // Remove this current_runuser&apos;s role and we&apos;re left with the &quot;other&quot; role names
     roleTypes.delete(foundRunuser.role_name);
     foundRunuser.other_roles = Array.from(roleTypes);
-    return Object.assign({}, state, { user: foundRunuser });
+    return Object.assign({}, state, { current_runuser: foundRunuser });
   },
-  [SimplActions.getScenarios](state, action) {
+  [SimplActions.getRunUserScenarios](state, action) {
     if (action.payload.error) {
       return this.handleError(state, action);
     }

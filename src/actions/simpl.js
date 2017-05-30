@@ -95,26 +95,26 @@ export const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (
 export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
 /**
- * Populate simpl.scenario with current user's scenarios.
+ * Populate simpl.scenario with current runuser's scenarios.
  *
  * @function
  * @memberof Simpl.actions.simpl
  * @param {String} topic - The runuser's topic.
  * @returns {NamedReduxAction}
  */
-export const getScenarios = createAction('simpl/GET_SCENARIOS', (topic) => (
+export const getRunUserScenarios = createAction('simpl/GET_RUNUSER_SCENARIOS', (topic) => (
   AutobahnReact.call(`${topic}.get_scenarios`)
 ));
 
 /**
- * Populate simpl.user object with current user's info.
+ * Populate simpl.current_runuser object with current runuser's info.
  *
  * @function
  * @memberof Simpl.actions.simpl
  * @param {Number} simpl_id - The user id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const getUserInfo = createAction('simpl/GET_USER_INFO');
+export const getRunUserInfo = createAction('simpl/GET_RUNUSER_INFO');
 
 /**
  * Remove the most recent error from the store.
@@ -140,7 +140,7 @@ export default {
   connectedScope,
   disconnectedScope,
   getCurrentRunPhase,
-  getUserInfo,
+  getRunUserInfo,
   getPhases,
   getRoles,
   popError,

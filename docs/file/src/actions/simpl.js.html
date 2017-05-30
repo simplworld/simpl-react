@@ -37,9 +37,9 @@
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserInfo">getRunUserInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserScenarios">getRunUserScenarios</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getScenarios">getScenarios</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUserInfo">getUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setConnectionStatus">setConnectionStatus</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-updateScope">updateScope</a></span></span></li>
@@ -171,26 +171,26 @@ export const getRoles = createAction(&apos;simpl/GET_ROLES&apos;, (topic, ...arg
 export const showGenericError = createAction(&apos;simpl/SHOW_GENERIC_ERROR&apos;);
 
 /**
- * Populate simpl.scenario with current user&apos;s scenarios.
+ * Populate simpl.scenario with current runuser&apos;s scenarios.
  *
  * @function
  * @memberof Simpl.actions.simpl
  * @param {String} topic - The runuser&apos;s topic.
  * @returns {NamedReduxAction}
  */
-export const getScenarios = createAction(&apos;simpl/GET_SCENARIOS&apos;, (topic) =&gt; (
+export const getRunUserScenarios = createAction(&apos;simpl/GET_RUNUSER_SCENARIOS&apos;, (topic) =&gt; (
   AutobahnReact.call(`${topic}.get_scenarios`)
 ));
 
 /**
- * Populate simpl.user object with current user&apos;s info.
+ * Populate simpl.current_runuser object with current runuser&apos;s info.
  *
  * @function
  * @memberof Simpl.actions.simpl
  * @param {Number} simpl_id - The user id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const getUserInfo = createAction(&apos;simpl/GET_USER_INFO&apos;);
+export const getRunUserInfo = createAction(&apos;simpl/GET_RUNUSER_INFO&apos;);
 
 /**
  * Remove the most recent error from the store.
@@ -216,7 +216,7 @@ export default {
   connectedScope,
   disconnectedScope,
   getCurrentRunPhase,
-  getUserInfo,
+  getRunUserInfo,
   getPhases,
   getRoles,
   popError,
