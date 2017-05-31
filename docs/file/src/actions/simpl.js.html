@@ -36,8 +36,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONNECTION_STATUS">CONNECTION_STATUS</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getCurrentRunUserInfo">getCurrentRunUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserInfo">getRunUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserScenarios">getRunUserScenarios</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
@@ -190,7 +190,7 @@ export const getRunUserScenarios = createAction(&apos;simpl/GET_RUNUSER_SCENARIO
  * @param {Number} simpl_id - The user id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const getRunUserInfo = createAction(&apos;simpl/GET_RUNUSER_INFO&apos;);
+export const getCurrentRunUserInfo = createAction(&apos;simpl/GET_CURRENT_RUNUSER_INFO&apos;);
 
 /**
  * Remove the most recent error from the store.
@@ -216,7 +216,7 @@ export default {
   connectedScope,
   disconnectedScope,
   getCurrentRunPhase,
-  getRunUserInfo,
+  getCurrentRunUserInfo,
   getPhases,
   getRoles,
   popError,

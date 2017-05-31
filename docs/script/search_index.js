@@ -102,15 +102,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~getdatatree",
-    "variable/index.html#static-variable-getDataTree",
-    "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "simpl/lib/actions/simpl~getcurrentrunuserinfo",
+    "variable/index.html#static-variable-getCurrentRunUserInfo",
+    "<span>getCurrentRunUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl~getrunuserinfo",
-    "variable/index.html#static-variable-getRunUserInfo",
-    "<span>getRunUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "simpl/lib/actions/simpl~getdatatree",
+    "variable/index.html#static-variable-getDataTree",
+    "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
     "variable"
   ],
   [

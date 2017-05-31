@@ -36,8 +36,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-CONNECTION_STATUS">CONNECTION_STATUS</a></span></span></li>
 <li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">actions</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-connectedScope">connectedScope</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-disconnectedScope">disconnectedScope</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getCurrentRunUserInfo">getCurrentRunUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getDataTree">getDataTree</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserInfo">getRunUserInfo</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUserScenarios">getRunUserScenarios</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getRunUsers">getRunUsers</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-popError">popError</a></span></span></li>
@@ -84,7 +84,7 @@ import AutobahnReact from &apos;../autobahn&apos;;
 
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
-  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getRunUserInfo,
+  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getCurrentRunUserInfo,
   // eslint-disable-next-line comma-dangle
   getRunUserScenarios, showGenericError, setConnectionStatus
 } from &apos;../actions/simpl&apos;;
@@ -164,7 +164,7 @@ export function simpl(options) {
                 }
               });
             }).then(() =&gt; {
-              dispatch(getRunUserInfo(authid));
+              dispatch(getCurrentRunUserInfo(authid));
             });
             dispatch(getCurrentRunPhase(topic));
             dispatch(getDataTree(topic));
