@@ -114,7 +114,7 @@ export const getRunUserScenarios = createAction('simpl/GET_RUNUSER_SCENARIOS', (
  * @param {Number} simpl_id - The user id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const getRunUserInfo = createAction('simpl/GET_RUNUSER_INFO');
+export const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INFO');
 
 /**
  * Remove the most recent error from the store.
@@ -140,7 +140,7 @@ export default {
   connectedScope,
   disconnectedScope,
   getCurrentRunPhase,
-  getRunUserInfo,
+  getCurrentRunUserInfo,
   getPhases,
   getRoles,
   popError,

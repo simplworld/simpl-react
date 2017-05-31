@@ -105,7 +105,7 @@ const simpl = recycleState(createReducer(initial, {
       },
     });
   },
-  [SimplActions.getRunUserInfo](state, action) {
+  [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user's info into the current_runuser namespace
     if (state.runuser.length == 0) {
       throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.";

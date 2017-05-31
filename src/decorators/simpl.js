@@ -8,7 +8,7 @@ import AutobahnReact from '../autobahn';
 
 import {
   addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
-  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getRunUserInfo,
+  removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getCurrentRunUserInfo,
   // eslint-disable-next-line comma-dangle
   getRunUserScenarios, showGenericError, setConnectionStatus
 } from '../actions/simpl';
@@ -88,7 +88,7 @@ export function simpl(options) {
                 }
               });
             }).then(() => {
-              dispatch(getRunUserInfo(authid));
+              dispatch(getCurrentRunUserInfo(authid));
             });
             dispatch(getCurrentRunPhase(topic));
             dispatch(getDataTree(topic));
