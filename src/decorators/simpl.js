@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { stopSubmit } from 'redux-form';
 
@@ -148,7 +150,7 @@ export function simpl(options) {
     }
 
     AppContainer.propTypes = {
-      connectionStatus: React.PropTypes.string.isRequired,
+      connectionStatus: PropTypes.string.isRequired,
     };
 
 
@@ -189,11 +191,11 @@ export function simpl(options) {
     }
 
     Simpl.propTypes = {
-      connectionStatus: React.PropTypes.string.isRequired,
-      onLeave: React.PropTypes.func,
-      onReady: React.PropTypes.func.isRequired,
-      progressComponent: React.PropTypes.func.isRequired,
-      setConnectionStatus: React.PropTypes.func.isRequired,
+      connectionStatus: PropTypes.string.isRequired,
+      onLeave: PropTypes.func,
+      onReady: PropTypes.func.isRequired,
+      progressComponent: PropTypes.func.isRequired,
+      setConnectionStatus: PropTypes.func.isRequired,
     };
 
     const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);

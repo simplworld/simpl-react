@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import _ from 'lodash';
 import AutobahnReact from '../../autobahn';
@@ -51,8 +52,8 @@ export function publishes(topic, options = {}) {
     }
 
     Publisher.propTypes = {
-      onPublished: React.PropTypes.func,
-      onPublishedError: React.PropTypes.func,
+      onPublished: PropTypes.func,
+      onPublishedError: PropTypes.func,
     };
 
     return Publisher;

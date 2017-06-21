@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { calls } from '../decorators/rpc';
 
 
@@ -23,8 +25,8 @@ class RPCCaller extends React.Component {
 }
 
 RPCCaller.propTypes = {
-  callee: React.PropTypes.string.isRequired,
-  options: React.PropTypes.object,
+  callee: PropTypes.string.isRequired,
+  options: PropTypes.object,
 };
 
 export default RPCCaller;

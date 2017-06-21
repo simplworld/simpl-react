@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -104,9 +105,9 @@ export function subscribes(topics, options = {}, staticMethods = {}) {
     }
 
     SubscriptionContainer.propTypes = {
-      append: React.PropTypes.bool,
-      options: React.PropTypes.object,
-      onMessage: React.PropTypes.func,
+      append: PropTypes.bool,
+      options: PropTypes.object,
+      onMessage: PropTypes.func,
     };
 
     for (var functionName in staticMethods) {

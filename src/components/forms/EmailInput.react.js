@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
 import { validateField } from '../../decorators/forms/validates';

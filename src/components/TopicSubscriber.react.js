@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { subscribes } from '../decorators/pubsub/subscribes';
 
@@ -23,11 +24,11 @@ class TopicSubscriber extends React.Component {
 }
 
 TopicSubscriber.propTypes = {
-  topic: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.func,
+  topic: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
   ]).isRequired,
-  options: React.PropTypes.object,
+  options: PropTypes.object,
 };
 
 

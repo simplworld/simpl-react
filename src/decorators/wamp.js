@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 
 import { setConnectionStatus } from '../actions/simpl';
@@ -35,9 +37,9 @@ export function wamp(options = {}) {
     }
 
     Wamp.propTypes = {
-      onReady: React.PropTypes.func,
-      connectionStatus: React.PropTypes.string.isRequired,
-      setConnectionStatus: React.PropTypes.func.isRequired,
+      onReady: PropTypes.func,
+      connectionStatus: PropTypes.string.isRequired,
+      setConnectionStatus: PropTypes.func.isRequired,
     };
 
     const mapStateToProps = (state) => ({

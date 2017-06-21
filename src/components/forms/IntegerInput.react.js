@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FormControl, FormGroup, HelpBlock, InputGroup } from 'react-bootstrap';
 
 import { validateField } from '../../decorators/forms/validates';
@@ -28,9 +30,9 @@ Input.defaultProps = {
 };
 
 Input.propTypes = Object.assign({}, inputPropTypes, {
-  min: React.PropTypes.number,
-  max: React.PropTypes.number,
-  step: React.PropTypes.number,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
 });
 
 /**

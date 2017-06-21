@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { publishes } from '../decorators/pubsub/publishes';
 
@@ -28,11 +29,11 @@ class TopicPublisher extends React.Component {
 }
 
 TopicPublisher.propTypes = {
-  topic: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.func,
+  topic: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
   ]).isRequired,
-  options: React.PropTypes.object,
+  options: PropTypes.object,
 };
 
 export default TopicPublisher;

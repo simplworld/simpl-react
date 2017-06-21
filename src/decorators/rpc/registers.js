@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import AutobahnReact from '../../autobahn';
 
@@ -47,9 +48,9 @@ export function registers(Component, procedure, options = {}) {
     }
 
     Listener.propTypes = {
-      append: React.PropTypes.bool,
-      options: React.PropTypes.object,
-      onCalled: React.PropTypes.func,
+      append: PropTypes.bool,
+      options: PropTypes.object,
+      onCalled: PropTypes.func,
     };
 
     return Listener;

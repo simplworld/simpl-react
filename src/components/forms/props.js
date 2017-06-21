@@ -1,40 +1,40 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 export const inputPropTypes = {
-  errors: React.PropTypes.array,
-  warning: React.PropTypes.array,
-  sanitizers: React.PropTypes.array,
-  formatters: React.PropTypes.array,
-  messages: React.PropTypes.array,
-  validationState: React.PropTypes.string,
+  errors: PropTypes.array,
+  warning: PropTypes.array,
+  sanitizers: PropTypes.array,
+  formatters: PropTypes.array,
+  messages: PropTypes.array,
+  validationState: PropTypes.string,
 
-  id: React.PropTypes.string,
-  name: React.PropTypes.string.isRequired,
-  onBlur: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  onFocus: React.PropTypes.func,
-  readOnly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  type: React.PropTypes.string,
-  value: React.PropTypes.any,
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  readOnly: PropTypes.bool,
+  required: PropTypes.bool,
+  type: PropTypes.string,
+  value: PropTypes.any,
 
-  disabled: React.PropTypes.bool,
-  maxLength: React.PropTypes.number,
-  placeholder: React.PropTypes.string,
+  disabled: PropTypes.bool,
+  maxLength: PropTypes.number,
+  placeholder: PropTypes.string,
 };
 
 
 export const reduxFormPropTypes = {
-  error: React.PropTypes.any,
-  handleSubmit: React.PropTypes.func,
-  input: React.PropTypes.object,
-  label: React.PropTypes.string,
-  meta: React.PropTypes.object,
-  pristine: React.PropTypes.bool,
-  reset: React.PropTypes.func,
-  submitting: React.PropTypes.bool,
-  type: React.PropTypes.string,
+  error: PropTypes.any,
+  handleSubmit: PropTypes.func,
+  input: PropTypes.object,
+  label: PropTypes.string,
+  meta: PropTypes.object,
+  pristine: PropTypes.bool,
+  reset: PropTypes.func,
+  submitting: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 

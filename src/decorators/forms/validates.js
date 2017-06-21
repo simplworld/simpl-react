@@ -1,5 +1,7 @@
 /* eslint "no-underscore-dangle": "off" */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { stopSubmit } from 'redux-form';
 
@@ -340,27 +342,27 @@ export function validateField({ errors, warnings, sanitizers, formatters }) {
     };
 
     ValidatedComponent.contextTypes = {
-      _reduxForm: React.PropTypes.object,
+      _reduxForm: PropTypes.object,
     };
 
     ValidatedComponent.propTypes = {
-      name: React.PropTypes.string,
-      input: React.PropTypes.object,
-      id: React.PropTypes.string,
-      required: React.PropTypes.bool,
-      readOnly: React.PropTypes.bool,
-      initialValue: React.PropTypes.any,
-      type: React.PropTypes.string,
-      meta: React.PropTypes.object,
-      onChange: React.PropTypes.func,
-      onBlur: React.PropTypes.func,
-      blur: React.PropTypes.func,
-      onFocus: React.PropTypes.func,
-      messages: React.PropTypes.array,
-      errors: React.PropTypes.array,
-      warnings: React.PropTypes.array,
-      sanitizers: React.PropTypes.array,
-      formatters: React.PropTypes.arrayOf(React.PropTypes.func),
+      name: PropTypes.string,
+      input: PropTypes.object,
+      id: PropTypes.string,
+      required: PropTypes.bool,
+      readOnly: PropTypes.bool,
+      initialValue: PropTypes.any,
+      type: PropTypes.string,
+      meta: PropTypes.object,
+      onChange: PropTypes.func,
+      onBlur: PropTypes.func,
+      blur: PropTypes.func,
+      onFocus: PropTypes.func,
+      messages: PropTypes.array,
+      errors: PropTypes.array,
+      warnings: PropTypes.array,
+      sanitizers: PropTypes.array,
+      formatters: PropTypes.arrayOf(PropTypes.func),
     };
 
     const mapStateToProps = (state, ownProps) => ({

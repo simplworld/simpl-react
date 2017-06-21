@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { CONNECTION_STATUS } from '../constants';
 
@@ -16,7 +17,7 @@ function Progress(props) {
 }
 
 Progress.propTypes = {
-  connectionStatus: React.PropTypes.string.isRequired,
+  connectionStatus: PropTypes.string.isRequired,
 };
 
 export default Progress;
