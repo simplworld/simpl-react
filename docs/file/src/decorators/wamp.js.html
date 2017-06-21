@@ -75,6 +75,8 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/wamp.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
+
 import { connect } from &apos;react-redux&apos;;
 
 import { setConnectionStatus } from &apos;../actions/simpl&apos;;
@@ -111,9 +113,9 @@ export function wamp(options = {}) {
     }
 
     Wamp.propTypes = {
-      onReady: React.PropTypes.func,
-      connectionStatus: React.PropTypes.string.isRequired,
-      setConnectionStatus: React.PropTypes.func.isRequired,
+      onReady: PropTypes.func,
+      connectionStatus: PropTypes.string.isRequired,
+      setConnectionStatus: PropTypes.func.isRequired,
     };
 
     const mapStateToProps = (state) =&gt; ({

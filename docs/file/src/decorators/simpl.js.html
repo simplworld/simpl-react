@@ -75,6 +75,8 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/simpl.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
+
 import { connect } from &apos;react-redux&apos;;
 import { stopSubmit } from &apos;redux-form&apos;;
 
@@ -224,7 +226,7 @@ export function simpl(options) {
     }
 
     AppContainer.propTypes = {
-      connectionStatus: React.PropTypes.string.isRequired,
+      connectionStatus: PropTypes.string.isRequired,
     };
 
 
@@ -265,11 +267,11 @@ export function simpl(options) {
     }
 
     Simpl.propTypes = {
-      connectionStatus: React.PropTypes.string.isRequired,
-      onLeave: React.PropTypes.func,
-      onReady: React.PropTypes.func.isRequired,
-      progressComponent: React.PropTypes.func.isRequired,
-      setConnectionStatus: React.PropTypes.func.isRequired,
+      connectionStatus: PropTypes.string.isRequired,
+      onLeave: PropTypes.func,
+      onReady: PropTypes.func.isRequired,
+      progressComponent: PropTypes.func.isRequired,
+      setConnectionStatus: PropTypes.func.isRequired,
     };
 
     const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);

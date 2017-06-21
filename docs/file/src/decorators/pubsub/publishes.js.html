@@ -75,6 +75,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/pubsub/publishes.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
 
 import _ from &apos;lodash&apos;;
 import AutobahnReact from &apos;../../autobahn&apos;;
@@ -127,8 +128,8 @@ export function publishes(topic, options = {}) {
     }
 
     Publisher.propTypes = {
-      onPublished: React.PropTypes.func,
-      onPublishedError: React.PropTypes.func,
+      onPublished: PropTypes.func,
+      onPublishedError: PropTypes.func,
     };
 
     return Publisher;

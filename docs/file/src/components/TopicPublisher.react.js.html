@@ -75,6 +75,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/components/TopicPublisher.react.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
 
 import { publishes } from &apos;../decorators/pubsub/publishes&apos;;
 
@@ -104,11 +105,11 @@ class TopicPublisher extends React.Component {
 }
 
 TopicPublisher.propTypes = {
-  topic: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.func,
+  topic: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
   ]).isRequired,
-  options: React.PropTypes.object,
+  options: PropTypes.object,
 };
 
 export default TopicPublisher;

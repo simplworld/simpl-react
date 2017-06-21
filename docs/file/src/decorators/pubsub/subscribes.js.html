@@ -75,6 +75,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/pubsub/subscribes.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
 
 import { connect } from &apos;react-redux&apos;;
 import _ from &apos;lodash&apos;;
@@ -180,9 +181,9 @@ export function subscribes(topics, options = {}, staticMethods = {}) {
     }
 
     SubscriptionContainer.propTypes = {
-      append: React.PropTypes.bool,
-      options: React.PropTypes.object,
-      onMessage: React.PropTypes.func,
+      append: PropTypes.bool,
+      options: PropTypes.object,
+      onMessage: PropTypes.func,
     };
 
     for (var functionName in staticMethods) {

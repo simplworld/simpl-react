@@ -79,6 +79,8 @@
  * @memberof Simpl.components.forms
  */
 import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
+
 import { FormControl, FormGroup, HelpBlock, InputGroup } from &apos;react-bootstrap&apos;;
 
 import { validateField } from &apos;../../decorators/forms/validates&apos;;
@@ -112,11 +114,11 @@ Input.defaultProps = {
 };
 
 Input.propTypes = Object.assign({}, inputPropTypes, {
-  min: React.PropTypes.number,
-  max: React.PropTypes.number,
-  step: React.PropTypes.number,
-  decimalPlaces: React.PropTypes.number,
-  currency: React.PropTypes.string,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
+  decimalPlaces: PropTypes.number,
+  currency: PropTypes.string,
 });
 
 /**

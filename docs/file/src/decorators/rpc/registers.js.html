@@ -75,6 +75,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/decorators/rpc/registers.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import PropTypes from &apos;prop-types&apos;;
 
 import AutobahnReact from &apos;../../autobahn&apos;;
 
@@ -123,9 +124,9 @@ export function registers(Component, procedure, options = {}) {
     }
 
     Listener.propTypes = {
-      append: React.PropTypes.bool,
-      options: React.PropTypes.object,
-      onCalled: React.PropTypes.func,
+      append: PropTypes.bool,
+      options: PropTypes.object,
+      onCalled: PropTypes.func,
     };
 
     return Listener;
