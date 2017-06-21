@@ -2,8 +2,8 @@ image: node
 
 before_script:
   - npm install --progress=false -s npm
-  - npm install --progress=false -s --no-shrinkwrap --no-save npm-install-peers && ./node_modules/.bin/npm-install-peers
-  - npm install --progress=false -s --no-shrinkwrap
+  - npm install --progress=false -s npm-install-peers && ./node_modules/.bin/npm-install-peers
+  - npm install --progress=false -s
 
 stages:
   - test
