@@ -140,6 +140,7 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { [key]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
+    console.log(&quot;SimplActions.getRunUsers : action&quot;);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -148,6 +149,7 @@ const simpl = recycleState(createReducer(initial, {
     ), Object.assign({}, state));
   },
   [SimplActions.getDataTree](state, action) {
+    console.log(&quot;SimplActions.getDataTree : action&quot;);
     if (action.payload.error) {
       return this.handleError(state, action);
     }

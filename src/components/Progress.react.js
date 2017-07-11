@@ -11,7 +11,7 @@ function Progress(props) {
   } else if (props.connectionStatus === CONNECTION_STATUS.CONNECTED) {
     text = 'Loading data…';
   } else if (props.connectionStatus === CONNECTION_STATUS.OFFLINE) {
-    text = 'Connection lost. If this persist, please contact the administrator.';
+    text = 'Connection lost. If the problem persists, please contact the administrator.';
   }
   return (<div>{text}</div>);
 }

@@ -152,9 +152,9 @@ export function simpl(options) {
       },
       onReady() {
         if (optionsWithDefaults.topics) {
-
           const authid = parseInt(options.authid, 10);
           optionsWithDefaults.topics.forEach((topic) =&gt; {
+            console.log(&quot;onReady: topic=&quot;, topic);
             dispatch(connectedScope(topic));
             dispatch(
               getRunUsers(topic)

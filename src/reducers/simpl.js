@@ -64,6 +64,7 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { [key]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
+    console.log("SimplActions.getRunUsers : action");
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -72,6 +73,7 @@ const simpl = recycleState(createReducer(initial, {
     ), Object.assign({}, state));
   },
   [SimplActions.getDataTree](state, action) {
+    console.log("SimplActions.getDataTree : action");
     if (action.payload.error) {
       return this.handleError(state, action);
     }
