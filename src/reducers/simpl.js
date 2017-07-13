@@ -64,7 +64,6 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { [key]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
-    console.log("SimplActions.getRunUsers: action=", action);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -73,7 +72,6 @@ const simpl = recycleState(createReducer(initial, {
     ), Object.assign({}, state));
   },
   [SimplActions.getDataTree](state, action) {
-    console.log("SimplActions.getDataTree: action=", action);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -113,7 +111,6 @@ const simpl = recycleState(createReducer(initial, {
       throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.";
     }
     const simpl_id = action.payload;
-    console.log("getCurrentRunUserInfo: simpl_id=", simpl_id);
     const roleTypes = new Set();
     let currentRunUser;
     state.runuser.forEach((runuser) => {
@@ -138,7 +135,6 @@ const simpl = recycleState(createReducer(initial, {
       connectionStatus = CONNECTION_STATUS.LOADED;
     }
     const scenarios = action.payload;
-    console.log("getRunUserScenarios: scenarios=", scenarios);
     let newState = { ...state };
     scenarios.forEach((scenario) => {
       newState = this.getDataTree(newState, { payload: scenario });

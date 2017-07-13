@@ -79,22 +79,17 @@ export function simpl(options) {
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
-              console.log('onReady: topic=', topic);
               dispatch(connectedScope(topic));
               dispatch(
                 getRunUsers(topic)
               ).then((action) => {
                 const runUsers = action.payload;
-                console.log('onReady: runUsers=', runUsers);
-
                 let isLeader = false;
                 runUsers.forEach((ru) => {
                   if (ru.data.user === authid && ru.data.leader) {
                     isLeader = true;
                   }
                 });
-                console.log('onReady: isLeader=', isLeader);
-
                 runUsers.forEach((ru) => {
                   if (ru.data.user === authid || isLeader) {  // if leader, also get player scenarios
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
