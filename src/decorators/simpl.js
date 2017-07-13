@@ -85,7 +85,7 @@ export function simpl(options) {
             ).then((action) => {
               const runUsers = action.payload;
               runUsers.forEach((ru) => {
-                if (ru.data.user === authid) {  // TODO if leader, also get player scenarios
+                if (ru.data.user === authid || ru.data.leader === true) {  // if leader, also get player scenarios
                   dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                 }
               });
