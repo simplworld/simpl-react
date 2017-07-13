@@ -89,7 +89,7 @@ export function simpl(options) {
 
                 let isLeader = false;
                 runUsers.forEach((ru) => {
-                  if (ru.data.leader) {
+                  if (ru.data.user === authid && ru.data.leader) {
                     isLeader = true;
                   }
                 });
