@@ -70,76 +70,81 @@ export function simpl(options) {
       progressComponent: optionsWithDefaults.progressComponent,
     });
 
-    const mapDispatchToProps = (dispatch) => ({
-      setConnectionStatus(status) {
-        dispatch(setConnectionStatus(status));
-      },
-      onReady() {
-        if (optionsWithDefaults.topics) {
-          const authid = parseInt(options.authid, 10);
-          optionsWithDefaults.topics.forEach((topic) => {
-            console.log('onReady: topic=', topic);
-            dispatch(connectedScope(topic));
-            dispatch(
-              getRunUsers(topic)
-            ).then((action) => {
-              const runUsers = action.payload;
-              console.log('onReady: runUsers=', runUsers);
+    const mapDispatchToProps = (dispatch) => {
+      return ({
+        setConnectionStatus(status) {
+          dispatch(setConnectionStatus(status));
+        },
+        onReady() {
+          if (optionsWithDefaults.topics) {
+            const authid = parseInt(options.authid, 10);
+            optionsWithDefaults.topics.forEach((topic) => {
+              console.log('onReady: topic=', topic);
+              dispatch(connectedScope(topic));
               dispatch(
-                getCurrentRunUserInfo(authid)
-              );
-              // .then((action) => {
-              //   const currentRunUser = action.payload;
-              //   console.log('onReady: currentRunUser=', currentRunUser);
-              //   runUsers.forEach((ru) => {
-              //     if (ru.data.user === authid) {  // if leader, also get player scenarios
-              //       dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
-              //     }
-              //   });
-              // });
+                getRunUsers(topic)
+              ).then((action) => {
+                const runUsers = action.payload;
+                console.log('onReady: runUsers=', runUsers);
+                dispatch(
+                  getCurrentRunUserInfo(authid)
+                ).then((result) => {
+                  console.log('getCurrentRunUserInfo -> result: ', result);
+                });
+
+                // .then((action) => {
+                //   const currentRunUser = action.payload;
+                //   console.log('onReady: currentRunUser=', currentRunUser);
+                //   runUsers.forEach((ru) => {
+                //     if (ru.data.user === authid) {  // if leader, also get player scenarios
+                //       dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                //     }
+                //   });
+                // });
+              });
+              dispatch(getCurrentRunPhase(topic));
+              dispatch(getDataTree(topic));
             });
-            dispatch(getCurrentRunPhase(topic));
-            dispatch(getDataTree(topic));
-          });
-        }
-        dispatch(getPhases('model:model.game'));
-        dispatch(getRoles('model:model.game'));
-        return Promise.resolve();
-      },
-      onLeave() {
-        if (optionsWithDefaults.topics) {
-          optionsWithDefaults.topics.forEach((topic) => {
-            dispatch(disconnectedScope(topic));
-          });
-        }
-        return Promise.resolve();
-      },
-      onReceived(args, kwargs, event) {
-        if (kwargs.error) {
-          if (kwargs.error === 'application.error.validation_error') {
-            const [form, errors] = args;
-            dispatch(stopSubmit(form, errors));
-          } else {
-            dispatch(showGenericError(args, kwargs));
           }
-        } else {
-          const [pk, resourceName, data] = args;
-          const resolvedTopics = optionsWithDefaults.topics.map(
-            (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
-          );
-          resolvedTopics.forEach((topic) => {
-            const actions = {
-              [`${topic}.add_child`]: addChild,
-              [`${topic}.remove_child`]: removeChild,
-              [`${topic}.update_child`]: updateScope,
-            };
-            if (actions[event.topic]) {
-              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+          dispatch(getPhases('model:model.game'));
+          dispatch(getRoles('model:model.game'));
+          return Promise.resolve();
+        },
+        onLeave() {
+          if (optionsWithDefaults.topics) {
+            optionsWithDefaults.topics.forEach((topic) => {
+              dispatch(disconnectedScope(topic));
+            });
+          }
+          return Promise.resolve();
+        },
+        onReceived(args, kwargs, event) {
+          if (kwargs.error) {
+            if (kwargs.error === 'application.error.validation_error') {
+              const [form, errors] = args;
+              dispatch(stopSubmit(form, errors));
+            } else {
+              dispatch(showGenericError(args, kwargs));
             }
-          });
-        }
-      },
-    });
+          } else {
+            const [pk, resourceName, data] = args;
+            const resolvedTopics = optionsWithDefaults.topics.map(
+              (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
+            );
+            resolvedTopics.forEach((topic) => {
+              const actions = {
+                [`${topic}.add_child`]: addChild,
+                [`${topic}.remove_child`]: removeChild,
+                [`${topic}.update_child`]: updateScope,
+              };
+              if (actions[event.topic]) {
+                dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+              }
+            });
+          }
+        },
+      });
+    };
 
 
     class AppContainer extends React.Component {
