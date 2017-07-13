@@ -89,7 +89,7 @@ export function simpl(options) {
 
                 let isLeader = false;
                 runUsers.forEach((ru) => {
-                  if (ru.leader) {
+                  if (ru.data.leader) {
                     isLeader = true;
                   }
                 });
