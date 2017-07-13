@@ -113,23 +113,21 @@ const simpl = recycleState(createReducer(initial, {
       throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.";
     }
     const simpl_id = action.payload;
+    console.log("getCurrentRunUserInfo: simpl_id=", simpl_id);
     const roleTypes = new Set();
-    let foundRunuser;
-
+    let currentRunUser;
     state.runuser.forEach((runuser) => {
       if (runuser.role_name) {
         roleTypes.add(runuser.role_name);
       }
-
       if (runuser.user === simpl_id) {
-        foundRunuser = runuser;
+        currentRunUser = runuser;
       }
     });
-
     // Remove this current_runuser's role and we're left with the "other" role names
-    roleTypes.delete(foundRunuser.role_name);
-    foundRunuser.other_roles = Array.from(roleTypes);
-    return Object.assign({}, state, { current_runuser: foundRunuser });
+    roleTypes.delete(currentRunUser.role_name);
+    currentRunUser.other_roles = Array.from(roleTypes);
+    return Object.assign({}, state, { current_runuser: currentRunUser });
   },
   [SimplActions.getRunUserScenarios](state, action) {
     if (action.payload.error) {
@@ -139,9 +137,11 @@ const simpl = recycleState(createReducer(initial, {
     if (state.treeLoaded && state.rolesLoaded && state.phasesLoaded) {
       connectionStatus = CONNECTION_STATUS.LOADED;
     }
-    let newState = {...state};
-    action.payload.forEach((scenario) => {
-      newState = this.getDataTree(newState, {payload: scenario});
+    const scenarios = action.payload;
+    console.log("getRunUserScenarios: scenarios=", scenarios);
+    let newState = { ...state };
+    scenarios.forEach((scenario) => {
+      newState = this.getDataTree(newState, { payload: scenario });
     });
     // return newState;
     return Object.assign({}, newState, {
