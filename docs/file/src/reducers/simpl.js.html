@@ -140,7 +140,6 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { [key]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
-    console.log(&quot;SimplActions.getRunUsers : action&quot;);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -149,7 +148,6 @@ const simpl = recycleState(createReducer(initial, {
     ), Object.assign({}, state));
   },
   [SimplActions.getDataTree](state, action) {
-    console.log(&quot;SimplActions.getDataTree : action&quot;);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -190,22 +188,19 @@ const simpl = recycleState(createReducer(initial, {
     }
     const simpl_id = action.payload;
     const roleTypes = new Set();
-    let foundRunuser;
-
+    let currentRunUser;
     state.runuser.forEach((runuser) =&gt; {
       if (runuser.role_name) {
         roleTypes.add(runuser.role_name);
       }
-
       if (runuser.user === simpl_id) {
-        foundRunuser = runuser;
+        currentRunUser = runuser;
       }
     });
-
     // Remove this current_runuser&apos;s role and we&apos;re left with the &quot;other&quot; role names
-    roleTypes.delete(foundRunuser.role_name);
-    foundRunuser.other_roles = Array.from(roleTypes);
-    return Object.assign({}, state, { current_runuser: foundRunuser });
+    roleTypes.delete(currentRunUser.role_name);
+    currentRunUser.other_roles = Array.from(roleTypes);
+    return Object.assign({}, state, { current_runuser: currentRunUser });
   },
   [SimplActions.getRunUserScenarios](state, action) {
     if (action.payload.error) {
@@ -215,9 +210,10 @@ const simpl = recycleState(createReducer(initial, {
     if (state.treeLoaded &amp;&amp; state.rolesLoaded &amp;&amp; state.phasesLoaded) {
       connectionStatus = CONNECTION_STATUS.LOADED;
     }
-    let newState = {...state};
-    action.payload.forEach((scenario) =&gt; {
-      newState = this.getDataTree(newState, {payload: scenario});
+    const scenarios = action.payload;
+    let newState = { ...state };
+    scenarios.forEach((scenario) =&gt; {
+      newState = this.getDataTree(newState, { payload: scenario });
     });
     // return newState;
     return Object.assign({}, newState, {

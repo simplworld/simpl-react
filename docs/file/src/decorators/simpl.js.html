@@ -146,70 +146,77 @@ export function simpl(options) {
       progressComponent: optionsWithDefaults.progressComponent,
     });
 
-    const mapDispatchToProps = (dispatch) =&gt; ({
-      setConnectionStatus(status) {
-        dispatch(setConnectionStatus(status));
-      },
-      onReady() {
-        if (optionsWithDefaults.topics) {
-          const authid = parseInt(options.authid, 10);
-          optionsWithDefaults.topics.forEach((topic) =&gt; {
-            console.log(&quot;onReady: topic=&quot;, topic);
-            dispatch(connectedScope(topic));
-            dispatch(
-              getRunUsers(topic)
-            ).then((action) =&gt; {
-              const runUsers = action.payload;
-              runUsers.forEach((ru) =&gt; {
-                if (ru.data.user === authid) {  // TODO if leader, also get player scenarios
-                  dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
-                }
+    const mapDispatchToProps = (dispatch) =&gt; {
+      return ({
+        setConnectionStatus(status) {
+          dispatch(setConnectionStatus(status));
+        },
+        onReady() {
+          if (optionsWithDefaults.topics) {
+            const authid = parseInt(options.authid, 10);
+            optionsWithDefaults.topics.forEach((topic) =&gt; {
+              dispatch(connectedScope(topic));
+              dispatch(
+                getRunUsers(topic)
+              ).then((action) =&gt; {
+                const runUsers = action.payload;
+                let isLeader = false;
+                runUsers.forEach((ru) =&gt; {
+                  if (ru.data.user === authid &amp;&amp; ru.data.leader) {
+                    isLeader = true;
+                  }
+                });
+                runUsers.forEach((ru) =&gt; {
+                  if (ru.data.user === authid || isLeader) {  // if leader, also get player scenarios
+                    dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                  }
+                });
+              }).then(() =&gt; {
+                dispatch(getCurrentRunUserInfo(authid));
               });
-            }).then(() =&gt; {
-              dispatch(getCurrentRunUserInfo(authid));
+              dispatch(getCurrentRunPhase(topic));
+              dispatch(getDataTree(topic));
             });
-            dispatch(getCurrentRunPhase(topic));
-            dispatch(getDataTree(topic));
-          });
-        }
-        dispatch(getPhases(&apos;model:model.game&apos;));
-        dispatch(getRoles(&apos;model:model.game&apos;));
-        return Promise.resolve();
-      },
-      onLeave() {
-        if (optionsWithDefaults.topics) {
-          optionsWithDefaults.topics.forEach((topic) =&gt; {
-            dispatch(disconnectedScope(topic));
-          });
-        }
-        return Promise.resolve();
-      },
-      onReceived(args, kwargs, event) {
-        if (kwargs.error) {
-          if (kwargs.error === &apos;application.error.validation_error&apos;) {
-            const [form, errors] = args;
-            dispatch(stopSubmit(form, errors));
-          } else {
-            dispatch(showGenericError(args, kwargs));
           }
-        } else {
-          const [pk, resourceName, data] = args;
-          const resolvedTopics = optionsWithDefaults.topics.map(
-            (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
-          );
-          resolvedTopics.forEach((topic) =&gt; {
-            const actions = {
-              [`${topic}.add_child`]: addChild,
-              [`${topic}.remove_child`]: removeChild,
-              [`${topic}.update_child`]: updateScope,
-            };
-            if (actions[event.topic]) {
-              dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+          dispatch(getPhases(&apos;model:model.game&apos;));
+          dispatch(getRoles(&apos;model:model.game&apos;));
+          return Promise.resolve();
+        },
+        onLeave() {
+          if (optionsWithDefaults.topics) {
+            optionsWithDefaults.topics.forEach((topic) =&gt; {
+              dispatch(disconnectedScope(topic));
+            });
+          }
+          return Promise.resolve();
+        },
+        onReceived(args, kwargs, event) {
+          if (kwargs.error) {
+            if (kwargs.error === &apos;application.error.validation_error&apos;) {
+              const [form, errors] = args;
+              dispatch(stopSubmit(form, errors));
+            } else {
+              dispatch(showGenericError(args, kwargs));
             }
-          });
-        }
-      },
-    });
+          } else {
+            const [pk, resourceName, data] = args;
+            const resolvedTopics = optionsWithDefaults.topics.map(
+              (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
+            );
+            resolvedTopics.forEach((topic) =&gt; {
+              const actions = {
+                [`${topic}.add_child`]: addChild,
+                [`${topic}.remove_child`]: removeChild,
+                [`${topic}.update_child`]: updateScope,
+              };
+              if (actions[event.topic]) {
+                dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+              }
+            });
+          }
+        },
+      });
+    };
 
 
     class AppContainer extends React.Component {
