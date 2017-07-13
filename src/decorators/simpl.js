@@ -86,13 +86,22 @@ export function simpl(options) {
               ).then((action) => {
                 const runUsers = action.payload;
                 console.log('onReady: runUsers=', runUsers);
-                const result = dispatch(getCurrentRunUserInfo(authid));
-                console.log('onReady: getCurrentRunUserInfo -> result: ', result);
+
+                let isLeader = false;
                 runUsers.forEach((ru) => {
-                  if (ru.data.user === authid) {  // if leader, also get player scenarios
+                  if (ru.leader) {
+                    isLeader = true;
+                  }
+                });
+                console.log('onReady: isLeader=', isLeader);
+
+                runUsers.forEach((ru) => {
+                  if (ru.data.user === authid || isLeader) {  // if leader, also get player scenarios
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                   }
                 });
+              }).then(() => {
+                dispatch(getCurrentRunUserInfo(authid));
               });
               dispatch(getCurrentRunPhase(topic));
               dispatch(getDataTree(topic));
