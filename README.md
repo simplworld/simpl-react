@@ -1,6 +1,6 @@
 ### Installation
 
-    $ npm install git+ssh://git@learninglab.githost.io/ll/simpl-react.git --save
+    $ npm install git+ssh://git@github.com:simplworld/ll/simpl-react.git --save
 
 ### Development
 
