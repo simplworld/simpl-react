@@ -60,6 +60,9 @@ const simpl = recycleState(createReducer(initial, {
   [SimplActions.removeChild](state, action) {
     const key = action.payload.resource_name;
     const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);
+    if (index === -1) {
+      return { ...state };
+    }
     const updated = popAtIndex(state[key], index);
     return Object.assign({}, state, { [key]: updated });
   },
