@@ -159,6 +159,9 @@ export function simpl(options) {
               dispatch(
                 getRunUsers(topic)
               ).then((action) =&gt; {
+                if (action.error) {
+                  throw new Error(`${action.payload.error}: ${action.payload.args.join(&apos;; &apos;)}`);
+                }
                 const runUsers = action.payload;
                 let isLeader = false;
                 runUsers.forEach((ru) =&gt; {
