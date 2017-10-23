@@ -57,7 +57,6 @@ export const updateScope = createAction('simpl/SCOPE_UPDATE');
 /**
  * Dispatched when the client is ready to listen to a specific scope.
  *
- * Currently only used for debugging purposes.
  * @function
  * @memberof Simpl.actions.simpl
  * @param {string} scope - the scope's topic
@@ -70,7 +69,6 @@ export const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...a
 /**
  * Dispatched when the client gets disconnected and can't listen to the scope.
  *
- * Currently only used for debugging purposes.
  * @function
  * @memberof Simpl.actions.simpl
  * @param {string} topic - the scope's topic
