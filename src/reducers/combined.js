@@ -5,7 +5,6 @@
 import { combineReducers } from 'redux';
 
 import { routerReducer as routing } from 'react-router-redux';
-import { reducer as form } from 'redux-form';
 
 import simpl from './simpl';
 
@@ -35,7 +34,6 @@ export function simplReducers(reducers) {
   const combined = Object.assign({}, reducers, {
     routing,
     simpl,
-    form,
   });
   return combineReducers(combined);
 }

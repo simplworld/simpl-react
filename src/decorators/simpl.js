@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { stopSubmit } from 'redux-form';
 
 import _ from 'lodash';
 
@@ -119,12 +118,7 @@ export function simpl(options) {
         },
         onReceived(args, kwargs, event) {
           if (kwargs.error) {
-            if (kwargs.error === 'application.error.validation_error') {
-              const [form, errors] = args;
-              dispatch(stopSubmit(form, errors));
-            } else {
               dispatch(showGenericError(args, kwargs));
-            }
           } else {
             const [pk, resourceName, data] = args;
             const resolvedTopics = optionsWithDefaults.topics.map(
