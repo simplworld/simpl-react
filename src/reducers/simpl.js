@@ -117,15 +117,15 @@ const simpl = recycleState(createReducer(initial, {
     const roleTypes = new Set();
     let currentRunUser;
     state.runuser.forEach((runuser) => {
-      if (runuser.role_name) {
+      if (runuser.user === simpl_id) {
+        currentRunUser = runuser;   // fairly useless unless runuser is a player
+      }
+      if (runuser.role_name !== null && runuser.role_name !== undefined) { // runuser is a player
         roleTypes.add(runuser.role_name);
       }
-      if (runuser.user === simpl_id) {
-        currentRunUser = runuser;   // fairly meaningless unless user is a player
-      }
     });
-    // Remove this current_runuser's role and we're left with the "other" role name
-    if (runuser.role_name) {
+    if (currentRunUser && currentRunUser.role_name !== null && currentRunUser.role_name !== undefined) {
+      // Remove current runuser's role and we're left with the "other" role names
       roleTypes.delete(currentRunUser.role_name);
       currentRunUser.other_roles = Array.from(roleTypes);
     }
