@@ -63,6 +63,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/reducers/simpl.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { createReducer } from &apos;redux-create-reducer&apos;;
 import recycleState from &apos;redux-recycle&apos;;
+import { isNil } from &apos;lodash&apos;;
 
 const SimplActions = require(&apos;../actions/simpl&apos;);
 const StateActions = require(&apos;../actions/state&apos;);
@@ -183,11 +184,11 @@ const simpl = recycleState(createReducer(initial, {
       if (runuser.user === simpl_id) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
-      if (runuser.role_name !== null &amp;&amp; runuser.role_name !== undefined) { // runuser is a player
+      if (!isNil(runuser.role_name)) { // runuser is a player
         roleTypes.add(runuser.role_name);
       }
     });
-    if (currentRunUser &amp;&amp; currentRunUser.role_name !== null &amp;&amp; currentRunUser.role_name !== undefined) {
+    if (!isNil(currentRunUser) &amp;&amp; !isNil(currentRunUser.role_name)) {
       // Remove current runuser&apos;s role and we&apos;re left with the &quot;other&quot; role names
       roleTypes.delete(currentRunUser.role_name);
       currentRunUser.other_roles = Array.from(roleTypes);

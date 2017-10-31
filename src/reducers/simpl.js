@@ -1,5 +1,6 @@
 import { createReducer } from 'redux-create-reducer';
 import recycleState from 'redux-recycle';
+import { isNil } from 'lodash';
 
 const SimplActions = require('../actions/simpl');
 const StateActions = require('../actions/state');
@@ -120,11 +121,11 @@ const simpl = recycleState(createReducer(initial, {
       if (runuser.user === simpl_id) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
-      if (runuser.role_name !== null && runuser.role_name !== undefined) { // runuser is a player
+      if (!isNil(runuser.role_name)) { // runuser is a player
         roleTypes.add(runuser.role_name);
       }
     });
-    if (currentRunUser && currentRunUser.role_name !== null && currentRunUser.role_name !== undefined) {
+    if (!isNil(currentRunUser) && !isNil(currentRunUser.role_name)) {
       // Remove current runuser's role and we're left with the "other" role names
       roleTypes.delete(currentRunUser.role_name);
       currentRunUser.other_roles = Array.from(roleTypes);
