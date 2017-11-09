@@ -86,17 +86,13 @@ export function simpl(options) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
-                let isLeader = false;
-                runUsers.forEach((ru) => {
-                  if (ru.data.user === authid && ru.data.leader) {
-                    isLeader = true;
-                  }
-                });
-                runUsers.forEach((ru) => {
-                  if (ru.data.user === authid || isLeader) {  // if leader, also get player scenarios
+                for (let i = 0; i < runUsers.length; i++) {
+                  const ru = runUsers[i];
+                  if (ru.data.user === authid) {  // only load current user's scenarios
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                    break;
                   }
-                });
+                }
               }).then(() => {
                 dispatch(getCurrentRunUserInfo(authid));
               });
