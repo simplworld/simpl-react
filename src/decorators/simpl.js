@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import _ from 'lodash';
 
@@ -13,10 +13,10 @@ import {
   // eslint-disable-next-line comma-dangle
   getRunUserScenarios, showGenericError, setConnectionStatus
 } from '../actions/simpl';
-import { CONNECTION_STATUS } from '../constants';
+import {CONNECTION_STATUS} from '../constants';
 
-import { subscribes } from './pubsub/subscribes';
-import { wampOptionsWithDefaults, wampSetup } from './utils';
+import {subscribes} from './pubsub/subscribes';
+import {wampOptionsWithDefaults, wampSetup} from './utils';
 
 
 /**
@@ -79,9 +79,8 @@ export function simpl(options) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
               dispatch(connectedScope(topic));
-              dispatch(
-                getRunUsers(topic)
-              ).then((action) => {
+              console.log(`dispatching getRunUsers(${topic})`);
+              dispatch(getRunUsers(topic)).then((action) => {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
@@ -89,18 +88,24 @@ export function simpl(options) {
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   if (ru.data.user === authid) {  // only load current user's scenarios
+                    console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                     break;
                   }
                 }
               }).then(() => {
+                console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
               });
+              console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
+              console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic));
             });
           }
+          console.log("getPhases('model:model.game')");
           dispatch(getPhases('model:model.game'));
+          console.log("getRoles('model:model.game')");
           dispatch(getRoles('model:model.game'));
           return Promise.resolve();
         },
@@ -114,7 +119,7 @@ export function simpl(options) {
         },
         onReceived(args, kwargs, event) {
           if (kwargs.error) {
-              dispatch(showGenericError(args, kwargs));
+            dispatch(showGenericError(args, kwargs));
           } else {
             const [pk, resourceName, data] = args;
             const resolvedTopics = optionsWithDefaults.topics.map(
@@ -144,6 +149,7 @@ export function simpl(options) {
         }
         return this.props !== nextProps || this.state !== nextState;
       }
+
       render() {
         return <Component {...this.props} {...this.state} />;
       }
@@ -160,9 +166,9 @@ export function simpl(options) {
         `${topic}.update_child`,
         `${topic}.remove_child`,
       ])
-    , [
-      `model:error.${options.authid}`,
-    ]);
+      , [
+        `model:error.${options.authid}`,
+      ]);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
     // eslint-disable-next-line react/no-multi-comp
@@ -171,16 +177,18 @@ export function simpl(options) {
         wampSetup(this, optionsWithDefaults);
         window.addEventListener('beforeunload', this.props.onLeave);
       }
+
       componentWillUnmount() {
         window.removeEventListener('beforeunload', this.props.onLeave);
       }
+
       render() {
         if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {
           return (
             <div className={`simpl simpl-${this.props.connectionStatus}`}>
               <this.props.progressComponent {...this.props} {...this.state} />
             </div>
-            );
+          );
         }
         return (
           <div className={`simpl simpl-${this.props.connectionStatus}`}>
