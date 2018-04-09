@@ -94,9 +94,14 @@ export function simpl(options) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
+                console.log('getRunUsers -> runUsers: ${runUsers}')
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
-                  if (ru.data.user === authid) {
+                  if (optionsWithDefaults.loadAllRunUserScenarios) {
+                    console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
+                    dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                  }
+                  else if (ru.data.user === authid) { // only get this user's scenarios
                     console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                     break;
