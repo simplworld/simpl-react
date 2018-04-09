@@ -70,7 +70,7 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadAllRunUserScenarios = false;
     }
-    console.log('optionsWithDefaults.loadAllRunUserScenarios: ${optionsWithDefaults.loadAllRunUserScenarios}');
+    console.log(`optionsWithDefaults.loadAllRunUserScenarios: ${optionsWithDefaults.loadAllRunUserScenarios}`);
 
     const mapStateToProps = (state) => ({
       connectionStatus: state.simpl.connectionStatus,
@@ -94,7 +94,7 @@ export function simpl(options) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
-                console.log('getRunUsers -> runUsers: ${runUsers}')
+                console.log(`getRunUsers -> runUsers: ${runUsers}`)
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   if (optionsWithDefaults.loadAllRunUserScenarios) {
