@@ -31,7 +31,8 @@ import {wampOptionsWithDefaults, wampSetup} from './utils';
  *   root_topic: 'org.example.namespace',
  *   prefixes: {
  *     special: 'org.example.namespace.special.shortcut'
- *   }
+ *   },
+ *   loadAllRunUserScenarios: false
  * })(MyComponent);
 
  * @function
@@ -55,6 +56,8 @@ import {wampOptionsWithDefaults, wampSetup} from './utils';
  * be used for the `'model'` prefix.
  * @param {Object} [options.prefixes] - An object mapping names to topic
  * prefixes, to be used as shortcuts.
+ * @param {boolean} options.loadAllRunUserScenarios - If false, load only this user's Scenarios.
+ * If true, load all Runuser Scenarios for the subscribed runs.
  */
 export function simpl(options) {
   return (Component) => {
@@ -62,8 +65,14 @@ export function simpl(options) {
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
     }
+    if (options.hasOwnProperty('loadAllRunUserScenarios')) {
+      optionsWithDefaults.loadAllRunUserScenarios = options.loadAllRunUserScenarios;
+    } else {
+      optionsWithDefaults.loadAllRunUserScenarios = false;
+    }
 
-    const mapStateToProps = (state) => ({
+    const
+      mapStateToProps = (state) => ({
       connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
@@ -87,7 +96,7 @@ export function simpl(options) {
                 const runUsers = action.payload;
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
-                  if (ru.data.user === authid) {  // only load current user's scenarios
+                  if (ru.data.user === authid || optionsWithDefaults.loadAllRunUserScenarios) {
                     console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                     break;
@@ -104,9 +113,9 @@ export function simpl(options) {
             });
           }
           console.log("getPhases('model:model.game')");
-          dispatch(getPhases('model:model.game')); // TODO still needed?
+          dispatch(getPhases('model:model.game'));
           console.log("getRoles('model:model.game')");
-          dispatch(getRoles('model:model.game')); // TODO still needed?
+          dispatch(getRoles('model:model.game'));
           return Promise.resolve();
         },
         onLeave() {

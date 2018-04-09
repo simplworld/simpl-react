@@ -77,7 +77,6 @@ const simpl = recycleState(createReducer(initial, {
     ), Object.assign({}, state));
   },
   [SimplActions.getDataTree](state, action) {
-    console.log('reducing SimplActions.getDataTree');
     if (action.payload.error) {
       return this.handleError(state, action);
     }
