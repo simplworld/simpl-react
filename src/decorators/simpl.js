@@ -70,9 +70,9 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadAllRunUserScenarios = false;
     }
+    console.log('optionsWithDefaults.loadAllRunUserScenarios: ${optionsWithDefaults.loadAllRunUserScenarios}');
 
-    const
-      mapStateToProps = (state) => ({
+    const mapStateToProps = (state) => ({
       connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
@@ -96,7 +96,7 @@ export function simpl(options) {
                 const runUsers = action.payload;
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
-                  if (ru.data.user === authid || optionsWithDefaults.loadAllRunUserScenarios) {
+                  if (ru.data.user === authid) {
                     console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                     break;
