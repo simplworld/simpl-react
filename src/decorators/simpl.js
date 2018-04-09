@@ -104,9 +104,9 @@ export function simpl(options) {
             });
           }
           console.log("getPhases('model:model.game')");
-          dispatch(getPhases('model:model.game'));
+          dispatch(getPhases('model:model.game')); // TODO still needed?
           console.log("getRoles('model:model.game')");
-          dispatch(getRoles('model:model.game'));
+          dispatch(getRoles('model:model.game')); // TODO still needed?
           return Promise.resolve();
         },
         onLeave() {
