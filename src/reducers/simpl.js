@@ -51,7 +51,7 @@ const simpl = recycleState(createReducer(initial, {
   },
   getDataTree(state, action) {
     const newState = this.addChild(state, action);
-    console.log('getDataTree: action.payload.children: ', action.payload.children);
+    // console.log('getDataTree: action.payload.children: ', action.payload.children);
     return action.payload.children.reduce(
       (memo, child) => this.getDataTree(memo, { payload: child })
     , newState);
