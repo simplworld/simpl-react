@@ -32,7 +32,7 @@ import {wampOptionsWithDefaults, wampSetup} from './utils';
  *   prefixes: {
  *     special: 'org.example.namespace.special.shortcut'
  *   },
- *   loadAllRunUserScenarios: false
+ *   loadAllScenarios: false
  * })(MyComponent);
 
  * @function
@@ -56,8 +56,8 @@ import {wampOptionsWithDefaults, wampSetup} from './utils';
  * be used for the `'model'` prefix.
  * @param {Object} [options.prefixes] - An object mapping names to topic
  * prefixes, to be used as shortcuts.
- * @param {boolean} options.loadAllRunUserScenarios - If false, load only this user's Scenarios.
- * If true, load all Runuser Scenarios for the subscribed runs.
+ * @param {boolean} options.loadAllScenarios - If false, load only world scenarios and this user's Scenarios.
+ * If true, load all Scenarios for the subscribed runs.
  */
 export function simpl(options) {
   return (Component) => {
@@ -65,12 +65,12 @@ export function simpl(options) {
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
     }
-    if (options.hasOwnProperty('loadAllRunUserScenarios')) {
-      optionsWithDefaults.loadAllRunUserScenarios = options.loadAllRunUserScenarios;
+    if (options.hasOwnProperty('loadAllScenarios')) {
+      optionsWithDefaults.loadAllScenarios = options.loadAllScenarios;
     } else {
-      optionsWithDefaults.loadAllRunUserScenarios = false;
+      optionsWithDefaults.loadAllScenarios = false;
     }
-    console.log(`optionsWithDefaults.loadAllRunUserScenarios: ${optionsWithDefaults.loadAllRunUserScenarios}`);
+    console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
 
     const mapStateToProps = (state) => ({
       connectionStatus: state.simpl.connectionStatus,
@@ -97,7 +97,7 @@ export function simpl(options) {
                 console.log(`getRunUsers -> runUsers: ${runUsers}`)
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
-                  if (optionsWithDefaults.loadAllRunUserScenarios) {
+                  if (optionsWithDefaults.loadAllScenarios) {
                     console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                   }
@@ -114,7 +114,10 @@ export function simpl(options) {
               console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
               console.log(`dispatching getDataTree(${topic})`);
-              dispatch(getDataTree(topic));
+              dispatch(getDataTree(topic)).then((action) => {
+                const children = action.payload;
+                console.log(`getDataTree -> payload: ${children}`)
+              });
             });
           }
           console.log("getPhases('model:model.game')");
