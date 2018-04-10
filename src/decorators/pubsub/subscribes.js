@@ -69,7 +69,7 @@ export function subscribes(topics, options = {}, staticMethods = {}) {
       subscribeTo(session) {
         const handler = this.props.onMessage.bind(this);
         const resolvedTopics = this.getTopics();
-
+        console.log(`subscribeTo: resolvedTopics:`, resolvedTopics);
         resolvedTopics.forEach((topic) => {
           session.subscribe(topic, handler, optionsWithDefaults)
           .then(subscription => {

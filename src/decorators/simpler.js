@@ -89,6 +89,7 @@ export function simpler(options) {
             optionsWithDefaults.topics.forEach((topic) => {
               dispatch(connectedScope(topic));
               console.log(`dispatching getRunUsers(${topic})`);
+
               dispatch(getRunUsers(topic)).then((action) => {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
@@ -111,8 +112,10 @@ export function simpler(options) {
                 console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
               });
+
               console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
+
               console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic)).then((action) => {
                 const children = action.payload;
@@ -139,9 +142,11 @@ export function simpler(options) {
             dispatch(showGenericError(args, kwargs));
           } else {
             const [pk, resourceName, data] = args;
+            console.log(`onReceived: args: `, args);
             const resolvedTopics = optionsWithDefaults.topics.map(
               (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
             );
+            console.log(`onReceived: resolvedTopics: `, resolvedTopics);
             resolvedTopics.forEach((topic) => {
               const actions = {
                 [`${topic}.add_child`]: addChild,
@@ -149,7 +154,8 @@ export function simpler(options) {
                 [`${topic}.update_child`]: updateScope,
               };
               if (actions[event.topic]) {
-                dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+                console.log(`onReceived: actions[event.topic]: `, actions[event.topic]);
+                dispatch(actions[event.topic]({resource_name: resourceName, data, pk}));
               }
             });
           }
