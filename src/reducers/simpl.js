@@ -72,6 +72,7 @@ const simpl = recycleState(createReducer(initial, {
     if (action.payload.error) {
       return this.handleError(state, action);
     }
+    console.log('reduce SimplActions.getRunUsers: action.payload: ', action.payload);
     return action.payload.reduce((memo, child) => (
       this.addChild(memo, { payload: child })
     ), Object.assign({}, state));
