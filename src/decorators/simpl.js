@@ -94,7 +94,7 @@ export function simpl(options) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
-                console.log(`getRunUsers -> runUsers: ${runUsers}`)
+                console.log(`getRunUsers -> runUsers:`, runUsers);
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   if (optionsWithDefaults.loadAllScenarios) {
@@ -116,7 +116,7 @@ export function simpl(options) {
               console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic)).then((action) => {
                 const children = action.payload;
-                console.log(`getDataTree -> payload: ${children}`)
+                console.log(`getDataTree(${topic}): action.payload:`, children)
               });
             });
           }
