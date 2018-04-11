@@ -115,8 +115,7 @@ export function simpl(options) {
               dispatch(getCurrentRunPhase(topic));
               console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic)).then((action) => {
-                const children = action.payload;
-                console.log(`getDataTree(${topic}): action.payload:`, children)
+                console.log(`getDataTree(${topic}): action.payload:`, action.payload)
               });
             });
           }

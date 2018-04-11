@@ -51,7 +51,6 @@ const simpl = recycleState(createReducer(initial, {
   },
   getDataTree(state, action) {
     const newState = this.addChild(state, action);
-    // console.log('getDataTree: action.payload.children: ', action.payload.children);
     return action.payload.children.reduce(
       (memo, child) => this.getDataTree(memo, { payload: child })
     , newState);
@@ -72,7 +71,6 @@ const simpl = recycleState(createReducer(initial, {
     if (action.payload.error) {
       return this.handleError(state, action);
     }
-    console.log('reduce SimplActions.getRunUsers: action.payload: ', action.payload);
     return action.payload.reduce((memo, child) => (
       this.addChild(memo, { payload: child })
     ), Object.assign({}, state));
