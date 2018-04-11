@@ -85,7 +85,7 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          const childTopics = [];
+          let childTopics = [];
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
@@ -122,6 +122,7 @@ export function simpl(options) {
                 for (let i = 0; i < children.length; i++) {
                   const child = children[i];
                   const topic = `model:model.${child.resource_name}.${child.pk}`;
+                  console.log(`child topic: ${topic}`);
                   childTopics.push(topic);
                 }
               });
