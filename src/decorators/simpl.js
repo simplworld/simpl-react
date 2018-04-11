@@ -85,7 +85,7 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          let childTopics = [];
+          console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
@@ -128,7 +128,6 @@ export function simpl(options) {
               });
             });
           }
-          console.log(`added childTopics: `, childTopics);
           console.log(`getPhases('model:model.game')`);
           dispatch(getPhases('model:model.game'));
           console.log(`getRoles('model:model.game')`);
@@ -136,6 +135,7 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onLeave() {
+          console.log(`onLeave::`);
           if (optionsWithDefaults.topics) {
             optionsWithDefaults.topics.forEach((topic) => {
               dispatch(disconnectedScope(topic));
@@ -144,6 +144,8 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceived(args, kwargs, event) {
+          console.log(`onLeave:: args: `, args, `, event: `, event);
+
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -195,7 +197,6 @@ export function simpl(options) {
       , [
         `model:error.${options.authid}`,
       ]);
-    console.log(`subscribing to appTopics: `, appTopics);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
     // eslint-disable-next-line react/no-multi-comp
