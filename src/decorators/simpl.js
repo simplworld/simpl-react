@@ -118,6 +118,12 @@ export function simpl(options) {
               console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic)).then((action) => {
                 console.log(`getDataTree(${topic}): action.payload:`, action.payload);
+                const children = action.payload.children;
+                for (let i = 0; i < children.length; i++) {
+                  const child = children[i];
+                  const topic = `model:model.${child.resource_name}.${child.pk}`;
+                  childTopics.push(topic);
+                }
               });
             });
           }
