@@ -71,6 +71,7 @@ export function simpl(options) {
       optionsWithDefaults.loadAllScenarios = false;
     }
     console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
+    console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mapStateToProps = (state) => ({
       connectionStatus: state.simpl.connectionStatus,
@@ -84,6 +85,7 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
+          const childTopics = [];
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
@@ -115,13 +117,14 @@ export function simpl(options) {
               dispatch(getCurrentRunPhase(topic));
               console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic)).then((action) => {
-                console.log(`getDataTree(${topic}): action.payload:`, action.payload)
+                console.log(`getDataTree(${topic}): action.payload:`, action.payload);
               });
             });
           }
-          console.log("getPhases('model:model.game')");
+          console.log(`added childTopics: `, childTopics);
+          console.log(`getPhases('model:model.game')`);
           dispatch(getPhases('model:model.game'));
-          console.log("getRoles('model:model.game')");
+          console.log(`getRoles('model:model.game')`);
           dispatch(getRoles('model:model.game'));
           return Promise.resolve();
         },
@@ -185,6 +188,7 @@ export function simpl(options) {
       , [
         `model:error.${options.authid}`,
       ]);
+    console.log(`subscribing to appTopics: `, appTopics);
     const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
     // eslint-disable-next-line react/no-multi-comp
