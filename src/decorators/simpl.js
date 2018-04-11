@@ -88,7 +88,8 @@ export function simpl(options) {
           console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
-            optionsWithDefaults.topics.forEach((topic) => {
+            const topics = optionsWithDefaults.topics.slice(0);
+            topics.forEach((topic) => {
               dispatch(connectedScope(topic));
               console.log(`dispatching getRunUsers(${topic})`);
               dispatch(getRunUsers(topic)).then((action) => {
@@ -122,7 +123,8 @@ export function simpl(options) {
                 for (let i = 0; i < children.length; i++) {
                   const child = children[i];
                   const topic = `model:model.${child.resource_name}.${child.pk}`;
-                  console.log(`child topic: ${topic}`);
+                  console.log(`add child topic: ${topic}`);
+                  optionsWithDefaults.topics.push(topic);
                 }
               });
             });
