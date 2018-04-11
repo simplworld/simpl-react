@@ -123,8 +123,8 @@ export function simpl(options) {
                 for (let i = 0; i < children.length; i++) {
                   const child = children[i];
                   const topic = `model:model.${child.resource_name}.${child.pk}`;
-                  console.log(`add child topic: ${topic}`);
-                  optionsWithDefaults.topics.push(topic);
+                  console.log(`child topic: ${topic}`);
+                  //TODO subscribe to topic
                 }
               });
             });
@@ -145,7 +145,7 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceived(args, kwargs, event) {
-          console.log(`onLeave:: args: `, args, `, event: `, event);
+          console.log(`onReceived:: args: `, args, `, event: `, event);
 
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
