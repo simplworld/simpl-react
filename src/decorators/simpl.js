@@ -123,7 +123,6 @@ export function simpl(options) {
                   const child = children[i];
                   const topic = `model:model.${child.resource_name}.${child.pk}`;
                   console.log(`child topic: ${topic}`);
-                  childTopics.push(topic);
                 }
               });
             });
