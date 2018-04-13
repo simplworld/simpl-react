@@ -131,7 +131,7 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onLeave() {
-          const topics = this.getState(dispatch).topics;
+          const topics = this.getState(dispatch).simpl.topics;
           console.log(`onLeave:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) => {
@@ -145,7 +145,7 @@ export function simpl(options) {
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
-            const topics = this.getState(dispatch).topics;
+            const topics = this.getState(dispatch).simpl.topics;
             console.log(`onReceived:: topics: `, topics);
             const [pk, resourceName, data] = args;
             if (topics) {
