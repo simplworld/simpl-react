@@ -73,25 +73,23 @@ export function simpl(options) {
     console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
+    const mergeProps = (propsFromState, propsFromDispatch) => {
+      return {
+        onLeave() {
+          return propsFromDispatch.onLeaveWithTopics(propsFromState.topics);
+        },
+        onReceived(args, kwargs, event) {
+          return propsFromDispatch.onReceivedWithTopics(args, kwargs, event, propsFromState.topics);
+        },
+      };
+    };
+
     const mapStateToProps = (state) => ({
       topics: state.simpl.topics,
       connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
     });
-
-    const mergeProps = (propsFromState, propsFromDispatch) => {
-      return {
-        onLeave() {
-          const topics = propsFromState.simpl.topics;
-          return propsFromDispatch.onLeaveWithTopics(topics);
-        },
-        onReceived(args, kwargs, event) {
-          const topics = propsFromState.simpl.topics;
-          return propsFromDispatch.onReceivedWithTopics(args, kwargs, event, topics);
-        },
-      };
-    };
 
     const mapDispatchToProps = (dispatch) => {
       return ({
