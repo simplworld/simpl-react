@@ -74,8 +74,14 @@ export function simpl(options) {
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const getState = (dispatch) => new Promise((resolve) => {
-      dispatch((dispatch, getState) => {resolve(getState())})
+      dispatch((dispatch, getState) => {
+        resolve(getState())
+      });
     })
+
+    // const mergeProps = (stateProps, dispatchProps, ownProps) => {
+    //
+    // };
 
     const mapStateToProps = (state) => ({
       topics: state.simpl.topics,
@@ -90,7 +96,7 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          console.log(`onReady::`);
+          console.log(`onReady:: ownProps:`, ownProps);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
@@ -142,10 +148,11 @@ export function simpl(options) {
         },
         onReceived(args, kwargs, event) {
           console.log(`onReceived:: args: `, args, `, event: `, event);
+          console.log(`onReceived:: ownProps: `, ownProps);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
-            const topics = this.getState(dispatch).simpl.topics;
+            const topics = this.getState(dispatch).topics;
             console.log(`onReceived:: topics: `, topics);
             const [pk, resourceName, data] = args;
             if (topics) {
@@ -159,6 +166,7 @@ export function simpl(options) {
                   [`${topic}.update_child`]: updateScope,
                 };
                 if (actions[event.topic]) {
+                  console.log("dispatching: ", actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                 }
               });
