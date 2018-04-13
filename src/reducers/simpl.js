@@ -56,12 +56,12 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { topics });
   },
   getDataTree(state, action) {
-    const newState = this.addChild(state, action);
+    let newState = this.addChild(state, action);
     const children = action.payload.children;
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
       if (child.resource_name === 'world' || child.resource_name === 'runuser') {
-        this.addTopic(state, `model:model.${child.resource_name}.${child.pk}`);
+        newState = this.addTopic(newState, `model:model.${child.resource_name}.${child.pk}`);
       }
     }
     return children.reduce(
