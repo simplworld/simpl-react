@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import _ from 'lodash';
 
@@ -13,10 +13,10 @@ import {
   // eslint-disable-next-line comma-dangle
   getRunUserScenarios, showGenericError, setConnectionStatus
 } from '../actions/simpl';
-import {CONNECTION_STATUS} from '../constants';
+import { CONNECTION_STATUS } from '../constants';
 
-import {subscribes} from './pubsub/subscribes';
-import {wampOptionsWithDefaults, wampSetup} from './utils';
+import { subscribes } from './pubsub/subscribes';
+import { wampOptionsWithDefaults, wampSetup } from './utils';
 
 
 /**
@@ -74,6 +74,7 @@ export function simpl(options) {
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mapStateToProps = (state) => ({
+      topics: state.simpl.topics,
       connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
@@ -117,16 +118,7 @@ export function simpl(options) {
               console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
               console.log(`dispatching getDataTree(${topic})`);
-              dispatch(getDataTree(topic)).then((action) => {
-                console.log(`getDataTree(${topic}): action.payload:`, action.payload);
-                const children = action.payload.children;
-                for (let i = 0; i < children.length; i++) {
-                  const child = children[i];
-                  const topic = `model:model.${child.resource_name}.${child.pk}`;
-                  console.log(`child topic: ${topic}`);
-                  //TODO subscribe to topic
-                }
-              });
+              dispatch(getDataTree(topic));
             });
           }
           console.log(`getPhases('model:model.game')`);
@@ -228,6 +220,7 @@ export function simpl(options) {
     }
 
     Simpl.propTypes = {
+      topics: PropTypes.array.isRequired,
       connectionStatus: PropTypes.string.isRequired,
       onLeave: PropTypes.func,
       onReady: PropTypes.func.isRequired,

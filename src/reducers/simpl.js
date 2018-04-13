@@ -27,6 +27,7 @@ const initial = {
   phase: [],
   role: [],
   errors: [],
+  topics: [],
 };
 
 const simpl = recycleState(createReducer(initial, {
@@ -49,11 +50,22 @@ const simpl = recycleState(createReducer(initial, {
     }
     return Object.assign({}, state, { [key]: items });
   },
+  addTopic(state, topic) {
+    console.log(`addTopic: ${topic}`);
+    const topics = [...state.topics, topic];
+    return Object.assign({}, state, { topics });
+  },
   getDataTree(state, action) {
     const newState = this.addChild(state, action);
-    return action.payload.children.reduce(
-      (memo, child) => this.getDataTree(memo, { payload: child })
-    , newState);
+    const children = action.payload.children;
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      if (child.resource_name === 'world' || child.resource_name === 'runuser') {
+        this.addTopic(state, `model:model.${child.resource_name}.${child.pk}`);
+      }
+    }
+    return children.reduce(
+      (memo, child) => this.getDataTree(memo, { payload: child }), newState);
   },
   [SimplActions.addChild](state, action) {
     return this.addChild(state, action);
