@@ -58,9 +58,9 @@ const simpl = recycleState(createReducer(initial, {
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
     const children = action.payload.children;
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      if (child.resource_name === 'world' || child.resource_name === 'runuser') {
+    if (action.payload.resource_name === 'run') { // children will be a runuser and worlds
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
         newState = this.addTopic(newState, `model:model.${child.resource_name}.${child.pk}`);
       }
     }
