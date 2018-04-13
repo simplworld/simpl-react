@@ -73,6 +73,10 @@ export function simpl(options) {
     console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
+    const getState = (dispatch) => new Promise((resolve) => {
+      dispatch((dispatch, getState) => {resolve(getState())})
+    })
+
     const mapStateToProps = (state) => ({
       topics: state.simpl.topics,
       connectionStatus: state.simpl.connectionStatus,
@@ -80,7 +84,7 @@ export function simpl(options) {
       progressComponent: optionsWithDefaults.progressComponent,
     });
 
-    const mapDispatchToProps = (dispatch) => {
+    const mapDispatchToProps = (dispatch, ownProps) => {
       return ({
         setConnectionStatus(status) {
           dispatch(setConnectionStatus(status));
@@ -89,8 +93,7 @@ export function simpl(options) {
           console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
-            const topics = optionsWithDefaults.topics.slice(0);
-            topics.forEach((topic) => {
+            optionsWithDefaults.topics.forEach((topic) => {
               dispatch(connectedScope(topic));
               console.log(`dispatching getRunUsers(${topic})`);
               dispatch(getRunUsers(topic)).then((action) => {
@@ -128,9 +131,10 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onLeave() {
-          console.log(`onLeave::`);
-          if (optionsWithDefaults.topics) {
-            optionsWithDefaults.topics.forEach((topic) => {
+          const topics = this.getState(dispatch).topics;
+          console.log(`onLeave:: topics: `, topics);
+          if (topics) {
+            topics.forEach((topic) => {
               dispatch(disconnectedScope(topic));
             });
           }
@@ -138,24 +142,27 @@ export function simpl(options) {
         },
         onReceived(args, kwargs, event) {
           console.log(`onReceived:: args: `, args, `, event: `, event);
-
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
+            const topics = this.getState(dispatch).topics;
+            console.log(`onReceived:: topics: `, topics);
             const [pk, resourceName, data] = args;
-            const resolvedTopics = optionsWithDefaults.topics.map(
-              (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
-            );
-            resolvedTopics.forEach((topic) => {
-              const actions = {
-                [`${topic}.add_child`]: addChild,
-                [`${topic}.remove_child`]: removeChild,
-                [`${topic}.update_child`]: updateScope,
-              };
-              if (actions[event.topic]) {
-                dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
-              }
-            });
+            if (topics) {
+              const resolvedTopics = topics.map(
+                (topic) => AutobahnReact.Connection.currentConnection.session.resolve(topic)
+              );
+              resolvedTopics.forEach((topic) => {
+                const actions = {
+                  [`${topic}.add_child`]: addChild,
+                  [`${topic}.remove_child`]: removeChild,
+                  [`${topic}.update_child`]: updateScope,
+                };
+                if (actions[event.topic]) {
+                  dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+                }
+              });
+            }
           }
         },
       });
@@ -181,17 +188,6 @@ export function simpl(options) {
     };
 
 
-    const appTopics = optionsWithDefaults.topics.reduce(
-      (memo, topic) => memo.concat([
-        `${topic}.add_child`,
-        `${topic}.update_child`,
-        `${topic}.remove_child`,
-      ])
-      , [
-        `model:error.${options.authid}`,
-      ]);
-    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
-
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
       componentWillMount() {
@@ -204,6 +200,17 @@ export function simpl(options) {
       }
 
       render() {
+        const appTopics = this.props.topics.reduce(
+          (memo, topic) => memo.concat([
+            `${topic}.add_child`,
+            `${topic}.update_child`,
+            `${topic}.remove_child`,
+          ])
+          , [
+            `model:error.${options.authid}`,
+          ]);
+        const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
+
         if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {
           return (
             <div className={`simpl simpl-${this.props.connectionStatus}`}>
