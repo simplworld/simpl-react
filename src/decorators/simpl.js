@@ -75,6 +75,8 @@ export function simpl(options) {
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
       return {
+        ...propsFromState,
+        ...propsFromDispatch,
         onLeave() {
           return propsFromDispatch.onLeaveWithTopics(propsFromState.topics);
         },
