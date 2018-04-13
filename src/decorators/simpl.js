@@ -73,16 +73,6 @@ export function simpl(options) {
     console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
-    const getState = (dispatch) => new Promise((resolve) => {
-      dispatch((dispatch, getState) => {
-        resolve(getState())
-      });
-    })
-
-    // const mergeProps = (stateProps, dispatchProps, ownProps) => {
-    //
-    // };
-
     const mapStateToProps = (state) => ({
       topics: state.simpl.topics,
       connectionStatus: state.simpl.connectionStatus,
@@ -90,13 +80,26 @@ export function simpl(options) {
       progressComponent: optionsWithDefaults.progressComponent,
     });
 
-    const mapDispatchToProps = (dispatch, ownProps) => {
+    const mergeProps = (propsFromState, propsFromDispatch) => {
+      return {
+        onLeave() {
+          const topics = propsFromState.simpl.topics;
+          return propsFromDispatch.onLeaveWithTopics(topics);
+        },
+        onReceived(args, kwargs, event) {
+          const topics = propsFromState.simpl.topics;
+          return propsFromDispatch.onReceivedWithTopics(args, kwargs, event, topics);
+        },
+      };
+    };
+
+    const mapDispatchToProps = (dispatch) => {
       return ({
         setConnectionStatus(status) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          console.log(`onReady:: ownProps:`, ownProps);
+          console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
@@ -136,8 +139,7 @@ export function simpl(options) {
           dispatch(getRoles('model:model.game'));
           return Promise.resolve();
         },
-        onLeave() {
-          const topics = this.getState(dispatch).simpl.topics;
+        onLeaveWithTopics(topics) {
           console.log(`onLeave:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) => {
@@ -146,14 +148,11 @@ export function simpl(options) {
           }
           return Promise.resolve();
         },
-        onReceived(args, kwargs, event) {
-          console.log(`onReceived:: args: `, args, `, event: `, event);
-          console.log(`onReceived:: ownProps: `, ownProps);
+        onReceivedWithTopics(args, kwargs, event, topics) {
+          console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
-            const topics = this.getState(dispatch).topics;
-            console.log(`onReceived:: topics: `, topics);
             const [pk, resourceName, data] = args;
             if (topics) {
               const resolvedTopics = topics.map(
@@ -243,7 +242,7 @@ export function simpl(options) {
       setConnectionStatus: PropTypes.func.isRequired,
     };
 
-    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
+    const SimplContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(Simpl);
 
     return SimplContainer;
   };
