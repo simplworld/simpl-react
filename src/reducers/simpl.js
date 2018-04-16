@@ -50,19 +50,20 @@ const simpl = recycleState(createReducer(initial, {
     }
     return Object.assign({}, state, { [key]: items });
   },
-  addTopic(state, topic) {
-    console.log(`addTopic: ${topic}`);
-    const topics = [...state.topics, topic];
+  addTopics(state, newTopics) {
+    const topics = [...state.topics, ...newTopics];
     return Object.assign({}, state, { topics });
   },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
     const children = action.payload.children;
     if (action.payload.resource_name === 'run') { // children will be a runuser and worlds
+      const runTopics = [];
       for (let i = 0; i < children.length; i++) {
         const child = children[i];
-        newState = this.addTopic(newState, `model:model.${child.resource_name}.${child.pk}`);
+        runTopics.push(`model:model.${child.resource_name}.${child.pk}`);
       }
+      newState = this.addTopics(newState, runTopics);
     }
     return children.reduce(
       (memo, child) => this.getDataTree(memo, { payload: child }), newState);
