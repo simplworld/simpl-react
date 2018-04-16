@@ -94,7 +94,8 @@ import { wampOptionsWithDefaults, wampSetup } from &apos;./utils&apos;;
  *   root_topic: &apos;org.example.namespace&apos;,
  *   prefixes: {
  *     special: &apos;org.example.namespace.special.shortcut&apos;
- *   }
+ *   },
+ *   loadAllScenarios: false
  * })(MyComponent);
 
  * @function
@@ -118,6 +119,8 @@ import { wampOptionsWithDefaults, wampSetup } from &apos;./utils&apos;;
  * be used for the `&apos;model&apos;` prefix.
  * @param {Object} [options.prefixes] - An object mapping names to topic
  * prefixes, to be used as shortcuts.
+ * @param {boolean} options.loadAllScenarios - If false, load only world scenarios and this user&apos;s Scenarios.
+ * If true, load all Scenarios for the subscribed runs.
  */
 export function simpl(options) {
   return (Component) =&gt; {
@@ -125,8 +128,29 @@ export function simpl(options) {
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
     }
+    if (options.hasOwnProperty(&apos;loadAllScenarios&apos;)) {
+      optionsWithDefaults.loadAllScenarios = options.loadAllScenarios;
+    } else {
+      optionsWithDefaults.loadAllScenarios = false;
+    }
+    // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
+    // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
+
+    const mergeProps = (propsFromState, propsFromDispatch) =&gt; {
+      return {
+        ...propsFromState,
+        ...propsFromDispatch,
+        onLeave() {
+          return propsFromDispatch.onLeaveWithTopics(propsFromState.topics);
+        },
+        onReceived(args, kwargs, event) {
+          return propsFromDispatch.onReceivedWithTopics(args, kwargs, event, propsFromState.topics);
+        },
+      };
+    };
 
     const mapStateToProps = (state) =&gt; ({
+      topics: state.simpl.topics,
       connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
@@ -138,61 +162,77 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
+          // console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) =&gt; {
               dispatch(connectedScope(topic));
-              dispatch(
-                getRunUsers(topic)
-              ).then((action) =&gt; {
+              // console.log(`dispatching getRunUsers(${topic})`);
+              dispatch(getRunUsers(topic)).then((action) =&gt; {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join(&apos;; &apos;)}`);
                 }
                 const runUsers = action.payload;
+                // console.log(`getRunUsers(${topic}) -&gt; runUsers:`, runUsers);
                 for (let i = 0; i &lt; runUsers.length; i++) {
                   const ru = runUsers[i];
-                  if (ru.data.user === authid) {  // only load current user&apos;s scenarios
+                  if (optionsWithDefaults.loadAllScenarios) {
+                    // console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
+                    dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                  }
+                  else if (ru.data.user === authid) { // only get this user&apos;s scenarios
+                    // console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
                     dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
                     break;
                   }
                 }
               }).then(() =&gt; {
+                // console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
               });
+              // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
+              // console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic));
             });
           }
+          // console.log(`getPhases(&apos;model:model.game&apos;)`);
           dispatch(getPhases(&apos;model:model.game&apos;));
+          // console.log(`getRoles(&apos;model:model.game&apos;)`);
           dispatch(getRoles(&apos;model:model.game&apos;));
           return Promise.resolve();
         },
-        onLeave() {
-          if (optionsWithDefaults.topics) {
-            optionsWithDefaults.topics.forEach((topic) =&gt; {
+        onLeaveWithTopics(topics) {
+          // console.log(`onLeave:: topics: `, topics);
+          if (topics) {
+            topics.forEach((topic) =&gt; {
               dispatch(disconnectedScope(topic));
             });
           }
           return Promise.resolve();
         },
-        onReceived(args, kwargs, event) {
+        onReceivedWithTopics(args, kwargs, event, topics) {
+          // console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
-              dispatch(showGenericError(args, kwargs));
+            dispatch(showGenericError(args, kwargs));
           } else {
             const [pk, resourceName, data] = args;
-            const resolvedTopics = optionsWithDefaults.topics.map(
-              (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
-            );
-            resolvedTopics.forEach((topic) =&gt; {
-              const actions = {
-                [`${topic}.add_child`]: addChild,
-                [`${topic}.remove_child`]: removeChild,
-                [`${topic}.update_child`]: updateScope,
-              };
-              if (actions[event.topic]) {
-                dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
-              }
-            });
+            if (topics) {
+              const resolvedTopics = topics.map(
+                (topic) =&gt; AutobahnReact.Connection.currentConnection.session.resolve(topic)
+              );
+              resolvedTopics.forEach((topic) =&gt; {
+                const actions = {
+                  [`${topic}.add_child`]: addChild,
+                  [`${topic}.remove_child`]: removeChild,
+                  [`${topic}.update_child`]: updateScope,
+                };
+                if (actions[event.topic]) {
+                  // console.log(&quot;dispatching: &quot;, actions[event.topic])
+                  dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+                }
+              });
+            }
           }
         },
       });
@@ -207,6 +247,7 @@ export function simpl(options) {
         }
         return this.props !== nextProps || this.state !== nextState;
       }
+
       render() {
         return &lt;Component {...this.props} {...this.state} /&gt;;
       }
@@ -217,33 +258,35 @@ export function simpl(options) {
     };
 
 
-    const appTopics = optionsWithDefaults.topics.reduce(
-      (memo, topic) =&gt; memo.concat([
-        `${topic}.add_child`,
-        `${topic}.update_child`,
-        `${topic}.remove_child`,
-      ])
-    , [
-      `model:error.${options.authid}`,
-    ]);
-    const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
-
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
       componentWillMount() {
         wampSetup(this, optionsWithDefaults);
         window.addEventListener(&apos;beforeunload&apos;, this.props.onLeave);
       }
+
       componentWillUnmount() {
         window.removeEventListener(&apos;beforeunload&apos;, this.props.onLeave);
       }
+
       render() {
+        const appTopics = this.props.topics.reduce(
+          (memo, topic) =&gt; memo.concat([
+            `${topic}.add_child`,
+            `${topic}.update_child`,
+            `${topic}.remove_child`,
+          ])
+          , [
+            `model:error.${options.authid}`,
+          ]);
+        const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
+
         if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {
           return (
             &lt;div className={`simpl simpl-${this.props.connectionStatus}`}&gt;
               &lt;this.props.progressComponent {...this.props} {...this.state} /&gt;
             &lt;/div&gt;
-            );
+          );
         }
         return (
           &lt;div className={`simpl simpl-${this.props.connectionStatus}`}&gt;
@@ -254,6 +297,7 @@ export function simpl(options) {
     }
 
     Simpl.propTypes = {
+      topics: PropTypes.array.isRequired,
       connectionStatus: PropTypes.string.isRequired,
       onLeave: PropTypes.func,
       onReady: PropTypes.func.isRequired,
@@ -261,7 +305,7 @@ export function simpl(options) {
       setConnectionStatus: PropTypes.func.isRequired,
     };
 
-    const SimplContainer = connect(mapStateToProps, mapDispatchToProps)(Simpl);
+    const SimplContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(Simpl);
 
     return SimplContainer;
   };

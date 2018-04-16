@@ -616,11 +616,11 @@ for <code>routing</code> and <code>simpl</code> state.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/decorators/simpl.js.html#lineNumber59">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/decorators/simpl.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {simpl} from &apos;<span><a href="file/src/decorators/simpl.js.html#lineNumber59">simpl/lib/decorators/simpl</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {simpl} from &apos;<span><a href="file/src/decorators/simpl.js.html#lineNumber62">simpl/lib/decorators/simpl</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Decorator to wrap your main app</p>
@@ -705,6 +705,14 @@ be used for the <code>&apos;model&apos;</code> prefix.</p>
 prefixes, to be used as shortcuts.</p>
 </td>
     </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.loadAllScenarios</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>If false, load only world scenarios and this user&apos;s Scenarios.
+If true, load all Scenarios for the subscribed runs.</p>
+</td>
+    </tr>
 </tbody>
   </table>
 </div>
@@ -746,7 +754,8 @@ prefixes, to be used as shortcuts.</p>
   root_topic: &apos;org.example.namespace&apos;,
   prefixes: {
     special: &apos;org.example.namespace.special.shortcut&apos;
-  }
+  },
+  loadAllScenarios: false
 })(MyComponent);</code></pre>
     </div>
 </div>
