@@ -69,9 +69,8 @@ const simpl = recycleState(createReducer(initial, {
       (memo, child) => this.getDataTree(memo, { payload: child }), newState);
   },
   [SimplActions.addTopic](state, action) {
-    console.log('addTopic: action: ', action);
-    // return this.addTopics(state, [action.payload]);
-    return state;
+    // console.log('addTopic: action: ', action);
+    return this.addTopics(state, [action.payload]);
   },
   [SimplActions.addChild](state, action) {
     return this.addChild(state, action);
