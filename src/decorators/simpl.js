@@ -8,7 +8,7 @@ import _ from 'lodash';
 import AutobahnReact from '../autobahn';
 
 import {
-  addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
+  addTopic, addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getCurrentRunUserInfo,
   // eslint-disable-next-line comma-dangle
   getRunUserScenarios, showGenericError, setConnectionStatus
@@ -113,13 +113,15 @@ export function simpl(options) {
                 // console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
+                  const runuserTopic = `model:model.runuser.${ru.data.id}`;
                   if (optionsWithDefaults.loadAllScenarios) {
-                    // console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
-                    dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                    // console.log(`dispatching getRunUserScenarios(${runuserTopic})`);
+                    dispatch(getRunUserScenarios(runuserTopic));
+                    dispatch(addTopic(runuserTopic));  // subscribe to all runuser topics
                   }
                   else if (ru.data.user === authid) { // only get this user's scenarios
-                    // console.log(`dispatching getRunUserScenarios(model:model.runuser.${ru.data.id})`);
-                    dispatch(getRunUserScenarios(`model:model.runuser.${ru.data.id}`));
+                    // console.log(`dispatching getRunUserScenarios(${runuserTopic})`);
+                    dispatch(getRunUserScenarios(runuserTopic));
                     break;
                   }
                 }
