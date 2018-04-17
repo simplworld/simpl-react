@@ -113,15 +113,17 @@ export function simpl(options) {
                 // console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
-                  const runuserTopic = `model:model.runuser.${ru.data.id}`;
+                  const ruTopic = `model:model.runuser.${ru.data.id}`;
                   if (optionsWithDefaults.loadAllScenarios) {
-                    // console.log(`dispatching getRunUserScenarios(${runuserTopic})`);
-                    dispatch(getRunUserScenarios(runuserTopic));
-                    dispatch(addTopic(runuserTopic));  // subscribe to all runuser topics
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    dispatch(getRunUserScenarios(ruTopic));
+                    if (ru.data.user !== authid) {
+                      dispatch(addTopic(ruTopic));  // subscribe to other users' runuser topics
+                    }
                   }
                   else if (ru.data.user === authid) { // only get this user's scenarios
-                    // console.log(`dispatching getRunUserScenarios(${runuserTopic})`);
-                    dispatch(getRunUserScenarios(runuserTopic));
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    dispatch(getRunUserScenarios(ruTopic));
                     break;
                   }
                 }
