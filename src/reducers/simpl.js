@@ -97,9 +97,17 @@ const simpl = recycleState(createReducer(initial, {
       return this.handleError(state, action);
     }
     let connectionStatus = state.connectionStatus;
-    if (state.phasesLoaded) {
-      connectionStatus = CONNECTION_STATUS.CONNECTED; // TODO why CONNECTION_STATUS.CONNECTED?
+    if (state.scenariosLoaded && state.rolesLoaded && state.phasesLoaded) {
+      connectionStatus = CONNECTION_STATUS.LOADED;
+    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
+    // console.log('SimplActions.getDataTree: connectionStatus=', connectionStatus,
+    //   ', treeLoaded=', state.treeLoaded,
+    //   ', scenariosLoaded=', state.scenariosLoaded,
+    //   ', rolesLoaded', state.rolesLoaded,
+    //   ', phasesLoaded', state.phasesLoaded);
+
     return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
       treeLoaded: true,
       connectionStatus,
@@ -156,7 +164,15 @@ const simpl = recycleState(createReducer(initial, {
     let connectionStatus = state.connectionStatus;
     if (state.treeLoaded && state.rolesLoaded && state.phasesLoaded) {
       connectionStatus = CONNECTION_STATUS.LOADED;
+    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
+    // console.log('SimplActions.getRunUserScenarios: connectionStatus=', connectionStatus,
+    //   ', treeLoaded=', state.treeLoaded,
+    //   ', scenariosLoaded=', state.scenariosLoaded,
+    //   ', rolesLoaded', state.rolesLoaded,
+    //   ', phasesLoaded', state.phasesLoaded);
+
     const scenarios = action.payload;
     let newState = { ...state };
     scenarios.forEach((scenario) => {
@@ -172,7 +188,15 @@ const simpl = recycleState(createReducer(initial, {
     let connectionStatus = state.connectionStatus;
     if (state.treeLoaded && state.rolesLoaded && state.scenariosLoaded) {
       connectionStatus = CONNECTION_STATUS.LOADED;
+    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
+    // console.log('SimplActions.getPhases: connectionStatus=', connectionStatus,
+    //   ', treeLoaded=', state.treeLoaded,
+    //   ', scenariosLoaded=', state.scenariosLoaded,
+    //   ', rolesLoaded', state.rolesLoaded,
+    //   ', phasesLoaded', state.phasesLoaded);
+
     return Object.assign({}, state, {
       phase: action.payload,
       phasesLoaded: true,
@@ -183,7 +207,15 @@ const simpl = recycleState(createReducer(initial, {
     let connectionStatus = state.connectionStatus;
     if (state.treeLoaded && state.phasesLoaded && state.scenariosLoaded) {
       connectionStatus = CONNECTION_STATUS.LOADED;
+    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
+    // console.log('SimplActions.getRoles: connectionStatus=', connectionStatus,
+    //   ', treeLoaded=', state.treeLoaded,
+    //   ', scenariosLoaded=', state.scenariosLoaded,
+    //   ', rolesLoaded', state.rolesLoaded,
+    //   ', phasesLoaded', state.phasesLoaded);
+
     return Object.assign({}, state, {
       role: action.payload,
       rolesLoaded: true,
@@ -191,6 +223,12 @@ const simpl = recycleState(createReducer(initial, {
     });
   },
   [SimplActions.setConnectionStatus](state, action) {
+    // console.log('SimplActions.setConnectionStatus: connectionStatus=', connectionStatus,
+    //   ', treeLoaded=', state.treeLoaded,
+    //   ', scenariosLoaded=', state.scenariosLoaded,
+    //   ', rolesLoaded', state.rolesLoaded,
+    //   ', phasesLoaded', state.phasesLoaded);
+
     return Object.assign({}, state, { connectionStatus: action.payload });
   },
   [SimplActions.showGenericError](state, action) {
