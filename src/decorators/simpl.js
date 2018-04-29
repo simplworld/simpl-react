@@ -70,8 +70,8 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadAllScenarios = false;
     }
-    console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
-    console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
+    // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
+    // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
       return {
@@ -99,53 +99,53 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          console.log(`onReady::`);
+          // console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
-              console.log(`dispatching connectedScope(${topic})`);
+              // console.log(`dispatching connectedScope(${topic})`);
               dispatch(connectedScope(topic));
-              console.log(`dispatching getRunUsers(${topic})`);
+              // console.log(`dispatching getRunUsers(${topic})`);
               dispatch(getRunUsers(topic)).then((action) => {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
-                console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
+                // console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;
                   if (optionsWithDefaults.loadAllScenarios) {
-                    console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     if (ru.data.user !== authid) {
                       dispatch(addTopic(ruTopic));  // subscribe to other users' runuser topics
                     }
                   }
                   else if (ru.data.user === authid) { // only get this user's scenarios
-                    console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     break;
                   }
                 }
               }).then(() => {
-                console.log(`dispatching getCurrentRunUserInfo(${authid})`);
+                // console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
               });
-              console.log(`dispatching getCurrentRunPhase(${topic})`);
+              // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              console.log(`dispatching getDataTree(${topic})`);
+              // console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic));
             });
           }
-          console.log(`dispatching getPhases('model:model.game')`);
+          // console.log(`dispatching getPhases('model:model.game')`);
           dispatch(getPhases('model:model.game'));
-          console.log(`dispatching getRoles('model:model.game')`);
+          // console.log(`dispatching getRoles('model:model.game')`);
           dispatch(getRoles('model:model.game'));
           return Promise.resolve();
         },
         onLeaveWithTopics(topics) {
-          console.log(`onLeave:: topics: `, topics);
+          // console.log(`onLeave:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) => {
               dispatch(disconnectedScope(topic));
@@ -154,7 +154,7 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
-          console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
+          // console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -170,7 +170,7 @@ export function simpl(options) {
                   [`${topic}.update_child`]: updateScope,
                 };
                 if (actions[event.topic]) {
-                  console.log("dispatching: ", actions[event.topic])
+                  // console.log("dispatching: ", actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                 }
               });

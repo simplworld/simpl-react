@@ -133,8 +133,8 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadAllScenarios = false;
     }
-    console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
-    console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
+    // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
+    // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) =&gt; {
       return {
@@ -162,53 +162,53 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          console.log(`onReady::`);
+          // console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) =&gt; {
-              console.log(`dispatching connectedScope(${topic})`);
+              // console.log(`dispatching connectedScope(${topic})`);
               dispatch(connectedScope(topic));
-              console.log(`dispatching getRunUsers(${topic})`);
+              // console.log(`dispatching getRunUsers(${topic})`);
               dispatch(getRunUsers(topic)).then((action) =&gt; {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join(&apos;; &apos;)}`);
                 }
                 const runUsers = action.payload;
-                console.log(`getRunUsers(${topic}) -&gt; runUsers:`, runUsers);
+                // console.log(`getRunUsers(${topic}) -&gt; runUsers:`, runUsers);
                 for (let i = 0; i &lt; runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;
                   if (optionsWithDefaults.loadAllScenarios) {
-                    console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     if (ru.data.user !== authid) {
                       dispatch(addTopic(ruTopic));  // subscribe to other users&apos; runuser topics
                     }
                   }
                   else if (ru.data.user === authid) { // only get this user&apos;s scenarios
-                    console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     break;
                   }
                 }
               }).then(() =&gt; {
-                console.log(`dispatching getCurrentRunUserInfo(${authid})`);
+                // console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
               });
-              console.log(`dispatching getCurrentRunPhase(${topic})`);
+              // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              console.log(`dispatching getDataTree(${topic})`);
+              // console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic));
             });
           }
-          console.log(`dispatching getPhases(&apos;model:model.game&apos;)`);
+          // console.log(`dispatching getPhases(&apos;model:model.game&apos;)`);
           dispatch(getPhases(&apos;model:model.game&apos;));
-          console.log(`dispatching getRoles(&apos;model:model.game&apos;)`);
+          // console.log(`dispatching getRoles(&apos;model:model.game&apos;)`);
           dispatch(getRoles(&apos;model:model.game&apos;));
           return Promise.resolve();
         },
         onLeaveWithTopics(topics) {
-          console.log(`onLeave:: topics: `, topics);
+          // console.log(`onLeave:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) =&gt; {
               dispatch(disconnectedScope(topic));
@@ -217,7 +217,7 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
-          console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
+          // console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -233,7 +233,7 @@ export function simpl(options) {
                   [`${topic}.update_child`]: updateScope,
                 };
                 if (actions[event.topic]) {
-                  console.log(&quot;dispatching: &quot;, actions[event.topic])
+                  // console.log(&quot;dispatching: &quot;, actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                 }
               });
