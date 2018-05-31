@@ -199,6 +199,8 @@ export function simpl(options) {
               dispatch(getCurrentRunPhase(topic));
               // console.log(`dispatching getDataTree(${topic})`);
               dispatch(getDataTree(topic));
+              // console.log(`dispatching addTopic(${topic})`);
+              dispatch(addTopic(topic));
             });
           }
           // console.log(`dispatching getPhases(&apos;model:model.game&apos;)`);
