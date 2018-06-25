@@ -175,6 +175,8 @@ export function simpl(options) {
                   console.log("dispatching: ", actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                 }
+                // if user is a leader and a child world has been added, add a topic for the world.
+                // if user is a leader and a child world has been deleted, remove world's topic.
               });
             }
           }

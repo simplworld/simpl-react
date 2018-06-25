@@ -54,6 +54,11 @@ const simpl = recycleState(createReducer(initial, {
     const topics = [...state.topics, ...newTopics];
     return Object.assign({}, state, { topics });
   },
+  removeTopic(state, removedTopic) {
+    // TODO remove topic
+    console.log('Removed: ', removedTopic);
+    return state;
+  },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
     const children = action.payload.children;
@@ -69,20 +74,30 @@ const simpl = recycleState(createReducer(initial, {
       (memo, child) => this.getDataTree(memo, { payload: child }), newState);
   },
   [SimplActions.addTopic](state, action) {
-    // console.log('addTopic: action: ', action);
+    console.log('addTopic: action: ', action);
     return this.addTopics(state, [action.payload]);
   },
+  [SimplActions.removeTopic](state, action) {
+    console.log('removeTopic: action: ', action);
+    return this.removeTopic(state, action.payload);
+  },
   [SimplActions.addChild](state, action) {
+    console.log('addChild: action: ', action);
     return this.addChild(state, action);
   },
   [SimplActions.removeChild](state, action) {
+    console.log('removeChild: action: ', action);
     const key = action.payload.resource_name;
-    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);
-    if (index === -1) {
-      return { ...state };
+    let newState = { ...state };
+    if (key === 'world') {
+      newState = this.removeTopic(state, action.payload);
     }
-    const updated = popAtIndex(state[key], index);
-    return Object.assign({}, state, { [key]: updated });
+    const index = newState[key].findIndex((scope) => scope.pk === action.payload.pk);
+    if (index === -1) {
+      return { ...newState };
+    }
+    const updated = popAtIndex(newState[key], index);
+    return Object.assign({}, newState, { [key]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
     if (action.payload.error) {
@@ -136,14 +151,14 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user's info into the current_runuser namespace
-    if (state.runuser.length == 0) {
-      throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.";
+    if (state.runuser.length === 0) {
+      throw "Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.";
     }
-    const simpl_id = action.payload;
+    const simplId = action.payload;
     const roleTypes = new Set();
     let currentRunUser;
     state.runuser.forEach((runuser) => {
-      if (runuser.user === simpl_id) {
+      if (runuser.user === simplId) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
       if (!isNil(runuser.role_name)) { // runuser is a player

@@ -5,7 +5,8 @@ import AutobahnReact from '../autobahn';
  * action creators
  */
 
-export const addTopic = createAction('simpl/ADD_TOPIC');
+export const addTopic = createAction('simpl/TOPIC_ADD');
+export const removeTopic = createAction('simpl/TOPIC_REMOVE');
 
 export const addChild = createAction('simpl/CHILD_ADD');
 export const removeChild = createAction('simpl/CHILD_REMOVE');
