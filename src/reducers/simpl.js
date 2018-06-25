@@ -55,9 +55,15 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { topics });
   },
   removeTopic(state, removedTopic) {
-    // TODO remove topic
-    console.log('Removed: ', removedTopic);
-    return state;
+    const topic = `model:model.world.${removedTopic.pk}`;
+    console.log('removeTopic: topic: ', topic);
+    const index = state.topics.findIndex(topic);
+    console.log('removeTopic: index: ', index);
+    if (index === -1) {
+      return { ...state };
+    }
+    const updated = popAtIndex(state.topics, index);
+    return Object.assign({}, state, { ['topics']: updated });
   },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
@@ -83,21 +89,27 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.addChild](state, action) {
     console.log('addChild: action: ', action);
-    return this.addChild(state, action);
+    let newState = { ...state };
+    if (action.payload.resource_name === 'world') {
+      console.log('adding topic for new world');
+      newState = this.addTopics(state, [action.payload]);
+    }
+    return this.addChild(newState, action);
   },
   [SimplActions.removeChild](state, action) {
     console.log('removeChild: action: ', action);
-    const key = action.payload.resource_name;
+    const resourceName = action.payload.resource_name;
     let newState = { ...state };
-    if (key === 'world') {
+    if (resourceName === 'world') {
+      console.log('removing topic for world');
       newState = this.removeTopic(state, action.payload);
     }
-    const index = newState[key].findIndex((scope) => scope.pk === action.payload.pk);
+    const index = newState[resourceName].findIndex((scope) => scope.pk === newState.payload.pk);
     if (index === -1) {
       return { ...newState };
     }
-    const updated = popAtIndex(newState[key], index);
-    return Object.assign({}, newState, { [key]: updated });
+    const updated = popAtIndex(newState[resourceName], index);
+    return Object.assign({}, newState, { [resourceName]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
     if (action.payload.error) {
