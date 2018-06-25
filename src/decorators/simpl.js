@@ -156,7 +156,7 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
-          // console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
+          console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -172,7 +172,7 @@ export function simpl(options) {
                   [`${topic}.update_child`]: updateScope,
                 };
                 if (actions[event.topic]) {
-                  // console.log("dispatching: ", actions[event.topic])
+                  console.log("dispatching: ", actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                 }
               });
