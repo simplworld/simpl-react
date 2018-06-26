@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  <a data-ice="repoURL" href="https://gitlab.com/lldev-team/simpl-react.git">Repository</a>
+  <a data-ice="repoURL" href="https://github.com/simplworld/simpl-react.git" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -68,7 +68,8 @@ import AutobahnReact from &apos;../autobahn&apos;;
  * action creators
  */
 
-export const addTopic = createAction(&apos;simpl/ADD_TOPIC&apos;);
+export const addTopic = createAction(&apos;simpl/TOPIC_ADD&apos;);
+export const removeTopic = createAction(&apos;simpl/TOPIC_REMOVE&apos;);
 
 export const addChild = createAction(&apos;simpl/CHILD_ADD&apos;);
 export const removeChild = createAction(&apos;simpl/CHILD_REMOVE&apos;);

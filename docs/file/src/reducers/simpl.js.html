@@ -19,7 +19,7 @@
   <a href="identifiers.html">Reference</a>
   <a href="source.html">Source</a>
   
-  <a data-ice="repoURL" href="https://gitlab.com/lldev-team/simpl-react.git">Repository</a>
+  <a data-ice="repoURL" href="https://github.com/simplworld/simpl-react.git" class="repo-url-github">Repository</a>
   <div class="search-box">
   <span>
     <img src="./image/search.png">
@@ -117,6 +117,18 @@ const simpl = recycleState(createReducer(initial, {
     const topics = [...state.topics, ...newTopics];
     return Object.assign({}, state, { topics });
   },
+  removeTopic(state, removedTopic) {
+    const topic = `model:model.world.${removedTopic.pk}`;
+    // console.log(&apos;removeTopic: topic: &apos;, topic, &apos;, state.topics: &apos;, state.topics);
+    const index = state.topics.indexOf(topic);
+    // console.log(&apos;removeTopic: index: &apos;, index);
+    if (index === -1) {
+      return { ...state };
+    }
+    const updated = popAtIndex(state.topics, index);
+    // console.log(&apos;removeTopic: updated: &apos;, updated);
+    return Object.assign({}, state, { [&apos;topics&apos;]: updated });
+  },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
     const children = action.payload.children;
@@ -135,17 +147,34 @@ const simpl = recycleState(createReducer(initial, {
     // console.log(&apos;addTopic: action: &apos;, action);
     return this.addTopics(state, [action.payload]);
   },
+  [SimplActions.removeTopic](state, action) {
+    // console.log(&apos;removeTopic: action: &apos;, action);
+    return this.removeTopic(state, action.payload);
+  },
   [SimplActions.addChild](state, action) {
-    return this.addChild(state, action);
+    // console.log(&apos;addChild: action: &apos;, action);
+    let newState = { ...state };
+    if (action.payload.resource_name === &apos;world&apos;) {
+      const topic = `model:model.world.${action.payload.pk}`;
+      // console.log(&apos;adding topic for new world: topic:&apos;, topic);
+      newState = this.addTopics(state, [topic]);
+    }
+    return this.addChild(newState, action);
   },
   [SimplActions.removeChild](state, action) {
-    const key = action.payload.resource_name;
-    const index = state[key].findIndex((scope) =&gt; scope.pk === action.payload.pk);
-    if (index === -1) {
-      return { ...state };
+    // console.log(&apos;removeChild: action: &apos;, action);
+    const resourceName = action.payload.resource_name;
+    let newState = { ...state };
+    if (resourceName === &apos;world&apos;) {
+      // console.log(&apos;removing topic for world&apos;);
+      newState = this.removeTopic(state, action.payload);
     }
-    const updated = popAtIndex(state[key], index);
-    return Object.assign({}, state, { [key]: updated });
+    const index = newState[resourceName].findIndex((scope) =&gt; scope.pk === action.payload.pk);
+    if (index === -1) {
+      return { ...newState };
+    }
+    const updated = popAtIndex(newState[resourceName], index);
+    return Object.assign({}, newState, { [resourceName]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
     if (action.payload.error) {
@@ -199,14 +228,14 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user&apos;s info into the current_runuser namespace
-    if (state.runuser.length == 0) {
-      throw &quot;Runusers aren&apos;t loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.&quot;;
+    if (state.runuser.length === 0) {
+      throw &quot;Runusers aren&apos;t loaded. Call `getRunUsers` before calling `getRunUserInfo`.&quot;;
     }
-    const simpl_id = action.payload;
+    const simplId = action.payload;
     const roleTypes = new Set();
     let currentRunUser;
     state.runuser.forEach((runuser) =&gt; {
-      if (runuser.user === simpl_id) {
+      if (runuser.user === simplId) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
       if (!isNil(runuser.role_name)) { // runuser is a player
