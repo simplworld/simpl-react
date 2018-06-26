@@ -56,13 +56,14 @@ const simpl = recycleState(createReducer(initial, {
   },
   removeTopic(state, removedTopic) {
     const topic = `model:model.world.${removedTopic.pk}`;
-    console.log('removeTopic: topic: ', topic);
-    const index = state.topics.findIndex(topic);
-    console.log('removeTopic: index: ', index);
+    // console.log('removeTopic: topic: ', topic, ', state.topics: ', state.topics);
+    const index = state.topics.indexOf(topic);
+    // console.log('removeTopic: index: ', index);
     if (index === -1) {
       return { ...state };
     }
     const updated = popAtIndex(state.topics, index);
+    // console.log('removeTopic: updated: ', updated);
     return Object.assign({}, state, { ['topics']: updated });
   },
   getDataTree(state, action) {
@@ -80,31 +81,32 @@ const simpl = recycleState(createReducer(initial, {
       (memo, child) => this.getDataTree(memo, { payload: child }), newState);
   },
   [SimplActions.addTopic](state, action) {
-    console.log('addTopic: action: ', action);
+    // console.log('addTopic: action: ', action);
     return this.addTopics(state, [action.payload]);
   },
   [SimplActions.removeTopic](state, action) {
-    console.log('removeTopic: action: ', action);
+    // console.log('removeTopic: action: ', action);
     return this.removeTopic(state, action.payload);
   },
   [SimplActions.addChild](state, action) {
-    console.log('addChild: action: ', action);
+    // console.log('addChild: action: ', action);
     let newState = { ...state };
     if (action.payload.resource_name === 'world') {
-      console.log('adding topic for new world');
-      newState = this.addTopics(state, [action.payload]);
+      const topic = `model:model.world.${action.payload.pk}`;
+      // console.log('adding topic for new world: topic:', topic);
+      newState = this.addTopics(state, [topic]);
     }
     return this.addChild(newState, action);
   },
   [SimplActions.removeChild](state, action) {
-    console.log('removeChild: action: ', action);
+    // console.log('removeChild: action: ', action);
     const resourceName = action.payload.resource_name;
     let newState = { ...state };
     if (resourceName === 'world') {
-      console.log('removing topic for world');
+      // console.log('removing topic for world');
       newState = this.removeTopic(state, action.payload);
     }
-    const index = newState[resourceName].findIndex((scope) => scope.pk === newState.payload.pk);
+    const index = newState[resourceName].findIndex((scope) => scope.pk === action.payload.pk);
     if (index === -1) {
       return { ...newState };
     }
