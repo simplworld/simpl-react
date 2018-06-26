@@ -54,6 +54,18 @@ const simpl = recycleState(createReducer(initial, {
     const topics = [...state.topics, ...newTopics];
     return Object.assign({}, state, { topics });
   },
+  removeTopic(state, removedTopic) {
+    const topic = `model:model.world.${removedTopic.pk}`;
+    // console.log('removeTopic: topic: ', topic, ', state.topics: ', state.topics);
+    const index = state.topics.indexOf(topic);
+    // console.log('removeTopic: index: ', index);
+    if (index === -1) {
+      return { ...state };
+    }
+    const updated = popAtIndex(state.topics, index);
+    // console.log('removeTopic: updated: ', updated);
+    return Object.assign({}, state, { ['topics']: updated });
+  },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
     const children = action.payload.children;
@@ -72,17 +84,34 @@ const simpl = recycleState(createReducer(initial, {
     // console.log('addTopic: action: ', action);
     return this.addTopics(state, [action.payload]);
   },
+  [SimplActions.removeTopic](state, action) {
+    // console.log('removeTopic: action: ', action);
+    return this.removeTopic(state, action.payload);
+  },
   [SimplActions.addChild](state, action) {
-    return this.addChild(state, action);
+    // console.log('addChild: action: ', action);
+    let newState = { ...state };
+    if (action.payload.resource_name === 'world') {
+      const topic = `model:model.world.${action.payload.pk}`;
+      // console.log('adding topic for new world: topic:', topic);
+      newState = this.addTopics(state, [topic]);
+    }
+    return this.addChild(newState, action);
   },
   [SimplActions.removeChild](state, action) {
-    const key = action.payload.resource_name;
-    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);
-    if (index === -1) {
-      return { ...state };
+    // console.log('removeChild: action: ', action);
+    const resourceName = action.payload.resource_name;
+    let newState = { ...state };
+    if (resourceName === 'world') {
+      // console.log('removing topic for world');
+      newState = this.removeTopic(state, action.payload);
     }
-    const updated = popAtIndex(state[key], index);
-    return Object.assign({}, state, { [key]: updated });
+    const index = newState[resourceName].findIndex((scope) => scope.pk === action.payload.pk);
+    if (index === -1) {
+      return { ...newState };
+    }
+    const updated = popAtIndex(newState[resourceName], index);
+    return Object.assign({}, newState, { [resourceName]: updated });
   },
   [SimplActions.getRunUsers](state, action) {
     if (action.payload.error) {
@@ -136,14 +165,14 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user's info into the current_runuser namespace
-    if (state.runuser.length == 0) {
-      throw "Runusers aren't loaded yet. You need to call `getRunUsers` before calling `getRunUserInfo`.";
+    if (state.runuser.length === 0) {
+      throw "Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.";
     }
-    const simpl_id = action.payload;
+    const simplId = action.payload;
     const roleTypes = new Set();
     let currentRunUser;
     state.runuser.forEach((runuser) => {
-      if (runuser.user === simpl_id) {
+      if (runuser.user === simplId) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
       if (!isNil(runuser.role_name)) { // runuser is a player
