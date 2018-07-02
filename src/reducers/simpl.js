@@ -54,16 +54,16 @@ const simpl = recycleState(createReducer(initial, {
     const topics = [...state.topics, ...newTopics];
     return Object.assign({}, state, { topics });
   },
-  removeTopic(state, removedTopic) {
-    const topic = `model:model.world.${removedTopic.pk}`;
-    // console.log('removeTopic: topic: ', topic, ', state.topics: ', state.topics);
+  removeTopic(state, package) {
+    const topic = `model:model.${package.resource_name}.${package.pk}`;
+    console.log('removeTopic: topic: ', topic, ', state.topics: ', state.topics);
     const index = state.topics.indexOf(topic);
-    // console.log('removeTopic: index: ', index);
+    console.log('removeTopic: index: ', index);
     if (index === -1) {
       return { ...state };
     }
     const updated = popAtIndex(state.topics, index);
-    // console.log('removeTopic: updated: ', updated);
+    console.log('removeTopic: updated: ', updated);
     return Object.assign({}, state, { ['topics']: updated });
   },
   getDataTree(state, action) {
@@ -103,7 +103,7 @@ const simpl = recycleState(createReducer(initial, {
     const resourceName = action.payload.resource_name;
     let newState = { ...state };
     if (resourceName === 'world') {
-      // console.log('removing topic for world');
+      console.log('removing topic for world');
       newState = this.removeTopic(state, action.payload);
     }
     const index = newState[resourceName].findIndex((scope) => scope.pk === action.payload.pk);
