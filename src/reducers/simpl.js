@@ -54,8 +54,8 @@ const simpl = recycleState(createReducer(initial, {
     const topics = [...state.topics, ...newTopics];
     return Object.assign({}, state, { topics });
   },
-  removeTopic(state, package) {
-    const topic = `model:model.${package.resource_name}.${package.pk}`;
+  removeTopic(state, payload) {
+    const topic = `model:model.${payload.resource_name}.${payload.pk}`;
     console.log('removeTopic: topic: ', topic, ', state.topics: ', state.topics);
     const index = state.topics.indexOf(topic);
     console.log('removeTopic: index: ', index);
