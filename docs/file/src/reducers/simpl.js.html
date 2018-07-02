@@ -119,14 +119,14 @@ const simpl = recycleState(createReducer(initial, {
   },
   removeTopic(state, payload) {
     const topic = `model:model.${payload.resource_name}.${payload.pk}`;
-    console.log(&apos;removeTopic: topic: &apos;, topic, &apos;, state.topics: &apos;, state.topics);
+    // console.log(&apos;removeTopic: topic: &apos;, topic, &apos;, state.topics: &apos;, state.topics);
     const index = state.topics.indexOf(topic);
-    console.log(&apos;removeTopic: index: &apos;, index);
+    // console.log(&apos;removeTopic: index: &apos;, index);
     if (index === -1) {
       return { ...state };
     }
     const updated = popAtIndex(state.topics, index);
-    console.log(&apos;removeTopic: updated: &apos;, updated);
+    // console.log(&apos;removeTopic: updated: &apos;, updated);
     return Object.assign({}, state, { [&apos;topics&apos;]: updated });
   },
   getDataTree(state, action) {
