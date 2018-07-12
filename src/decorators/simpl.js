@@ -174,6 +174,13 @@ export function simpl(options) {
                 if (actions[event.topic]) {
                   // console.log("dispatching: ", actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+                  if (resourceName === 'runuser' && event.topic.endsWith('update_child')) {
+                    // Is the updated runuser associated with the current user?
+                    const authid = parseInt(options.authid, 10);
+                    if (authid === data.user) {
+                      dispatch(getCurrentRunUserInfo(authid));
+                    }
+                  }
                 }
               });
             }
