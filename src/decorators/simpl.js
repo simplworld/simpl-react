@@ -61,6 +61,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  */
 export function simpl(options) {
   return (Component) => {
+    const authid = parseInt(options.authid, 10);
     const optionsWithDefaults = wampOptionsWithDefaults(options);
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
@@ -72,6 +73,7 @@ export function simpl(options) {
     }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
+
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
       return {
@@ -101,7 +103,6 @@ export function simpl(options) {
         onReady() {
           // console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
-            const authid = parseInt(options.authid, 10);
             optionsWithDefaults.topics.forEach((topic) => {
               // console.log(`dispatching connectedScope(${topic})`);
               dispatch(connectedScope(topic));
@@ -174,6 +175,12 @@ export function simpl(options) {
                 if (actions[event.topic]) {
                   // console.log("dispatching: ", actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
+                  if (resourceName === 'runuser' && event.topic.endsWith('update_child')) {
+                    // Is the updated runuser associated with the current user?
+                    if (authid === data.user) {
+                      dispatch(getCurrentRunUserInfo(authid));
+                    }
+                  }
                 }
               });
             }
