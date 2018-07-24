@@ -1,5 +1,7 @@
 # Simpl React
 
+[![Build Status](https://travis-ci.com/simplworld/simpl-react.svg?token=cyqpBgqLC1o8qUptfcpE&branch=master)](https://travis-ci.com/simplworld/simpl-react)
+
 ### Installation
 
     $ npm install git+ssh://git@github.com:simplworld/ll/simpl-react.git --save
