@@ -1,6 +1,6 @@
 # Simpl React
 
-[![Build Status](https://travis-ci.com/simplworld/simpl-react.svg?token=cyqpBgqLC1o8qUptfcpE&branch=7-enable-CI)](https://travis-ci.com/simplworld/simpl-react)
+[![Build Status](https://travis-ci.com/simplworld/simpl-react.svg?token=cyqpBgqLC1o8qUptfcpE&branch=master)](https://travis-ci.com/simplworld/simpl-react)
 
 ### Installation
 
