@@ -169,21 +169,11 @@ const simpl = recycleState(createReducer(initial, {
       throw "Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.";
     }
     const simplId = action.payload;
-    const roleTypes = new Set();
     let currentRunUser;
     state.runuser.forEach((runuser) => {
       if (runuser.user === simplId) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
-      if (!isNil(runuser.role_name)) { // runuser is a player
-        roleTypes.add(runuser.role_name);
-      }
-    });
-    if (!isNil(currentRunUser) && !isNil(currentRunUser.role_name)) {
-      // Remove current runuser's role and we're left with the "other" role names
-      roleTypes.delete(currentRunUser.role_name);
-      currentRunUser.other_roles = Array.from(roleTypes);
-    }
     return Object.assign({}, state, { current_runuser: currentRunUser });
   },
   [SimplActions.getRunUserScenarios](state, action) {
