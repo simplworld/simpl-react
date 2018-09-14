@@ -1,134 +1,134 @@
 window.esdocSearchIndex = [
   [
-    "simpl/lib/constants~connection_status",
+    "simpl-react/lib/constants~connection_status",
     "variable/index.html#static-variable-CONNECTION_STATUS",
-    "<span>CONNECTION_STATUS</span> <span class=\"search-result-import-path\">simpl/lib/constants</span>",
+    "<span>CONNECTION_STATUS</span> <span class=\"search-result-import-path\">simpl-react/lib/constants</span>",
     "variable"
   ],
   [
-    "simpl/lib/components/rpccaller.react~rpccaller",
+    "simpl-react/lib/components/rpccaller.react~rpccaller",
     "class/src/components/RPCCaller.react.js~RPCCaller.html",
-    "<span>RPCCaller</span> <span class=\"search-result-import-path\">simpl/lib/components/RPCCaller.react</span>",
+    "<span>RPCCaller</span> <span class=\"search-result-import-path\">simpl-react/lib/components/RPCCaller.react</span>",
     "class"
   ],
   [
-    "simpl/lib/components/topicpublisher.react~topicpublisher",
+    "simpl-react/lib/components/topicpublisher.react~topicpublisher",
     "class/src/components/TopicPublisher.react.js~TopicPublisher.html",
-    "<span>TopicPublisher</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicPublisher.react</span>",
+    "<span>TopicPublisher</span> <span class=\"search-result-import-path\">simpl-react/lib/components/TopicPublisher.react</span>",
     "class"
   ],
   [
-    "simpl/lib/components/topicsubscriber.react~topicsubscriber",
+    "simpl-react/lib/components/topicsubscriber.react~topicsubscriber",
     "class/src/components/TopicSubscriber.react.js~TopicSubscriber.html",
-    "<span>TopicSubscriber</span> <span class=\"search-result-import-path\">simpl/lib/components/TopicSubscriber.react</span>",
+    "<span>TopicSubscriber</span> <span class=\"search-result-import-path\">simpl-react/lib/components/TopicSubscriber.react</span>",
     "class"
   ],
   [
-    "simpl/lib/decorators/rpc/calls~calls",
+    "simpl-react/lib/decorators/rpc/calls~calls",
     "function/index.html#static-function-calls",
-    "<span>calls</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/calls</span>",
+    "<span>calls</span> <span class=\"search-result-import-path\">simpl-react/lib/decorators/rpc/calls</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~connectedscope",
+    "simpl-react/lib/actions/simpl~connectedscope",
     "variable/index.html#static-variable-connectedScope",
-    "<span>connectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>connectedScope</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl~disconnectedscope",
+    "simpl-react/lib/actions/simpl~disconnectedscope",
     "variable/index.html#static-variable-disconnectedScope",
-    "<span>disconnectedScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>disconnectedScope</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/stores~finalcreatestorefactory",
+    "simpl-react/lib/stores~finalcreatestorefactory",
     "function/index.html#static-function-finalCreateStoreFactory",
-    "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl/lib/stores</span>",
+    "<span>finalCreateStoreFactory</span> <span class=\"search-result-import-path\">simpl-react/lib/stores</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~getcurrentrunuserinfo",
+    "simpl-react/lib/actions/simpl~getcurrentrunuserinfo",
     "variable/index.html#static-variable-getCurrentRunUserInfo",
-    "<span>getCurrentRunUserInfo</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>getCurrentRunUserInfo</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl~getdatatree",
+    "simpl-react/lib/actions/simpl~getdatatree",
     "variable/index.html#static-variable-getDataTree",
-    "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>getDataTree</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl~getrunuserscenarios",
+    "simpl-react/lib/actions/simpl~getrunuserscenarios",
     "variable/index.html#static-variable-getRunUserScenarios",
-    "<span>getRunUserScenarios</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>getRunUserScenarios</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl~getrunusers",
+    "simpl-react/lib/actions/simpl~getrunusers",
     "variable/index.html#static-variable-getRunUsers",
-    "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>getRunUsers</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/actions/simpl~poperror",
+    "simpl-react/lib/actions/simpl~poperror",
     "variable/index.html#static-variable-popError",
-    "<span>popError</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>popError</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/pubsub/publishes~publishes",
+    "simpl-react/lib/decorators/pubsub/publishes~publishes",
     "function/index.html#static-function-publishes",
-    "<span>publishes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/publishes</span>",
+    "<span>publishes</span> <span class=\"search-result-import-path\">simpl-react/lib/decorators/pubsub/publishes</span>",
     "function"
   ],
   [
-    "simpl/lib/decorators/rpc/registers~registers",
+    "simpl-react/lib/decorators/rpc/registers~registers",
     "function/index.html#static-function-registers",
-    "<span>registers</span> <span class=\"search-result-import-path\">simpl/lib/decorators/rpc/registers</span>",
+    "<span>registers</span> <span class=\"search-result-import-path\">simpl-react/lib/decorators/rpc/registers</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~setconnectionstatus",
+    "simpl-react/lib/actions/simpl~setconnectionstatus",
     "variable/index.html#static-variable-setConnectionStatus",
-    "<span>setConnectionStatus</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>setConnectionStatus</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/simpl~simpl",
+    "simpl-react/lib/decorators/simpl~simpl",
     "function/index.html#static-function-simpl",
-    "<span>simpl</span> <span class=\"search-result-import-path\">simpl/lib/decorators/simpl</span>",
+    "<span>simpl</span> <span class=\"search-result-import-path\">simpl-react/lib/decorators/simpl</span>",
     "function"
   ],
   [
-    "simpl/lib/reducers/combined~simplreducers",
+    "simpl-react/lib/reducers/combined~simplreducers",
     "function/index.html#static-function-simplReducers",
-    "<span>simplReducers</span> <span class=\"search-result-import-path\">simpl/lib/reducers/combined</span>",
+    "<span>simplReducers</span> <span class=\"search-result-import-path\">simpl-react/lib/reducers/combined</span>",
     "function"
   ],
   [
-    "simpl/lib/test/store~store",
+    "simpl-react/lib/test/store~store",
     "variable/index.html#static-variable-store",
-    "<span>store</span> <span class=\"search-result-import-path\">simpl/lib/test/store</span>",
+    "<span>store</span> <span class=\"search-result-import-path\">simpl-react/lib/test/store</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/pubsub/subscribes~subscribes",
+    "simpl-react/lib/decorators/pubsub/subscribes~subscribes",
     "function/index.html#static-function-subscribes",
-    "<span>subscribes</span> <span class=\"search-result-import-path\">simpl/lib/decorators/pubsub/subscribes</span>",
+    "<span>subscribes</span> <span class=\"search-result-import-path\">simpl-react/lib/decorators/pubsub/subscribes</span>",
     "function"
   ],
   [
-    "simpl/lib/actions/simpl~updatescope",
+    "simpl-react/lib/actions/simpl~updatescope",
     "variable/index.html#static-variable-updateScope",
-    "<span>updateScope</span> <span class=\"search-result-import-path\">simpl/lib/actions/simpl</span>",
+    "<span>updateScope</span> <span class=\"search-result-import-path\">simpl-react/lib/actions/simpl</span>",
     "variable"
   ],
   [
-    "simpl/lib/decorators/wamp~wamp",
+    "simpl-react/lib/decorators/wamp~wamp",
     "function/index.html#static-function-wamp",
-    "<span>wamp</span> <span class=\"search-result-import-path\">simpl/lib/decorators/wamp</span>",
+    "<span>wamp</span> <span class=\"search-result-import-path\">simpl-react/lib/decorators/wamp</span>",
     "function"
   ],
   [
