@@ -174,6 +174,7 @@ const simpl = recycleState(createReducer(initial, {
       if (runuser.user === simplId) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
+    });
     return Object.assign({}, state, { current_runuser: currentRunUser });
   },
   [SimplActions.getRunUserScenarios](state, action) {
