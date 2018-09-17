@@ -4,10 +4,12 @@
 
 ### Installation
 
-    $ npm install git+ssh://git@github.com:simplworld/ll/simpl-react.git --save
+    $ npm install simpl-react --save
 
 ### Development
 
+    $ git clone git@github.com:simplworld/simpl-react.git
+    $ cd simpl-react
     $ npm install
     $ npm test
 
