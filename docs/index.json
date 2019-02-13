@@ -691,7 +691,7 @@
     "__docId__": 55,
     "kind": "file",
     "name": "src/actions/simpl.js",
-    "content": "import { createAction } from 'redux-actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addTopic = createAction('simpl/TOPIC_ADD');\nexport const removeTopic = createAction('simpl/TOPIC_REMOVE');\n\nexport const addChild = createAction('simpl/CHILD_ADD');\nexport const removeChild = createAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic, returns a recursive representation of that scope and\n * its children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createAction('simpl/DATATREE_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, args)\n));\n\n/**\n * Given a scope's topic, returns a list of runusers that belong to the scope.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\n\n/**\n * Set the connection status on the store.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {symbol} status - the connection status.\n * @returns {NamedReduxAction}\n */\nexport const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');\n\n/**\n * Update the scope in the redux state with the received payload.\n *\n * The payload\n * must contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\n * and a `pk` property, to properly identify the correct scope to be updated.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {object} scope - the scope's JSON representation\n * @returns {NamedReduxAction}\n */\nexport const updateScope = createAction('simpl/SCOPE_UPDATE');\n\n\n/**\n * Dispatched when the client is ready to listen to a specific scope.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\n\n/**\n * Dispatched when the client gets disconnected and can't listen to the scope.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} topic - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (topic, ...args) => (\n  AutobahnReact.publish(`${topic}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createAction('simpl/GET_PHASES', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_phases`, args)\n));\n\nexport const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_roles`, args)\n));\n\nexport const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');\n\n/**\n * Populate simpl.scenario with current runuser's scenarios.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {String} topic - The runuser's topic.\n * @returns {NamedReduxAction}\n */\nexport const getRunUserScenarios = createAction('simpl/GET_RUNUSER_SCENARIOS', (topic) => (\n  AutobahnReact.call(`${topic}.get_scenarios`)\n));\n\n/**\n * Populate simpl.current_runuser object with current runuser's info.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {Number} simpl_id - The user id on simpl-games-api.\n * @returns {NamedReduxAction}\n */\nexport const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INFO');\n\n/**\n * Remove the most recent error from the store.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @returns {NamedReduxAction}\n */\nexport const popError = createAction('simpl/POP_ERROR');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getCurrentRunUserInfo,\n  getPhases,\n  getRoles,\n  popError,\n};\n",
+    "content": "import { createAction } from 'redux-actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addTopic = createAction('simpl/TOPIC_ADD');\nexport const removeTopic = createAction('simpl/TOPIC_REMOVE');\n\nexport const addChild = createAction('simpl/CHILD_ADD');\nexport const removeChild = createAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic, returns a recursive representation of that scope and\n * its children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @param {array} exclude - names of resource types to exclude\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createAction('simpl/DATATREE_GET', (scope, exclude) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, [exclude])\n));\n\n/**\n * Given a scope's topic, returns a list of runusers that belong to the scope.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, exclude, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\n\n/**\n * Set the connection status on the store.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {symbol} status - the connection status.\n * @returns {NamedReduxAction}\n */\nexport const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');\n\n/**\n * Update the scope in the redux state with the received payload.\n *\n * The payload\n * must contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\n * and a `pk` property, to properly identify the correct scope to be updated.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {object} scope - the scope's JSON representation\n * @returns {NamedReduxAction}\n */\nexport const updateScope = createAction('simpl/SCOPE_UPDATE');\n\n\n/**\n * Dispatched when the client is ready to listen to a specific scope.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\n\n/**\n * Dispatched when the client gets disconnected and can't listen to the scope.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} topic - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (topic, ...args) => (\n  AutobahnReact.publish(`${topic}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createAction('simpl/GET_PHASES', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_phases`, args)\n));\n\nexport const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_roles`, args)\n));\n\nexport const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');\n\n/**\n * Populate simpl.scenario with current runuser's scenarios.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {String} topic - The runuser's topic.\n * @returns {NamedReduxAction}\n */\nexport const getRunUserScenarios = createAction('simpl/GET_RUNUSER_SCENARIOS', (topic) => (\n  AutobahnReact.call(`${topic}.get_scenarios`)\n));\n\n/**\n * Populate simpl.current_runuser object with current runuser's info.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {Number} simpl_id - The user id on simpl-games-api.\n * @returns {NamedReduxAction}\n */\nexport const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INFO');\n\n/**\n * Remove the most recent error from the store.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @returns {NamedReduxAction}\n */\nexport const popError = createAction('simpl/POP_ERROR');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getCurrentRunUserInfo,\n  getPhases,\n  getRoles,\n  popError,\n};\n",
     "static": true,
     "longname": "/Users/janee/Programming/LL/python/simpl-react/src/actions/simpl.js",
     "access": "public",
@@ -794,7 +794,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getDataTree}",
     "description": "Given a scope's topic, returns a recursive representation of that scope and\nits children.",
-    "lineNumber": 22,
+    "lineNumber": 23,
     "unknown": [
       {
         "tagName": "@function",
@@ -815,6 +815,16 @@
         "optional": false,
         "name": "scope",
         "description": "the scope's topic"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "exclude",
+        "description": "names of resource types to exclude"
       }
     ],
     "return": {
@@ -843,7 +853,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getRunUsers}",
     "description": "Given a scope's topic, returns a list of runusers that belong to the scope.",
-    "lineNumber": 33,
+    "lineNumber": 34,
     "unknown": [
       {
         "tagName": "@function",
@@ -892,7 +902,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{setConnectionStatus}",
     "description": "Set the connection status on the store.",
-    "lineNumber": 44,
+    "lineNumber": 45,
     "unknown": [
       {
         "tagName": "@function",
@@ -941,7 +951,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{updateScope}",
     "description": "Update the scope in the redux state with the received payload.\n\nThe payload\nmust contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\nand a `pk` property, to properly identify the correct scope to be updated.",
-    "lineNumber": 57,
+    "lineNumber": 58,
     "unknown": [
       {
         "tagName": "@function",
@@ -990,7 +1000,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{connectedScope}",
     "description": "Dispatched when the client is ready to listen to a specific scope.",
-    "lineNumber": 68,
+    "lineNumber": 69,
     "unknown": [
       {
         "tagName": "@function",
@@ -1039,7 +1049,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{disconnectedScope}",
     "description": "Dispatched when the client gets disconnected and can't listen to the scope.",
-    "lineNumber": 80,
+    "lineNumber": 81,
     "unknown": [
       {
         "tagName": "@function",
@@ -1088,7 +1098,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getCurrentRunPhase}",
     "description": null,
-    "lineNumber": 84,
+    "lineNumber": 85,
     "undocument": true,
     "type": {
       "types": [
@@ -1109,7 +1119,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getPhases}",
     "description": null,
-    "lineNumber": 88,
+    "lineNumber": 89,
     "undocument": true,
     "type": {
       "types": [
@@ -1130,7 +1140,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getRoles}",
     "description": null,
-    "lineNumber": 92,
+    "lineNumber": 93,
     "undocument": true,
     "type": {
       "types": [
@@ -1151,7 +1161,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{showGenericError}",
     "description": null,
-    "lineNumber": 96,
+    "lineNumber": 97,
     "undocument": true,
     "type": {
       "types": [
@@ -1172,7 +1182,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getRunUserScenarios}",
     "description": "Populate simpl.scenario with current runuser's scenarios.",
-    "lineNumber": 106,
+    "lineNumber": 107,
     "unknown": [
       {
         "tagName": "@function",
@@ -1221,7 +1231,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{getCurrentRunUserInfo}",
     "description": "Populate simpl.current_runuser object with current runuser's info.",
-    "lineNumber": 118,
+    "lineNumber": 119,
     "unknown": [
       {
         "tagName": "@function",
@@ -1270,7 +1280,7 @@
     "importPath": "simpl-react/src/actions/simpl.js",
     "importStyle": "{popError}",
     "description": "Remove the most recent error from the store.",
-    "lineNumber": 127,
+    "lineNumber": 128,
     "unknown": [
       {
         "tagName": "@function",

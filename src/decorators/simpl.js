@@ -80,8 +80,8 @@ export function simpl(options) {
       optionsWithDefaults.loadWorldResults = true;
     }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
-    console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
-    console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
+    // console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
+    // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
       return {
@@ -144,8 +144,8 @@ export function simpl(options) {
               // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
               if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
-                // console.log(`dispatching getDataTree(${topic}, 'result')`);
-                dispatch(getDataTree(topic, 'result'));
+                // console.log(`dispatching getDataTree(${topic}, ['result'])`);
+                dispatch(getDataTree(topic, ['result']));
               } else {
                 // console.log(`dispatching getDataTree(${topic})`);
                 dispatch(getDataTree(topic));
