@@ -33,6 +33,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *     special: 'org.example.namespace.special.shortcut'
  *   },
  *   loadAllScenarios: false
+ *   loadWorldResults: true
  * })(MyComponent);
 
  * @function
@@ -58,6 +59,8 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * prefixes, to be used as shortcuts.
  * @param {boolean} options.loadAllScenarios - If false, load only world scenarios and this user's Scenarios.
  * If true, load all Scenarios for the subscribed runs.
+ * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
+ * If false, world scenario period decisions but not results.
  */
 export function simpl(options) {
   return (Component) => {
@@ -71,9 +74,14 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadAllScenarios = false;
     }
+    if (options.hasOwnProperty('loadWorldResults')) {
+      optionsWithDefaults.loadWorldResults = options.loadWorldResults;
+    } else {
+      optionsWithDefaults.loadWorldResults = true;
+    }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
-    // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
-
+    console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
+    console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
       return {
@@ -135,8 +143,13 @@ export function simpl(options) {
               });
               // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              // console.log(`dispatching getDataTree(${topic})`);
-              dispatch(getDataTree(topic));
+              if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
+                // console.log(`dispatching getDataTree(${topic}, 'result')`);
+                dispatch(getDataTree(topic, 'result'));
+              } else {
+                // console.log(`dispatching getDataTree(${topic})`);
+                dispatch(getDataTree(topic));
+              }
               // console.log(`dispatching addTopic(${topic})`);
               dispatch(addTopic(topic));
             });
