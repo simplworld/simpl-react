@@ -17,10 +17,11 @@ export const removeChild = createAction('simpl/CHILD_REMOVE');
  * @function
  * @memberof Simpl.actions.simpl
  * @param {string} scope - the scope's topic
+ * @param {array} exclude - names of resource types to exclude
  * @returns {NamedReduxAction}
  */
-export const getDataTree = createAction('simpl/DATATREE_GET', (scope, ...args) => (
-  AutobahnReact.call(`${scope}.get_scope_tree`, args)
+export const getDataTree = createAction('simpl/DATATREE_GET', (scope, exclude) => (
+  AutobahnReact.call(`${scope}.get_scope_tree`, [exclude])
 ));
 
 /**
@@ -30,7 +31,7 @@ export const getDataTree = createAction('simpl/DATATREE_GET', (scope, ...args) =
  * @param {string} scope - the scope's topic
  * @returns {NamedReduxAction}
  */
-export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, ...args) => (
+export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, exclude, ...args) => (
   AutobahnReact.call(`${scope}.get_active_runusers`, args)
 ));
 
