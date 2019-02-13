@@ -60,7 +60,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * @param {boolean} options.loadAllScenarios - If false, load only world scenarios and this user's Scenarios.
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
- * If false, world scenario period decisions but not results.
+ * If false, load world scenario period decisions but not results.
  */
 export function simpl(options) {
   return (Component) => {
