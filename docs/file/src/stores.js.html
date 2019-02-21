@@ -54,13 +54,10 @@
  * @memberof Simpl
  */
 import { createStore, applyMiddleware, compose } from &apos;redux&apos;;
-import { reduxReactRouter } from &apos;redux-router&apos;;
 
 import promiseMiddleware from &apos;redux-promise&apos;;
 import thunkMiddleware from &apos;redux-thunk&apos;;
 import createLogger from &apos;redux-logger&apos;;
-
-import createHistory from &apos;history/lib/createBrowserHistory&apos;;
 
 const loggerMiddleware = createLogger();
 
@@ -70,7 +67,6 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const defaultMiddlewares = [
   applyMiddleware(promiseMiddleware),
   applyMiddleware(thunkMiddleware),
-  reduxReactRouter({ createHistory }),
 ];
 
 /**
