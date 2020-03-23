@@ -17,7 +17,7 @@ export function wamp(options = {}) {
     const optionsWithDefaults = wampOptionsWithDefaults(options);
 
     class Wamp extends React.Component {
-      componentWillMount() {
+      componentDidMount() {
         wampSetup(this, optionsWithDefaults);
       }
       render() {

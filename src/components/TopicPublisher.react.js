@@ -10,7 +10,7 @@ import { publishes } from '../decorators/pubsub/publishes';
  * @memberof Simpl.components
  */
 class TopicPublisher extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     // eslint-disable-next-line react/prop-types
     const Child = React.Children.only(this.props.children).type;
     this.Publisher = publishes(Child, this.props.topic, this.props.options);

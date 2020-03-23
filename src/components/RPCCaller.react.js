@@ -10,7 +10,7 @@ import { calls } from '../decorators/rpc';
  * @memberof Simpl.components
  */
 class RPCCaller extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     // eslint-disable-next-line react/prop-types
     const Child = React.Children.only(this.props.children).type;
     this.RpcContainer = calls(Child, this.props.callee, this.props.options);

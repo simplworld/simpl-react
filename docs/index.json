@@ -569,7 +569,7 @@
     "name": "src/actions/index.js",
     "content": "import messages from './messages';\nimport simpl from './simpl';\nimport state from './state';\n\n\n/**\n * An [FSA](https://github.com/acdlite/flux-standard-action)-compliant Redux\n * Action.\n * @typedef {function} ReduxAction\n*/\n\nexport const MessagesActions = messages;\nexport const SimplActions = simpl;\nexport const StateActions = state;\n/**\n * @namespace actions\n * @memberof Simpl\n */\nexport default {\n  messages,\n  simpl,\n  state,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/actions/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/actions/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -640,7 +640,7 @@
     "name": "src/actions/messages.js",
     "content": "import { createAction } from 'redux-actions';\n\n/*\n * action creators\n */\n\nexport const appendMessage = createAction('simpl/MESSAGE_APPEND');\nexport const updateMessage = createAction('simpl/MESSAGE_UPDATE');\n\n\n/**\n * @namespace messages\n * @memberof Simpl.actions\n */\nexport default {\n  appendMessage,\n  updateMessage,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/actions/messages.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/actions/messages.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -693,7 +693,7 @@
     "name": "src/actions/simpl.js",
     "content": "import { createAction } from 'redux-actions';\nimport AutobahnReact from '../autobahn';\n\n/*\n * action creators\n */\n\nexport const addTopic = createAction('simpl/TOPIC_ADD');\nexport const removeTopic = createAction('simpl/TOPIC_REMOVE');\n\nexport const addChild = createAction('simpl/CHILD_ADD');\nexport const removeChild = createAction('simpl/CHILD_REMOVE');\n\n/**\n * Given a scope's topic, returns a recursive representation of that scope and\n * its children.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @param {array} exclude - names of resource types to exclude\n * @returns {NamedReduxAction}\n */\nexport const getDataTree = createAction('simpl/DATATREE_GET', (scope, exclude) => (\n  AutobahnReact.call(`${scope}.get_scope_tree`, [exclude])\n));\n\n/**\n * Given a scope's topic, returns a list of runusers that belong to the scope.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, exclude, ...args) => (\n  AutobahnReact.call(`${scope}.get_active_runusers`, args)\n));\n\n/**\n * Set the connection status on the store.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {symbol} status - the connection status.\n * @returns {NamedReduxAction}\n */\nexport const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');\n\n/**\n * Update the scope in the redux state with the received payload.\n *\n * The payload\n * must contain a `resource_name` property (eg: `'decision'`, `'result'`, etc.)\n * and a `pk` property, to properly identify the correct scope to be updated.\n * @function\n * @memberof Simpl.actions.simpl\n * @param {object} scope - the scope's JSON representation\n * @returns {NamedReduxAction}\n */\nexport const updateScope = createAction('simpl/SCOPE_UPDATE');\n\n\n/**\n * Dispatched when the client is ready to listen to a specific scope.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} scope - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const connectedScope = createAction('simpl/SCOPE_CONNECTED', (scope, ...args) => (\n  AutobahnReact.publish(`${scope}.connected`, args)\n));\n\n/**\n * Dispatched when the client gets disconnected and can't listen to the scope.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {string} topic - the scope's topic\n * @returns {NamedReduxAction}\n */\nexport const disconnectedScope = createAction('simpl/SCOPE_DISCONNECTED', (topic, ...args) => (\n  AutobahnReact.publish(`${topic}.disconnected`, args)\n));\n\nexport const getCurrentRunPhase = createAction('simpl/CURRENT_RUN', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_current_run_and_phase`, args)\n));\n\nexport const getPhases = createAction('simpl/GET_PHASES', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_phases`, args)\n));\n\nexport const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (\n  AutobahnReact.call(`${topic}.get_roles`, args)\n));\n\nexport const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');\n\n/**\n * Populate simpl.scenario with current runuser's scenarios.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {String} topic - The runuser's topic.\n * @returns {NamedReduxAction}\n */\nexport const getRunUserScenarios = createAction('simpl/GET_RUNUSER_SCENARIOS', (topic) => (\n  AutobahnReact.call(`${topic}.get_scenarios`)\n));\n\n/**\n * Populate simpl.current_runuser object with current runuser's info.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @param {Number} simpl_id - The user id on simpl-games-api.\n * @returns {NamedReduxAction}\n */\nexport const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INFO');\n\n/**\n * Remove the most recent error from the store.\n *\n * @function\n * @memberof Simpl.actions.simpl\n * @returns {NamedReduxAction}\n */\nexport const popError = createAction('simpl/POP_ERROR');\n\n\n/**\n * @namespace simpl\n * @memberof Simpl.actions\n */\nexport default {\n  addChild,\n  removeChild,\n\n  getDataTree,\n  getRunUsers,\n  updateScope,\n  connectedScope,\n  disconnectedScope,\n  getCurrentRunPhase,\n  getCurrentRunUserInfo,\n  getPhases,\n  getRoles,\n  popError,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/actions/simpl.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/actions/simpl.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1311,7 +1311,7 @@
     "name": "src/actions/state.js",
     "content": "import { createAction } from 'redux-actions';\n\nexport const recyleStateAction = createAction('simpl/RECYCLE_STATE');\n\n/**\n * @namespace state\n * @memberof Simpl.actions\n */\nexport default {\n  recyleStateAction,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/actions/state.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/actions/state.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1343,7 +1343,7 @@
     "name": "src/autobahn.js",
     "content": "import Autobahn from 'autobahn-react';\n\nexport const AutobahnReact = Autobahn;\n\nexport default AutobahnReact;\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/autobahn.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/autobahn.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1375,7 +1375,7 @@
     "name": "src/components/index.js",
     "content": "/**\n * A React Component.\n * @typedef {object} ReactElement\n */\nimport RPCCaller from './RPCCaller.react';\nimport TopicPublisher from './TopicPublisher.react';\nimport TopicSubscriber from './TopicSubscriber.react';\nimport Progress from './Progress.react';\n\n/**\n * @namespace components\n * @memberof Simpl\n */\nexport default {\n  RPCCaller,\n  TopicPublisher,\n  TopicSubscriber,\n  Progress,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/components/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/components/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1404,7 +1404,7 @@
     "name": "src/constants.js",
     "content": "/**\n * A constant describing all the possible connection status.\n *\n * @readonly\n * @property {string} CONNECTING='connecting' The initial value. The app is not connected to\n * the WAMP Router, yet.\n * @property {string} CONNECTED='connected' The app is connected and authenticated, but it\n * still needs to download data.\n * @property {string} LOADED='loaded' The app has downloaded all the relevant data.\n * @property {string} OFFLINE='offline' The connection was dropped.\n */\nexport const CONNECTION_STATUS = {\n  CONNECTING: 'connecting',\n  CONNECTED: 'connected',\n  LOADED: 'loaded',\n  OFFLINE: 'offline',\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/constants.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/constants.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1490,7 +1490,7 @@
     "name": "src/decorators/index.js",
     "content": "import pubsub from './pubsub';\nimport rpc from './rpc';\nimport simpl from './simpl';\nimport wamp from './wamp';\n\n\n/**\n * @namespace decorators\n * @memberof Simpl\n */\nexport default {\n  pubsub,\n  rpc,\n  simpl,\n  wamp,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/decorators/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/decorators/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1501,7 +1501,7 @@
     "name": "src/decorators/pubsub/index.js",
     "content": "import publishes from './publishes';\nimport subscribes from './subscribes';\n\n\n/**\n * @namespace pubsub\n * @memberof Simpl.decorators\n */\nexport default {\n  publishes,\n  subscribes,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/decorators/pubsub/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/decorators/pubsub/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1512,7 +1512,7 @@
     "name": "src/decorators/rpc/index.js",
     "content": "import calls from './calls';\nimport registers from './registers';\n\n\n/**\n * @namespace rpc\n * @memberof Simpl.decorators\n */\nexport default {\n  calls,\n  registers,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/decorators/rpc/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/decorators/rpc/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1523,7 +1523,7 @@
     "name": "src/decorators/utils.js",
     "content": "import AutobahnReact from '../autobahn';\nimport Progress from '../components/Progress.react';\n\nimport { CONNECTION_STATUS } from '../constants';\n\n\nexport function wampSetup(component, options) {\n  // Callback called whenever the connection is lost\n  AutobahnReact.Connection.onLost(() => {\n    console.log('Connection lost :/!');\n    component.props.setConnectionStatus(CONNECTION_STATUS.OFFLINE);\n  });\n  // Callback called whenever the connection is ready\n// eslint-disable-next-line no-unused-vars\n  AutobahnReact.Connection.onReady(([session, details]) => {\n    console.log('Connection established!');\n    session.prefix('model', options.root_topic)\n    Object.keys(options.prefixes).forEach((key) => {\n      const value = options.prefixes[key];\n      console.log('added prefix: ', key, value);\n      session.prefix(key, value);\n      component.props.setConnectionStatus(CONNECTION_STATUS.CONNECTED);\n    });\n  });\n  AutobahnReact.Connection.initialize(options.url, options.realm);\n  if (options.authid) {\n    AutobahnReact.Auth.logIn({\n      username: `${options.authid}`,\n      password: options.password,\n    }).then(() => {\n      console.log('authd');\n      if (component.props.onReady) {\n        component.props.onReady();\n      }\n    }).catch((err) => {\n      console.log(err);\n      console.log('not authd');\n    });\n  }\n}\n\nexport function wampOptionsWithDefaults(options) {\n  const defaults = {\n    url: 'ws://localhost:8080/ws',\n    realm: 'realm1',\n    prefixes: {},\n    progressComponent: Progress,\n  };\n  return Object.assign({}, defaults, options);\n}\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/decorators/utils.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/decorators/utils.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1598,7 +1598,7 @@
     "name": "src/index.js",
     "content": "import actions from './actions';\nimport autobahn from './autobahn';\nimport components from './components';\nimport decorators from './decorators';\nimport reducers from './reducers';\nimport stores from './stores';\nimport utils from './utils';\n\n\n/**\n * @module Simpl\n * @namespace Simpl\n */\nexport default {\n  actions,\n  autobahn,\n  components,\n  decorators,\n  reducers,\n  stores,\n  utils,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1609,7 +1609,7 @@
     "name": "src/reducers/combined.js",
     "content": "/**\n * @namespace combined\n * @memberof Simpl.reducers\n */\nimport { combineReducers } from 'redux';\n\nimport { routerReducer as routing } from 'react-router-redux';\n\nimport simpl from './simpl';\n\n\nexport function routerReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\nexport function wampReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n  });\n  return combineReducers(combined);\n}\n\n/**\n * Returns a reducer function for your reducers, qdding two additional reducers\n * for `routing` and `simpl` state.\n *\n * @param      {object}  reducers  Your custom reducers\n * @return     {function}  A reducer function\n */\nexport function simplReducers(reducers) {\n  const combined = Object.assign({}, reducers, {\n    routing,\n    simpl,\n  });\n  return combineReducers(combined);\n}\n\nexport default {\n  routing: routerReducers,\n  simplReducers,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/reducers/combined.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/reducers/combined.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1718,7 +1718,7 @@
     "name": "src/reducers/index.js",
     "content": "import combined from './combined';\nimport messages from './messages';\nimport simpl from './simpl';\n\nexport const combinedReducer = combined;\nexport const messagesReducer = messages;\nexport const simplReducer = simpl;\n\n/**\n * @namespace reducers\n * @memberof Simpl\n */\nexport default {\n  combined,\n  messages,\n  simpl,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/reducers/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/reducers/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1792,7 +1792,7 @@
     "name": "src/reducers/messages.js",
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\n\nconst MessageActions = require('../actions/messages');\nconst StateActions = require('../actions/state');\n\n\nconst initial = {\n};\n\nconst Message = function Message(payload) {\n  return { args: payload[0], kwargs: payload[1], details: payload[2] };\n};\n\nconst messages = recycleState(createReducer(initial, {\n  [MessageActions.appendMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    const newVar = [...state[variable] || [], message];\n\n    return Object.assign({}, state, { [variable]: newVar });\n  },\n  [MessageActions.updateMessage](state, action) {\n    const payload = action.payload;\n    const variable = payload.variable;\n    // eslint-disable-next-line new-cap\n    const message = Message(payload);\n\n    return Object.assign({}, state, { [variable]: message });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default messages;\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/reducers/messages.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/reducers/messages.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -1918,7 +1918,7 @@
     "name": "src/reducers/simpl.js",
     "content": "import { createReducer } from 'redux-create-reducer';\nimport recycleState from 'redux-recycle';\nimport { isNil } from 'lodash';\n\nconst SimplActions = require('../actions/simpl');\nconst StateActions = require('../actions/state');\n\nimport { CONNECTION_STATUS } from '../constants';\nimport { popAtIndex, updateInCollection } from '../utils/collections';\n\n\nconst initial = {\n  treeLoaded: false,\n  phasesLoaded: false,\n  rolesLoaded: false,\n  scenariosLoaded: false,\n  connectionStatus: CONNECTION_STATUS.CONNECTING,\n  current_runuser: {},\n  current: {},\n  run: [],\n  runuser: [],\n  world: [],\n  scenario: [],\n  period: [],\n  decision: [],\n  result: [],\n  phase: [],\n  role: [],\n  errors: [],\n  topics: [],\n};\n\nconst simpl = recycleState(createReducer(initial, {\n  handleError(state, action) {\n    return state;\n  },\n  addChild(state, action) {\n    const key = action.payload.resource_name;\n    const kwargs = Object.assign({}, action.payload.data, {\n      pk: action.payload.pk,\n      resource_name: action.payload.resource_name,\n    });\n\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    let items;\n    if (index > -1) {\n      items = updateInCollection(state[key], index, kwargs);\n    } else {\n      items = [...state[key] || {}, kwargs];\n    }\n    return Object.assign({}, state, { [key]: items });\n  },\n  addTopics(state, newTopics) {\n    const topics = [...state.topics, ...newTopics];\n    return Object.assign({}, state, { topics });\n  },\n  removeTopic(state, payload) {\n    const topic = `model:model.${payload.resource_name}.${payload.pk}`;\n    // console.log('removeTopic: topic: ', topic, ', state.topics: ', state.topics);\n    const index = state.topics.indexOf(topic);\n    // console.log('removeTopic: index: ', index);\n    if (index === -1) {\n      return { ...state };\n    }\n    const updated = popAtIndex(state.topics, index);\n    // console.log('removeTopic: updated: ', updated);\n    return Object.assign({}, state, { ['topics']: updated });\n  },\n  getDataTree(state, action) {\n    let newState = this.addChild(state, action);\n    const children = action.payload.children;\n    if (action.payload.resource_name === 'run') { // children will be a runuser and worlds\n      const runTopics = [];\n      for (let i = 0; i < children.length; i++) {\n        const child = children[i];\n        runTopics.push(`model:model.${child.resource_name}.${child.pk}`);\n      }\n      newState = this.addTopics(newState, runTopics);\n    }\n    return children.reduce(\n      (memo, child) => this.getDataTree(memo, { payload: child }), newState);\n  },\n  [SimplActions.addTopic](state, action) {\n    // console.log('addTopic: action: ', action);\n    return this.addTopics(state, [action.payload]);\n  },\n  [SimplActions.removeTopic](state, action) {\n    // console.log('removeTopic: action: ', action);\n    return this.removeTopic(state, action.payload);\n  },\n  [SimplActions.addChild](state, action) {\n    // console.log('addChild: action: ', action);\n    let newState = { ...state };\n    if (action.payload.resource_name === 'world') {\n      const topic = `model:model.world.${action.payload.pk}`;\n      // console.log('adding topic for new world: topic:', topic);\n      newState = this.addTopics(state, [topic]);\n    }\n    return this.addChild(newState, action);\n  },\n  [SimplActions.removeChild](state, action) {\n    // console.log('removeChild: action: ', action);\n    const resourceName = action.payload.resource_name;\n    let newState = { ...state };\n    if (resourceName === 'world') {\n      console.log('removing topic for world');\n      newState = this.removeTopic(state, action.payload);\n    }\n    const index = newState[resourceName].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return { ...newState };\n    }\n    const updated = popAtIndex(newState[resourceName], index);\n    return Object.assign({}, newState, { [resourceName]: updated });\n  },\n  [SimplActions.getRunUsers](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    return action.payload.reduce((memo, child) => (\n      this.addChild(memo, { payload: child })\n    ), Object.assign({}, state));\n  },\n  [SimplActions.getDataTree](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let connectionStatus = state.connectionStatus;\n    if (state.scenariosLoaded && state.rolesLoaded && state.phasesLoaded) {\n      connectionStatus = CONNECTION_STATUS.LOADED;\n    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {\n      connectionStatus = CONNECTION_STATUS.CONNECTED;\n    }\n    // console.log('SimplActions.getDataTree: connectionStatus=', connectionStatus,\n    //   ', treeLoaded=', state.treeLoaded,\n    //   ', scenariosLoaded=', state.scenariosLoaded,\n    //   ', rolesLoaded', state.rolesLoaded,\n    //   ', phasesLoaded', state.phasesLoaded);\n\n    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {\n      treeLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.updateScope](state, action) {\n    const key = action.payload.resource_name;\n    const data = Object.assign({}, action.payload.data, { pk: action.payload.pk });\n    const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);\n    if (index === -1) {\n      return state;\n    }\n    const newCollection = updateInCollection(state[key], index, data);\n\n    return Object.assign({}, state, { [key]: newCollection });\n  },\n  [SimplActions.getCurrentRunPhase](state, action) {\n    const runState = this.addChild(state, { payload: action.payload.run });\n\n    return Object.assign({}, runState, {\n      current: {\n        run: action.payload.run.pk,\n        phase: action.payload.phase.pk,\n      },\n    });\n  },\n  [SimplActions.getCurrentRunUserInfo](state, action) {\n    // Get the current user's info into the current_runuser namespace\n    if (state.runuser.length === 0) {\n      throw \"Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.\";\n    }\n    const simplId = action.payload;\n    let currentRunUser;\n    state.runuser.forEach((runuser) => {\n      if (runuser.user === simplId) {\n        currentRunUser = runuser;   // fairly useless unless runuser is a player\n      }\n    });\n    return Object.assign({}, state, { current_runuser: currentRunUser });\n  },\n  [SimplActions.getRunUserScenarios](state, action) {\n    if (action.payload.error) {\n      return this.handleError(state, action);\n    }\n    let connectionStatus = state.connectionStatus;\n    if (state.treeLoaded && state.rolesLoaded && state.phasesLoaded) {\n      connectionStatus = CONNECTION_STATUS.LOADED;\n    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {\n      connectionStatus = CONNECTION_STATUS.CONNECTED;\n    }\n    // console.log('SimplActions.getRunUserScenarios: connectionStatus=', connectionStatus,\n    //   ', treeLoaded=', state.treeLoaded,\n    //   ', scenariosLoaded=', state.scenariosLoaded,\n    //   ', rolesLoaded', state.rolesLoaded,\n    //   ', phasesLoaded', state.phasesLoaded);\n\n    const scenarios = action.payload;\n    let newState = { ...state };\n    scenarios.forEach((scenario) => {\n      newState = this.getDataTree(newState, { payload: scenario });\n    });\n    // return newState;\n    return Object.assign({}, newState, {\n      scenariosLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.getPhases](state, action) {\n    let connectionStatus = state.connectionStatus;\n    if (state.treeLoaded && state.rolesLoaded && state.scenariosLoaded) {\n      connectionStatus = CONNECTION_STATUS.LOADED;\n    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {\n      connectionStatus = CONNECTION_STATUS.CONNECTED;\n    }\n    // console.log('SimplActions.getPhases: connectionStatus=', connectionStatus,\n    //   ', treeLoaded=', state.treeLoaded,\n    //   ', scenariosLoaded=', state.scenariosLoaded,\n    //   ', rolesLoaded', state.rolesLoaded,\n    //   ', phasesLoaded', state.phasesLoaded);\n\n    return Object.assign({}, state, {\n      phase: action.payload,\n      phasesLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.getRoles](state, action) {\n    let connectionStatus = state.connectionStatus;\n    if (state.treeLoaded && state.phasesLoaded && state.scenariosLoaded) {\n      connectionStatus = CONNECTION_STATUS.LOADED;\n    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {\n      connectionStatus = CONNECTION_STATUS.CONNECTED;\n    }\n    // console.log('SimplActions.getRoles: connectionStatus=', connectionStatus,\n    //   ', treeLoaded=', state.treeLoaded,\n    //   ', scenariosLoaded=', state.scenariosLoaded,\n    //   ', rolesLoaded', state.rolesLoaded,\n    //   ', phasesLoaded', state.phasesLoaded);\n\n    return Object.assign({}, state, {\n      role: action.payload,\n      rolesLoaded: true,\n      connectionStatus,\n    });\n  },\n  [SimplActions.setConnectionStatus](state, action) {\n    // console.log('SimplActions.setConnectionStatus: connectionStatus=', connectionStatus,\n    //   ', treeLoaded=', state.treeLoaded,\n    //   ', scenariosLoaded=', state.scenariosLoaded,\n    //   ', rolesLoaded', state.rolesLoaded,\n    //   ', phasesLoaded', state.phasesLoaded);\n\n    return Object.assign({}, state, { connectionStatus: action.payload });\n  },\n  [SimplActions.showGenericError](state, action) {\n    const error = { msg: action.payload[0] };\n    const errors = [...state.errors, error];\n    return Object.assign({}, state, { errors });\n  },\n  [SimplActions.popError](state) {\n    const errors = [...state.errors];\n    errors.pop();\n    return Object.assign({}, state, { errors });\n  },\n}), `${StateActions.recycleState}`);\n\nexport default simpl;\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/reducers/simpl.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/reducers/simpl.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2013,7 +2013,7 @@
     "name": "src/stores.js",
     "content": "/**\n * @namespace stores\n * @memberof Simpl\n */\nimport { createStore, applyMiddleware, compose } from 'redux';\n\nimport promiseMiddleware from 'redux-promise';\nimport thunkMiddleware from 'redux-thunk';\nimport createLogger from 'redux-logger';\n\nconst loggerMiddleware = createLogger();\n\n// eslint-disable-next-line no-underscore-dangle\nconst composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;\n\nconst defaultMiddlewares = [\n  applyMiddleware(promiseMiddleware),\n  applyMiddleware(thunkMiddleware),\n];\n\n/**\n * Adds promise, thunk, router and dev tools middlewares to your store\n *\n * @param      {string}  NODE_ENV  The node env\n * @return     {function}  a `createStore` factory\n */\nexport function finalCreateStoreFactory(NODE_ENV) {\n  const middlewares = [...defaultMiddlewares];\n  if (NODE_ENV !== 'production'\n    // eslint-disable-next-line no-underscore-dangle\n    && typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'undefined') {\n    middlewares.push(applyMiddleware(loggerMiddleware));\n  }\n  return composeEnhancers(\n    ...middlewares\n  )(createStore);\n}\n\n\nexport default {\n  finalCreateStoreFactory,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/stores.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/stores.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2123,7 +2123,7 @@
     "name": "src/test/index.js",
     "content": "import store from './store';\n\n\n/**\n * @namespace test\n * @memberof Simpl\n */\nexport default {\n  store,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/test/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/test/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2134,7 +2134,7 @@
     "name": "src/test/store.js",
     "content": "import { finalCreateStoreFactory } from '../stores';\nimport { simplReducers } from '../reducers/combined';\n\nconst rootReducer = simplReducers({});\n\n\nfunction configureStore(initialState) {\n  const finalCreateStore = finalCreateStoreFactory('production');\n  const store = finalCreateStore(rootReducer, initialState);\n\n  return store;\n}\n\n/**\n * A minimal, pre-configured store that can be used for testing.\n\n * @function store\n * @memberof Simpl.test\n */\nexport const store = configureStore();\n\nexport default store;\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/test/store.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/test/store.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2222,7 +2222,7 @@
     "name": "src/utils/collections.js",
     "content": "export function updateInCollection(collection, index, updates) {\n  if (index === undefined || index === null || index >= collection.length) {\n    return [...collection, Object.assign({}, updates)];\n  }\n  return [\n    ...collection.slice(0, index),\n    Object.assign({}, collection[index], updates),\n    ...collection.slice(index + 1),\n  ];\n}\n\nexport function updateCollection(collection, updates) {\n  return collection.map((item) => Object.assign({}, item, updates));\n}\n\nexport function popAtIndex(collection, index) {\n  if (index < 0) {\n    return collection.slice(0, index);\n  }\n  return [\n    ...collection.slice(0, index),\n    ...collection.slice(index + 1, collection.length),\n  ];\n}\n\n\nexport default {\n  updateInCollection,\n  updateCollection,\n  popAtIndex,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/utils/collections.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/utils/collections.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2350,7 +2350,7 @@
     "name": "src/utils/index.js",
     "content": "import collections from './collections';\nimport reducers from './reducers';\n\n\n/**\n * @namespace utils\n * @memberof Simpl\n */\nexport default {\n  collections,\n  reducers,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/utils/index.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/utils/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2361,7 +2361,7 @@
     "name": "src/utils/reducers.js",
     "content": "import { updateInCollection } from './collections';\n\n\nexport function updateObjectOrCollection(state, action, updates) {\n  let collection;\n\n  if (action.payload.key !== undefined) {\n    collection = updateInCollection(state, action.payload.key, updates);\n  } else {\n    collection = Object.assign({}, state, updates);\n  }\n  return collection;\n}\n\nexport default {\n  updateObjectOrCollection,\n};\n",
     "static": true,
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/src/utils/reducers.js",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/src/utils/reducers.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
@@ -2412,15 +2412,15 @@
   {
     "kind": "index",
     "content": "# Simpl React\n\n[![Build Status](https://travis-ci.com/simplworld/simpl-react.svg?token=cyqpBgqLC1o8qUptfcpE&branch=master)](https://travis-ci.com/simplworld/simpl-react)\n\n### Installation\n\n    $ npm install simpl-react --save\n\n### Development\n\n    $ git clone git@github.com:simplworld/simpl-react.git\n    $ cd simpl-react\n    $ npm install\n    $ npm test\n\n### Build lib\n\n    $ npm run compile --production\n\n### Build docs\n\n    $ npm run docs\n    $ open docs/index.html\n\nCommit then, to release a new version, increment the version number with:\n\n    $ pip install bumpversion\n    $ bumpversion patch\n\nThen push to the repo:\n\n    $ git push && git push --tags\n\n### Documentation\n\nAPI docs are [available online](https://lldev-team.gitlab.io/simpl-react/)\n\nCopyright © 2018 The Wharton School,  The University of Pennsylvania \n\nThis program is free software; you can redistribute it and/or\nmodify it under the terms of the GNU General Public License\nas published by the Free Software Foundation; either version 2\nof the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful,\nbut WITHOUT ANY WARRANTY; without even the implied warranty of\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\nGNU General Public License for more details.\n\n\n\n\n",
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/README.md",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/README.md",
     "name": "./README.md",
     "static": true,
     "access": "public"
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"simpl-react\",\n  \"version\": \"0.7.11\",\n  \"description\": \"React components and utilities for the Simpl Framework\",\n  \"license\": \"GPL-2.0\",\n  \"main\": \"lib/index.js\",\n  \"directories\": {\n    \"src\": \"src/\",\n    \"lib\": \"lib/\"\n  },\n  \"scripts\": {\n    \"test\": \"jest\",\n    \"karma\": \"karma start\",\n    \"watch\": \"gulp watch\",\n    \"docs\": \"rm -rf docs && esdoc -c esdoc.json\",\n    \"compile\": \"rm -rf lib && babel src --out-dir lib\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/simplworld/simpl-react.git\"\n  },\n  \"dependencies\": {\n    \"autobahn\": \"^18.10.2\",\n    \"autobahn-react\": \"^0.3.1\",\n    \"lodash\": \"^4.17.4\",\n    \"prop-types\": \"^15.5.10\",\n    \"react\": \"^16.8.2\",\n    \"react-dom\": \"^16.8.2\",\n    \"react-redux\": \"^5.0.4\",\n    \"react-router-redux\": \"^4.0.6\",\n    \"redux\": \"^3.7.2\",\n    \"redux-actions\": \"^0.13.0\",\n    \"redux-create-reducer\": \"^1.1.1\",\n    \"redux-logger\": \"^2.7.0\",\n    \"redux-promise\": \"^0.5.1\",\n    \"redux-recycle\": \"^1.2.0\",\n    \"redux-thunk\": \"^2.2.0\"\n  },\n  \"peerDependencies\": {\n    \"react\": \"^16.8.2\",\n    \"react-dom\": \"^16.8.2\",\n    \"react-redux\": \"^5.0.0\",\n    \"redux\": \"^3.6.0\",\n    \"redux-create-reducer\": \"^1.1.1\",\n    \"redux-recycle\": \"^1.2.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.1.5\",\n    \"@babel/core\": \"^7.1.5\",\n    \"@babel/plugin-transform-object-assign\": \"^7.0.0\",\n    \"@babel/preset-env\": \"^7.1.5\",\n    \"@babel/preset-react\": \"^7.0.0\",\n    \"babel-core\": \"^7.0.0-bridge.0\",\n    \"babel-eslint\": \"^10.0.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-importpath-plugin\": \"0.0.1\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^2.13.1\",\n    \"eslint-config-airbnb\": \"^9.0.1\",\n    \"eslint-plugin-import\": \"^1.9.2\",\n    \"eslint-plugin-jsx-a11y\": \"^1.5.3\",\n    \"eslint-plugin-react\": \"^5.2.2\",\n    \"glob\": \"^6.0.4\",\n    \"jasmine-core\": \"^2.4.1\",\n    \"jest\": \"^23.6.0\",\n    \"mocha\": \"^5.2.0\",\n    \"redux-devtools\": \"^3.0.1\",\n    \"redux-devtools-dock-monitor\": \"^1.0.1\",\n    \"redux-devtools-log-monitor\": \"^1.0.1\"\n  },\n  \"jest\": {\n    \"roots\": [\n      \"test\"\n    ],\n    \"modulePathIgnorePatterns\": [\n      \"docs\"\n    ]\n  },\n  \"author\": \"\"\n}\n",
-    "longname": "/Volumes/MacData/Projects/Yuzu/simpl-react/package.json",
+    "content": "{\n  \"name\": \"simpl-react\",\n  \"version\": \"0.7.13\",\n  \"description\": \"React components and utilities for the Simpl Framework\",\n  \"license\": \"GPL-2.0\",\n  \"main\": \"lib/index.js\",\n  \"directories\": {\n    \"src\": \"src/\",\n    \"lib\": \"lib/\"\n  },\n  \"scripts\": {\n    \"test\": \"jest\",\n    \"karma\": \"karma start\",\n    \"watch\": \"gulp watch\",\n    \"docs\": \"rm -rf docs && esdoc -c esdoc.json\",\n    \"compile\": \"rm -rf lib && babel src --out-dir lib\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/simplworld/simpl-react.git\"\n  },\n  \"dependencies\": {\n    \"autobahn\": \"^18.10.2\",\n    \"autobahn-react\": \"^0.3.1\",\n    \"lodash\": \"^4.17.4\",\n    \"prop-types\": \"^15.5.10\",\n    \"react\": \"^16.8.2\",\n    \"react-dom\": \"^16.8.2\",\n    \"react-redux\": \"^5.0.4\",\n    \"react-router-redux\": \"^4.0.6\",\n    \"redux\": \"^3.7.2\",\n    \"redux-actions\": \"^0.13.0\",\n    \"redux-create-reducer\": \"^1.1.1\",\n    \"redux-logger\": \"^2.7.0\",\n    \"redux-promise\": \"^0.5.1\",\n    \"redux-recycle\": \"^1.2.0\",\n    \"redux-thunk\": \"^2.2.0\"\n  },\n  \"peerDependencies\": {\n    \"react\": \"^15.5.x || ^16.x\",\n    \"react-dom\": \"^15.5.x || ^16.x\",\n    \"react-redux\": \"^5.0.0\",\n    \"redux\": \"^3.6.0\",\n    \"redux-create-reducer\": \"^1.1.1\",\n    \"redux-recycle\": \"^1.2.0\"\n  },\n  \"devDependencies\": {\n    \"@babel/cli\": \"^7.1.5\",\n    \"@babel/core\": \"^7.1.5\",\n    \"@babel/plugin-transform-object-assign\": \"^7.0.0\",\n    \"@babel/preset-env\": \"^7.1.5\",\n    \"@babel/preset-react\": \"^7.0.0\",\n    \"babel-core\": \"^7.0.0-bridge.0\",\n    \"babel-eslint\": \"^10.0.1\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-importpath-plugin\": \"0.0.1\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"eslint\": \"^2.13.1\",\n    \"eslint-config-airbnb\": \"^9.0.1\",\n    \"eslint-plugin-import\": \"^1.9.2\",\n    \"eslint-plugin-jsx-a11y\": \"^1.5.3\",\n    \"eslint-plugin-react\": \"^5.2.2\",\n    \"glob\": \"^6.0.4\",\n    \"jasmine-core\": \"^2.4.1\",\n    \"jest\": \"^23.6.0\",\n    \"mocha\": \"^5.2.0\",\n    \"redux-devtools\": \"^3.0.1\",\n    \"redux-devtools-dock-monitor\": \"^1.0.1\",\n    \"redux-devtools-log-monitor\": \"^1.0.1\"\n  },\n  \"jest\": {\n    \"roots\": [\n      \"test\"\n    ],\n    \"modulePathIgnorePatterns\": [\n      \"docs\"\n    ]\n  },\n  \"author\": \"\"\n}\n",
+    "longname": "/Users/janee/Programming/LL/python/simpl-react/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"

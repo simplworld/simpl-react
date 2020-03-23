@@ -224,7 +224,7 @@ export function simpl(options) {
 
     // eslint-disable-next-line react/no-multi-comp
     class Simpl extends React.Component {
-      componentWillMount() {
+      componentDidMount() {
         wampSetup(this, optionsWithDefaults);
         window.addEventListener('beforeunload', this.props.onLeave);
       }
