@@ -27,11 +27,11 @@ export function wampSetup(component, options) {
     realm: options.realm,
     authmethods: ['ticket'],
     authid: options.authid,
-    onchallenge: (session, method, extra) => {
-      console.log("In challenge!");
-      return (options.password);
+    onchallenge: () => {
+      return options.password;
     }
-  }).then(() => {
+  });
+  AutobahnReact.Connection.connect().then(() => {
     console.log(`Authentication as authid=${options.authid} successful!`);
     if (component.props.onReady) {
       component.props.onReady();
