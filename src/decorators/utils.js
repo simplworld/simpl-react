@@ -3,7 +3,6 @@ import Progress from '../components/Progress.react';
 
 import { CONNECTION_STATUS } from '../constants';
 
-
 export function wampSetup(component, options) {
   // Callback called whenever the connection is lost
   AutobahnReact.Connection.onLost(() => {
@@ -29,7 +28,13 @@ export function wampSetup(component, options) {
     realm: options.realm,
     authmethods: ['ticket'],
     authid: options.authid,
-    onchallenge: () => { return (options.password); },
+    onchallenge: (session, method, extra) => {
+      console.log("In challenge!")
+      console.dir(session);
+      console.dir(method);
+      console.dir(extra);
+      return (options.password);
+    },
   }).then(() => {
     console.log(`Authentication as authid=${options.authid} successful!`);
     if (component.props.onReady) {
