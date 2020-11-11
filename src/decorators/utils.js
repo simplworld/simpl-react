@@ -51,6 +51,7 @@ export function wampOptionsWithDefaults(options) {
   const defaults = {
     url: 'ws://localhost:8080/ws',
     realm: 'realm1',
+    authmethods: ['ticket'],
     prefixes: {},
     progressComponent: Progress,
   };
