@@ -22,6 +22,8 @@ export function wampSetup(component, options) {
       component.props.setConnectionStatus(CONNECTION_STATUS.CONNECTED);
     });
   });
+  console.log("Options!");
+  console.dir(options);
   AutobahnReact.Connection.makeConnection({
     url: options.url,
     realm: options.realm,
