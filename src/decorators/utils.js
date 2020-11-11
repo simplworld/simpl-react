@@ -11,7 +11,7 @@ export function wampSetup(component, options) {
     component.props.setConnectionStatus(CONNECTION_STATUS.OFFLINE);
   });
   // Callback called whenever the connection is ready
-// eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-unused-vars
   AutobahnReact.Connection.onReady(([session, details]) => {
     console.log('Connection established!');
     session.prefix('model', options.root_topic)
@@ -22,21 +22,22 @@ export function wampSetup(component, options) {
       component.props.setConnectionStatus(CONNECTION_STATUS.CONNECTED);
     });
   });
-  AutobahnReact.Connection.initialize(options.url, options.realm);
-  if (options.authid) {
-    AutobahnReact.Auth.logIn({
-      username: `${options.authid}`,
-      password: options.password,
-    }).then(() => {
-      console.log('authd');
-      if (component.props.onReady) {
-        component.props.onReady();
-      }
-    }).catch((err) => {
-      console.log(err);
-      console.log('not authd');
-    });
-  }
+  AutobahnReact.Connection.makeConnection({
+    url: options.url,
+    realm: options.realm,
+    authmethods: ['ticket'],
+    authid: options.authid,
+    onchallenge: () => { return (options.password); },
+  }).then(() => {
+    console.log(`Authentication as authid=${options.authid} successful!`);
+    if (component.props.onReady) {
+      component.props.onReady();
+    }
+  }).catch((err) => {
+    console.log(err);
+    console.log(`Unable to authenticate as authid=${options.authid}`);
+  });
+
 }
 
 export function wampOptionsWithDefaults(options) {
