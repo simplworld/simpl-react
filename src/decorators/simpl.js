@@ -23,7 +23,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * Decorator to wrap your main app
  * @example
  * export default simpl({
- *   authid: 123,
+ *   authid: user@domain.com,
  *   password: 'password',
  *   url: 'ws://example.com/ws',
  *   progressComponent: MyProgressComponent,
@@ -39,7 +39,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * @function
  * @memberof Simpl.decorators
  * @param {Object} options - An object of options.
- * @param {string} options.authid - The user id for authenticating on the WAMP
+ * @param {string} options.authid - The email address for authenticating on the WAMP
  * Router. This will the user's id on Simpl-Games-Api
  * @param {string} options.password - The password for authenticating on the
  * WAMP Router.
@@ -64,7 +64,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  */
 export function simpl(options) {
   return (Component) => {
-    const authid = parseInt(options.authid, 10);
+    const authid = options.authid;
     const optionsWithDefaults = wampOptionsWithDefaults(options);
     if (_.isFunction(options.topics)) {
       optionsWithDefaults.topics = options.topics();
@@ -127,11 +127,11 @@ export function simpl(options) {
                   if (optionsWithDefaults.loadAllScenarios) {
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
-                    if (ru.data.user !== authid) {
+                    if (ru.data.email !== authid) {
                       dispatch(addTopic(ruTopic));  // subscribe to other users' runuser topics
                     }
                   }
-                  else if (ru.data.user === authid) { // only get this user's scenarios
+                  else if (ru.data.email === authid) { // only get this user's scenarios
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     break;
@@ -190,7 +190,7 @@ export function simpl(options) {
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                   if (resourceName === 'runuser' && event.topic.endsWith('update_child')) {
                     // Is the updated runuser associated with the current user?
-                    if (authid === data.user) {
+                    if (authid === data.email) {
                       dispatch(getCurrentRunUserInfo(authid));
                     }
                   }
