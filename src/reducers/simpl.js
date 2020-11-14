@@ -171,7 +171,8 @@ const simpl = recycleState(createReducer(initial, {
     const simplId = action.payload;
     let currentRunUser;
     state.runuser.forEach((runuser) => {
-      if (runuser.user === simplId) {
+      console.log(`Looking at runuser: ${runuser}`);
+      if (runuser.email === simplId) {
         currentRunUser = runuser;   // fairly useless unless runuser is a player
       }
     });
