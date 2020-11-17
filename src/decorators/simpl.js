@@ -34,7 +34,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   },
  *   loadAllScenarios: false
  *   loadWorldResults: true
- *   loadOnDemand: false
+ *   loadWorldsOnDemand: false
  * })(MyComponent);
 
  * @function
@@ -62,8 +62,8 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
  * If false, load world scenario period decisions but not results.
- * @param {boolean} options.loadOnDemand - If true, load user Run data on request.
- * If false, load user Run data on login.
+ * @param {boolean} options.loadWorldsOnDemand - If true, load runs' World data on request.
+ * If false, load runs' World data on login.
  */
 export function simpl(options) {
   return (Component) => {
@@ -82,14 +82,14 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadWorldResults = true;
     }
-    if (options.hasOwnProperty('loadOnDemand')) {
-      optionsWithDefaults.loadWorldResults = options.loadOnDemand;
+    if (options.hasOwnProperty('loadWorldsOnDemand')) {
+      optionsWithDefaults.loadWorldResults = options.loadWorldsOnDemand;
     } else {
-      optionsWithDefaults.loadOnDemand = false;
+      optionsWithDefaults.loadWorldsOnDemand = false;
     }
     console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
-    console.log(`optionsWithDefaults.loadOnDemand: ${optionsWithDefaults.loadOnDemand}`);
+    console.log(`optionsWithDefaults.loadWorldsOnDemand: ${optionsWithDefaults.loadWorldsOnDemand}`);
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
@@ -133,14 +133,13 @@ export function simpl(options) {
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;
-                  if (optionsWithDefaults.loadAllScenarios) {
+                  if (optionsWithDefaults.loadAllScenarios) { // player or single player game leader
                     console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     if (ru.data.user !== authid) {
                       dispatch(addTopic(ruTopic));  // subscribe to other users' runuser topics
                     }
-                  }
-                  else if (ru.data.user === authid) { // only get this user's scenarios
+                  } else if (ru.data.user === authid) { // only get this user's scenarios
                     console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     break;
@@ -152,15 +151,21 @@ export function simpl(options) {
               });
               console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
-                console.log(`dispatching getDataTree(${topic}, ['result'])`);
-                dispatch(getDataTree(topic, ['result']));
+              if (options.loadWorldsOnDemand) {
+                console.log(`Will load data tree and subscribe to topic ${topic} on demand.`);
+                console.log(`dispatching getDataTree(${topic}, ['world'])`);
+                dispatch(getDataTree(topic, ['world']));
               } else {
-                console.log(`dispatching getDataTree(${topic})`);
-                dispatch(getDataTree(topic));
+                if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
+                  console.log(`dispatching getDataTree(${topic}, ['result'])`);
+                  dispatch(getDataTree(topic, ['result']));
+                } else {
+                  console.log(`dispatching getDataTree(${topic})`);
+                  dispatch(getDataTree(topic));
+                }
+                console.log(`dispatching addTopic(${topic})`);
+                dispatch(addTopic(topic));
               }
-              console.log(`dispatching addTopic(${topic})`);
-              dispatch(addTopic(topic));
             });
           }
           console.log(`dispatching getPhases('model:model.game')`);
