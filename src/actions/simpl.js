@@ -94,8 +94,6 @@ export const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (
   AutobahnReact.call(`${topic}.get_roles`, args)
 ));
 
-export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
-
 /**
  * Populate simpl.scenario with current runuser's scenarios.
  *
@@ -128,22 +126,29 @@ export const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INF
 export const popError = createAction('simpl/POP_ERROR');
 
 
+export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
+
+
 /**
  * @namespace simpl
  * @memberof Simpl.actions
  */
 export default {
+  addTopic,
+  removeTopic,
   addChild,
   removeChild,
-
   getDataTree,
   getRunUsers,
+  setConnectionStatus,
   updateScope,
   connectedScope,
   disconnectedScope,
   getCurrentRunPhase,
-  getCurrentRunUserInfo,
   getPhases,
   getRoles,
+  getRunUserScenarios,
+  getCurrentRunUserInfo,
   popError,
+  showGenericError,
 };
