@@ -175,7 +175,8 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onLeaveWithTopics(topics) {
-          console.log(`onLeave:: topics: `, topics);
+          // invoked when navigate between pages -- sometimes
+          console.log(`onLeaveWithTopics:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) => {
               dispatch(disconnectedScope(topic));
@@ -184,7 +185,8 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
-          console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
+          // invoked on receiving topic events
+          console.log(`onReceivedWithTopics:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
