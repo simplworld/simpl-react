@@ -34,7 +34,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   },
  *   loadAllScenarios: false
  *   loadWorldResults: true
- *   loadWorldsOnDemand: false
+ *   loadOnDemand: false
  * })(MyComponent);
 
  * @function
@@ -62,7 +62,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
  * If false, load world scenario period decisions but not results.
- * @param {boolean} options.loadWorldsOnDemand - If true, load runs' World data on request.
+ * @param {boolean} options.loadOnDemand - If true, load runs' World data on request.
  * If false, load runs' World data on login.
  */
 export function simpl(options) {
@@ -82,14 +82,14 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadWorldResults = true;
     }
-    if (options.hasOwnProperty('loadWorldsOnDemand')) {
-      optionsWithDefaults.loadWorldResults = options.loadWorldsOnDemand;
+    if (options.hasOwnProperty('loadOnDemand')) {
+      optionsWithDefaults.loadWorldResults = options.loadOnDemand;
     } else {
-      optionsWithDefaults.loadWorldsOnDemand = false;
+      optionsWithDefaults.loadOnDemand = false;
     }
     console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
-    console.log(`optionsWithDefaults.loadWorldsOnDemand: ${optionsWithDefaults.loadWorldsOnDemand}`);
+    console.log(`optionsWithDefaults.loadOnDemand: ${optionsWithDefaults.loadOnDemand}`);
     console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
@@ -133,7 +133,7 @@ export function simpl(options) {
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;
-                  if (optionsWithDefaults.loadAllScenarios) { // player or single player game leader
+                  if (optionsWithDefaults.loadAllScenarios) { // single player game leaders
                     console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     if (ru.data.user !== authid) {
@@ -151,7 +151,7 @@ export function simpl(options) {
               });
               console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              if (options.loadWorldsOnDemand) {
+              if (options.loadOnDemand) {
                 console.log(`Will load data tree and subscribe to topic ${topic} on demand.`);
                 console.log(`dispatching getDataTree(${topic}, ['world'])`);
                 dispatch(getDataTree(topic, ['world']));
