@@ -261,6 +261,14 @@ const simpl = recycleState(createReducer(initial, {
     errors.pop();
     return Object.assign({}, state, { errors });
   },
+  [SimplActions.setCurrentRun](state, action) {
+    console.log('setCurrentRun: action: ', action);
+    return state;
+  },
+  [SimplActions.setCurrentRun](state, action) {
+    console.log('getCurrentRun: action: ', action);
+    return state;
+  },
 }), `${StateActions.recycleState}`);
 
 export default simpl;
