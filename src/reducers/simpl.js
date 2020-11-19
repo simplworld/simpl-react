@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-create-reducer';
 import recycleState from 'redux-recycle';
-import { isNil } from 'lodash';
+import { isEmpty, isNil } from 'lodash';
 
 const SimplActions = require('../actions/simpl');
 const StateActions = require('../actions/state');
@@ -166,6 +166,7 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user's info into the current_runuser namespace
+    // TODO if current_run is set, update to correspond to user's current_run runuser.
     if (state.runuser.length === 0) {
       throw "Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.";
     }
@@ -270,13 +271,28 @@ const simpl = recycleState(createReducer(initial, {
     state.run.forEach((run) => {
       if (run.pk === currentRunId) {
         currentRun = run;
+        // protect from page refreshes
+        sessionStorage.setItem('current_run_id', currentRunId);
       }
     });
     return Object.assign({}, state, { current_run: currentRun });
   },
   [SimplActions.getCurrentRun](state, action) {
     console.log('SimplActions.getCurrentRun: action: ', action);
-    return state.current_run;
+    let currentRun = state.current_run;
+    if (isEmpty(currentRun)) {
+      // check for cached current run id
+      const currentRunId = sessionStorage.getItem('current_run_id');
+      console.log('sessionStorage current_run_id:', currentRunId);
+      if (!isNil((currentRunId))) {
+        state.run.forEach((run) => {
+          if (run.pk == currentRunId) {
+            currentRun = run;
+          }
+        });
+      }
+    }
+    return Object.assign({}, state, { current_run: currentRun });
   },
 }), `${StateActions.recycleState}`);
 
