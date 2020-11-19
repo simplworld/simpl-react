@@ -16,6 +16,7 @@ const initial = {
   scenariosLoaded: false,
   connectionStatus: CONNECTION_STATUS.CONNECTING,
   current_runuser: {},
+  current_run: {},
   current: {},
   run: [],
   runuser: [],
@@ -262,12 +263,20 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { errors });
   },
   [SimplActions.setCurrentRun](state, action) {
-    console.log('setCurrentRun: action: ', action);
-    return state;
+    console.log('SimplActions.setCurrentRun: action: ', action);
+    const currentRunId = action.payload.pk;
+    console.log('currentRunId:', currentRunId);
+    let currentRun;
+    state.run.forEach((run) => {
+      if (run.pk === currentRunId) {
+        currentRun = run;
+      }
+    });
+    return Object.assign({}, state, { current_run: currentRun });
   },
-  [SimplActions.setCurrentRun](state, action) {
-    console.log('getCurrentRun: action: ', action);
-    return state;
+  [SimplActions.getCurrentRun](state, action) {
+    console.log('SimplActions.getCurrentRun: action: ', action);
+    return state.current_run;
   },
 }), `${StateActions.recycleState}`);
 

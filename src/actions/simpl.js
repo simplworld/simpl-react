@@ -128,6 +128,14 @@ export const popError = createAction('simpl/POP_ERROR');
 
 export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
+/**
+ * Populate simpl.current_run object with current run's info.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {Object} run
+ * @returns {NamedReduxAction}
+ */
 export const setCurrentRun = createAction('simpl/SET_CURRENT_RUN');
 
 export const getCurrentRun = createAction('simpl/GET_CURRENT_RUN');
