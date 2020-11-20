@@ -136,9 +136,7 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
  * @param {Object} run
  * @returns {NamedReduxAction}
  */
-export const setCurrentRun = createAction('simpl/SET_CURRENT_RUN');
-
-export const getCurrentRun = createAction('simpl/GET_CURRENT_RUN');
+export const setLoadedRun = createAction('simpl/SET_LOADED_RUN');
 
 /**
  * @namespace simpl
@@ -162,6 +160,5 @@ export default {
   getCurrentRunUserInfo,
   popError,
   showGenericError,
-  setCurrentRun,
-  getCurrentRun,
+  setLoadedRun,
 };

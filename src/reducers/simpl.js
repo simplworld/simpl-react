@@ -1,6 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
 import recycleState from 'redux-recycle';
-import { isEmpty, isNil } from 'lodash';
 
 const SimplActions = require('../actions/simpl');
 const StateActions = require('../actions/state');
@@ -16,7 +15,7 @@ const initial = {
   scenariosLoaded: false,
   connectionStatus: CONNECTION_STATUS.CONNECTING,
   current_runuser: {},
-  current_run: {},
+  loaded_run: {},
   current: {},
   run: [],
   runuser: [],
@@ -263,36 +262,17 @@ const simpl = recycleState(createReducer(initial, {
     errors.pop();
     return Object.assign({}, state, { errors });
   },
-  [SimplActions.setCurrentRun](state, action) {
-    console.log('SimplActions.setCurrentRun: action: ', action);
-    const currentRunId = action.payload.pk;
-    console.log('currentRunId:', currentRunId);
-    let currentRun;
+  [SimplActions.setLoadedRun](state, action) {
+    console.log('SimplActions.setLoadedRun: action: ', action);
+    const runId = action.payload.pk;
+    console.log('runId:', runId);
+    let loadedRun;
     state.run.forEach((run) => {
-      if (run.pk === currentRunId) {
-        currentRun = run;
-        // protect from page refreshes
-        sessionStorage.setItem('current_run_id', currentRunId);
+      if (run.pk === runId) {
+        loadedRun = run;
       }
     });
-    return Object.assign({}, state, { current_run: currentRun });
-  },
-  [SimplActions.getCurrentRun](state, action) {
-    console.log('SimplActions.getCurrentRun: action: ', action);
-    let currentRun = state.current_run;
-    if (isEmpty(currentRun)) {
-      // check for cached current run id
-      const currentRunId = sessionStorage.getItem('current_run_id');
-      console.log('sessionStorage current_run_id:', currentRunId);
-      if (!isNil((currentRunId))) {
-        state.run.forEach((run) => {
-          if (run.pk == currentRunId) {
-            currentRun = run;
-          }
-        });
-      }
-    }
-    return Object.assign({}, state, { current_run: currentRun });
+    return Object.assign({}, state, { loaded_run: loadedRun });
   },
 }), `${StateActions.recycleState}`);
 
