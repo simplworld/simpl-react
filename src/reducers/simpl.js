@@ -264,7 +264,7 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.setLoadedRun](state, action) {
     console.log('SimplActions.setLoadedRun: action: ', action);
-    const runId = action.payload.pk;
+    const runId = action.payload;
     console.log('runId:', runId);
     let loadedRun;
     state.run.forEach((run) => {

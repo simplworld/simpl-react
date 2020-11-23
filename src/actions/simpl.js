@@ -133,7 +133,7 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
  *
  * @function
  * @memberof Simpl.actions.simpl
- * @param {Object} run
+ * @param {Number} run id - The run id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
 export const setLoadedRun = createAction('simpl/SET_LOADED_RUN');
