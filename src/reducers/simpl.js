@@ -1,6 +1,8 @@
 import { createReducer } from 'redux-create-reducer';
 import recycleState from 'redux-recycle';
 
+import _ from 'lodash';
+
 const SimplActions = require('../actions/simpl');
 const StateActions = require('../actions/state');
 
@@ -165,7 +167,7 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user's info into the current_runuser namespace
-    // TODO if current_run is set, update to correspond to user's current_run runuser.
+    // This is useful for simpl user info -- not for current run identification
     if (state.runuser.length === 0) {
       throw "Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.";
     }
@@ -173,7 +175,7 @@ const simpl = recycleState(createReducer(initial, {
     let currentRunUser;
     state.runuser.forEach((runuser) => {
       if (runuser.user === simplId) {
-        currentRunUser = runuser;   // fairly useless unless runuser is a player
+        currentRunUser = runuser;
       }
     });
     return Object.assign({}, state, { current_runuser: currentRunUser });
@@ -264,15 +266,40 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.setLoadedRun](state, action) {
     console.log('SimplActions.setLoadedRun: action: ', action);
-    const runId = action.payload;
-    console.log('runId:', runId);
-    let loadedRun;
-    state.run.forEach((run) => {
-      if (run.pk === runId) {
-        loadedRun = run;
-      }
-    });
+    const loadedRun = action.payload;
     return Object.assign({}, state, { loaded_run: loadedRun });
+  },
+  [SimplActions.unloadWorlds](state, action) {
+    console.log('SimplActions.unloadWorlds: action: ', action);
+    const loadedRun = action.payload;
+    if (_.isEmpty(loadedRun)) {
+      return state;
+    }
+    let newState = { ...state };
+    const worlds = state.world.filter((w) => loadedRun.id === w.run);
+    if (!_.isEmpty(worlds)) {
+      // removes children of each run world then world
+      worlds.forEach((world) => {
+        const scenarios = state.scenario.filter((s) => world.id === s.world);
+        scenarios.forEach((scenario) => {
+          const periods = state.period.filter((p) => scenario.id === p.scenario);
+          periods.forEach((period) => {
+            const decisions = state.decision.filter((d) => period.id === d.period);
+            decisions.forEach((decision) => {
+              newState = SimplActions.removeChild(decision);
+            });
+            const results = state.result.filter((r) => period.id === r.period);
+            results.forEach((result) => {
+              newState = SimplActions.removeChild(result);
+            });
+            newState = SimplActions.removeChild(period);
+          });
+          newState = SimplActions.removeChild(scenario);
+        });
+        newState = SimplActions.removeChild(world);
+      });
+    }
+    return Object.assign({}, newState, {loaded_run: {}});
   },
 }), `${StateActions.recycleState}`);
 

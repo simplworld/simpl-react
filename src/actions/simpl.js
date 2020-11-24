@@ -57,7 +57,6 @@ export const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');
  */
 export const updateScope = createAction('simpl/SCOPE_UPDATE');
 
-
 /**
  * Dispatched when the client is ready to listen to a specific scope.
  *
@@ -125,7 +124,6 @@ export const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INF
  */
 export const popError = createAction('simpl/POP_ERROR');
 
-
 export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
 /**
@@ -133,10 +131,20 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
  *
  * @function
  * @memberof Simpl.actions.simpl
- * @param {Number} run id - The run id on simpl-games-api.
+ * @param {object} run - The run on simpl-games-api.
  * @returns {NamedReduxAction}
  */
 export const setLoadedRun = createAction('simpl/SET_LOADED_RUN');
+
+/**
+ * Unload worlds and their children
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {object} loadedRun - The run on simpl-games-api.
+ * @returns {NamedReduxAction}
+ */
+export const unloadWorlds = createAction('simpl/UNLOAD_WORLDS');
 
 /**
  * @namespace simpl
@@ -161,4 +169,5 @@ export default {
   popError,
   showGenericError,
   setLoadedRun,
+  unloadWorlds,
 };
