@@ -68,18 +68,10 @@ const simpl = recycleState(createReducer(initial, {
     // console.log('removeTopic: updated: ', updated);
     return Object.assign({}, state, { ['topics']: updated });
   },
-  silentRemoveTopic(state, payload) {
-    // console.log('silentRemoveTopic: payload:', payload);
-    const topic = `model:model.${payload.resource_name}.${payload.pk}`;
-    const newState = { ...state };
-    const index = newState.topics.indexOf(topic);
-    if (index !== -1) {
-      newState.topics = popAtIndex(newState.topics, index);
-    }
-    return { ...newState };
-  },
-  silentRemoveChild(state, payload) {
-    // console.log('silentRemoveChild: payload:', payload);
+  removeChild(state, payload) {
+    // Removes payload from its resource collection.
+    // Never removes payload's topic.
+    // console.log('removeChild: payload:', payload);
     const resourceName = payload.resource_name;
     const newState = { ...state };
     const index = newState[resourceName].findIndex((scope) => scope.pk === payload.pk);
@@ -300,25 +292,25 @@ const simpl = recycleState(createReducer(initial, {
     if (!_.isEmpty(worlds)) {
       worlds.forEach((world) => {
         // console.log('remove topic for world:', world);
-        newState = this.silentRemoveTopic(newState, world);
-        // console.log('bulk unload children of world');
+        newState = this.removeTopic(newState, world);
+        // console.log('unload children of world');
         const scenarios = state.scenario.filter((s) => world.id === s.world);
         scenarios.forEach((scenario) => {
           const periods = state.period.filter((p) => scenario.id === p.scenario);
           periods.forEach((period) => {
             const decisions = state.decision.filter((d) => period.id === d.period);
             decisions.forEach((decision) => {
-              newState = this.silentRemoveChild(newState, decision);
+              newState = this.removeChild(newState, decision);
             });
             const results = state.result.filter((r) => period.id === r.period);
             results.forEach((result) => {
-              newState = this.silentRemoveChild(newState, result);
+              newState = this.removeChild(newState, result);
             });
-            newState = this.silentRemoveChild(newState, period);
+            newState = this.removeChild(newState, period);
           });
-          newState = this.silentRemoveChild(newState, scenario);
+          newState = this.removeChild(newState, scenario);
         });
-        newState = this.silentRemoveChild(newState, world);
+        newState = this.removeChild(newState, world);
       });
     }
     return Object.assign({}, newState, { loaded_run: {} });
