@@ -141,7 +141,6 @@ export const setLoadedRun = createAction('simpl/SET_LOADED_RUN');
  *
  * @function
  * @memberof Simpl.actions.simpl
- * @param {object} loadedRun - The run on simpl-games-api.
  * @returns {NamedReduxAction}
  */
 export const unloadWorlds = createAction('simpl/UNLOAD_WORLDS');
