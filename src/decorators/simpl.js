@@ -34,7 +34,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   },
  *   loadAllScenarios: false
  *   loadWorldResults: true
- *   loadRunDataOnDemand: false
+ *   loadRunWorldsOnDemand: false
  * })(MyComponent);
 
  * @function
@@ -62,7 +62,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
  * If false, load world scenario period decisions but not results.
- * @param {boolean} options.loadRunDataOnDemand - If true, load runs' World data on request.
+ * @param {boolean} options.loadRunWorldsOnDemand - If true, load runs' World data on request.
  * If false, load runs' World data on login.
  */
 export function simpl(options) {
@@ -82,15 +82,15 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadWorldResults = true;
     }
-    if (options.hasOwnProperty('loadRunDataOnDemand')) {
-      optionsWithDefaults.loadWorldResults = options.loadRunDataOnDemand;
+    if (options.hasOwnProperty('loadRunWorldsOnDemand')) {
+      optionsWithDefaults.loadWorldResults = options.loadRunWorldsOnDemand;
     } else {
-      optionsWithDefaults.loadRunDataOnDemand = false;
+      optionsWithDefaults.loadRunWorldsOnDemand = false;
     }
-    console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
-    console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
-    console.log(`optionsWithDefaults.loadRunDataOnDemand: ${optionsWithDefaults.loadRunDataOnDemand}`);
-    console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
+    // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
+    // console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
+    // console.log(`optionsWithDefaults.loadRunWorldsOnDemand: ${optionsWithDefaults.loadRunWorldsOnDemand}`);
+    // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
       return {
@@ -118,65 +118,65 @@ export function simpl(options) {
           dispatch(setConnectionStatus(status));
         },
         onReady() {
-          console.log(`onReady::`);
+          // console.log(`onReady::`);
           if (optionsWithDefaults.topics) {
             optionsWithDefaults.topics.forEach((topic) => {
-              console.log(`dispatching connectedScope(${topic})`);
+              // console.log(`dispatching connectedScope(${topic})`);
               dispatch(connectedScope(topic));
-              console.log(`dispatching getRunUsers(${topic})`);
+              // console.log(`dispatching getRunUsers(${topic})`);
               dispatch(getRunUsers(topic)).then((action) => {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
-                console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
+                // console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;
                   if (optionsWithDefaults.loadAllScenarios) { // single player game leaders
-                    console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     if (ru.data.user !== authid) {
                       dispatch(addTopic(ruTopic));  // subscribe to other users' runuser topics
                     }
                   } else if (ru.data.user === authid) { // only get this user's scenarios
-                    console.log(`dispatching getRunUserScenarios(${ruTopic})`);
+                    // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     break;
                   }
                 }
               }).then(() => {
-                console.log(`dispatching getCurrentRunUserInfo(${authid})`);
+                // console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
               });
-              console.log(`dispatching getCurrentRunPhase(${topic})`);
+              // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              if (options.loadRunDataOnDemand) {
-                console.log(`Will load data tree and subscribe to topic ${topic} on demand.`);
-                console.log(`dispatching getDataTree(${topic}, ['world'])`);
+              if (options.loadRunWorldsOnDemand) {
+                // console.log(`Will load data tree and subscribe to topic ${topic} on demand.`);
+                // console.log(`dispatching getDataTree(${topic}, ['world'])`);
                 dispatch(getDataTree(topic, ['world']));
               } else {
                 if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
-                  console.log(`dispatching getDataTree(${topic}, ['result'])`);
+                  // console.log(`dispatching getDataTree(${topic}, ['result'])`);
                   dispatch(getDataTree(topic, ['result']));
                 } else {
-                  console.log(`dispatching getDataTree(${topic})`);
+                  // console.log(`dispatching getDataTree(${topic})`);
                   dispatch(getDataTree(topic));
                 }
-                console.log(`dispatching addTopic(${topic})`);
+                // console.log(`dispatching addTopic(${topic})`);
                 dispatch(addTopic(topic));
               }
             });
           }
-          console.log(`dispatching getPhases('model:model.game')`);
+          // console.log(`dispatching getPhases('model:model.game')`);
           dispatch(getPhases('model:model.game'));
-          console.log(`dispatching getRoles('model:model.game')`);
+          // console.log(`dispatching getRoles('model:model.game')`);
           dispatch(getRoles('model:model.game'));
           return Promise.resolve();
         },
         onLeaveWithTopics(topics) {
           // invoked when navigate between pages -- sometimes
-          console.log(`onLeaveWithTopics:: topics: `, topics);
+          // console.log(`onLeaveWithTopics:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) => {
               dispatch(disconnectedScope(topic));
@@ -186,7 +186,7 @@ export function simpl(options) {
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
           // invoked on receiving topic events
-          console.log(`onReceivedWithTopics:: args: `, args, `, event: `, event, `, topics: `, topics);
+          // console.log(`onReceivedWithTopics:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -202,7 +202,7 @@ export function simpl(options) {
                   [`${topic}.update_child`]: updateScope,
                 };
                 if (actions[event.topic]) {
-                  console.log('dispatching: ', actions[event.topic])
+                  // console.log('dispatching: ', actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                   if (resourceName === 'runuser' && event.topic.endsWith('update_child')) {
                     // Is the updated runuser associated with the current user?
