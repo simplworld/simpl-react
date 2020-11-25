@@ -17,8 +17,8 @@ const initial = {
   scenariosLoaded: false,
   connectionStatus: CONNECTION_STATUS.CONNECTING,
   current_runuser: {},
-  loaded_run: {},
   current: {},
+  loaded_run: null,
   run: [],
   runuser: [],
   world: [],
@@ -276,19 +276,36 @@ const simpl = recycleState(createReducer(initial, {
     errors.pop();
     return Object.assign({}, state, { errors });
   },
-  [SimplActions.setLoadedRun](state, action) {
-    // console.log('SimplActions.setLoadedRun: action: ', action);
-    const loadedRun = action.payload;
-    return Object.assign({}, state, { loaded_run: loadedRun });
+  [SimplActions.loadWorlds](state, action) {
+    // console.log('SimplActions.loadWorlds: run id:', action.payload.pk);
+    if (action.payload.error) {
+      return this.handleError(state, action);
+    }
+    let connectionStatus = state.connectionStatus;
+    if (state.scenariosLoaded && state.rolesLoaded && state.phasesLoaded) {
+      connectionStatus = CONNECTION_STATUS.LOADED;
+    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
+    }
+    // console.log('SimplActions.loadWorlds: connectionStatus=', connectionStatus,
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
+    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
+      treeLoaded: true,
+      connectionStatus,
+      loaded_run: action.payload.pk,
+    });
   },
   [SimplActions.unloadWorlds](state, action) {
     // console.log('SimplActions.unloadWorlds: action: ', action);
     const loadedRun = state.loaded_run;
-    if (_.isEmpty(loadedRun)) {
+    if (_.isNil(loadedRun)) {
       return state;
     }
     let newState = { ...state };
-    const worlds = newState.world;
+    const worlds = newState.world;  // only one run is loaded at a time.
     if (!_.isEmpty(worlds)) {
       worlds.forEach((world) => {
         // console.log('remove topic for world:', world);
@@ -313,7 +330,7 @@ const simpl = recycleState(createReducer(initial, {
         newState = this.removeChild(newState, world);
       });
     }
-    return Object.assign({}, newState, { loaded_run: {} });
+    return Object.assign({}, newState, { loaded_run: null });
   },
 }), `${StateActions.recycleState}`);
 

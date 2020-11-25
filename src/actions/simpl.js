@@ -127,17 +127,19 @@ export const popError = createAction('simpl/POP_ERROR');
 export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
 /**
- * Populate simpl.current_run object with current run's info.
- *
+ * Given a run id, returns a recursive representation of that run and
+ * its children worlds. Sets state.loaded_run to the run id.
  * @function
  * @memberof Simpl.actions.simpl
- * @param {object} run - The run on simpl-games-api.
+ * @param {number} run id - the run id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const setLoadedRun = createAction('simpl/SET_LOADED_RUN');
+export const loadWorlds = createAction('simpl/LOAD_WORLDS', (id) => (
+  AutobahnReact.call(`model:model.run.${id}.get_scope_tree`, [])
+));
 
 /**
- * Unload worlds and their children
+ * Unload worlds and their children. Sets state.loaded_run to null.
  *
  * @function
  * @memberof Simpl.actions.simpl
@@ -167,6 +169,6 @@ export default {
   getCurrentRunUserInfo,
   popError,
   showGenericError,
-  setLoadedRun,
+  loadWorlds,
   unloadWorlds,
 };
