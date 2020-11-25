@@ -163,9 +163,9 @@ export function simpl(options) {
                   // console.log(`dispatching getDataTree(${topic})`);
                   dispatch(getDataTree(topic));
                 }
-                // console.log(`dispatching addTopic(${topic})`);
-                dispatch(addTopic(topic));
               }
+              // console.log(`dispatching addTopic(${topic})`);
+              dispatch(addTopic(topic));
             });
           }
           // console.log(`dispatching getPhases('model:model.game')`);
