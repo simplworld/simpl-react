@@ -155,14 +155,12 @@ export function simpl(options) {
                 // console.log(`Will load data tree and subscribe to topic ${topic} on demand.`);
                 // console.log(`dispatching getDataTree(${topic}, ['world'])`);
                 dispatch(getDataTree(topic, ['world']));
+              } else if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
+                // console.log(`dispatching getDataTree(${topic}, ['result'])`);
+                dispatch(getDataTree(topic, ['result']));
               } else {
-                if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
-                  // console.log(`dispatching getDataTree(${topic}, ['result'])`);
-                  dispatch(getDataTree(topic, ['result']));
-                } else {
-                  // console.log(`dispatching getDataTree(${topic})`);
-                  dispatch(getDataTree(topic));
-                }
+                // console.log(`dispatching getDataTree(${topic})`);
+                dispatch(getDataTree(topic));
               }
               // console.log(`dispatching addTopic(${topic})`);
               dispatch(addTopic(topic));
