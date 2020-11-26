@@ -42,7 +42,6 @@ const simpl = recycleState(createReducer(initial, {
       pk: action.payload.pk,
       resource_name: action.payload.resource_name,
     });
-
     const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);
     let items;
     if (index > -1) {
@@ -69,16 +68,15 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { ['topics']: updated });
   },
   removeChild(state, payload) {
-    // Removes payload from its resource collection.
-    // Never removes payload's topic.
+    // Removes payload from its resource collection. Does not remove payload's topic.
     // console.log('removeChild: payload:', payload);
     const resourceName = payload.resource_name;
-    const newState = { ...state };
-    const index = newState[resourceName].findIndex((scope) => scope.pk === payload.pk);
-    if (index !== -1) {
-      newState[resourceName] = popAtIndex(newState[resourceName], index);
+    const index = state[resourceName].findIndex((scope) => scope.pk === payload.pk);
+    if (index === -1) {
+      return { ...state };
     }
-    return { ...newState };
+    const updated = popAtIndex(state[resourceName], index);
+    return Object.assign({}, state, { [resourceName]: updated });
   },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
@@ -120,12 +118,7 @@ const simpl = recycleState(createReducer(initial, {
       // console.log('removing topic for world');
       newState = this.removeTopic(state, action.payload);
     }
-    const index = newState[resourceName].findIndex((scope) => scope.pk === action.payload.pk);
-    if (index === -1) {
-      return { ...newState };
-    }
-    const updated = popAtIndex(newState[resourceName], index);
-    return Object.assign({}, newState, { [resourceName]: updated });
+    return this.removeChild(newState, action.payload);
   },
   [SimplActions.getRunUsers](state, action) {
     if (action.payload.error) {
