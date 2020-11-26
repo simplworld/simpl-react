@@ -151,8 +151,8 @@ export function simpl(options) {
               });
               // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              if (options.loadRunWorldsOnDemand) {
-                // console.log(`Will load data tree and subscribe to topic ${topic} on demand.`);
+              if (options.loadRunWorldsOnDemand && topic.includes('run')) {
+                // console.log(`Will load run's worlds on demand.`);
                 // console.log(`dispatching getDataTree(${topic}, ['world'])`);
                 dispatch(getDataTree(topic, ['world']));
               } else if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
