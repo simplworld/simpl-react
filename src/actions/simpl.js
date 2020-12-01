@@ -127,6 +127,16 @@ export const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INF
  */
 export const popError = createAction('simpl/POP_ERROR');
 
+/**
+ * Populate simpl.chats with current runuser chat rooms
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @returns {NamedReduxAction}
+ */
+export const getRunUserChatRooms = createAction('simpl/GET_RUNUSER_CHATROOMS', (topic, ...args) => (
+  AutobahnReact.call(`${topic}.chat.rooms_for_user`, args)
+));
 
 /**
  * @namespace simpl
@@ -146,4 +156,5 @@ export default {
   getPhases,
   getRoles,
   popError,
+  getRunUserChatRooms,
 };

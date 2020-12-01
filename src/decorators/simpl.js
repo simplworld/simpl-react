@@ -11,7 +11,7 @@ import {
   addTopic, addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getCurrentRunUserInfo,
   // eslint-disable-next-line comma-dangle
-  getRunUserScenarios, showGenericError, setConnectionStatus
+  getRunUserScenarios, showGenericError, setConnectionStatus, getRunUserChatRooms
 } from '../actions/simpl';
 import { CONNECTION_STATUS } from '../constants';
 
@@ -135,9 +135,12 @@ export function simpl(options) {
                   else if (ru.data.email === authid) { // only get this user's scenarios
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
+                    console.log(`dispatching ${options.root_topic}.chat.rooms_for_user ${ru.data.id}`)
+                    dispatch(getRunUserChatRooms(options.root_topic, ru.data.id));
                     break;
                   }
                 }
+                console.log("!!!new version!!!");
               }).then(() => {
                 // console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));

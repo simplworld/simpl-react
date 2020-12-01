@@ -28,6 +28,7 @@ const initial = {
   role: [],
   errors: [],
   topics: [],
+  chatrooms: [],
 };
 
 const simpl = recycleState(createReducer(initial, {
@@ -260,6 +261,11 @@ const simpl = recycleState(createReducer(initial, {
     const errors = [...state.errors];
     errors.pop();
     return Object.assign({}, state, { errors });
+  },
+  [SimplActions.getRunUserChatRooms](state, action) {
+    // Get the current user's info into the current_runuser namespace
+    const rooms = action.payload;
+    return Object.assign({}, state, { chatrooms: rooms });
   },
 }), `${StateActions.recycleState}`);
 
