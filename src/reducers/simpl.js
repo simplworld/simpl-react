@@ -1,6 +1,7 @@
 import { createReducer } from 'redux-create-reducer';
 import recycleState from 'redux-recycle';
-import { isNil } from 'lodash';
+
+import _ from 'lodash';
 
 const SimplActions = require('../actions/simpl');
 const StateActions = require('../actions/state');
@@ -17,6 +18,7 @@ const initial = {
   connectionStatus: CONNECTION_STATUS.CONNECTING,
   current_runuser: {},
   current: {},
+  loaded_run: null,
   run: [],
   runuser: [],
   world: [],
@@ -40,7 +42,6 @@ const simpl = recycleState(createReducer(initial, {
       pk: action.payload.pk,
       resource_name: action.payload.resource_name,
     });
-
     const index = state[key].findIndex((scope) => scope.pk === action.payload.pk);
     let items;
     if (index > -1) {
@@ -65,6 +66,17 @@ const simpl = recycleState(createReducer(initial, {
     const updated = popAtIndex(state.topics, index);
     // console.log('removeTopic: updated: ', updated);
     return Object.assign({}, state, { ['topics']: updated });
+  },
+  removeChild(state, payload) {
+    // Removes payload from its resource collection. Does not remove payload's topic.
+    // console.log('removeChild: payload:', payload);
+    const resourceName = payload.resource_name;
+    const index = state[resourceName].findIndex((scope) => scope.pk === payload.pk);
+    if (index === -1) {
+      return { ...state };
+    }
+    const updated = popAtIndex(state[resourceName], index);
+    return Object.assign({}, state, { [resourceName]: updated });
   },
   getDataTree(state, action) {
     let newState = this.addChild(state, action);
@@ -103,15 +115,10 @@ const simpl = recycleState(createReducer(initial, {
     const resourceName = action.payload.resource_name;
     let newState = { ...state };
     if (resourceName === 'world') {
-      console.log('removing topic for world');
+      // console.log('removing topic for world');
       newState = this.removeTopic(state, action.payload);
     }
-    const index = newState[resourceName].findIndex((scope) => scope.pk === action.payload.pk);
-    if (index === -1) {
-      return { ...newState };
-    }
-    const updated = popAtIndex(newState[resourceName], index);
-    return Object.assign({}, newState, { [resourceName]: updated });
+    return this.removeChild(newState, action.payload);
   },
   [SimplActions.getRunUsers](state, action) {
     if (action.payload.error) {
@@ -132,10 +139,10 @@ const simpl = recycleState(createReducer(initial, {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
     // console.log('SimplActions.getDataTree: connectionStatus=', connectionStatus,
-    //   ', treeLoaded=', state.treeLoaded,
-    //   ', scenariosLoaded=', state.scenariosLoaded,
-    //   ', rolesLoaded', state.rolesLoaded,
-    //   ', phasesLoaded', state.phasesLoaded);
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
 
     return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
       treeLoaded: true,
@@ -165,6 +172,7 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.getCurrentRunUserInfo](state, action) {
     // Get the current user's info into the current_runuser namespace
+    // This is useful for simpl user info -- not for current run identification
     if (state.runuser.length === 0) {
       throw "Runusers aren't loaded. Call `getRunUsers` before calling `getRunUserInfo`.";
     }
@@ -172,7 +180,7 @@ const simpl = recycleState(createReducer(initial, {
     let currentRunUser;
     state.runuser.forEach((runuser) => {
       if (runuser.user === simplId) {
-        currentRunUser = runuser;   // fairly useless unless runuser is a player
+        currentRunUser = runuser;
       }
     });
     return Object.assign({}, state, { current_runuser: currentRunUser });
@@ -188,10 +196,10 @@ const simpl = recycleState(createReducer(initial, {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
     // console.log('SimplActions.getRunUserScenarios: connectionStatus=', connectionStatus,
-    //   ', treeLoaded=', state.treeLoaded,
-    //   ', scenariosLoaded=', state.scenariosLoaded,
-    //   ', rolesLoaded', state.rolesLoaded,
-    //   ', phasesLoaded', state.phasesLoaded);
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
 
     const scenarios = action.payload;
     let newState = { ...state };
@@ -212,10 +220,10 @@ const simpl = recycleState(createReducer(initial, {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
     // console.log('SimplActions.getPhases: connectionStatus=', connectionStatus,
-    //   ', treeLoaded=', state.treeLoaded,
-    //   ', scenariosLoaded=', state.scenariosLoaded,
-    //   ', rolesLoaded', state.rolesLoaded,
-    //   ', phasesLoaded', state.phasesLoaded);
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
 
     return Object.assign({}, state, {
       phase: action.payload,
@@ -231,10 +239,10 @@ const simpl = recycleState(createReducer(initial, {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
     // console.log('SimplActions.getRoles: connectionStatus=', connectionStatus,
-    //   ', treeLoaded=', state.treeLoaded,
-    //   ', scenariosLoaded=', state.scenariosLoaded,
-    //   ', rolesLoaded', state.rolesLoaded,
-    //   ', phasesLoaded', state.phasesLoaded);
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
 
     return Object.assign({}, state, {
       role: action.payload,
@@ -244,10 +252,10 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.setConnectionStatus](state, action) {
     // console.log('SimplActions.setConnectionStatus: connectionStatus=', connectionStatus,
-    //   ', treeLoaded=', state.treeLoaded,
-    //   ', scenariosLoaded=', state.scenariosLoaded,
-    //   ', rolesLoaded', state.rolesLoaded,
-    //   ', phasesLoaded', state.phasesLoaded);
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
 
     return Object.assign({}, state, { connectionStatus: action.payload });
   },
@@ -260,6 +268,62 @@ const simpl = recycleState(createReducer(initial, {
     const errors = [...state.errors];
     errors.pop();
     return Object.assign({}, state, { errors });
+  },
+  [SimplActions.loadRunData](state, action) {
+    // console.log('SimplActions.loadRunData: run id:', action.payload.pk);
+    if (action.payload.error) {
+      return this.handleError(state, action);
+    }
+    let connectionStatus = state.connectionStatus;
+    if (state.scenariosLoaded && state.rolesLoaded && state.phasesLoaded) {
+      connectionStatus = CONNECTION_STATUS.LOADED;
+    } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
+      connectionStatus = CONNECTION_STATUS.CONNECTED;
+    }
+    // console.log('SimplActions.loadRunData: connectionStatus=', connectionStatus,
+    //    ', treeLoaded=', state.treeLoaded,
+    //    ', scenariosLoaded=', state.scenariosLoaded,
+    //    ', rolesLoaded', state.rolesLoaded,
+    //    ', phasesLoaded', state.phasesLoaded);
+    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
+      treeLoaded: true,
+      connectionStatus,
+      loaded_run: action.payload.pk,
+    });
+  },
+  [SimplActions.unloadRunData](state, action) {
+    // console.log('SimplActions.unloadRunData: action: ', action);
+    const loadedRun = state.loaded_run;
+    if (_.isNil(loadedRun)) {
+      return state;
+    }
+    let newState = { ...state };
+    const worlds = newState.world;  // only one run is loaded at a time.
+    if (!_.isEmpty(worlds)) {
+      worlds.forEach((world) => {
+        // console.log('remove topic for world:', world);
+        newState = this.removeTopic(newState, world);
+        // console.log('unload children of world');
+        const scenarios = state.scenario.filter((s) => world.id === s.world);
+        scenarios.forEach((scenario) => {
+          const periods = state.period.filter((p) => scenario.id === p.scenario);
+          periods.forEach((period) => {
+            const decisions = state.decision.filter((d) => period.id === d.period);
+            decisions.forEach((decision) => {
+              newState = this.removeChild(newState, decision);
+            });
+            const results = state.result.filter((r) => period.id === r.period);
+            results.forEach((result) => {
+              newState = this.removeChild(newState, result);
+            });
+            newState = this.removeChild(newState, period);
+          });
+          newState = this.removeChild(newState, scenario);
+        });
+        newState = this.removeChild(newState, world);
+      });
+    }
+    return Object.assign({}, newState, { loaded_run: null });
   },
 }), `${StateActions.recycleState}`);
 

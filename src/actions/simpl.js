@@ -57,7 +57,6 @@ export const setConnectionStatus = createAction('simpl/SET_CONNECTION_STATUS');
  */
 export const updateScope = createAction('simpl/SCOPE_UPDATE');
 
-
 /**
  * Dispatched when the client is ready to listen to a specific scope.
  *
@@ -94,8 +93,6 @@ export const getRoles = createAction('simpl/GET_ROLES', (topic, ...args) => (
   AutobahnReact.call(`${topic}.get_roles`, args)
 ));
 
-export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
-
 /**
  * Populate simpl.scenario with current runuser's scenarios.
  *
@@ -127,23 +124,51 @@ export const getCurrentRunUserInfo = createAction('simpl/GET_CURRENT_RUNUSER_INF
  */
 export const popError = createAction('simpl/POP_ERROR');
 
+export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
+
+/**
+ * Given a run id, returns a recursive representation of that run and
+ * its children worlds. Sets state.loaded_run to the run id.
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @param {number} run id - the run id on simpl-games-api.
+ * @returns {NamedReduxAction}
+ */
+export const loadRunData = createAction('simpl/LOAD_WORLDS', (id) => (
+  AutobahnReact.call(`model:model.run.${id}.get_scope_tree`, [])
+));
+
+/**
+ * Unload worlds and their children. Sets state.loaded_run to null.
+ *
+ * @function
+ * @memberof Simpl.actions.simpl
+ * @returns {NamedReduxAction}
+ */
+export const unloadRunData = createAction('simpl/UNLOAD_WORLDS');
 
 /**
  * @namespace simpl
  * @memberof Simpl.actions
  */
 export default {
+  addTopic,
+  removeTopic,
   addChild,
   removeChild,
-
   getDataTree,
   getRunUsers,
+  setConnectionStatus,
   updateScope,
   connectedScope,
   disconnectedScope,
   getCurrentRunPhase,
-  getCurrentRunUserInfo,
   getPhases,
   getRoles,
+  getRunUserScenarios,
+  getCurrentRunUserInfo,
   popError,
+  showGenericError,
+  loadRunData,
+  unloadRunData,
 };

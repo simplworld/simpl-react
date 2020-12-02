@@ -34,6 +34,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   },
  *   loadAllScenarios: false
  *   loadWorldResults: true
+ *   loadRunDataOnDemand: false
  * })(MyComponent);
 
  * @function
@@ -61,6 +62,8 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
  * If false, load world scenario period decisions but not results.
+ * @param {boolean} options.loadRunDataOnDemand - If true, load runs' data on request.
+ * If false, load runs' data on login.
  */
 export function simpl(options) {
   return (Component) => {
@@ -79,8 +82,14 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadWorldResults = true;
     }
+    if (options.hasOwnProperty('loadRunDataOnDemand')) {
+      optionsWithDefaults.loadWorldResults = options.loadRunDataOnDemand;
+    } else {
+      optionsWithDefaults.loadRunDataOnDemand = false;
+    }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     // console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
+    // console.log(`optionsWithDefaults.loadRunDataOnDemand: ${optionsWithDefaults.loadRunDataOnDemand}`);
     // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
@@ -124,14 +133,13 @@ export function simpl(options) {
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;
-                  if (optionsWithDefaults.loadAllScenarios) {
+                  if (optionsWithDefaults.loadAllScenarios) { // single player game leaders
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     if (ru.data.user !== authid) {
                       dispatch(addTopic(ruTopic));  // subscribe to other users' runuser topics
                     }
-                  }
-                  else if (ru.data.user === authid) { // only get this user's scenarios
+                  } else if (ru.data.user === authid) { // only get this user's scenarios
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
                     break;
@@ -143,7 +151,11 @@ export function simpl(options) {
               });
               // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
+              if (options.loadRunDataOnDemand && topic.includes('run')) {
+                // console.log(`Will load run's worlds on demand.`);
+                // console.log(`dispatching getDataTree(${topic}, ['world'])`);
+                dispatch(getDataTree(topic, ['world']));
+              } else if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
                 // console.log(`dispatching getDataTree(${topic}, ['result'])`);
                 dispatch(getDataTree(topic, ['result']));
               } else {
@@ -161,7 +173,8 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onLeaveWithTopics(topics) {
-          // console.log(`onLeave:: topics: `, topics);
+          // invoked when navigate between pages -- sometimes
+          // console.log(`onLeaveWithTopics:: topics: `, topics);
           if (topics) {
             topics.forEach((topic) => {
               dispatch(disconnectedScope(topic));
@@ -170,7 +183,8 @@ export function simpl(options) {
           return Promise.resolve();
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
-          // console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
+          // invoked on receiving topic events
+          // console.log(`onReceivedWithTopics:: args: `, args, `, event: `, event, `, topics: `, topics);
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -186,7 +200,7 @@ export function simpl(options) {
                   [`${topic}.update_child`]: updateScope,
                 };
                 if (actions[event.topic]) {
-                  // console.log("dispatching: ", actions[event.topic])
+                  // console.log('dispatching: ', actions[event.topic])
                   dispatch(actions[event.topic]({ resource_name: resourceName, data, pk }));
                   if (resourceName === 'runuser' && event.topic.endsWith('update_child')) {
                     // Is the updated runuser associated with the current user?
