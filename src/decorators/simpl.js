@@ -34,7 +34,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *   },
  *   loadAllScenarios: false
  *   loadWorldResults: true
- *   loadRunWorldsOnDemand: false
+ *   loadRunDataOnDemand: false
  * })(MyComponent);
 
  * @function
@@ -62,8 +62,8 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
  * If false, load world scenario period decisions but not results.
- * @param {boolean} options.loadRunWorldsOnDemand - If true, load runs' World data on request.
- * If false, load runs' World data on login.
+ * @param {boolean} options.loadRunDataOnDemand - If true, load runs' data on request.
+ * If false, load runs' data on login.
  */
 export function simpl(options) {
   return (Component) => {
@@ -82,14 +82,14 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadWorldResults = true;
     }
-    if (options.hasOwnProperty('loadRunWorldsOnDemand')) {
-      optionsWithDefaults.loadWorldResults = options.loadRunWorldsOnDemand;
+    if (options.hasOwnProperty('loadRunDataOnDemand')) {
+      optionsWithDefaults.loadWorldResults = options.loadRunDataOnDemand;
     } else {
-      optionsWithDefaults.loadRunWorldsOnDemand = false;
+      optionsWithDefaults.loadRunDataOnDemand = false;
     }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     // console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
-    // console.log(`optionsWithDefaults.loadRunWorldsOnDemand: ${optionsWithDefaults.loadRunWorldsOnDemand}`);
+    // console.log(`optionsWithDefaults.loadRunDataOnDemand: ${optionsWithDefaults.loadRunDataOnDemand}`);
     // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
     const mergeProps = (propsFromState, propsFromDispatch) => {
@@ -151,7 +151,7 @@ export function simpl(options) {
               });
               // console.log(`dispatching getCurrentRunPhase(${topic})`);
               dispatch(getCurrentRunPhase(topic));
-              if (options.loadRunWorldsOnDemand && topic.includes('run')) {
+              if (options.loadRunDataOnDemand && topic.includes('run')) {
                 // console.log(`Will load run's worlds on demand.`);
                 // console.log(`dispatching getDataTree(${topic}, ['world'])`);
                 dispatch(getDataTree(topic, ['world']));

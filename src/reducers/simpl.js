@@ -269,8 +269,8 @@ const simpl = recycleState(createReducer(initial, {
     errors.pop();
     return Object.assign({}, state, { errors });
   },
-  [SimplActions.loadWorlds](state, action) {
-    // console.log('SimplActions.loadWorlds: run id:', action.payload.pk);
+  [SimplActions.loadRunData](state, action) {
+    // console.log('SimplActions.loadRunData: run id:', action.payload.pk);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -280,7 +280,7 @@ const simpl = recycleState(createReducer(initial, {
     } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
-    // console.log('SimplActions.loadWorlds: connectionStatus=', connectionStatus,
+    // console.log('SimplActions.loadRunData: connectionStatus=', connectionStatus,
     //    ', treeLoaded=', state.treeLoaded,
     //    ', scenariosLoaded=', state.scenariosLoaded,
     //    ', rolesLoaded', state.rolesLoaded,
@@ -291,8 +291,8 @@ const simpl = recycleState(createReducer(initial, {
       loaded_run: action.payload.pk,
     });
   },
-  [SimplActions.unloadWorlds](state, action) {
-    // console.log('SimplActions.unloadWorlds: action: ', action);
+  [SimplActions.unloadRunData](state, action) {
+    // console.log('SimplActions.unloadRunData: action: ', action);
     const loadedRun = state.loaded_run;
     if (_.isNil(loadedRun)) {
       return state;

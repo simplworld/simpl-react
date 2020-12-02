@@ -134,7 +134,7 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
  * @param {number} run id - the run id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const loadWorlds = createAction('simpl/LOAD_WORLDS', (id) => (
+export const loadRunData = createAction('simpl/LOAD_WORLDS', (id) => (
   AutobahnReact.call(`model:model.run.${id}.get_scope_tree`, [])
 ));
 
@@ -145,7 +145,7 @@ export const loadWorlds = createAction('simpl/LOAD_WORLDS', (id) => (
  * @memberof Simpl.actions.simpl
  * @returns {NamedReduxAction}
  */
-export const unloadWorlds = createAction('simpl/UNLOAD_WORLDS');
+export const unloadRunData = createAction('simpl/UNLOAD_WORLDS');
 
 /**
  * @namespace simpl
@@ -169,6 +169,6 @@ export default {
   getCurrentRunUserInfo,
   popError,
   showGenericError,
-  loadWorlds,
-  unloadWorlds,
+  loadRunData,
+  unloadRunData,
 };
