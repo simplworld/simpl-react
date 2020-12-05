@@ -123,13 +123,14 @@ export function simpl(options) {
             optionsWithDefaults.topics.forEach((topic) => {
               // console.log(`dispatching connectedScope(${topic})`);
               dispatch(connectedScope(topic));
-              // console.log(`dispatching getRunUsers(${topic})`);
-              dispatch(getRunUsers(topic)).then((action) => {
+              const excludePlayers = (options.loadRunDataOnDemand && topic.includes('run')) ? true : false;
+              console.log(`dispatching getRunUsers(${topic}, ${excludePlayers})`);
+              dispatch(getRunUsers(topic, excludePlayers)).then((action) => {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
                 const runUsers = action.payload;
-                // console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
+                console.log(`getRunUsers(${topic}) -> runUsers:`, runUsers);
                 for (let i = 0; i < runUsers.length; i++) {
                   const ru = runUsers[i];
                   const ruTopic = `model:model.runuser.${ru.data.id}`;

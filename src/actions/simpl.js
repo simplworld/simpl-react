@@ -29,10 +29,11 @@ export const getDataTree = createAction('simpl/DATATREE_GET', (scope, exclude) =
  * @function
  * @memberof Simpl.actions.simpl
  * @param {string} scope - the scope's topic
+ * @param {array} excludePlayers - returns only leaders if true
  * @returns {NamedReduxAction}
  */
-export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, exclude, ...args) => (
-  AutobahnReact.call(`${scope}.get_active_runusers`, args)
+export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, excludePlayers) => (
+  AutobahnReact.call(`${scope}.get_active_runusers`, [excludePlayers])
 ));
 
 /**
