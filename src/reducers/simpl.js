@@ -138,12 +138,12 @@ const simpl = recycleState(createReducer(initial, {
     } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
-    // console.log('SimplActions.getDataTree: connectionStatus=', connectionStatus,
-    //    ', treeLoaded=', state.treeLoaded,
-    //    ', scenariosLoaded=', state.scenariosLoaded,
-    //    ', rolesLoaded', state.rolesLoaded,
-    //    ', phasesLoaded', state.phasesLoaded);
-
+    console.log('SimplActions.getDataTree: connectionStatus=', connectionStatus,
+       ', treeLoaded=', state.treeLoaded,
+       ', scenariosLoaded=', state.scenariosLoaded,
+       ', rolesLoaded', state.rolesLoaded,
+       ', phasesLoaded', state.phasesLoaded);
+    console.log('SimplActions.getDataTree: action.payload:', action.payload);
     return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
       treeLoaded: true,
       connectionStatus,
@@ -270,7 +270,9 @@ const simpl = recycleState(createReducer(initial, {
     return Object.assign({}, state, { errors });
   },
   [SimplActions.loadRunData](state, action) {
-    // console.log('SimplActions.loadRunData: run id:', action.payload.pk);
+    console.log('SimplActions.loadRunData: run id:', action.payload.pk);
+    console.log('SimplActions.loadRunData: runusers:', action.payload.runusers);
+    console.log('SimplActions.loadRunData: data_tree:', action.payload.data_tree);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -280,12 +282,12 @@ const simpl = recycleState(createReducer(initial, {
     } else if (connectionStatus === CONNECTION_STATUS.CONNECTING) {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
-    // console.log('SimplActions.loadRunData: connectionStatus=', connectionStatus,
-    //    ', treeLoaded=', state.treeLoaded,
-    //    ', scenariosLoaded=', state.scenariosLoaded,
-    //    ', rolesLoaded', state.rolesLoaded,
-    //    ', phasesLoaded', state.phasesLoaded);
-    return Object.assign({}, this.getDataTree(Object.assign({}, state), action), {
+    console.log('SimplActions.loadRunData: connectionStatus=', connectionStatus,
+       ', treeLoaded=', state.treeLoaded,
+       ', scenariosLoaded=', state.scenariosLoaded,
+       ', rolesLoaded', state.rolesLoaded,
+       ', phasesLoaded', state.phasesLoaded);
+    return Object.assign({}, this.getDataTree(Object.assign({}, state), action.payload.data_tree), {
       treeLoaded: true,
       connectionStatus,
       loaded_run: action.payload.pk,

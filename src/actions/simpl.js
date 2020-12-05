@@ -129,14 +129,14 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
 /**
  * Given a run id, returns a recursive representation of that run and
- * its children worlds. Sets state.loaded_run to the run id.
+ * its children worlds and players. Sets state.loaded_run to the run id.
  * @function
  * @memberof Simpl.actions.simpl
  * @param {number} run id - the run id on simpl-games-api.
  * @returns {NamedReduxAction}
  */
-export const loadRunData = createAction('simpl/LOAD_WORLDS', (id) => (
-  AutobahnReact.call(`model:model.run.${id}.get_scope_tree`, [])
+export const loadRunData = createAction('simpl/LOAD_RUN_DATA', (id) => (
+  AutobahnReact.call(`model:model.run.${id}.get_run_data`, [])
 ));
 
 /**
