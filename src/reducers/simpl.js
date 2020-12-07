@@ -313,9 +313,6 @@ const simpl = recycleState(createReducer(initial, {
   },
   [SimplActions.unloadRunData](state, action) {
     // console.log('SimplActions.unloadRunData: action:', action, ', loaded_run:', state.loaded_run);
-    if (action.payload.error) {
-      return this.handleError(state, action);
-    }
     const loadedRun = state.loaded_run;
     if (_.isNil(loadedRun)) {
       return state;
