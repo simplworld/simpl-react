@@ -272,6 +272,7 @@ const simpl = recycleState(createReducer(initial, {
   [SimplActions.loadRunData](state, action) {
     // console.log('SimplActions.loadRunData: run id:', action.payload.pk);
     // console.log('SimplActions.loadRunData: runusers:', action.payload.runusers);
+    console.log('SimplActions.loadRunData: player_scenarios:', action.payload.player_scenarios);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -297,6 +298,13 @@ const simpl = recycleState(createReducer(initial, {
         }
       });
     }
+    const playerScenarios = action.payload.player_scenarios;
+    if (!_.isEmpty(playerScenarios)) {
+      // load run's player scenarios
+      playerScenarios.forEach(scenario => {
+        newState = this.getDataTree(newState, { payload: scenario });
+      });
+    }
     return Object.assign({}, newState, {
       treeLoaded: true,
       connectionStatus,
@@ -304,7 +312,7 @@ const simpl = recycleState(createReducer(initial, {
     });
   },
   [SimplActions.unloadRunData](state, action) {
-    // console.log('SimplActions.unloadRunData: action:', action, ', loaded_run:', state.loaded_run);
+    console.log('SimplActions.unloadRunData: action:', action, ', loaded_run:', state.loaded_run);
     const loadedRun = state.loaded_run;
     if (_.isNil(loadedRun)) {
       return state;
@@ -342,6 +350,23 @@ const simpl = recycleState(createReducer(initial, {
       runusers.forEach((ru) => {
         if (!ru.leader) {
           // console.log('remove player:', ru);
+          // unload player scenarios
+          const scenarios = state.scenario.filter((s) => ru.id === s.runuser);
+          scenarios.forEach((scenario) => {
+            const periods = state.period.filter((p) => scenario.id === p.scenario);
+            periods.forEach((period) => {
+              const decisions = state.decision.filter((d) => period.id === d.period);
+              decisions.forEach((decision) => {
+                newState = this.removeChild(newState, decision);
+              });
+              const results = state.result.filter((r) => period.id === r.period);
+              results.forEach((result) => {
+                newState = this.removeChild(newState, result);
+              });
+              newState = this.removeChild(newState, period);
+            });
+            newState = this.removeChild(newState, scenario);
+          });
           newState = this.removeChild(newState, ru);
         }
       });
