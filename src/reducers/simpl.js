@@ -272,7 +272,7 @@ const simpl = recycleState(createReducer(initial, {
   [SimplActions.loadRunData](state, action) {
     // console.log('SimplActions.loadRunData: run id:', action.payload.pk);
     // console.log('SimplActions.loadRunData: runusers:', action.payload.runusers);
-    console.log('SimplActions.loadRunData: player_scenarios:', action.payload.player_scenarios);
+    // console.log('SimplActions.loadRunData: player_scenarios:', action.payload.player_scenarios);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -294,7 +294,7 @@ const simpl = recycleState(createReducer(initial, {
       // load run's players
       runusers.forEach(ru => {
         if (!ru.leader) {
-          newState = this.addChild(newState, {payload: ru});
+          newState = this.addChild(newState, { payload: ru });
         }
       });
     }
@@ -312,7 +312,10 @@ const simpl = recycleState(createReducer(initial, {
     });
   },
   [SimplActions.unloadRunData](state, action) {
-    console.log('SimplActions.unloadRunData: action:', action, ', loaded_run:', state.loaded_run);
+    // console.log('SimplActions.unloadRunData: action:', action, ', loaded_run:', state.loaded_run);
+    if (action.payload.error) {
+      return this.handleError(state, action);
+    }
     const loadedRun = state.loaded_run;
     if (_.isNil(loadedRun)) {
       return state;
