@@ -289,8 +289,6 @@ const simpl = recycleState(createReducer(initial, {
     let newState = { ...state };
     newState = this.getDataTree(Object.assign({}, state), action); // load run's worlds
     const runusers = action.payload.runusers;
-    // for (let i = 0; i < runusers.length; i++) {
-    //   const ru = runusers[i];
     if (!_.isEmpty(runusers)) {
       // load run's players
       runusers.forEach(ru => {
@@ -306,7 +304,7 @@ const simpl = recycleState(createReducer(initial, {
     });
   },
   [SimplActions.unloadRunData](state, action) {
-    // console.log('SimplActions.unloadRunData: action: ', action);
+    // console.log('SimplActions.unloadRunData: action:', action, ', loaded_run:', state.loaded_run);
     const loadedRun = state.loaded_run;
     if (_.isNil(loadedRun)) {
       return state;
