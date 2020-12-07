@@ -272,7 +272,6 @@ const simpl = recycleState(createReducer(initial, {
   [SimplActions.loadRunData](state, action) {
     console.log('SimplActions.loadRunData: run id:', action.payload.pk);
     console.log('SimplActions.loadRunData: runusers:', action.payload.runusers);
-    console.log('SimplActions.loadRunData: data_tree:', action.payload.data_tree);
     if (action.payload.error) {
       return this.handleError(state, action);
     }
@@ -283,11 +282,24 @@ const simpl = recycleState(createReducer(initial, {
       connectionStatus = CONNECTION_STATUS.CONNECTED;
     }
     console.log('SimplActions.loadRunData: connectionStatus=', connectionStatus,
-       ', treeLoaded=', state.treeLoaded,
-       ', scenariosLoaded=', state.scenariosLoaded,
-       ', rolesLoaded', state.rolesLoaded,
-       ', phasesLoaded', state.phasesLoaded);
-    return Object.assign({}, this.getDataTree(Object.assign({}, state), action.payload.data_tree), {
+      ', treeLoaded=', state.treeLoaded,
+      ', scenariosLoaded=', state.scenariosLoaded,
+      ', rolesLoaded', state.rolesLoaded,
+      ', phasesLoaded', state.phasesLoaded);
+    let newState = { ...state };
+    newState = this.getDataTree(Object.assign({}, state), action); // load run's worlds
+    const runusers = action.payload.runusers;
+    // for (let i = 0; i < runusers.length; i++) {
+    //   const ru = runusers[i];
+    if (!_.isEmpty(runusers)) {
+      // load run's players
+      runusers.forEach(ru => {
+        if (!ru.leader) {
+          newState = this.addChild(newState, {payload: ru});
+        }
+      });
+    }
+    return Object.assign({}, newState, {
       treeLoaded: true,
       connectionStatus,
       loaded_run: action.payload.pk,
@@ -323,6 +335,17 @@ const simpl = recycleState(createReducer(initial, {
           newState = this.removeChild(newState, scenario);
         });
         newState = this.removeChild(newState, world);
+      });
+    }
+    const runusers = newState.runuser;  // only one run is loaded at a time.
+    // console.log('runusers:', runusers);
+    if (!_.isEmpty(runusers)) {
+      // unload run's players
+      runusers.forEach((ru) => {
+        if (!ru.leader) {
+          // console.log('remove player:', ru);
+          newState = this.removeChild(newState, ru);
+        }
       });
     }
     return Object.assign({}, newState, { loaded_run: null });
