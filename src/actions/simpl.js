@@ -133,10 +133,11 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
  * @function
  * @memberof Simpl.actions.simpl
  * @param {number} run id - the run id on simpl-games-api.
+ * @param {bool} loadPlayerScenarios - loads player scenarios if true
  * @returns {NamedReduxAction}
  */
-export const loadRunData = createAction('simpl/LOAD_RUN_DATA', (id) => (
-  AutobahnReact.call(`model:model.run.${id}.get_run_data`, [])
+export const loadRunData = createAction('simpl/LOAD_RUN_DATA', (id, loadPlayerScenarios) => (
+  AutobahnReact.call(`model:model.run.${id}.get_run_data`, [loadPlayerScenarios])
 ));
 
 /**
