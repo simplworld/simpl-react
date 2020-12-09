@@ -33,7 +33,6 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  *     special: 'org.example.namespace.special.shortcut'
  *   },
  *   loadAllScenarios: false
- *   loadWorldResults: true
  *   loadRunDataOnDemand: false
  * })(MyComponent);
 
@@ -60,8 +59,6 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * prefixes, to be used as shortcuts.
  * @param {boolean} options.loadAllScenarios - If false, load only world scenarios and this user's Scenarios.
  * If true, load all Scenarios for the subscribed runs.
- * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
- * If false, load world scenario period decisions but not results.
  * @param {boolean} options.loadRunDataOnDemand - If true, load runs' data on request.
  * If false, load runs' data on login.
  */
@@ -77,18 +74,12 @@ export function simpl(options) {
     } else {
       optionsWithDefaults.loadAllScenarios = false;
     }
-    if (options.hasOwnProperty('loadWorldResults')) {
-      optionsWithDefaults.loadWorldResults = options.loadWorldResults;
-    } else {
-      optionsWithDefaults.loadWorldResults = true;
-    }
     if (options.hasOwnProperty('loadRunDataOnDemand')) {
-      optionsWithDefaults.loadWorldResults = options.loadRunDataOnDemand;
+      optionsWithDefaults.loadRunDataOnDemand = options.loadRunDataOnDemand;
     } else {
       optionsWithDefaults.loadRunDataOnDemand = false;
     }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
-    // console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
     // console.log(`optionsWithDefaults.loadRunDataOnDemand: ${optionsWithDefaults.loadRunDataOnDemand}`);
     // console.log(`optionsWithDefaults.topics:`, optionsWithDefaults.topics);
 
@@ -123,8 +114,9 @@ export function simpl(options) {
             optionsWithDefaults.topics.forEach((topic) => {
               // console.log(`dispatching connectedScope(${topic})`);
               dispatch(connectedScope(topic));
-              // console.log(`dispatching getRunUsers(${topic})`);
-              dispatch(getRunUsers(topic)).then((action) => {
+              const excludePlayers = (options.loadRunDataOnDemand && topic.includes('run')) ? true : false;
+              // console.log(`dispatching getRunUsers(${topic}, ${excludePlayers})`);
+              dispatch(getRunUsers(topic, excludePlayers)).then((action) => {
                 if (action.error) {
                   throw new Error(`${action.payload.error}: ${action.payload.args.join('; ')}`);
                 }
@@ -155,9 +147,6 @@ export function simpl(options) {
                 // console.log(`Will load run's worlds on demand.`);
                 // console.log(`dispatching getDataTree(${topic}, ['world'])`);
                 dispatch(getDataTree(topic, ['world']));
-              } else if (!optionsWithDefaults.loadWorldResults && topic.includes('run')) {
-                // console.log(`dispatching getDataTree(${topic}, ['result'])`);
-                dispatch(getDataTree(topic, ['result']));
               } else {
                 // console.log(`dispatching getDataTree(${topic})`);
                 dispatch(getDataTree(topic));

@@ -29,10 +29,11 @@ export const getDataTree = createAction('simpl/DATATREE_GET', (scope, exclude) =
  * @function
  * @memberof Simpl.actions.simpl
  * @param {string} scope - the scope's topic
+ * @param {array} excludePlayers - returns only leaders if true
  * @returns {NamedReduxAction}
  */
-export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, exclude, ...args) => (
-  AutobahnReact.call(`${scope}.get_active_runusers`, args)
+export const getRunUsers = createAction('simpl/RUNUSERS_GET', (scope, excludePlayers) => (
+  AutobahnReact.call(`${scope}.get_active_runusers`, [excludePlayers])
 ));
 
 /**
@@ -128,14 +129,15 @@ export const showGenericError = createAction('simpl/SHOW_GENERIC_ERROR');
 
 /**
  * Given a run id, returns a recursive representation of that run and
- * its children worlds. Sets state.loaded_run to the run id.
+ * its children worlds and players. Sets state.loaded_run to the run id.
  * @function
  * @memberof Simpl.actions.simpl
  * @param {number} run id - the run id on simpl-games-api.
+ * @param {bool} loadPlayerScenarios - loads player scenarios if true
  * @returns {NamedReduxAction}
  */
-export const loadRunData = createAction('simpl/LOAD_WORLDS', (id) => (
-  AutobahnReact.call(`model:model.run.${id}.get_scope_tree`, [])
+export const loadRunData = createAction('simpl/LOAD_RUN_DATA', (id, loadPlayerScenarios) => (
+  AutobahnReact.call(`model:model.run.${id}.get_run_data`, [loadPlayerScenarios])
 ));
 
 /**
