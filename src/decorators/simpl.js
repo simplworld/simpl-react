@@ -135,8 +135,14 @@ export function simpl(options) {
                   else if (ru.data.email === authid) { // only get this user's scenarios
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
+
+                    // Subscribe to this user's chat rooms
                     console.log(`dispatching ${options.root_topic}.chat.rooms_for_user ${ru.data.id}`)
-                    dispatch(getRunUserChatRooms(options.root_topic, ru.data.id));
+                    dispatch(getRunUserChatRooms(options.root_topic, ru.data.id)).then((action) => {
+                      const rooms = action.payload;
+                      console.log(`In decorator rooms`);
+                      console.dir(rooms);
+                    });
                     break;
                   }
                 }

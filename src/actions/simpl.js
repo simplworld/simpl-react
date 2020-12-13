@@ -139,6 +139,13 @@ export const getRunUserChatRooms = createAction('simpl/GET_RUNUSER_CHATROOMS', (
 ));
 
 /**
+ * postChatMessage
+ */
+export const postChatMessage = createAction('simpl/POST_CHAT_MESSAGE', (topic, roomSlug, authid, data) => (
+  AutobahnReact.call(`${topic}.chat.post_message`, [roomSlug, authid, data])
+));
+
+/**
  * @namespace simpl
  * @memberof Simpl.actions
  */
