@@ -29,6 +29,7 @@ const initial = {
   errors: [],
   topics: [],
   chatrooms: [],
+  messages: [],
 };
 
 const simpl = recycleState(createReducer(initial, {
@@ -266,6 +267,11 @@ const simpl = recycleState(createReducer(initial, {
     // Get the current user's info into the current_runuser namespace
     const rooms = action.payload;
     return Object.assign({}, state, { chatrooms: rooms });
+  },
+  [SimplActions.loadChatMessages](state, action) {
+    const newMessages = action.payload;
+    const messages = state.messages.concat(newMessages);
+    return Object.assign({}, state, { messages });
   },
 }), `${StateActions.recycleState}`);
 

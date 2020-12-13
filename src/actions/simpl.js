@@ -146,6 +146,13 @@ export const postChatMessage = createAction('simpl/POST_CHAT_MESSAGE', (topic, r
 ));
 
 /**
+ * loadChatMessages
+ */
+export const loadChatMessages = createAction('simpl/LOAD_CHAT_MESSAGES', (topic, roomSlug, authid) => (
+  AutobahnReact.call(`${topic}.chat.load_messages`, [roomSlug, authid])
+));
+
+/**
  * @namespace simpl
  * @memberof Simpl.actions
  */
