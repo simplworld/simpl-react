@@ -171,4 +171,6 @@ export default {
   getRoles,
   popError,
   getRunUserChatRooms,
+  postChatMessage,
+  loadChatMessages,
 };

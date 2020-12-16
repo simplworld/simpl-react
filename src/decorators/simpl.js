@@ -11,7 +11,7 @@ import {
   addTopic, addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getCurrentRunUserInfo,
   // eslint-disable-next-line comma-dangle
-  getRunUserScenarios, showGenericError, setConnectionStatus, getRunUserChatRooms
+  getRunUserScenarios, showGenericError, setConnectionStatus, getRunUserChatRooms, loadChatMessages
 } from '../actions/simpl';
 import { CONNECTION_STATUS } from '../constants';
 
@@ -61,6 +61,7 @@ import { wampOptionsWithDefaults, wampSetup } from './utils';
  * If true, load all Scenarios for the subscribed runs.
  * @param {boolean} options.loadWorldResults - If true, load world scenario period decisions and results.
  * If false, load world scenario period decisions but not results.
+ * @param {boolean} options.disableChatMessageLoading - Don't load chat messages for all of the rooms for this subscriber
  */
 export function simpl(options) {
   return (Component) => {
@@ -78,6 +79,11 @@ export function simpl(options) {
       optionsWithDefaults.loadWorldResults = options.loadWorldResults;
     } else {
       optionsWithDefaults.loadWorldResults = true;
+    }
+    if (options.hasOwnProperty('disableChatMessageLoading')) {
+      optionsWithDefaults.disableChatMessageLoading = true;
+    } else {
+      optionsWithDefaults.disableChatMessageLoading = false;
     }
     // console.log(`optionsWithDefaults.loadAllScenarios: ${optionsWithDefaults.loadAllScenarios}`);
     // console.log(`optionsWithDefaults.loadWorldResults: ${optionsWithDefaults.loadWorldResults}`);
@@ -139,14 +145,21 @@ export function simpl(options) {
                     // Subscribe to this user's chat rooms
                     console.log(`dispatching ${options.root_topic}.chat.rooms_for_user ${ru.data.id}`)
                     dispatch(getRunUserChatRooms(options.root_topic, ru.data.id)).then((action) => {
+
+                      // Skip loading messages if this is set
+                      if (optionsWithDefaults.disableChatMessageLoading) {
+                        return;
+                      }
+
                       const rooms = action.payload;
-                      console.log(`In decorator rooms`);
-                      console.dir(rooms);
+                      rooms.forEach((room) => {
+                        console.log(`Loading messages from room ${room.slug}`);
+                        dispatch(loadChatMessages(options.root_topic, room.slug, authid));
+                      });
                     });
                     break;
                   }
                 }
-                console.log("!!!new version!!!");
               }).then(() => {
                 // console.log(`dispatching getCurrentRunUserInfo(${authid})`);
                 dispatch(getCurrentRunUserInfo(authid));
