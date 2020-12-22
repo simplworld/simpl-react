@@ -153,6 +153,12 @@ export const loadChatMessages = createAction('simpl/LOAD_CHAT_MESSAGES', (topic,
 ));
 
 /**
+ * receiveChatMessage
+ */
+export const receiveChatMessage = createAction('simpl/RECEIVE_CHAT_MESSAGE');
+
+
+/**
  * @namespace simpl
  * @memberof Simpl.actions
  */
@@ -173,4 +179,5 @@ export default {
   getRunUserChatRooms,
   postChatMessage,
   loadChatMessages,
+  receiveChatMessage,
 };

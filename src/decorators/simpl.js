@@ -10,8 +10,8 @@ import AutobahnReact from '../autobahn';
 import {
   addTopic, addChild, connectedScope, disconnectedScope, getDataTree, getRunUsers,
   removeChild, updateScope, getCurrentRunPhase, getPhases, getRoles, getCurrentRunUserInfo,
-  // eslint-disable-next-line comma-dangle
-  getRunUserScenarios, showGenericError, setConnectionStatus, getRunUserChatRooms, loadChatMessages
+  getRunUserScenarios, showGenericError, setConnectionStatus, getRunUserChatRooms, loadChatMessages,
+  receiveChatMessage,
 } from '../actions/simpl';
 import { CONNECTION_STATUS } from '../constants';
 
@@ -104,6 +104,7 @@ export function simpl(options) {
 
     const mapStateToProps = (state) => ({
       topics: state.simpl.topics,
+      rooms: state.simpl.chatrooms,
       connectionStatus: state.simpl.connectionStatus,
       errors: state.errors,
       progressComponent: optionsWithDefaults.progressComponent,
@@ -142,8 +143,10 @@ export function simpl(options) {
                     // console.log(`dispatching getRunUserScenarios(${ruTopic})`);
                     dispatch(getRunUserScenarios(ruTopic));
 
-                    // Subscribe to this user's chat rooms
-                    console.log(`dispatching ${options.root_topic}.chat.rooms_for_user ${ru.data.id}`)
+                    // Subscribe to this user's chat rooms.  We subscribe to these
+                    // below, here we're just getting the list of rooms into the redux state
+                    // to use later.  We also, optionally, are loading the chat messages from the API
+                    console.log(`dispatching ${options.root_topic}.chat.rooms_for_user ${ru.data.id}`);
                     dispatch(getRunUserChatRooms(options.root_topic, ru.data.id)).then((action) => {
 
                       // Skip loading messages if this is set
@@ -194,6 +197,14 @@ export function simpl(options) {
         },
         onReceivedWithTopics(args, kwargs, event, topics) {
           // console.log(`onReceived:: args: `, args, `, event: `, event, `, topics: `, topics);
+
+          if (event.topic.startsWith(`${options.root_topic}.chat.room`)) {
+            // console.log(`Received chat message:`, args);
+            // console.dir(args)
+            dispatch(receiveChatMessage(args[0]));
+            return;
+          }
+
           if (kwargs.error) {
             dispatch(showGenericError(args, kwargs));
           } else {
@@ -257,15 +268,19 @@ export function simpl(options) {
       }
 
       render() {
+        const addonTopics = [`model:error.${options.authid}`];
+        this.props.rooms.forEach((room) => {
+          addonTopics.push(`${options.root_topic}.chat.room.${room.slug}`);
+        });
+
         const appTopics = this.props.topics.reduce(
           (memo, topic) => memo.concat([
             `${topic}.add_child`,
             `${topic}.update_child`,
             `${topic}.remove_child`,
           ])
-          , [
-            `model:error.${options.authid}`,
-          ]);
+          , addonTopics
+        );
         const SubscribedAppContainer = subscribes(appTopics)(AppContainer);
 
         if (this.props.connectionStatus !== CONNECTION_STATUS.LOADED) {
@@ -285,6 +300,7 @@ export function simpl(options) {
 
     Simpl.propTypes = {
       topics: PropTypes.array.isRequired,
+      rooms: PropTypes.array.isRequired,
       connectionStatus: PropTypes.string.isRequired,
       onLeave: PropTypes.func,
       onReady: PropTypes.func.isRequired,

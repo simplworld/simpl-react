@@ -273,6 +273,11 @@ const simpl = recycleState(createReducer(initial, {
     const messages = state.messages.concat(newMessages);
     return Object.assign({}, state, { messages });
   },
+  [SimplActions.receiveChatMessage](state, action) {
+    const newMessage = action.payload;
+    const messages = [...state.messages, newMessage];
+    return Object.assign({}, state, { messages });
+  },
 }), `${StateActions.recycleState}`);
 
 export default simpl;
